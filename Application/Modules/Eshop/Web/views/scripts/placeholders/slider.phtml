@@ -1,0 +1,26 @@
+<div id="slider">
+  		
+  			<div id="s-content">
+  			
+  				<div id="s-items">
+	  				<?php foreach($this->sliders as $slider){ ?>
+		  				<div class="item">
+			  				<div id="tinymce" class="text">
+			  					<?php echo $slider->text ?>
+			  					<p><a href="<?php echo $slider->link ?>">Zobrazit více</a></p>
+			  				</div>
+			  				<div class="photo">
+			  					<img src="/Public/Images/Slider/<?php echo $slider->photoTitle ?>" alt="" />
+			  				</div>
+			  				<div class="clear-left"></div>
+		  				</div>
+	  				<?php } ?>
+  				</div>
+  				<div id="buttons">
+  					<a class="button prew" href="#"> </a> 
+  					<a class="button next" href="#"> </a>
+  				</div>
+  			
+  			</div>
+  		
+  		</div>

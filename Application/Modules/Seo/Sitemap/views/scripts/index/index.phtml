@@ -1,0 +1,93 @@
+<script type="text/javascript" src="/Application/Modules/Seo/Sitemap/Jscripts/events.js"></script>
+
+<h1> Sitemap </h1>
+
+<ol class="breadcrumb">
+<li>SEO</li>
+<li class="active">Sitemap</li>
+</ol>
+
+<?php if($this->error !=''){
+	echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";
+} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="" method="post">
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<div class="panel panel-default">		
+				<div class="panel-heading clearfix">
+					<strong>Základní info</strong>
+				</div>
+				<div class="panel-body">
+		
+					<label>Typ generování</label>
+					<div class="form-group generate-type">
+						<label class="radio-inline"><input type="radio" name="generateTypeID" value="1" <?php if($this->allData->generateTypeID == 1)echo "checked"; ?> />Automaticky vždy po přihlášení se do adminu a zároveň pokud byly provedeny změny</label><br />
+						<label class="radio-inline"><input type="radio" name="generateTypeID" value="2" <?php if($this->allData->generateTypeID == 2)echo "checked"; ?> />Manuálně klikem na tlačítko</label>
+					</div>
+					
+					<div class="form-group generate-button" <?php if($this->allData->generateTypeID == 1)echo 'style="display:none"'; ?>>
+						<input class="btn btn-primary" type="submit" name="generate" value="Vygenerovat sitemap" />
+					</div>
+					
+					<label>Jak často budete aktualizovat data na webu ?</label>
+					<div class="form-group generate-type">
+						<select class="form-control" name="changefreq">
+							<option value="always"  <?php if($this->allData->changefreq == "always")echo "selected"; ?>>neustále</option>
+							<option value="hourly"  <?php if($this->allData->changefreq == "hourly")echo "selected"; ?>>co hodinu</option>
+							<option value="daily"   <?php if($this->allData->changefreq == "daily")echo "selected"; ?>>denně</option>
+							<option value="weekly"  <?php if($this->allData->changefreq == "weekly")echo "selected"; ?>>týdně</option>
+							<option value="monthly" <?php if($this->allData->changefreq == "monthly")echo "selected"; ?>>mesíčně</option>
+							<option value="yearly"  <?php if($this->allData->changefreq == "yearly")echo "selected"; ?>>ročně</option>
+							<option value="never"   <?php if($this->allData->changefreq == "never")echo "selected"; ?>>nikdy</option>
+						</select>
+					</div>
+								
+					<label>URL adresy sitemap</label>
+					<div class="form-group">
+						<?php if(!empty($this->files)){ ?>
+							<ul>
+								<?php foreach($this->files as $f){ ?>
+							        <li><a class="link" href="/<?php echo $this->path ?>/<?php echo $f ?>">http://<?php echo $this->domain ?>/<?php echo $this->path ?>/<?php echo $f ?></a></li>
+							    <?php } ?>
+							</ul>
+						<?php } ?>
+					</div>
+					
+				</div>	
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<div class="panel panel-default">		
+				<div class="panel-heading clearfix">
+					<strong>Z kterých odkazů chcete odstranit generování článků do sitemap</strong>
+				</div>
+				<div class="panel-body">
+					<?php echo $this->articles; ?>			
+				</div>	
+			</div>
+			
+			<div class="panel panel-default">		
+				<div class="panel-heading clearfix">
+					<strong>Které odkazy chcete odstranit ze sitemap</strong>
+				</div>
+				<div class="panel-body">
+					<?php echo $this->links; ?>			
+				</div>	
+			</div>
+			
+		</div>
+	
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Uložit" />
+			</div>
+		</div>
+	</div>
+
+</form>

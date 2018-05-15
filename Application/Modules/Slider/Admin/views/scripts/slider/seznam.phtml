@@ -1,0 +1,37 @@
+
+<?php echo $this->render('sortAlign.phtml'); ?>
+
+<div class="listTitleHeader margin-left">Název slideru</div>
+<div class="listHeader">Datum</div>
+<div class="listHeader">Shlédnuto</div>
+<div class="listHeader listBorderRight">Možnosti</div>
+
+<br class="konec_float" />
+	
+<?php if(count($this->allItems) > 0){ ?>	
+<ul id="sortListBasic">
+<?php foreach($this->allItems as $slider){ ?>
+	<li id="<?php echo $slider->sliderID;?>">
+		<div class="listTitleItem crossBasic margin-left"><?php echo $slider->title; ?></div>
+		<div class="listItem"><?php echo date("d.m.Y H:i:s",strtotime($slider->dateAdd)); ?></div>
+		<div class="listItem"> neevidováno <?php // echo $slider->view; ?></div>
+		<div class="listItem">
+		    <a title="Uprav" href="<?php echo $this->baseUrl; ?>/admin/slider/upravit/id/<?php echo $slider->sliderID;?>"><img alt="Uprav" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/edit.png" /></a>   
+		    <a title="Smaž" href="<?php echo $this->baseUrl; ?>/admin/slider/smazat/id/<?php echo $slider->sliderID;?>"><img alt="Smaž" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.png" /></a>
+		</div>
+		
+		<br id="endFloat" />
+	</li>	
+<?php } ?>
+
+</ul>
+<?php }else{ ?>
+
+<p class="notice">Zatím se zde nenachází žádné položky</p>
+
+<?php } ?>
+	
+<?php echo $this->nextPrevious ?>
+	     
+	     	
+

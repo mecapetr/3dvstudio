@@ -1,0 +1,5 @@
+<?php foreach($this->allEmails as $val){
+	if(empty($val->email))continue;						
+?>
+   	<li style="float:left;width:299px;"><input checked class="checkbox email" type="checkbox" name="email[]" value="<?php echo $val->email; ?>" /><?php echo $val->email; ?></li>
+<?php } ?>

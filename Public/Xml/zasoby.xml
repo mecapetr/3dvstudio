@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rsp:responsePack xmlns:rsp="http://www.stormware.cz/schema/response.xsd" xmlns:rdc="http://www.stormware.cz/schema/documentresponse.xsd" xmlns:typ="http://www.stormware.cz/schema/type.xsd" xmlns:lst="http://www.stormware.cz/schema/list.xsd" xmlns:acu="http://www.stormware.cz/schema/accountingunit.xsd" xmlns:inv="http://www.stormware.cz/schema/invoice.xsd" xmlns:vch="http://www.stormware.cz/schema/voucher.xsd" xmlns:int="http://www.stormware.cz/schema/intDoc.xsd" xmlns:stk="http://www.stormware.cz/schema/stock.xsd" xmlns:ord="http://www.stormware.cz/schema/order.xsd" xmlns:ofr="http://www.stormware.cz/schema/offer.xsd" xmlns:enq="http://www.stormware.cz/schema/enquiry.xsd" xmlns:vyd="http://www.stormware.cz/schema/vydejka.xsd" xmlns:pri="http://www.stormware.cz/schema/prijemka.xsd" xmlns:bal="http://www.stormware.cz/schema/balance.xsd" xmlns:pre="http://www.stormware.cz/schema/prevodka.xsd" xmlns:vyr="http://www.stormware.cz/schema/vyroba.xsd" xmlns:pro="http://www.stormware.cz/schema/prodejka.xsd" xmlns:con="http://www.stormware.cz/schema/contract.xsd" xmlns:adb="http://www.stormware.cz/schema/addressbook.xsd" xmlns:prm="http://www.stormware.cz/schema/parameter.xsd" xmlns:lst2="http://www.stormware.cz/schema/list_2.xsd" xmlns:ctg="http://www.stormware.cz/schema/category.xsd" xmlns:ipm="http://www.stormware.cz/schema/intParam.xsd" version="1.0" id="00000001" state="ok" note="" programVersion="9903.1008 (10.11.2011)">
+<rsp:responsePackItem version="1.0" id="00000001" state="ok">
+<lst:listStock version="1.2" dateTimeStamp="2011-11-18T19:34:17Z" dateValidFrom="2011-11-18" state="ok">
+<lst:stock version="1.6">
+<stk:stockHeader>
+<stk:id>16825</stk:id>
+<stk:stockType>card</stk:stockType>
+<stk:code>OFLY00S45</stk:code>
+<stk:isSales>true</stk:isSales>
+<stk:isInternet>true</stk:isInternet>
+<stk:purchasingRateVAT>high</stk:purchasingRateVAT>
+<stk:sellingRateVAT>high</stk:sellingRateVAT>
+<stk:name>FLY/S4L LINEARE</stk:name>
+<stk:nameComplement/>
+<stk:unit>ks</stk:unit>
+<stk:storage>
+<typ:id>3</typ:id>
+<typ:ids>Import/Import2</typ:ids></stk:storage>
+<stk:typePrice>
+<typ:id>2</typ:id>
+<typ:ids>Import2</typ:ids></stk:typePrice>
+<stk:weightedPurchasePrice>10206.35</stk:weightedPurchasePrice>
+<stk:purchasingPrice>18485.67</stk:purchasingPrice>
+<stk:sellingPrice>26036</stk:sellingPrice>
+<stk:limitMin>2.0</stk:limitMin>
+<stk:limitMax>2.0</stk:limitMax>
+<stk:count>1.0</stk:count>
+<stk:countReceivedOrders>0.0</stk:countReceivedOrders>
+<stk:reservation>0.0</stk:reservation>
+<stk:supplier>
+<typ:id>779</typ:id></stk:supplier>
+<stk:orderQuantity>0.0</stk:orderQuantity>
+<stk:countIssuedOrders>0.0</stk:countIssuedOrders>
+<stk:producer>Veteria de Majo Srl</stk:producer>
+<stk:classOfStock>goods</stk:classOfStock>
+<stk:description>ZÃ¡vÄsnÃ© svÃ­tidlo extra ÄistÃ½ kÅiÅ¡Å¥Ã¡l, brouÅ¡enÃ© cylindry KovovÃ© dÃ­ly v exklusivnÃ­m chromu. RozmÄry 77x26cm. VÃ½kon 4x60W E14. DÃ©lka zÃ¡vÄsu 40-180 cm</stk:description>
+<stk:pictures>
+<stk:picture default="true">
+<stk:filepath>flys42.jpg</stk:filepath>
+<stk:description/></stk:picture></stk:pictures></stk:stockHeader>
+<stk:stockPriceItem>
+<stk:stockPrice>
+<typ:id>1</typ:id>
+<typ:ids>ProdejnÃ­</typ:ids>
+<typ:price>26036</typ:price></stk:stockPrice>
+<stk:stockPrice>
+<typ:id>2</typ:id>
+<typ:ids>Sleva 1</typ:ids>
+<typ:price>0</typ:price></stk:stockPrice></stk:stockPriceItem></lst:stock></lst:listStock></rsp:responsePackItem></rsp:responsePack>

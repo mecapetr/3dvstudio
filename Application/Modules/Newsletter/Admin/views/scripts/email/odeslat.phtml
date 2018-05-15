@@ -1,0 +1,81 @@
+<?php echo $this->render("css-js.phtml"); ?>
+<h2> <?PHP echo $this->translate('Poslat email všem uživatelům'); ?> </h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+    <?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+
+    <form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+        
+        <p><label for="login">    <?PHP echo $this->translate('Předmět'); ?>: </label> <input id="subject"    type="text"  name="subject"    value="<?php if(!empty($this->subject))echo $this->subject; ?>" /></p>     
+        <p><label for="text">    <?PHP echo $this->translate('Text'); ?>:     </label> <textarea id="text"     name="text" ><?php if($this->text)echo $this->text; ?></textarea></p> 
+   
+        <p><label><?PHP echo $this->translate("Příloha"); ?> 1:</label><input type="file" name="file1" /></p>
+        <p><label><?PHP echo $this->translate("Příloha"); ?> 2:</label><input type="file" name="file2" /></p>
+        <p><label><?PHP echo $this->translate("Příloha"); ?> 3:</label><input type="file" name="file3" /></p>
+        <p><label><?PHP echo $this->translate("Příloha"); ?> 4:</label><input type="file" name="file4" /></p>
+        <p><label><?PHP echo $this->translate("Příloha"); ?> 5:</label><input type="file" name="file5" /></p>
+        <p><label><?PHP echo $this->translate("Příloha"); ?> 6:</label><input type="file" name="file6" /></p>
+        
+        <?PHP if(count($this->allCategories) != 0){ ?>
+	        <p>
+	                <label style="vertical-align: middle;"><?PHP echo $this->translate("Zaslat kategoriím"); ?>:</label>
+	                <input id="all-cat-email" type="checkbox" class="checkbox" name="all-cat" value="1" style="vertical-align: middle;" /> <label for="all-cat-email" style="vertical-align: middle;"><?PHP echo $this->translate("Všechny kategorie"); ?></label>
+	                
+	        </p>        
+	        <ul class="equipment" id="send-categories">
+	           <?php foreach($this->allCategories as $cat){ ?>
+	               <li>
+	                           <?php 
+	                            $checked = false;
+	                            if($this->selectedCatToEmail){
+	                                foreach($this->selectedCatToEmail as $e){ 
+	                                    if($e == $cat->categoryID){
+	                                        $checked = true;
+	                                        break;
+	                                    }
+	                                }
+	                            }
+	                            
+	                        ?>
+	                    <input <?PHP if($checked)echo 'checked="checked"'; ?> id="cat-<?php echo $cat->categoryID ?>" type="checkbox" class="checkbox email-cat-check" name="category[]" value="<?php echo $cat->categoryID ?>" />
+	                    <label for="cat-<?php echo $cat->categoryID ?>"><?php echo $this->translate($cat->title); ?></label>
+	               </li>
+	            <?php } ?>
+	        </ul>
+		<div class="clear-left"></div>
+           <p><span class="email-description"><?PHP echo $this->translate('Pokud není vybrána žádná kategorie, zobrazí se emaily všech klientů bez ohledu na kategorii!'); ?></span></p>
+           
+        <?PHP } ?>
+           <p>
+               <label><?PHP echo $this->translate('Seznam emailů'); ?></label>
+               <input id="all-email" type="checkbox" class="checkbox" name="all-cat" value="1" <?php if(count($this->emails) == count($this->emailsBack) || !$this->emailsBack)echo 'checked="checked"';  ?> /> <label for="all-email"><?PHP echo $this->translate("Všechny emaily"); ?></label>
+           </p>
+           <div class="loading">           
+               <img src="/Public/Images/animation.gif" alt="loading" />
+           </div>    
+               <ul id="filtered-emails" class="email" style="margin-left:30px;">
+                      <?PHP if(!empty($this->emails)){ ?>
+                              <?PHP foreach ($this->emails as $val){ 
+                                        if(empty($val))continue;   
+
+                                        $ch = false;
+                                        if($this->emailsBack){
+	                                        foreach($this->emailsBack as $eb){
+	                                        	if($eb == $val){
+	                                        		$ch = true;
+	                                        		break;
+	                                        	}
+	                                        }
+                                        }
+                              ?>
+                                   <li style="float:left;width:299px;"><input <?php if(($this->emailsBack && $ch) || (!$this->emailsBack))echo'checked="checked"'; ?> class="checkbox email" type="checkbox" name="email[]" value="<?php echo $val; ?>" /><?php echo $val; ?></li>
+                              <?PHP } ?>
+                      <?PHP } ?>
+               </ul>
+           
+        <p class="button">
+        	<input class="button send-emails" type="submit" name="enter" value="<?PHP echo $this->translate('Poslat'); ?>" />
+        	<input style="display:none;" class="button h-send-emails" type="submit" name="enter" value="<?PHP echo $this->translate('Poslat'); ?>" />
+       </p>
+    
+    </form>

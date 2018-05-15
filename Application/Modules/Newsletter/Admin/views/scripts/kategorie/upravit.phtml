@@ -1,0 +1,12 @@
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data" id="customer-update-form">
+	<h2 class="customerInformation cursor"> <?PHP echo $this->translate("Upravit kategorii"); ?> </h2>
+    <div class="customerInformation">
+	    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+		<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div><br /><br />";} ?>
+		
+		<p><label for="title">    <?PHP echo $this->translate("Název kategorie"); ?>: </label> <input id="title"    type="text"  name="title"    value="<?php echo $this->allItems->title ?>" /></p>   
+		<p><input class="button" type="submit" name="enter" value="<?PHP echo $this->translate("Upravit"); ?>" /></p>
+     </div>
+</form>
+	
+	

@@ -1,0 +1,460 @@
+<h1> Upravit odkaz </h1>
+
+<ol class="breadcrumb">
+	<li>Obsah</li>
+	<li class="active">Upravit odkaz</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+     
+     <div class="row">	
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-show-thumbnails-with-lines"></span> Obecný formulář</div>
+				<div class="panel-body">   
+				
+					<div class="form-group"> 
+						<label>Aktivní</label>
+						<div>		
+							<label class="radio-inline">
+								<input class="checkbox" type="radio" name="active" id="active" value="1" <?PHP if($this->allItems->active == 1)echo "checked='checked'" ?>  />
+								Ano
+							</label>
+							<label class="radio-inline">
+								<input class="checkbox" type="radio" name="active" id="active" value="0" <?PHP if($this->allItems->active == 0)echo "checked='checked'" ?> />
+								Ne
+					    	</label>
+				    	</div>
+				    </div>
+				    
+				    <div class="form-group">
+						<label>Zobrazit v hlavičce</label>	
+						<div>		
+							<label class="radio-inline">
+								<input class="checkbox" type="radio" name="inMenu" id="inMenu" value="1" <?PHP if($this->allItems->inMenu == 1)echo "checked='checked'" ?>  />
+								Ano
+							</label>
+							<label class="radio-inline">
+								<input class="checkbox" type="radio" name="inMenu" id="inMenu" value="0" <?PHP if($this->allItems->inMenu == 0)echo "checked='checked'" ?> />
+								Ne
+							</label>
+				    	</div>
+				    </div>
+				    
+				    <div class="form-group">  
+				    	<label>Zobrazit v patičce</label>				
+						<div>
+							<label class="radio-inline"> 
+								<input class="checkbox" type="radio" name="inFooter" id="inFooter" value="1" <?PHP if($this->allItems->inFooter == 1)echo "checked='checked'" ?>  />
+								Ano
+							</label>
+							<label class="radio-inline"> 
+								<input class="checkbox" type="radio" name="inFooter" id="inFooter" value="0" <?PHP if($this->allItems->inFooter == 0)echo "checked='checked'" ?> />
+								Ne
+					    	</label>
+				    	</div>
+					</div>
+  		 
+			        <div class="form-group">
+					    
+				        <label>Název odkazu</label>
+				        <div class="has-feedback">
+						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+						    		<input placeholder="Název odkazu" class="form-control" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->title[$val->suffix]; ?>" />
+							    	<span class="requiere">*</span>
+							    </span>
+						    <?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div>
+					<div class="form-group"> 
+						<label>Vlastní url</label>
+						<div>   
+						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+						   			<input placeholder="Vlastní URL" class="form-control"  <?PHP if(!$this->allItems->allowEditOtherLink)echo "disabled"; ?> type="text" name="otherLink-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->otherLink[$val->suffix];?>" />
+							    </span>
+						    <?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div>
+					<div class="form-group">
+					    <label for="">Typ odkazu</label>
+					    <select name="link-type" class="form-control">
+					    	<option <?php if($this->allItems->parentID == 0)echo"selected"; ?> value="0"> Hlavní </option>
+					    	<option <?php if($this->allItems->parentID != 0)echo"selected"; ?> value="1"> Subodkaz </option>
+					    </select>
+					</div>
+				    
+					<div class="sub-links" <?php if($this->allItems->parentID)echo'style="display:block"'; ?> >
+						<div class="form-group"> 
+							<label for="parent">Nadřazený odkaz</label>
+						    <span id="selected-parent-link" class="selected-link" rel="0">
+						    	<span class="value form-control v-0"><?PHP if($this->parentTitle)echo $this->parentTitle; else echo "&nbsp;"; ?></span>
+							    <span class="parrent-links">
+									<?PHP  echo $this->linksOutput ; ?>
+							    </span>
+						    	<input type="hidden" name="parent" value="<?PHP if($this->allItems->parentID)echo $this->allItems->parentID; else echo 0; ?>" id="selected-parent-input-0" />
+						    </span>
+						</div>
+					</div>
+
+												
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-note"></span> SEO</div>
+				<div class="panel-body">
+				
+					<div class="form-group">
+					 	<label>Odkaz na obsah stránky v předchozí verzi stránky:</label>	    
+						<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    <span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    			<input class="form-control" id="oldUrl" type="text" name="oldUrl-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->oldUrl[$val->suffix])echo $this->allItems->oldUrl[$val->suffix];?>" />
+							</span>
+						<?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+				    </div>
+				
+					<div class="form-group">
+						<label>Meta nadpis</label>
+						<div>
+						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+									<input placeholder="Meta nadpis" class="form-control" id="metaTitle" type="text" name="metaTitle-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->metaTitle[$val->suffix];?>" />
+							    </span>
+						    <?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Meta klíčová slova</label>
+						<div>
+						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+									<input placeholder="Meta klíčová slova" class="form-control" id="keywords" type="text" name="keywords-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->keywords[$val->suffix];?>" />
+							    </span>
+						    <?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Meta popis</label>
+						<div>
+						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    			<input placeholder="Meta popis" class="form-control" id="description" type="text" name="description-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->description[$val->suffix];?>" />
+							    </span>
+						    <?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+				    </div>
+				
+				</div>
+			</div>
+    
+			<?PHP if($this->modulesData->odkazyUrlVideo){ ?>
+		    <div class="panel panel-default">
+				<div class="panel-heading"><span class="social social-youtube"></span> <span class="social social-vimeo"></span> Přidat video (youtube, vimeo)</div>
+				<div class="panel-body">
+					<div class="video-URLs">
+						
+						<?php $count = count($this->allWebVideos); if($count > 0){ ?>
+							<div class="form-group">
+							<?php $i = 1; foreach($this->allWebVideos as $vid){ ?>
+							
+					    		<?PHP if($vid->type == "youtube"){ ?>				    	
+									<div class="col-sm-6 col-xs-12 video-panel">
+										<div class="form-group">
+											<iframe width="100%" height="165" src="http://www.youtube.com/embed/<?PHP echo $vid->code ?>" frameborder="0" allowfullscreen></iframe> 
+											
+										</div>
+										
+										<div class="form-group">
+											<div class="checkbox"> 	
+												<label> <input type="checkbox" name="delVideo[]" value="<?PHP echo $vid->webVideoID ?>"> smazat video</label>
+											</div>
+										</div>
+									</div>
+								<?PHP }else if($vid->type == "vimeo"){ ?>
+									<div class="col-sm-6 col-xs-12 video-panel">
+										<div class="form-group">
+											<iframe src="http://player.vimeo.com/video/<?PHP echo $vid->code ?>?title=0&amp;byline=0&amp;portrait=0" width="200" height="165" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+										</div>
+										<div class="form-group">
+											<div class="checkbox">
+												<label> <input id="del-vid-<?PHP echo $i ?>" type="checkbox" class="checkbox" name="delVideo[]" value="<?PHP echo $vid->webVideoID ?>"> smazat video</label>
+											</div>
+										</div>
+									</div>
+								<?PHP } ?>
+					    			    
+							<?php $i++; } ?>
+							<div class="clearfix"></div>
+							</div>
+						
+							<div class="form-group">
+								<input placeholder="URL videa (youtube, vimeo)" class="form-control" type="text" name="videoURL-1" id="videoURL-1" />
+							</div>
+						<?php }else{ ?>
+							<div class="form-group">
+								<input placeholder="URL videa (youtube, vimeo)" class="form-control" type="text" name="videoURL-1" id="videoURL-1" />
+							</div>
+						<?php } ?>
+					</div>
+	
+				</div>
+				<div class="panel-footer">
+						<a class="btn btn-primary btn-xs add-videoURL" href="" class="add-videoURL">Přidat URL</a>
+				    	<?php if($count > 0){ ?>
+				    	<input type="hidden" name="hidvideo" value="<?php echo $count; ?>">
+				    	<?php }else{ ?>
+				    	<input type="hidden" name="hidvideo" value="1">
+						<?php } ?>
+					</div>
+			</div>
+			<?PHP } ?>
+		
+			<?PHP if($this->modulesData->odkazyFoto){ ?>
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicons glyphicons-picture"></span> Přidat fotky</div>
+					<div class="panel-body">
+
+			        <p>
+			        	
+			        	<input type="hidden" name="sWidth"  value="0" />
+			        	<input type="hidden" name="sHeight" value="175" />
+			        	<input type="hidden" name="mWidth"  value="0" />
+			        	<input type="hidden" name="mHeight"  value="800" />
+			        </p> 
+			        <script>
+			       
+			            	var mAction       = '<?php echo $this->action; ?>';
+			            	var mFolder       = '<?php echo $this->folder; ?>';
+			            	var mTable        = '<?php echo $this->table; ?>';
+			            	var mTableID      = '<?php echo $this->tableID; ?>';
+			            	var mUi           = '<?php echo $this->adminUserID; ?>';
+			            	var mPath         = '<?php echo $this->path; ?>';
+			            	var mTableIDvalue = '<?php echo $this->tableIDvalue; ?>';
+			            	var sWidth        = $("input[name=sWidth]").val();
+			            	var sHeight       = $("input[name=sHeight]").val();
+			            	var mWidth        = $("input[name=mWidth]").val();
+			            	var mHeight       = $("input[name=mHeight]").val();
+			            	var mResizedByLongerSide = "false";
+			        </script>
+			    	<?php echo $this->render("photo.phtml"); ?> 
+			    
+					</div>
+				</div>
+			<?PHP } ?>
+		    <?PHP if($this->modulesData->odkazySoubor){ ?>
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicons glyphicons-file"></span> Přidat soubory</div>
+					<div class="panel-body">			    
+			    		<?php echo $this->render("files.phtml"); ?> 
+			    	</div>
+			    </div>
+			<?PHP } ?>
+
+			
+		</div>
+		
+		<div class="col-md-8">					
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-sort"></span> Sekce odkazu</div>
+				<div class="panel-body">
+					<div class="link-sections">
+						<ul class="other-sections sortListBasic">
+							<?php $this->secI = 1; foreach($this->updateSectionData as $linkSectionID => $this->usd){ ?>
+								<li>
+								<div class="panel panel-default">
+								    <div class="panel-heading clearfix">Sekce <span data="<?php echo $linkSectionID ?>" class="glyphicons glyphicons-remove section"></span> <span class="glyphicons glyphicons-move"></span> </div>
+								    <div class="panel-body">
+										<section data="<?php echo $this->secI; ?>">	
+											<div class="row">
+												<div class="col-sm-4 col-xs-12">
+												<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+													<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+										    			<input placeholder="název sekce" value="<?php echo $this->usd["option"]["name"][$val->suffix] ?>" type="text" name="sec-name-<?php echo $this->secI; ?>-<?PHP echo $val->suffix ?>" class="form-control">
+										    		</span>
+												<?PHP $i++; } ?>
+												<?php echo $this->render("languageMutations.phtml"); ?>
+													
+												</div>
+		    									<div class="col-sm-4 col-xs-12">
+													<div class="form-group">
+											    		<select name="sec-bg-color-<?php echo $this->secI; ?>" class="form-control">
+											    			<option value="0"> bez barvy pozadí </option>
+											    			<option value="grey" <?php if($this->usd["option"]["bgColor"] == "grey")echo "selected" ?> > šedé pozadí </option>
+											    			<option value="white" <?php if($this->usd["option"]["bgColor"] == "white")echo "selected" ?> > bílé pozadí </option>
+											    			<option value="black" <?php if($this->usd["option"]["bgColor"] == "black")echo "selected" ?> > černé pozadí </option>
+											    			
+											    		</select>
+											    	</div>	
+										    	</div>
+										    	<div class="col-sm-4 col-xs-12">
+
+										    	    <label>Na celou šířku webu:</label>
+										    		<label class="radio-inline"><input <?php if($this->usd["option"]["wide"] == 1)echo "checked" ?> type="radio" value="1" name="wide-<?php echo $this->secI; ?>" /> Ano </label>
+										    	    <label class="radio-inline"><input <?php if($this->usd["option"]["wide"] == 0)echo "checked" ?> type="radio" value="0" name="wide-<?php echo $this->secI; ?>" /> Ne </label>
+							
+											    </div>
+									    	</div>					
+											<div class="form-group section-control">									
+												<div class="dropdown">
+												  <button class="btn btn-block btn-primary" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												     --- vyberte element který chcete přidat do sekce --- 
+												  </button>
+												  <ul class="dropdown-menu" aria-labelledby="dLabel">	  	
+												    <li><a class="e-1" href="" data-toggle="tooltip" data-placement="left" title="element obsahující pouze velký obrázek a text k němu">Header element</a></li>
+												    <li><a class="e-2" href="" data-toggle="tooltip" data-placement="left" title="nadpis jednotlivé sekce">Section Header element</a></li>
+												    <li><a class="e-3" href="" data-toggle="tooltip" data-placement="left" title="tvoří sloupce sekce a obsahuje fotku nadpis a text">Link element</a></li>
+												    <!-- <li><a class="e-4" href="" data-toggle="tooltip" data-placement="left" title="tak samo jako link element ale bez fotky a je propojený s jiným odkazem">Sublink element</a></li> -->
+												    <li><a class="e-5" href="" data-toggle="tooltip" data-placement="left" title="vložení textu do sekce">Text element</a></li>
+												    <!-- <li><a class="e-6" href="" data-toggle="tooltip" data-placement="left" title="vložení tabulky s filtrovaným seznamem">List element</a></li> -->
+												    <li><a class="e-7" href="" data-toggle="tooltip" data-placement="left" title="vložení formuláře">Form element</a></li>
+												    <li><a class="e-8" href="" data-toggle="tooltip" data-placement="left" title="vložení youtube nebo vimeo videí">YouTube,Vimeo element</a></li>
+												    <li><a class="e-9" href="" data-toggle="tooltip" data-placement="left" title="V tomto elementu se budou zobrazovat články, které přiřadíte tomuto odkazu vsekci Přidat článek">Element zobrazení článků</a></li>
+												    <li><a class="e-10" href="" data-toggle="tooltip" data-placement="left" title="V tomto elementu se budou zobrazovat vložené fotky nebo soubory">Element fotky a soubory</a></li>
+												    <li><a class="e-11" href="" data-toggle="tooltip" data-placement="left" title="Element zobrazí googlemapu a jednolitvé body v ní">Map element</a></li>
+												  </ul>
+												  <script>
+												  	$(function () {
+													  $('[data-toggle="tooltip"]').tooltip()
+													})
+												  </script>
+												</div>
+											    
+										    </div>	
+										    
+										    <?php $listCount = $mCount = $formCount = $sublinkCount = $linkCount = $textCount = $sectionHeaderCount = $headerCount = $ytvCount = $aCount = $phCount = 0 ?>
+										    					
+											<ul class="section-elements sortListBasic">
+											
+												<?php foreach($this->usd["elements"] as $this->elementPriority => $this->elementData){ ?>
+												
+													<?php if(!empty($this->elementData["header"])){ ?>	
+														<?php 
+															$headerCount++;
+															$this->elSecCount[$this->elementPriority] = $headerCount;
+														 	echo $this->render("odkazy/header-element.phtml"); 
+														 ?>
+													<?php } ?>	
+													
+													<?php if(!empty($this->elementData["sectionHeader"])){ ?>	
+														<?php 
+															$sectionHeaderCount++;
+															$this->elSecCount[$this->elementPriority] = $sectionHeaderCount;
+															echo $this->render("odkazy/section-header-element.phtml");
+														?>
+													<?php } ?>
+													
+													<?php if(!empty($this->elementData["linkElement"])){ ?>
+														<?php 
+															$linkCount++;
+															$this->elSecCount[$this->elementPriority] = $linkCount;
+															echo $this->render("odkazy/link-element.phtml"); 
+														?>
+													<?php } ?>
+													
+													<?php if(!empty($this->elementData["sublinkElement"])){ ?>
+														<?php 
+															$sublinkCount++;
+															$this->elSecCount[$this->elementPriority] = $sublinkCount;
+															echo $this->render("odkazy/sublink-element.phtml"); 
+														?>
+													<?php } ?>
+													
+													<?php if(!empty($this->elementData["textElement"])){ ?>	
+														<?php 
+															$textCount++;
+															$this->elSecCount[$this->elementPriority] = $textCount;
+															echo $this->render("odkazy/text-element.phtml"); 
+														?>
+													<?php } ?>
+													<?php if(!empty($this->elementData["formElement"])){ ?>
+														<?php 
+															$formCount++;
+															$this->elSecCount[$this->elementPriority] = $formCount;
+															echo $this->render("odkazy/form-element.phtml"); 
+														?>
+													<?php } ?>
+													<?php if(!empty($this->elementData["listElement"])){ ?>
+														<?php 
+															$listCount++;
+															$this->elSecCount[$this->elementPriority] = $listCount;
+															echo $this->render("odkazy/list-element.phtml"); 
+														?>
+													<?php } ?>	
+													<?php if(!empty($this->elementData["ytvElement"])){ ?>
+														<?php 
+															$ytvCount++;
+															$this->elSecCount[$this->elementPriority] = $ytvCount;
+															echo $this->render("odkazy/ytv-element.phtml"); 
+														?>
+													<?php } ?>
+													<?php if(!empty($this->elementData["article"])){ ?>
+														<?php 
+															$aCount++;
+															$this->elSecCount[$this->elementPriority] = $aCount;
+															echo $this->render("odkazy/article-element.phtml"); 
+														?>
+													<?php } ?>
+													<?php if(!empty($this->elementData["photoFile"])){ ?>
+														<?php 
+															$phCount++;
+															$this->elSecCount[$this->elementPriority] = $phCount;
+															echo $this->render("odkazy/photo-file-element.phtml"); 
+														?>
+													<?php } ?>
+													<?php if(!empty($this->elementData["map"])){ ?>
+														<?php 
+															$mCount++;
+															$this->elSecCount[$this->elementPriority] = $mCount;
+															echo $this->render("odkazy/map-element.phtml"); 
+														?>
+													<?php } ?>
+												<?php } ?>	
+																
+										    </ul>
+										    <input type="hidden" name="header-element-count-<?php echo $this->secI ?>" value="<?php echo $headerCount ?>" />
+										    <input type="hidden" name="section-header-element-count-<?php echo $this->secI ?>" value="<?php echo $sectionHeaderCount ?>" />
+										    <input type="hidden" name="link-element-count-<?php echo $this->secI ?>" value="<?php echo $linkCount ?>" />
+										    <input type="hidden" name="sublink-element-count-<?php echo $this->secI ?>" value="<?php echo $sublinkCount ?>" />
+										    <input type="hidden" name="list-element-count-<?php echo $this->secI ?>" value="<?php echo $listCount ?>" />
+										    <input type="hidden" name="text-element-count-<?php echo $this->secI ?>" value="<?php echo $textCount ?>" />
+		    	    		                <input type="hidden" name="form-element-count-<?php echo $this->secI ?>" value="<?php echo $formCount ?>" />
+		    	    		                <input type="hidden" name="ytv-element-count-<?php echo $this->secI ?>" value="<?php echo $ytvCount ?>" />
+		    	    		                <input type="hidden" name="article-element-count-<?php echo $this->secI ?>" value="<?php echo $aCount ?>" />
+		    	    		                <input type="hidden" name="photo-file-element-count-<?php echo $this->secI ?>" value="<?php echo $phCount ?>" />
+											<input type="hidden" name="map-element-count-<?php echo $this->secI ?>" value="<?php echo $mCount ?>" />
+										</section>
+										<input type="hidden" name="is-section[]" value="<?php echo $this->secI; ?>" />
+									</div>							
+								</div>
+								</li>
+							<?php $this->secI++; } ?>
+						</ul>
+						<input class="section-count" type="hidden" name="section-count" value="<?php echo $this->secI-1; ?>" />
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a class="btn btn-primary btn-xs add-section" href="#" title="Přidat sekci">přidat sekci</a>
+				</div>
+			</div>
+		</div>
+    </div>  
+    <div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Upravit" />
+			</div>
+		</div>
+	</div>
+	
+</form>

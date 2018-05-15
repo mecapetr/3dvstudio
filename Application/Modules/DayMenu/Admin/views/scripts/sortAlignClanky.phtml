@@ -1,0 +1,16 @@
+        <div class="list-order"> 	
+            <form action="" method="post">	 
+            <div class="message sortMessage" style="width: 500px;"> </div>
+			<select name="subLinkID">
+				
+				<?php foreach($this->allSublinks as $sublink){ ?>
+				    <option <?php if($sublink->linkID == $this->subLinkID) echo "selected"; ?> value="<?PHP echo $sublink->linkID; ?>"><?PHP echo $sublink->title; ?></option>
+					<?php } ?>
+					<option <?php if($this->subLinkID == 0) echo "selected"; ?> value="0"> -- nezařazené -- </option>
+				</select>
+				
+				<input class="button" type="submit" name="vybrat" value="<?PHP echo $this->translate('Vybrat kat.'); ?>" />
+				
+				<input class="button" onclick="saveSortedList('<?php echo $this->controller; ?>','sortListBasic');return false;" type="submit" name="<?PHP echo $this->translate('ulož'); ?>" value="<?PHP echo $this->translate('Ulož pořadí'); ?>" />
+			</form>
+		</div>

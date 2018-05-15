@@ -1,0 +1,115 @@
+<h1> Upravit potah </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="">Upravit potah</li>
+	<li class="active"><strong><?php echo $this->allItems->title['cz']?></strong></li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-4">	
+		
+			<div class="panel panel-default">
+			  <div class="panel-heading">Menu</div>			
+			  <ul class="menu list-group">
+			  	<?php foreach ($this->subLinks as $val){?>
+			    	<li class="list-group-item <?php if($this->sublinkTitle == $val['title']) echo "selected";?> <?php if($this->showOnlyMainSublink && !$val['isMain']) echo "disabled";?>" <?php if($this->showOnlyMainSublink && !$val['isMain']){?> data-toggle="tooltip" data-placement="right" title="Nejprve uložte základní údaje" <?php }?>>
+			    		<?php if(($this->showOnlyMainSublink && $val['isMain']) || !$this->showOnlyMainSublink){?><a href="<?php echo $val['url'];?>"><?php }?>
+			    			<?php echo $val['title'];?>
+			    		<?php if(($this->showOnlyMainSublink && $val['isMain']) || !$this->showOnlyMainSublink){?></a><?php }?>
+			    	</li>
+			  	<?php }?>
+			  </ul>
+			</div>
+		</div>	
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">Základní údaje</div>
+				
+				<div class="panel-body">
+					 <div class="form-group has-feedback">			
+					 	<label>* Název potahu:</label>	    	
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+						    	<input class="form-control  <?php if($val->suffix == "cz")echo "required"; ?>" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->title[$val->suffix])echo $this->allItems->title[$val->suffix];?>" />
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?>  
+				    </div>
+				     
+				    <div class="form-group row">
+				    	<div class="col-sm-8"><strong>* Přiřadit výrobci:</strong></div>
+				    	<div class="row">
+					    	<div class="col-xs-12 required-checkboxes">
+						    	<?php foreach ($this->allSuppliersItems as $val){?>
+						    		<div class="col-sm-4">						    			
+						    			
+						    			<div class="form-inline">
+						    				
+						    				<label class="checkbox">
+							    				
+							    				<input id="s-<?php echo $val->supplierID?>" class="checkbox" type="checkbox" name="supplier[]" <?php if(!empty($this->allSuppliersArr[$val->supplierID])) echo "checked";?> value="<?php echo $val->supplierID?>"> 
+							    				
+							    			</label>
+						    				<div class="form-group" style="vertical-align: middle !important;">
+						    					<input class="form-control text-center" style="width:60px;" type="text" name="percentage-<?php echo $val->supplierID?>" value="<?php if(isset($this->allSuppliersArr[$val->supplierID]))echo $this->allSuppliersArr[$val->supplierID]->percentage;else echo "0.00";?>" />% - 
+						    				</div>
+							    			<div class="checkbox">
+							    				
+							    				<label for="s-<?php echo $val->supplierID?>"><?php echo $val->name?></label>
+							    				
+							    			</div>
+						    			</div>
+
+						    		</div>
+
+						    	<?php }?>
+					    	</div>
+				    	</div>
+				    </div>
+					<div class="form-group has-feedback">		
+					 	<label>Neveřejný název:</label>		    	
+					    <input class="form-control" id="titleSupplier" type="text" name="titleSupplier" value="<?php if($this->allItems->titleSupplier)echo $this->allItems->titleSupplier;?>" />
+					</div>
+					<div class="form-group has-feedback">				
+					 	<label>Zkratka:</label>	         	
+					    <input class="form-control" id="shortcut" type="text" name="shortcut" value="<?php if($this->allItems->shortcut)echo $this->allItems->shortcut;?>" />
+					</div>
+					<div class="form-group has-feedback">		
+					 	<label>Materiál:</label>	    	    	
+					    <select name="coverMaterialID" class="form-control">
+					    	<option value="0">-- vyberte materiál --</option>
+					    	<?php foreach ($this->allCoverMaterials as $val){?>					    		
+					    		<option value="<?php echo $val->coverMaterialID?>" <?php if($this->allItems->coverMaterialID == $val->coverMaterialID)echo "selected='selected'"?>><?php echo $val->title?></option>
+					    	<?php }?>
+					    </select>
+				    </div>
+				    <div class="form-group">				
+					 	<label>Text:</label>	 
+						<?php echo $this->render("languageMutations.phtml"); ?>  
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    		<textarea id="text-<?PHP echo $val->suffix ?>" class="basic form-control" placeholder="Text" name="text-<?PHP echo $val->suffix ?>"><?php if($this->allItems->text[$val->suffix])echo $this->allItems->text[$val->suffix]; ?></textarea>
+					    		<script>execTinyMCE(0,'text-<?PHP echo $val->suffix ?>');</script>
+						    </span>
+					    <?PHP $i++; } ?>	    	
+				    </div>  	
+				</div>	
+			</div>			
+		</div>	
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-block btn-primary check-required-fields" type="submit" name="enter" value="Uložit" />
+			</div>
+		</div>
+	</div>
+</form>	
+	

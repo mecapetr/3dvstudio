@@ -1,0 +1,484 @@
+<div id="section-container" class="product-detail">
+	<div class="container">
+		
+		<div class="row clearfix">
+		
+			<div class="col-xs-12 col-sm-7 col-md-6 float-right products">
+				<div class="content clearfix">
+					<div class="row info">
+						<div class="col-xs-12 col-lg-5 col-xlg-4 form-group">
+							<h1><?php echo $this->productData->title; ?></h1>							
+							
+							<img class="main visible-xs" src="/Public/Images/Product/<?php echo $this->productData->mainPhoto; ?>" />
+							
+							<?php if(count($this->productPhotos) > 0){ ?>
+							<div class="product-photos visible-xs">
+								<div class="swiper-container">
+							         <div class="swiper-wrapper">
+							         <?php foreach($this->productPhotos as $photo){ ?>
+							          <div class="swiper-slide">
+							           <a class="fancy-gallery" rel="p-<?php echo $this->productData->productID; ?>" href="/Public/Images/Product/<?php echo $photo->title; ?>">
+							            <span class="img-wrapper"><img src="/Public/Images/Product/mala-<?php echo $photo->title; ?>" /></span>
+							            <?php if(!empty($photo->photoDesc) || !empty($photo->photoDesc2)){?>            
+							             <span class="info hidden-sm hidden-xs hidden-md">
+							              <?php if(!empty($photo->photoDesc)){?><span><?php echo $photo->photoDesc?></span><?php }?>
+							              <?php if(!empty($photo->photoDesc2)){?><span><?php echo $photo->photoDesc2?></span><?php }?>
+							             </span>
+							            <?php } ?>
+							           </a> 
+							          </div>
+							         <?php } ?>
+							         </div>
+							         
+							            <div class="swiper-button-next"></div>
+							               <div class="swiper-button-prev"></div>
+							     </div>
+							</div>
+							<?php } ?>
+							<?php if(!$this->productData->isInAuction){?>
+								<a class="btn btn-block btn-red quest-order" data="<?php echo $this->productData->productID;?>"><?php echo $this->translate("Nezávazně objednat") ?></a>
+								<a class="btn btn-block btn-grey tel-order"><?php echo $this->translate("Telefonická objednávka") ?></a>
+							<?php }?>
+						</div>
+						
+						<?php if($this->productData->isInAuction){?>
+							<div class="col-xs-12 auction">
+								<table class="table title">
+									<tr class="white">
+										<td><?php echo $this->translate('Čas do konce aukce');?>:</td>
+										<td class="text-right red price"><?php echo $this->productData->timeToEnd; ?></td>
+									</tr>
+									<tr class="white">
+										<td><?php echo $this->translate('Aktuální cena');?>:</td>
+										<td class="text-right red"><span class="price"><?php echo $this->productData->lasBidPriceFormated?></span> <span class="currency"><?php echo $this->wholeLangData->currencySign; ?></span></td>
+									</tr>
+									<tr>
+										<td><?php echo $this->translate('Původní cena');?>:</td>
+										<td class="text-right"><?php echo $this->productData->price . " " . $this->wholeLangData->currencySign; ?></td>
+									</tr>
+									<tr>
+										<td><?php echo $this->translate('Vyvolávací cena');?>:</td>
+										<td class="text-right"><?php echo $this->productData->priceAuction . " " . $this->wholeLangData->currencySign; ?></td>
+									</tr>
+									
+				    				<?php if(strtotime($this->productData->dateAuction) > time()){ ?>
+										<tr class="btn-row">
+											<td colspan="2" class="text-center"><button class="btn btn-red" id="<?php echo $this->productData->productID;?>"><?php echo $this->translate('Přihodit');?></button></td>
+										</tr>
+									<?php }?>
+								</table>
+								<h2><?php echo $this->translate('Seznam příhozů');?></h2>
+								<div class="bid-list">
+									<div class="header clearfix">
+										<div class="col-xs-3 no-padding-left"><?php echo $this->translate('Uživatel');?></div>
+										<div class="col-xs-3 text-center"><?php echo $this->translate('Příhoz');?></div>
+										<div class="col-xs-6 text-right date"><?php echo $this->translate('Datum');?></div>
+									</div>
+									<div class="content">
+										<?php if(!empty($this->productData->allBids)){?>
+											<?php foreach ($this->productData->allBids as $bid){?>
+												<div class="bid clearfix">
+													<div class="col-xs-3 block"><?php echo $bid->tel;?></div>
+													<div class="col-xs-3 block text-center"><?php echo $bid->value . " " . $this->wholeLangData->currencySign;?></div>
+													<div class="col-xs-6 block text-right"><?php echo $bid->dateAdd;?></div>
+												</div>
+											<?php }?>
+										<?php }else{?>
+											<div class="alert alert-warning text-center"><?php echo $this->translate("Zatím nebyl vložen žádný příhoz");?></div>
+										<?php }?>
+									</div>
+								</div>
+							</div>
+						<?php }?>
+						<?php if(!$this->productData->isInAuction){?>
+							<div class="col-xs-12 col-lg-7 col-xlg-8">
+								<table>
+									<tbody>
+										<tr>
+											<td class="price" colspan="2"><?php echo $this->translate("Cena za kus v základní verzi") ?></td>
+											<td class="price value text-right"><?php echo $this->productData->stringPrice; ?></td>
+										</tr>
+										<?php if($this->isDiscount){ ?>
+											<tr>
+												<td class="empty-line" colspan="3"></td>
+											</tr>
+											<tr>
+												<td class="old-price" colspan="2"><?php echo $this->translate("Původní cena") ?></td>
+												<td class="old-price old-value text-right"><?php echo $this->productData->originalStringPrice; ?></td>
+											</tr>
+										<?php } ?>
+										<tr>
+											<td class="border-bottom" colspan="2"><?php echo $this->translate("Na splátky od") ?></td>
+											<td class="text-right border-bottom value"><?php echo $this->productData->stringEssoxPrice; ?></td>
+										</tr>
+										<tr class="pointer repayment"
+											<?php if($this->concreteLang->lang == "cz"){ ?>
+												lang="<?php echo $this->concreteLang->lang ?>" 
+												data="https://eshop.essox.cz/Calculator.aspx?id=12271001&p=<?php echo number_format($this->productData->price,0,"",""); ?>" 
+											<?php } ?>
+											
+											<?php if($this->concreteLang->lang == "sk"){ ?>
+												lang="<?php echo $this->concreteLang->lang ?>" 
+												data="/cetelem/<?php echo $this->productData->price; ?>" 
+											<?php } ?>
+										>
+											<td class="border-bottom calculator"><?php echo $this->translate("Spočítejte <br /> si splátky") ?></td>
+											<td class="border-bottom text-center essox-text"><span class="text-red"><?php echo $this->translate("Využijte možnosti <br /> nákupu na splátky") ?></span></td>
+											<?php if($this->concreteLang->lang == "cz"){ ?>
+												<td class="text-right border-bottom essox-img"><img alt="essox" src="/Public/Images/Layout/Content/essox.png" /> </td>
+											<?php }else{ ?>
+												<td class="text-right border-bottom essox-img"><img alt="essox" src="/Public/Images/Layout/Content/cetelem.png" /> </td>
+											<?php } ?>
+										</tr>
+										<tr class="essox-bottom-text pointer"><td class="border-bottom" colspan="3">
+											<span class="text-red"><?php echo $this->translate("Využijte možnosti nákupu na splátky") ?></span></td></tr>
+									</tbody>
+								</table>
+							</div>
+						<?php }?>
+						<div class="col-xs-12 visible-xs mobile-info">
+							
+							
+							<button class="btn btn-block btn-grey desc"><span class="glyphicons glyphicons-plus"></span><?php echo $this->translate("Popis produktu a rozměry") ?></button>
+							<?php if(!$this->productData->isInAuction){?>
+								<button class="btn btn-block btn-grey color"><span class="glyphicons glyphicons-plus"></span><?php echo $this->translate("Vzorník barev a látek") ?></button>
+							<?php }?>
+							
+							<div class="description"></div>
+							
+						</div>
+					</div>
+					<?php if(!$this->productData->isInAuction){?>
+						<?php foreach($this->eshopCategories as $cat){ ?>
+							<div class="category">
+								<?php if(isset($this->eshopProducts[$cat->productCategoryID])){ ?>
+								<div class="header">
+									<?php echo $cat->title ?>
+								</div>
+								<?php foreach($this->eshopProducts[$cat->productCategoryID] as $pr){ ?>
+									<div class="content clearfix" id="ep-<?php echo $pr->eshopProductID ?>">
+										<h2><?php echo $pr->title; ?></h2>
+										<div class="photo"><img src="/Public/Images/EshopProduct/mala-<?php echo $pr->photo; ?>" /></div>
+										<div class="info <?php if($pr->predefinedCoversType == 3 || ($pr->showFirstCover == 0 && $pr->showSecondCover == 0))echo"no-cover" ?> <?php if(!($pr->chooseSideDisabled != 0 && ($pr->predefinedCoversType == 3 || ($pr->showFirstCover == 0 && $pr->showSecondCover == 0))))echo"no-top" ?> clearfix">
+											<div class="text <?php if($pr->predefinedCoversType == 3 || ($pr->showFirstCover == 0 && $pr->showSecondCover == 0))echo"no-cover" ?> <?php if($pr->chooseSideDisabled != 0)echo"no-side" ?>">
+												<?php echo $pr->text ?>
+											</div>
+											<?php if($pr->chooseSideDisabled == 0){ ?>
+											<div class="sides <?php if($pr->predefinedCoversType == 3 || ($pr->showFirstCover == 0 && $pr->showSecondCover == 0))echo"no-cover" ?>">
+												<?php if($pr->sideID == 0 || $pr->sideID == 1){ ?>
+													<p <?php if($pr->sideID == 1)echo 'class="to-middle text-center"' ?>><img src="/Public/Images/Layout/Content/left_side.png" /></p>
+													<p <?php if($pr->sideID == 1)echo 'class="text-center"' ?>>
+														<label>
+															<?php echo $this->translate("LEVÁ STRANA") ?> 
+															<?php if($pr->chooseSideAllowed){ ?>
+																<input class="side" <?php if($pr->sideID == 1)echo "checked" ?> type="radio" name="side-<?php echo $pr->eshopProductID ?>" value="1" />
+															<?php }else if($pr->sideID == 1){ ?>
+																<input class="side" type="hidden" name="side-<?php echo $pr->eshopProductID ?>" value="1" />
+															<?php } ?>
+														</label>
+													</p>
+												<?php } ?>
+												<?php if($pr->sideID == 0)echo"<hr />"; ?>
+												<?php if($pr->sideID == 0 || $pr->sideID == 2){ ?>
+													<p <?php if($pr->sideID == 2)echo 'class="to-middle text-center"' ?>>
+														<label>
+															<?php echo $this->translate("PRAVÁ STRANA") ?> 
+															<?php if($pr->chooseSideAllowed){ ?>
+																<input class="side" <?php if($pr->sideID == 2)echo "checked" ?> type="radio" name="side-<?php echo $pr->eshopProductID ?>" value="2" />
+															<?php }else if($pr->sideID == 2){ ?>
+																<input class="side" type="hidden" name="side-<?php echo $pr->eshopProductID ?>" value="2" />
+															<?php } ?>
+														</label>
+													</p>
+													<p <?php if($pr->sideID == 2)echo 'class="text-center"' ?>><img src="/Public/Images/Layout/Content/right_side.png" /></p>
+												<?php } ?>
+											</div>
+											<?php } ?>
+											
+											<?php if($pr->predefinedCoversType != 3 && ($pr->showFirstCover || $pr->showSecondCover)){ ?>
+											<div class="covers <?php if($pr->chooseSideDisabled != 0 && $pr->predefinedCoversType != 3 && ($pr->showFirstCover || $pr->showSecondCover))echo"no-side" ?> clearfix">
+												<?php if($pr->showFirstCover && $pr->predefinedCoversType != 3){ ?>
+													<div class="types cover1">
+														<p class="text-center title"><?php echo $pr->coverTitle; ?></p>
+														<div class="cover-photo <?php if($pr->predefinedCoversType == 2)echo "pointer" ?>" data="c-<?php echo $cat->productCategoryID ?>,type1,<?php echo $pr->eshopProductID ?>">
+															<?php if($pr->predefinedCoversType == 1){ ?>
+																<img src="/Public/Images/Cover/mala-<?php echo $pr->photoCover ?>" />
+															<?php }else{ ?>
+																<div><?php echo $this->translate("VYBERTE") ?></div>
+															<?php } ?>
+														</div>
+														<?php if($pr->predefinedCoversType == 1){ ?>
+															<input type="hidden" name="cover1" value="<?php echo $pr->photoCover ?>~<?php echo $pr->photoID ?>~0" />
+														<?php }else{ ?>
+															<input type="hidden" name="cover1" value="" />
+														<?php } ?>
+														<p class="text-center subcode"><?php if($pr->predefinedCoversType == 1)echo $pr->coverT." ".$pr->photoNumber ?></p>
+													</div>
+												<?php } ?>
+												<?php if($pr->showSecondCover && $pr->predefinedCoversType != 3){ ?>
+													<div class="types cover2">
+														<p class="text-center title"><?php echo $pr->coverTitle2 ?></p>
+														<div class="cover-photo <?php if($pr->predefinedCoversType == 2)echo "pointer" ?>" data="c-<?php echo $cat->productCategoryID ?>,type2,<?php echo $pr->eshopProductID ?>">	
+															<?php if($pr->predefinedCoversType == 1){ ?>
+																<img src="/Public/Images/Cover/mala-<?php echo $pr->photoCover2 ?>" />
+															<?php }else{ ?>
+																<div><?php echo $this->translate("VYBERTE") ?></div>
+															<?php } ?>
+														</div>
+														<?php if($pr->predefinedCoversType == 1){ ?>
+															<input type="hidden" name="cover2" value="<?php echo $pr->photoCover2 ?>~<?php echo $pr->photoID2 ?>~0" />
+														<?php }else{ ?>
+															<input type="hidden" name="cover2" value="" />
+														<?php } ?>
+														<p class="text-center subcode"><?php if($pr->predefinedCoversType == 1)echo $pr->coverT2." ".$pr->photoNumber2 ?></p>
+													</div>
+												<?php } ?>
+											</div>
+											<?php } ?>
+											
+											<div class="price <?php if($pr->predefinedCoversType == 3 || ($pr->showFirstCover == 0 && $pr->showSecondCover == 0))echo"no-cover" ?> <?php if($pr->chooseSideDisabled != 0)echo"no-side" ?> <?php if($pr->chooseSideDisabled != 0 && ($pr->predefinedCoversType == 3 || ($pr->showFirstCover == 0 && $pr->showSecondCover == 0)))echo"no-top" ?> clearfix">
+												<div class="cell text-center <?php if($pr->store == 1)echo "store" ?>"><?php if($pr->store == 1)echo $this->translate("SKLADEM") ?></div>
+												<div class="cell pr-code">
+													<div class="title"><?php echo $this->translate("KÓD PRODUKTU") ?></div>
+													<div class="code"><?php echo $pr->productCode ?></div>
+												</div>
+												<div class="cell pri text-center">
+													<?php echo $pr->stringPrice ?>
+												</div>
+												<div class="cell count">
+													<div class="input-group">
+												      <span class="input-group-btn">
+												        <button class="btn btn-default minus" type="button"><span class="glyphicons glyphicons-minus"></span></button>
+												      </span>
+												      <input type="text" class="form-control counts" value="1">
+												      <span class="input-group-btn">
+												        <button class="btn btn-default plus" type="button"><span class="glyphicons glyphicons-plus"></span></button>
+												      </span>
+												    </div>
+												</div>
+												<div class="cell basket">
+												
+													<input type="hidden" class="help-price" value="<?php echo $pr->price ?>" />
+													<input type="hidden" class="help-type1-p" value="0" />
+													<input type="hidden" class="help-type2-p" value="0" />
+													<input type="hidden" class="currency" value="<?php echo $pr->currencySign ?>" />
+													<input type="hidden" class="decimal" value="<?php echo $this->wholeLangData->decimal ?>" />
+													<a href="" data="<?php echo $pr->eshopProductID ?>" class="add-to-basket btn btn-block btn-red"><?php echo $this->translate("VLOŽIT <br /> DO KOŠÍKU") ?></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								<?php } } ?>
+									
+							</div>
+						<?php } ?>
+					<?php } ?>
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-5 col-md-6 float-right description pr">
+				<img class="main hidden-xs" src="/Public/Images/Product/<?php echo $this->productData->mainPhoto; ?>" />
+				<?php if(count($this->productPhotos) > 0){ ?>
+				<div class="product-photos">
+					<div class="swiper-container">
+				      <div class="swiper-wrapper">
+				      <?php foreach($this->productPhotos as $photo){ ?>
+				       <div class="swiper-slide">
+				        <a class="fancy-gallery" rel="p-<?php echo $this->productData->productID; ?>" href="/Public/Images/Product/<?php echo $photo->title; ?>">
+				         <span class="img-wrapper"><img src="/Public/Images/Product/mala-<?php echo $photo->title; ?>" /></span>
+				         <?php if(!empty($photo->photoDesc) || !empty($photo->photoDesc2)){?>              
+				          <span class="info hidden-sm hidden-xs hidden-md">
+				           <span><?php echo $photo->photoDesc?></span>
+				           <span><?php echo $photo->photoDesc2?></span>
+				          </span>
+				         <?php }?>
+				        </a> 
+				       </div>
+				      <?php } ?>
+				      </div>
+				      
+				         <div class="swiper-button-next"></div>
+				            <div class="swiper-button-prev"></div>
+				     </div>
+				</div>
+				<?php } ?>
+				<div class="content pr clearfix">
+					<div>
+						<h3 class="desc"><?php echo $this->translate("POPIS PRODUKTU A ROZMĚRY") ?></h3>
+					</div>
+					
+					<?php if($this->dimensions){ ?>
+						<div class="col-xs-12 col-md-6 dimension form-group">
+							<div class="cont">
+								<?php foreach($this->dimensions as $dim){ ?>
+									<div style="left:<?php echo $dim->x ?>%;top:<?php echo $dim->y ?>%;"><?php echo $dim->value; ?> <span>cm</span></div>
+								<?php } ?>
+								<img src="/Public/Images/ProductSizes/<?php echo $this->productData->ptPhoto ?>" />
+							</div>
+						</div>
+					<?php } ?>
+					<div class="col-xs-12 <?php if($this->dimensions)echo "col-md-6";?> desc">
+					
+						<?php if($this->dimensions){ ?>
+							<div class="clearfix">
+								<div class="text-center korpus-sedak">
+									<img src="/Public/Images/Layout/Content/korpus.png" />
+									<div><?php echo $this->translate("KORPUS") ?></div>
+								</div>
+								<div class="text-center korpus-sedak">	
+									<img src="/Public/Images/Layout/Content/sedak.png" />
+									<div><?php echo $this->translate("SEDÁK") ?></div>
+								</div>
+							</div>
+						<?php }?>
+						<div class="form-group">
+							<?php echo $this->productData->textSize; ?>
+						</div>
+							
+						
+						
+					</div>
+					<div class=" form-group col-xs-12 desc">
+						<?php echo $this->productData->text; ?>
+					</div>
+				</div>
+				
+				<?php if(!$this->productData->isInAuction){?>
+					<div class="color-content">
+						<div class="color-filter">
+							<h4><?php echo $this->translate("FILTR PODLE <br /> MATERIÁLU A KATEGORIE") ?></h4>
+							<div class="clearfix content">
+								<ul>
+									<?php foreach($this->allMaterials as $pm){ ?>
+										<li><label><input type="checkbox" value="m-<?php echo $pm->coverMaterialID  ?>" name="" /><?php echo $pm->title ?></label></li>
+									<?php } ?>
+								</ul>
+								
+								<ul class="category">
+									<?php foreach($this->eshopCategories as $cat){ ?>
+										<?php if(isset($this->eshopProducts[$cat->productCategoryID])){ ?>
+										<li><label><input type="checkbox" value="c-<?php echo $cat->productCategoryID ?>" name="" /> <?php echo $cat->title ?></label></li>
+										<?php } ?>
+									<?php } ?>
+								</ul>
+								
+							</div>
+						</div>
+						<div class="colors">
+							<h3><?php echo $this->translate("VZORNÍK BAREV A LÁTEK") ?></h3>
+							<?php if($this->covers){ ?>
+							<?php foreach($this->covers as $cover){ ?>
+								<div class="color main col-xs-4 col-md-3 col-xlg-2 cover-color" data="<?php echo $cover["mark"] ?>">
+									<div class="photo">
+										<img src="/Public/Images/Cover/mala-<?php if(isset($cover["mainPhoto"]))echo $cover["mainPhoto"];else echo $cover["data"][0]->photoTitle ?>" />
+										<div class="color-numbers">
+											<h4><?php echo $cover["title"] ?> <span class="glyphicons glyphicons-remove"></span></h4>
+											<div class="content clearfix">
+												<?php foreach($cover["data"] as $ph){ ?>
+													<div class="color col-xs-4 col-md-3 col-xlg-2 fancy-cover" title="<?php echo $ph->photoDescription ?>" id="p-<?php echo $ph->photoID ?>-<?php echo $cover["data"][0]->percentage ?>-<?php echo $cover["data"][0]->coverID ?>" data="/Public/Images/Cover/<?php echo $ph->photoTitle ?>">
+														<div class="photo">
+															<img class="cover-img" src="/Public/Images/Cover/mala-<?php echo $ph->photoTitle ?>" />						
+														</div>
+														<div class="title"><?php echo $ph->photoDescription ?></div>
+													</div>
+												<?php } ?>
+											</div>
+										</div>
+									</div>
+									<div class="title main"><?php echo $cover["title"] ?></div>
+								</div>
+							<?php } ?>
+							<?php }else{ ?>
+								<div class="alert alert-warning text-center"><?php echo $this->translate("Zatím zde nejsou žádné vzorníky") ?></div>
+							<?php } ?>
+						</div>
+					</div>
+				<?php } ?>
+			</div>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="cover-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicons glyphicons-remove"></span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="tel-order" tabindex="-1" role="dialog" aria-labelledby="telOrderLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicons glyphicons-remove"></span></button>
+<h4 class="modal-title" id="telOrderLabel"></h4>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="clearfix">
+			<div class="col-xs-12 col-sm-6">
+				<h2></h2>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<div class="tel-order-price"></div>
+			</div>
+		</div>
+	</div>
+	<p class="tel-order-text"><?php echo $this->translate("Zašlete nám na Vás telefon a my se Vám ohledně totoho produktu co nejdříve ozveme."); ?></p>
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">
+			<div class="form-group">
+				<input class="form-control" type="text" name="name" placeholder="Jméno" />
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<div class="form-group">
+				<input class="form-control" type="text" name="surname" placeholder="Příjmení" />
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="form-group">
+				<input class="form-control" type="text" name="tel" placeholder="Telefon" />
+			</div>
+		</div>
+		
+	</div>
+	<div class="message-content">
+	
+	</div>
+</div>
+<div class="modal-footer">
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="text-left">
+				<button type="button" class="btn btn-grey" data-dismiss="modal"><span class="glyphicons glyphicons-chevron-left"></span> <?php echo $this->translate("Zavřít") ?></button>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="text-right">
+				<button type="button" class="btn btn-red"><?php echo $this->translate("Odeslat") ?> <span class="glyphicons glyphicons-chevron-right"></span></button>
+			</div>
+		</div>
+		
+	</div>
+</div>
+</div>
+</div>
+</div>

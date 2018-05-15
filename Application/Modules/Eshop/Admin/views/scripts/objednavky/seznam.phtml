@@ -1,0 +1,54 @@
+<h1> Seznam objednávek </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="active">Seznam objednávek</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="" method="post">
+	<div class="panel panel-default">		
+		<div class="panel-heading clearfix">
+			Seznam objednávek			
+		</div>
+		<div class="panel-body table-responsive">
+		
+			<div class="clearfix data-list header">
+				<div class="col-sm-2 no-left-padding th">Číslo obj.</div>
+				<div class="col-sm-2 th text-center">Datum objednávky</div>
+				<div class="col-sm-2 th text-center">Jméno a příjmení</div>
+				<div class="col-sm-2 th text-center">Email</div>
+				<div class="col-sm-2 th text-center">Tel.</div>
+				<div class="col-sm-2 text-right th"></div>		
+			</div>
+			
+			<?php if(count($this->allOrders) > 0){ ?>	
+			    <ul class="data-list">
+					<?php foreach($this->allOrders as $val){ ?>
+					        <li class="clearfix" id="<?php echo $val->supplierID ?>">               
+								<div class="col-sm-2 first-col text-overflow" ><?php echo $val->orderNumber; ?></div>
+								<div class="col-sm-2 text-center text-overflow" ><?php echo $val->orderDate; ?></div>
+								<div class="col-sm-2 text-center text-overflow" ><?php echo $val->name . " " . $val->surname; ?></div>
+								<div class="col-sm-2 text-center text-overflow" ><?php echo $val->email; ?></div>
+								<div class="col-sm-2 text-center text-overflow" ><?php echo $val->tel; ?></div>
+								<div class="col-sm-2 text-right">
+								    <a title="<?PHP echo $this->translate('Detail'); ?>" href="<?php echo $this->baseUrl; ?>/admin/eshop/objednavky/detail/id/<?php echo $val->orderID?>"><span class="glyphicons glyphicons-search"></span></a>   
+								    
+								</div>
+								
+								<br id="endFloat" />
+			                
+			                </li>
+					<?php } ?>
+				</ul>
+				<div class="text-center"><?php echo $this->paging;?></div>
+			<?php }else{ ?>
+				<div class="no-data text-center">Zatím se zde nenachází žádné objednávky.</div>
+			<?php } ?>
+			
+				
+		</div>	
+	</div>
+</form>

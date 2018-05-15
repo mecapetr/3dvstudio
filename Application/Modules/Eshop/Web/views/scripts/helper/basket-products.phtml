@@ -1,0 +1,123 @@
+<div class="products-block clearfix">	
+					<?php if(count($this->products) > 0){ ?>
+					<div class="products table-responsive">
+						<table class="table">
+							<tbody>
+								<?php foreach($this->products as $key => $pr){ ?>
+									<tr class="title k-<?php echo $key ?>">
+										<td class="product-title"><?php echo $pr->productTitle ?></td>
+										
+										<td class="text-center">
+											<?php if(!empty($pr->cover1Subcode) || !empty($pr->cover2Subcode)) echo $this->translate('Vzory zboží');?>
+										</td>
+
+										<td class="text-center">
+											<?php if(!empty($pr->side))echo $this->translate('Orientace');?>
+										</td>
+										
+										<td class="text-center"><?php echo $this->translate('Počet');?></td>
+										<td class="text-center"><?php echo $this->translate('Cena bez DPH');?></td>
+										<td class="text-right"><?php echo $this->translate('Cena s DPH');?></td>
+									</tr>
+									<tr class="content k-<?php echo $key ?>">
+										<td class="no-padding-left">
+											<div class="img">
+												<img src="<?php echo $pr->productPhoto ?>" />
+											</div>
+										</td>
+										
+										<td class="text-center">
+											<?php if(!empty($pr->cover1Subcode) || !empty($pr->cover2Subcode)){ ?>
+											<div class="covers">
+												<?php if(!empty($pr->cover1Subcode)){ ?>
+												<div class="cover">
+													<div class="title text-center"><?php echo $this->translate($pr->cover1Title) ?></div>
+													<div class="cover-photo"><img src="/Public/Images/Cover/mala-<?php echo $pr->photo ?>"/></div>
+													<div class="name text-center"><?php echo $pr->cover1Subcode ?></div>
+												</div>
+												<?php } ?>
+												<?php if(!empty($pr->cover2Subcode)){ ?>
+												<div class="cover">
+													<div class="title text-center"><?php echo $this->translate($pr->cover2Title) ?></div>
+													<div class="cover-photo"><img src="/Public/Images/Cover/mala-<?php echo $pr->photo2 ?>"/></div>
+													<div class="name text-center"><?php echo $pr->cover2Subcode ?></div>
+												</div>
+												<?php } ?>
+											</div>
+											<?php } ?>
+										</td>
+										
+										
+										<td class="text-center">
+											<?php if(!empty($pr->side)){ ?>
+											<div class="orientation"><?php echo $this->translate($pr->side) ?></div>
+											<?php } ?>
+										</td>
+										
+										<td class="text-center">
+											<div class="count">
+												<input type="number" step="1"  value="<?php echo $pr->count ?>" data="<?php echo $key ?>" class="count form-control" min="1"/> <?php echo $this->translate('ks');?>
+											</div>
+										</td>
+										<td class="text-center">
+											<div class="price-no-vat">
+												<?php echo $pr->lowPriceString ?>
+											</div>
+										</td>
+										<td class="text-right">
+											<div class="price">
+												<span><?php echo $pr->priceString ?></span> <img data="<?php echo $key ?>" class="remove-from-basket" src="/Public/Images/Layout/Content/remove_btn.svg" />
+											</div>
+										</td>
+									</tr>
+								<?php } ?>
+								
+								<tr class="price-row">
+									<td class="" colspan="3"><?php echo $this->translate('Celková cena zboží');?></td>
+									<td class="text-center"></td>
+									<td class="text-center">
+										<div class="price-no-vat">
+											<?php echo $this->totalLowPrice; ?>
+										</div>
+									</td>
+									<td class="text-right">
+										<div class="price">
+											<?php echo $this->totalPrice; ?>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<?php }else{ ?>
+						<div class="alert alert-warning text-center"><?php echo $this->translate("Zatím jste nic nevložili do košíku."); ?></div>
+					<?php } ?>
+				</div>
+				<div class="email-block">
+					<?php if(count($this->products) > 0){ ?>
+					<div class="row">
+						<div class="col-md-9 col-md-offset-2">
+							<div class="row">								
+								<div class="col-md-4">
+									<label class="email-label"><?php echo $this->translate("Začněte zadáním emailu")?></label>
+									<div class="has-icon form-group">
+						   				<input type="text" class="form-control" name="email">
+						   				<img src="/Public/Images/Layout/Content/email.svg?1" class="form-control-icon" />
+					   				</div>
+								</div>
+								<div class="col-md-4">
+									<label class="email-label"><?php echo $this->translate("Pokračujte zadáním telefonu")?></label>
+									<div class="has-icon form-group">
+						   				<input type="text" class="form-control" name="phone">
+						   				<img src="/Public/Images/Layout/Content/mobile.svg?1" class="form-control-icon" />
+						   			</div>
+								</div>
+								<div class="col-md-3">
+									<label class="control-label empty">&nbsp;</label>
+					   				<button type="button" class="form-control btn red"><?php echo $this->translate("Pokračovat")?><span class="glyphicons glyphicons-chevron-right"></span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+				</div>

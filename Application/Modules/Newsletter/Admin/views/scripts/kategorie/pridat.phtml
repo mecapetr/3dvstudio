@@ -1,0 +1,11 @@
+<h2> <?PHP echo $this->translate("Přidat kategorii"); ?> </h2>
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+	<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+	    
+	    <p><label for="title"><?PHP echo $this->translate("Název kategorie"); ?>:</label><input id="title" type="text"  name="title" value="<?php if(!empty($this->title))echo $this->title; ?>" /></p>           
+        <p class="button"><input class="button" type="submit" name="enter" value="<?PHP echo $this->translate("Přidat"); ?>" /></p>
+	
+	</form>
+
+	

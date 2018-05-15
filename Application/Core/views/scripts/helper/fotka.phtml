@@ -1,0 +1,39 @@
+<script type="text/javascript" src="/Public/Jscripts/Admin/gallery.js"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/lib/prototype.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/scriptaculous.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/builder.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/effects.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/dragdrop.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/slider.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/unittest.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/sound.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scriptaculous/src/controls.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/cropper.js" language="javascript"></script>
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/execute.js" language="javascript"></script>
+
+<div class="exit"><a href="/admin/galerie/soubory/id/<?php echo $this->photo->galleryID ?>"><img src="/Public/Images/exit.png" /></a></div>
+
+<h2>Fotka - <?php echo $this->photo->file ?> </h2>
+
+<form action="/admin/galerie/soubory/id/<?php echo $this->photo->galleryID ?>/file/<?php echo $this->photo->galleryFileID ?>" method="post" enctype="multipart/form-data"> 
+    <p> (Kliknutím a tažením myši po obrázku zvolte oblast, kterou chcete ořezat.) </p>
+    
+	<div class="files">
+
+      <?php if($this->error !=''){   echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	  <?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+      
+      <input type="hidden" id="x1" name="x1" />   
+      <input type="hidden" id="y1" name="y1" />  
+      <input type="hidden" id="x2" name="x2" /> 	   
+      <input type="hidden" id="y2" name="y2" />	 
+      <input type="hidden" id="newWidth" name="newWidth" />
+      <input type="hidden" id="newHeight" name="newHeight" />
+
+      <img src="/Public/Images/Gallery/<?php echo $this->photo->galleryID ?>-<?php echo $this->photo->niceTitle ?>/stredni-<?php echo $this->photo->file ?>?<?php echo rand(0,999); ?>" alt="<?php echo $this->photo->file ?>" id="setImage" />
+
+   </div> 	
+   
+   <p class="button"><input class="button" type="submit" name="crop" value="Ořezat" /></p>
+	  	
+</form>

@@ -1,0 +1,60 @@
+<script type="text/javascript" src="/Application/Modules/DayMenu/Jscripts/events.js"></script>
+
+<script type="text/javascript">
+ 	$(document).ready(function() {
+		<?PHP if(!empty($this->monthSelected) &&!empty($this->yearSelected)){ ?>					
+			var selectedWeek = $.datepicker.iso8601Week(new Date(<?PHP echo $this->yearSelected ?>,<?PHP echo $this->monthSelected-1 ?>,<?PHP echo $this->daySelected ?>));//remember which week the user selected here	
+		<?PHP }else{ ?>			
+			var selectedWeek = $.datepicker.iso8601Week(new Date());//remember which week the user selected here
+		<?PHP } ?>
+	    if($('#week').length > 0){
+			$("#week").datepicker({
+			    showOtherMonths:true,
+			    onSelect: function(dateText){
+			    	splittedDate = dateText.split(".");
+			    	var date = new Date(splittedDate[2],splittedDate[1],splittedDate[0]);
+		        	selectedWeek = $.datepicker.iso8601Week(new Date(splittedDate[2],splittedDate[1]-1,splittedDate[0]));
+		        	showMenu(selectedWeek,splittedDate[2],splittedDate[1]);
+		        	 $("input#weekNumberInput").val(selectedWeek);
+		        	 $("input#yearInput").val(splittedDate[2]);
+		    	} ,
+		
+			    //set the class 'week-highlight' for the whole week
+			    beforeShowDay: function(d){
+			        if (!selectedWeek) { return [true,''];}
+			        if (selectedWeek == $.datepicker.iso8601Week(d)){
+			              return [true,'week-highlight'];   
+			        }
+			        return [true,''];
+			    }  
+			}).datepicker("setDate", new Date(<?PHP if(!empty($this->monthSelected) && !empty($this->yearSelected))echo $this->yearSelected.",".($this->monthSelected-1).",".$this->daySelected; ?>));	
+	    }	
+	});
+</script>
+
+<h2> Dení menu </h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+
+	<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+	    
+	    <div id="week"></div>
+	    <input type="hidden" value="<?PHP if(empty($this->weekNumberSelected))echo date("W"); else echo $this->weekNumberSelected ?>" name="weekNumberInput" id="weekNumberInput" />
+	    <input type="hidden" value="<?PHP if(empty($this->yearSelected))echo date("Y"); else echo $this->yearSelected ?>" name="yearInput" id="yearInput" />
+	    <div id="menu">
+	    	<div class="loading">
+		    	<img src="/Public/Images/loadingAnimation.gif"/>
+		    	<div>Načítám...</div>
+	    	</div>
+	    	<div class="content-day-menu"></div>
+	    </div>
+	    	    
+        <p class="button"><input class="button" type="submit" name="enter" value="Upravit" /></p>
+	
+	</form>	
+	<script>
+	 	//$(document).ready(function() {
+			showMenu(<?PHP echo $this->weekNumberSelected ?>,<?PHP echo $this->yearSelected ?>,<?PHP echo $this->monthSelected; ?>);
+		//});
+	</script>

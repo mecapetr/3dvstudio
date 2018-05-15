@@ -1,0 +1,84 @@
+<h1> Seznam potahů </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="active">Seznam potahů</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="" method="post">
+	<div class="panel panel-default">		
+		<div class="panel-heading clearfix">			
+			
+				<div class="row">
+					<div class="col-sm-6">
+						<a class="btn btn-sm btn-success delButton" href="/admin/eshop/potahy/pridat"> Přidat nový potah </a>
+					</div>
+					<div class="text-right col-sm-6">
+					<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
+					</div>
+				</div>
+			
+		</div>
+		<div class="panel-body table-responsive" id="covers">
+			<div class="filters row">
+				<div class="col-sm-12">
+					<div class="form-inline">
+						<div class="form-group">
+					  		<input class="search form-control" placeholder="Vyhledat..." />
+						</div>					  
+						<div class="form-group">
+						 	 <label >Zobrazit:</label>
+							  <select class="form-control" id="supplier-filter">
+							  	<option value="" class="0">-- Výrobce --</option>
+							  	<?php foreach($this->allSuppliers as $val){?>
+							  		<option value="<?php echo $val->name?>" class="<?php echo $val->supplierID;?>"><?php echo $val->name?></option>
+							  	<?php }?>
+							  </select>
+						</div>	
+					 </div>
+				 </div>
+			</div>
+			
+			<div class="clearfix data-list header">
+				<div class="col-sm-3 no-left-padding th">Název potahu</div>
+				<div class="col-sm-3 th text-center">Zkratka</div>
+				<div class="col-sm-3 th text-center">Přiřazeno výrobci</div>
+				<div class="col-sm-3 text-right th">upravit / smazat</div>		
+			</div>
+			
+			<?php if(count($this->allItems) > 0){ ?>	
+			    <ul class="sortListBasic data-list main-ul cover list">
+					<?php foreach($this->allItems as $val){ ?>
+					        <li class="clearfix" id="<?php echo $val->coverID ?>">               
+								<div class="col-sm-3 first-col text-overflow title" ><span class="glyphicons glyphicons-move"></span> <?php echo $val->titleSupplier; ?></div>
+								<div class="col-sm-3 text-center text-overflow shortcut" ><?php echo $val->shortcut; ?></div>
+								<div class="col-sm-3 text-center text-overflow supplierTitle" ><?php echo $val->supplierTitle; ?></div>
+								<div class="col-sm-3 text-right">
+								    <a title="<?PHP echo $this->translate('Uprav'); ?>" href="<?php echo $this->baseUrl; ?>/admin/eshop/potahy/upravit/id/<?php echo $val->coverID?>"><span class="glyphicons glyphicons-pencil"></span></a>   
+								    <input class="delete" type="checkbox" name="delete[]" value="<?php echo $val->coverID ?>">
+								</div>
+								
+								<br id="endFloat" />
+			                
+			                </li>
+					<?php } ?>
+				</ul>
+			<?php }else{ ?>
+				<div class="no-data text-center">Zatím se zde nenachází žádní výrobci.</div>
+			<?php } ?>
+			
+				
+		</div>	
+		<div class="panel-footer clearfix">
+			
+			<div class="text-right">
+				<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
+				<input type="submit" class ="hidden deleteButton" name="deleteButton" />
+			</div>
+			
+		</div>	
+	</div>
+</form>

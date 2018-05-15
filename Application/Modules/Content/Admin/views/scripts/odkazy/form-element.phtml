@@ -1,0 +1,116 @@
+<li>
+<div class="panel panel-default">
+	<div class="panel-heading clearfix">
+		<span class="label label-primary">Form element</span>
+		<span class="glyphicons glyphicons-remove form-element" data="<?php echo $this->elementData["formElement"]["sectionID"]; ?>-<?php echo $this->elementData["formElement"]["groupFormID"]; ?>"></span>
+		<span class="glyphicons glyphicons-move"></span>
+		<span class="element-width form-inline">
+    		<label>Šířka elementu:</label>
+    		<select class="form-control" name="f-e-element-width-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 12) echo "selected = 'selected'"?> value="12">12 dílů (celá šířka)</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 11) echo "selected = 'selected'"?>  value="11">11 dílů</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 10) echo "selected = 'selected'"?>  value="10">10 dílů</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 9) echo "selected = 'selected'"?>  value="9">9 dílů</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 8) echo "selected = 'selected'"?>  value="8">8 dílů</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 7) echo "selected = 'selected'"?>  value="7">7 dílů</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 6) echo "selected = 'selected'"?>  value="6">6 dílů (polovina šířky)</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 5) echo "selected = 'selected'"?>  value="5">5 dílů</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 4) echo "selected = 'selected'"?>  value="4">4 díly</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 3) echo "selected = 'selected'"?>  value="3">3 díly</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 2) echo "selected = 'selected'"?>  value="2">2 díly</option>
+    			<option <?php if($this->elementData["formElement"]['elementWidth'] == 1) echo "selected = 'selected'"?>  value="1">1 díl</option>
+    		</select>
+    	</span>
+	</div>
+		<div class="panel-body">
+	    
+			<div>
+				<input value="<?php echo $this->elementData["formElement"]["email"] ?>" class="form-control" placeholder="email" type="text" name="f-e-email-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>"/>
+			</div>
+			<hr/>
+			
+			<?php $j = 0; foreach($this->elementData["formElement"]["data"] as $formElm){ ?>
+				<div class="inputs">	
+					<div class="form-inline">
+						<div class="form-group">				
+							<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+							<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+								<input value="<?php echo $formElm["title"][$val->suffix] ?>" class="form-control" type="text" name="f-e-name-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>"/>
+							</span>
+							<?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?>
+						</div>
+						<div class="form-group">
+							<select class="form-control input-type" name="f-e-type-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>">
+								<option value="0"> --- typ položky --- </option>
+								<option <?php if($formElm["type"] == "text") echo "selected"; ?> value="text-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>">text</option>
+								<option <?php if($formElm["type"] == "checkbox") echo "selected"; ?> value="checkbox-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>">checkbox</option>
+								<option <?php if($formElm["type"] == "radio") echo "selected"; ?> value="radio-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>">radio</option>
+								<option <?php if($formElm["type"] == "dropdown") echo "selected"; ?> value="dropdown-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>">dropdown</option>
+								<option <?php if($formElm["type"] == "textarea") echo "selected"; ?> value="textarea-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>">textarea</option>
+							</select>
+						</div> 
+					</div>
+				
+					<div class="inputs-elements">
+						<?php $ie = 1; foreach($formElm["values"] as $elmValues){ ?>
+							<?php if($formElm["type"] == "text" || $formElm["type"] == "textarea"){ ?>
+							
+								<div class="form-inline">
+									<div class="form-group">
+	
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+										<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+											<input type="hidden" name="f-e-valueName-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>[]" value="" />
+											<input value="<?php echo $elmValues["value"][$val->suffix] ?>" class="form-control" placeholder="hodnota" type="text" name="f-e-value-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>[]" />
+										</span>
+										<?PHP $i++; } ?>
+										<?php echo $this->render("languageMutations.phtml"); ?>
+								
+									</div>
+								</div>
+															
+							<?php }else{ ?>
+							
+								<div class="form-inline">
+									<div class="form-group">
+	
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+										<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+											<input value="<?php echo $elmValues["valueName"][$val->suffix] ?>" class="form-control" placeholder="název hodnoty" type="text" name="f-e-valueName-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>[]" />
+										</span>
+										<?PHP $i++; } ?>
+										<?php echo $this->render("languageMutations.phtml"); ?>
+									</div>
+								
+									<div class="form-group">
+		
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+										<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+											<input value="<?php echo $elmValues["value"][$val->suffix] ?>" class="form-control" placeholder="hodnota" type="text" name="f-e-value-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>[]" />
+										</span>
+										<?PHP $i++; } ?>
+										<?php echo $this->render("languageMutations.phtml"); ?>
+	
+									</div>
+								
+									<?php if($ie == 1){ ?>
+										<div class="form-group">
+											<button class="btn btn-primary btn-xs add-form-element-values" data="<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>" type="button">Přidat hodnoty</button>
+										</div>
+									<?php } ?>
+								</div>
+							
+							<?php } ?>
+						<?php $ie++; } ?>
+					</div>
+				</div>
+				<hr/>
+			<?php $j++; } ?>
+			
+		</div>
+		<input type="hidden" value="<?php echo count($this->elementData["formElement"]["data"])-1; ?>" name="form-element-values-count-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+		<div class="panel-footer"><a class="btn btn-primary btn-xs add-form-element" href="#" title="Přidat položku">Přidat položku</a></div>
+</div>
+<input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="f-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+</li>

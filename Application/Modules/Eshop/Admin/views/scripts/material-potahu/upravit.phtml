@@ -1,0 +1,40 @@
+<h1> Upravit materiál </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="active">Upravit materiál</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-12">		
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-show-thumbnails-with-lines"></span> Materiál</div>
+				<div class="panel-body">  
+					 <div class="form-group has-feedback">		
+					 	<label>*Název materiálu:</label>	    	    	
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+						    	<input class="form-control <?php if($val->suffix == "cz")echo "required"; ?>" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->title[$val->suffix])echo $this->allItems->title[$val->suffix];?>" />
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?>  
+				    </div>
+				</div>
+			</div>
+		</div>	
+	</div>	
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-block btn-primary check-required-fields" type="submit" name="enter" value="Uložit" />
+			</div>
+		</div>
+	</div>
+</form>	
+	

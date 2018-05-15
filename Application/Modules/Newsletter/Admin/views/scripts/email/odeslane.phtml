@@ -1,0 +1,52 @@
+<?php echo $this->render("css-js.phtml"); ?>
+
+<?php if(!$this->sortableList)echo $this->render('emailAlign.phtml');else echo $this->render('sortAlign.phtml'); ?>
+
+<div class="listTitleHeader margin-left "><?PHP echo $this->translate("Předmět"); ?></div>
+<div class="listHeader"><?PHP echo $this->translate("Odeslán"); ?></div>
+<div class="listHeader"><?PHP echo $this->translate("Počet"); ?></div>
+<div class="listHeader listBorderRight"><?PHP echo $this->translate("Možnosti"); ?></div>
+
+<br class="konec_float" />
+
+<?php if(!$this->sortableList){ ?>
+	
+	<?php foreach($this->allItems as $val){ ?>
+	
+	<div class="listTitleItem margin-left "><?php echo $val->title; ?></div>
+	<div class="listItem"><?php echo date("j.n.Y H:i:s",strtotime($val->date)); ?></div>
+	<div class="listItem "><?php echo $val->count; ?></div>	
+	<div class="listItem">
+	    <a title="<?PHP echo $this->translate("Detail"); ?>" href="<?php echo $this->baseUrl; ?>/admin/newsletter/email/detail/id/<?php echo $val->emailID;?>"><img alt="Detail" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/detail.png" /></a>   
+	    <a title="<?PHP echo $this->translate("Smaž"); ?>" href="<?php echo $this->baseUrl; ?>/admin/newsletter/email/smazat/id/<?php echo $val->emailID;?>"><img alt="Smaž" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.png" /></a>
+	</div>
+	
+	<br id="endFloat" />
+		
+	<?php } ?>
+
+<?php }else{ ?>
+
+        <ul id="sortList">
+		    <?php foreach($this->allItems as $val){ ?>
+		        <li id="<?php echo $val->stageID ?>">               
+	                <div class="listTitleItem"><?php echo $val->login; ?></div>
+					<div class="listItem"><?php echo $val->date; ?></div>
+					<div class="listItem"> neevidováno <?php //echo $val->view; ?></div>
+					<div class="listItem">
+					    <a title="<?PHP echo $this->translate("Upravit"); ?>" href="<?php echo $this->baseUrl; ?>/admin/newsletter/email/upravit/id/<?php echo $val->customerID;?>"><img alt="Upravit" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/edit.png" /></a>   
+					    <a title="<?PHP echo $this->translate("Smaž"); ?>" href="<?php echo $this->baseUrl; ?>/admin/newsletter/email/smazat/id/<?php echo $val->customerID;?>"><img alt="Smaž" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.png" /></a>
+					</div>
+					
+					<br id="endFloat" />
+                
+                </li>
+		    <?php } ?>
+		</ul>
+
+<?php } ?>
+	
+<?php echo $this->nextPrevious ?>
+	     
+	     	
+

@@ -1,0 +1,50 @@
+<h2> <?PHP echo $this->translate("Přidat administrátora"); ?> </h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+
+	<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+	    
+	    <p><label for="login"><?PHP echo $this->translate("Jméno"); ?>: </label> <input id="login" type="text" name="login" value="<?php if($this->login)echo $this->login;?>" /></p>
+	    <p><label for="password"><?PHP echo $this->translate("Heslo"); ?>: </label> <input id="password" type="text" class="newPassword" name="password" value="<?php if($this->password)echo $this->password;?>" /> <a class="button" onclick="generatePassword(6);return false;" href=""><?PHP echo $this->translate("Vygeneruj heslo"); ?></a></p>
+        <p>
+        	<label for="rights"><?PHP echo $this->translate("Práva"); ?>: </label>
+        	<select id="rights" name="rights">
+        		<option <?php if($this->rights == 1)echo "selected"; ?> value="1">Administrátor</option>
+        		<option <?php if($this->rights == 2)echo "selected"; ?> value="2">Pobočka</option>
+        	</select>	
+        </p>
+        
+        <p class="button"><input class="button" type="submit" name="enter" value="<?PHP echo $this->translate("Přidat"); ?>" /></p>
+	
+	</form>
+
+<h2> <?PHP echo $this->translate("Seznam administrátorů"); ?> </h2>	
+
+    <?php if(!$this->sortableList)echo $this->render('adminAlign.phtml');else echo $this->render('sortAlign.phtml'); ?>
+
+	<div class="listTitleHeader margin-left"><?PHP echo $this->translate("Login administrátora"); ?></div>
+	<div class="listHeader"><?PHP echo $this->translate("Datum zal."); ?></div>
+	<div class="listHeader"><?PHP echo $this->translate("Shlédnuto"); ?></div>
+	<div class="listHeader listBorderRight"><?PHP echo $this->translate("Možnosti"); ?></div>
+	
+	<br class="konec_float" />
+
+	        
+			    <?php foreach($this->allItems as $item){ ?>
+
+			            <div class="listTitleItem margin-left"><?php echo $item->login; ?></div>
+			            <div class="listItem"><?php echo $item->date; ?></div>
+						<div class="listItem"> <?php //echo $stage->view; ?></div>
+						<div class="listItem">
+						    <a title="<?PHP echo $this->translate("Uprav"); ?>" href="<?php echo $this->baseUrl; ?>/admin/uzivatele/administrator/upravit/id/<?php echo $item->adminUserID;?>"><img alt="<?PHP echo $this->translate("Uprav"); ?>" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/edit.png" /></a>   
+						    <a title="<?PHP echo $this->translate("Smaž"); ?>" href="<?php echo $this->baseUrl; ?>/admin/uzivatele/administrator/smazat/id/<?php echo $item->adminUserID;?>"><img alt="<?PHP echo $this->translate("Smaž"); ?>" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.png" /></a>
+						</div>
+						
+						<br id="endFloat" />
+			                     
+			        
+			            
+			    <?php } ?>
+			
+ <?php echo $this->nextPrevious ?>   

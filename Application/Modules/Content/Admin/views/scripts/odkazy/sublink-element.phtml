@@ -1,0 +1,51 @@
+<li>
+<div class="panel panel-default">
+<div class="panel-heading clearfix"><span class="label label-danger">Sublink element</span> <span class="glyphicons glyphicons-remove sublink-element" data="<?php echo $this->elementData["sublinkElement"]["sectionID"]; ?>-<?php echo $this->elementData["sublinkElement"]["groupLinkID"]; ?>"></span> <span class="glyphicons glyphicons-move"></span> </div>
+	<div class="panel-body">
+	
+		<div class="form-group">
+			<label class="label-concrete">Počet sloupců v řádku</label>
+			<select class="form-control" name="sl-e-colCount-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+				<option <?php if($this->elementData["sublinkElement"]["colCount"] == 1)echo "selected"; ?> value="1">1</option>
+				<option <?php if($this->elementData["sublinkElement"]["colCount"] == 2)echo "selected"; ?> value="2">2</option>
+				<option <?php if($this->elementData["sublinkElement"]["colCount"] == 3)echo "selected"; ?> value="3">3</option>
+				<option <?php if($this->elementData["sublinkElement"]["colCount"] == 4)echo "selected"; ?> value="4">4</option>
+				<option <?php if($this->elementData["sublinkElement"]["colCount"] == 6)echo "selected"; ?> value="6">6</option>
+			</select>
+		
+		</div>
+		<hr />
+	
+    	<?php $checkbox = 1; foreach($this->elementData["sublinkElement"]["data"] as $linkElm){ ?>
+	    	<div class="col-sm-4 sublink-element-item">
+				
+				
+			    <div class="form-group">
+			    	
+			    	<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    		<input value="<?php echo $linkElm["h2"][$val->suffix] ?>" class="form-control" placeholder="h2 nadpis" type="text" name="sl-e-h2-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>[]"/>
+				    	</span>
+			    	<?PHP $i++; } ?>
+					<?php echo $this->render("languageMutations.phtml"); ?>
+		
+			    </div>
+			    <div class="form-group">
+			    	
+			    	<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+							<?php $rand = rand(0,100); ?>
+			    			<textarea id="sl-e-text-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>-<?php echo $rand; ?>" class="form-control tiny" placeholder="text" name="sl-e-text-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>[]"><?php echo $linkElm["text"][$val->suffix] ?></textarea>
+			    			<script>execTinyMCE(1,'sl-e-text-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>-<?php echo $rand; ?>');</script>
+			    		</span>	
+			    	<?PHP $i++; } ?>
+					<?php echo $this->render("languageMutations.phtml"); ?>	    	
+			    </div>
+			    <input value="<?php echo $linkElm["linkID"] ?>" type="hidden" name="sl-e-linkID-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>[]" />
+	    	</div>  
+    	<?php $checkbox++; } ?>	    
+    </div>
+    <div class="panel-footer">
+    	<a class="btn btn-primary btn-xs add-sublink-element" href="#" title="Přidat element">Přidat element</a>
+    </div>
+</div><input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="sl-<?php echo $this->elSecCount[$this->elementPriority] ?>" /></li>

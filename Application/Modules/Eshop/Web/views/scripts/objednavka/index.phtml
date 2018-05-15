@@ -1,0 +1,242 @@
+<div id="section-container" class="order">
+	<div class="container">
+		<form id="order-form" action="/<?php echo $this->translate("nakupni-kosik") ?>/<?php echo $this->translate("objednano") ?>" method="post" class="">
+			<section class="section-block">
+				<h1 class="text-center">
+					<span>
+						<?php echo $this->translate('Nákupní košík');?>
+					</span>
+				</h1>
+				<div class="order-items">
+				<?php echo $this->render("helper/basket-products.phtml"); ?>
+				</div>
+			</section>
+			<section class="section-block personal-info no-margin-top">				
+				<div class="address-block">
+					<div class="title"><?php echo $this->translate("Fakturační údaje")?></div>
+					<div class="form-inline two-columns text-center">
+						<div class="form-group">
+						    <label for="name" class="control-label text-left"><?php echo $this->translate("Jméno");?>:</label>
+						    <input type="text" class="form-control odd" id="name" name="name">
+						    <label for="surname" class="control-label text-left"><?php echo $this->translate("Příjmení");?>:</label>
+						    <input type="text" class="form-control" id="surname" name="surname">
+						</div>
+						<div class="form-group">
+						    <label for="street" class="control-label text-left"><?php echo $this->translate("Ulice a čp.");?>:</label>
+						    <input type="text" class="form-control odd" id="street" name="street">
+						    <label for="city" class="control-label text-left"><?php echo $this->translate("Město");?>:</label>
+						    <input type="text" class="form-control" id="city" name="city">
+						</div>
+						<div class="form-group">
+						    <label for="zip" class="control-label text-left"><?php echo $this->translate("PSČ");?>:</label>
+						    <input type="text" class="form-control odd" id="zip" name="zip">
+						    <label for="country" class="control-label text-left"><?php echo $this->translate("Stát");?>:</label>
+						    <select class="form-control" name="country">
+						    	<?php foreach($this->allCountries as $country){ ?>
+						    		<option value="<?php echo $country->countryID ?>~<?php echo $country->title ?>" <?php if(($this->concreteLang->lang == "cz" && $country->countryID == "60") || ($this->concreteLang->lang == "sk" && $country->countryID == "203"))echo "selected"; ?>><?php echo $country->title ?></option>
+						    	<?php } ?>
+						    </select>
+						    
+						</div>
+					</div>
+					
+					<div class="title form-inline">
+						<div class="checkbox">
+						    <label for="delivery-extra">
+						      <input type="checkbox" name="deliveryExtra" value="1" id="delivery-extra" />
+								<?php echo $this->translate("Dodací údaje (vyplňte pouze v případě, že je jiná než fakturační adresa)")?>
+						    </label>
+					  	</div>						
+					</div>
+					<div class="form-inline two-columns text-center delivery-form">
+						<div class="form-group">
+						    <label for="nameDelivery" class="control-label text-left"><?php echo $this->translate("Jméno");?>:</label>
+						    <input type="text" class="form-control odd" id="nameDelivery" name="nameDelivery">
+						    <label for="surnameDelivery" class="control-label text-left"><?php echo $this->translate("Příjmení");?>:</label>
+						    <input type="text" class="form-control" id="surnameDelivery" name="surnameDelivery">
+						</div>
+						<div class="form-group">
+						    <label for="streetDelivery" class="control-label text-left"><?php echo $this->translate("Ulice a čp.");?>:</label>
+						    <input type="text" class="form-control odd" id="streetDelivery" name="streetDelivery">
+						    <label for="cityDelivery" class="control-label text-left"><?php echo $this->translate("Město");?>:</label>
+						    <input type="text" class="form-control" id="cityDelivery" name="cityDelivery">
+						</div>
+						<div class="form-group">
+						    <label for="zipDelivery" class="control-label text-left"><?php echo $this->translate("PSČ");?>:</label>
+						    <input type="text" class="form-control odd" id="zipDelivery" name="zipDelivery">
+						    <label for="countryDelivery" class="control-label text-left"><?php echo $this->translate("Stát");?>:</label>
+						    <select class="form-control" name="countryDelivery">
+						    	<?php foreach($this->allCountries as $country){ ?>
+						    		<option value="<?php echo $country->countryID ?>~<?php echo $country->title ?>" <?php if(($this->concreteLang->lang == "cz" && $country->countryID == "60") || ($this->concreteLang->lang == "sk" && $country->countryID == "203"))echo "selected"; ?>><?php echo $country->title ?></option>
+						    	<?php } ?>
+						    </select>
+						</div>
+					</div>
+					
+					<div class="title form-inline">
+						<div class="checkbox">
+						    <label for="company-form">
+						      <input type="checkbox" name="companyExtra" value="1" id="company-form" />
+								<?php echo $this->translate("Firemní údaje (jste li firma, vyplňte prosím následující informace)")?>
+						    </label>
+					  	</div>						
+					</div>
+					<div class="form-inline two-columns text-center company-form">
+						<div class="form-group">
+						    <label for="nameCompany" class="control-label text-left"><?php echo $this->translate("Jméno");?>:</label>
+						    <input type="text" class="form-control odd" id="nameCompany" name="nameCompany">
+						    <label for="ic" class="control-label text-left icdic"><?php echo $this->translate("IČ");?>:</label>
+						    <input type="text" class="form-control ic odd" id="ic" name="ic">
+						    <label for="ic" class="control-label text-left icdic"><?php echo $this->translate("DIČ");?>:</label>
+						    <input type="text" class="form-control dic" id="dic" name="dic">
+						</div>
+					</div>
+					
+					<div class="title"><?php echo $this->translate("Způsob dopravy")?></div>
+					<div class="form-inline two-columns text-center shipping-form">
+						<div class="row">
+							<div class="col-xs-12 col-sm-10 col-lg-6 col-sm-offset-1 col-lg-offset-3">
+								<table class="table table-responsive">
+									<thead>
+										<tr><th colspan="2" class="text-right"><?php echo $this->translate("Cena s DPH")?></th></tr>
+									</thead>
+									<tbody>
+										<?php $i = 0; foreach($this->shippingType as $st){ ?>
+											<tr>
+												<td class="text-left">											
+													<div class="radio">
+													    <label>
+													      	<input <?php if($i == 0)echo "checked"; ?> type="radio" name="shipping" value="<?php echo $st->shippingTypeID;?>"/>
+															<?php echo $st->title;?>
+													    </label>
+												  	</div>	
+												</td>
+												<td class="text-right"><?php echo $st->priceString;?></td>
+											</tr>
+										<?php $i++; } ?>
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					<div class="title"><?php echo $this->translate("Způsob platby")?></div>
+					<div class="form-inline text-center shipping-form">
+						<div class="row">
+							<div class="col-xs-12 col-sm-10 col-lg-6 col-sm-offset-1 col-lg-offset-3">
+								<table class="table table-responsive">
+									<?php $i = 0; foreach($this->paymentTypes as $st){ ?>
+									<tr>
+										<td class="text-left">											
+											<div class="radio">
+											    <label>
+											      	<input <?php if($i == 0)echo "checked"; ?> type="radio" name="payment" value="<?php echo $st->paymentTypeID ?>" />
+													<?php echo $st->title; ?>
+											    </label>
+										  	</div>	
+										</td>
+										
+									</tr>
+									<?php $i++; } ?>
+									
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					<div class="note-form">
+					
+						<div><label><?php echo $this->translate("Poznámka k objednávce")?></label></div>
+						<textarea class="form-control" name="text"></textarea>
+					
+					</div>
+										
+					
+				</div>
+				<div class="button-block">
+					<div class="row">
+						<div class="col-sm-12 col-md-3"><a href="<?php echo $this->lastProductUrl; ?>" class="btn btn-grey"><span class="glyphicons glyphicons-chevron-left"></span> <?php echo $this->translate("zpět do obchodu")?></a></div>
+						<div class="col-sm-12 col-md-9 text-right">
+						
+							<div class="form-inline conditions">
+
+								<div class="form-group text">
+									<input checked type="checkbox" name="newsletter" value="1" /> <?php echo $this->translate("Chci dostávat informace o slevách a akčních nabídkách"); ?>. <br />
+									<span><?php echo $this->translate("Dokončením objednávky souhlasíte s "); ?><a class="cond" href="<?php echo $this->url; ?>"><?php echo $this->translate("obchodními podmínkami") ?></a>.</span> 
+								</div>
+								<div class="form-group">
+									<input class="send" type="hidden" value="0" name="send" />
+									<button class="btn btn-red order-items"> <?php echo $this->translate("dokončit objednávku")?> <span class="glyphicons glyphicons-chevron-right"></span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</form>
+	</div>
+	
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="glyphicons glyphicons-remove"></span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+var google_tag_params = {
+ecomm_pagetype: 'cart'
+};
+</script>
+<?php if($this->concreteLang->lang == "cz"){ ?>  
+  
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 961474074;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+    <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/961474074/?guid=ON&amp;script=0"/>
+    </div>
+    </noscript>
+  
+  <?php }else{ ?>
+  
+    <!-- Google Code for eshop -->
+		<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var google_conversion_id = 949251727;
+		var google_custom_params = window.google_tag_params;
+		var google_remarketing_only = true;
+		/* ]]> */
+		</script>
+		<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+		</script>
+		<noscript>
+		<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949251727/?guid=ON&amp;script=0"/>
+		</div>
+		</noscript>
+  
+  <?php } ?>

@@ -1,0 +1,66 @@
+<h1> Upravit sekci na hlavní stránce</h1>
+
+<ol class="breadcrumb">
+	<li>Extra obsah</li>
+	<li class="active">Homepage - texty</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Ikony</div>				
+				<div class="panel-body">					 
+					 <div class="clearfix data-list header">
+						<div class="col-sm-3 no-left-padding th">Ikona</div>
+						<div class="col-sm-3 th text-center">Název</div>
+						<div class="col-sm-3 th text-center">Zobrazit ikonu</div>
+						<div class="col-sm-3 text-right th">URL adresa</div>		
+					</div>
+					
+					<?php if(count($this->allItems) > 0){ ?>	
+					    <ul class="sortListBasic data-list main-ul socialIcons ">
+							<?php foreach($this->allItems as $item){ ?>
+							        <li class="clearfix" id="<?php echo $item->socialIconsID ?>">               
+										<div class="col-sm-3 first-col text-overflow title" ><span class="glyphicons glyphicons-move"></span><span class="social social-<?php echo $item->icon?>"></span></div>
+										<div class="col-sm-3 text-center" ><?php echo $item->title; ?></div>
+										<div class="col-sm-3 text-center" >
+											<div class="radio row">
+									       		<label class="radio-inline"> <input type="radio" value="1" name="showIcon<?php echo $item->socialIconsID?>" class="checkbox" <?PHP if($item->showIcon == 1)echo "checked='checked'"; ?>>Ano </label>
+									       		<label class="radio-inline"> <input type="radio" value="0" <?PHP if($item->showIcon == 0)echo "checked='checked'"; ?> name="showIcon<?php echo $item->socialIconsID?>" class="checkbox" >Ne </label>
+									       	</div>
+										</div>
+										<div class="col-sm-3 text-right">
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+									    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix  ?>" >
+										    	<input class="form-control text" type="text" name="url<?php echo $item->socialIconsID;?>-<?PHP echo $val->suffix ?>" value="<?php if($item->url[$val->suffix])echo $item->url[$val->suffix];?>" />
+										    </span>
+									    <?PHP $i++; } ?>
+										<?php echo $this->render("languageMutations.phtml"); ?>  
+										</div>										
+										<br id="endFloat" />
+					                
+					                </li>
+							<?php } ?>
+						</ul>
+					<?php }else{ ?>
+						<div class="no-data text-center">Zatím se zde nenachází žádné ikony.</div>
+					<?php } ?>
+				</div>
+			</div>	
+		</div>	
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-primary btn-block check-required-fields" type="submit" name="enter" value="Upravit" />
+			</div>
+		</div>
+	</div>
+</form>	
+	

@@ -1,0 +1,102 @@
+body{
+
+	font-family:Tahoma;
+	font-size:82%;	
+}
+.nadpis{
+
+	color:#990000;	
+	margin-top:15px;
+	margin-bottom:15px;
+	font-size:15px;
+}
+
+.tabulka{
+
+	border:1px solid #FFFFFF;
+	border-collapse: collapse;
+	text-align:center;
+		
+}
+.tabulka td,
+.tabulka th{
+
+	border:1px solid #FFFFFF;	
+}
+.tabulka td{
+
+	background-color:#dddddd;
+	color:#000000;	
+}
+
+.tabulka th{
+
+	background-color:#7c7c7c;
+	color:#FFFFFF;	
+}
+
+.odkaz{
+	
+	color:#990000;
+	
+}
+
+.stazeni{
+	margin:0px;
+    list-style-type: none;
+	color:#333333;	
+}
+
+.stazeni li{
+
+	background-image:url("/Public/Images/download.png");
+	background-position:left center;
+	background-repeat:no-repeat;
+	height:16px;
+	padding-left:20px;
+	margin-bottom:4px;
+	
+}
+.stazeni li a{
+
+	color:#333333;
+	
+}
+.textReklamniPlocha{
+
+    padding-top:20px;
+    padding-bottom:10px;
+    padding-left:50px;
+    padding-right:50px;
+    font-size:175%;
+    color:Black;	
+	
+}
+
+.tabulkaReklamniPlocha{
+
+    font-size:130%;
+    color:Black;	
+	
+}
+
+.kontakt-vlevo{
+
+	float:left;
+	width:320px;	
+	
+}
+
+.kontakt-vpravo{
+
+	float:right;
+	width:320px;	
+	
+}
+
+.clearFloat{
+
+	clear:both;	
+	
+}
+

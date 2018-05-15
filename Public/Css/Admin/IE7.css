@@ -1,0 +1,228 @@
+/* CSS Document */
+
+.spider-block{
+	width:130px;
+	position:relative;
+	margin-bottom:40px;
+}
+.spider-block-round2{
+	margin-bottom:76px;
+}
+.spider-block-round3{
+	margin-bottom:185px;
+}
+.spider-block-round4{
+	margin-bottom:403px;
+}
+.spider-block-round5{
+	margin-bottom:839px;
+}
+.spider-block-round6{
+	margin-bottom:1712px;
+}
+.spider-block-round7{
+	margin-bottom:2530px;
+}
+.spider-block div.top,
+.spider-block div.bottom{
+	height:33px;
+	width:90%;
+	position:relative;
+}
+.spider-block div.top-round1,
+.spider-block div.bottom-round1{
+	height:22px;
+	width:90%;
+	position:relative;
+}
+#content div.currentContent div.spider-block div.top select,
+#content div.currentContent div.spider-block div.bottom select{
+	width:85%;
+	background-image:none;	
+	background-color:#fffaac;
+	border:1px solid #e6da1b;
+}
+#content div.currentContent div.spider-block div.top input,
+#content div.currentContent div.spider-block div.bottom input{
+	width:83%;
+	padding-right:0px;
+	padding-left:0px;
+	height:19px;
+	background-image:none;	
+}
+
+#content div.currentContent input.bg1,
+#content div.currentContent  input.bg1{
+	background-color:#acffb4;
+	border:1px solid #4cb744;
+	width:100px;
+	padding-right:0px;
+	padding-left:0px;
+	height:19px;
+	background-image:none;
+	position:absolute;
+	top:1858px;
+	left:598px;
+	
+}
+#content div.currentContent div.spider-block div.top input.bg2,
+#content div.currentContent div.spider-block div.bottom input.bg2{
+
+	background-color:#baffac;
+	border:1px solid #31ce11;
+	
+}
+#content div.currentContent div.spider-block div.top input.bg3,
+#content div.currentContent div.spider-block div.bottom input.bg3{
+
+	background-color:#d5ffac;
+	border:1px solid #79e50f;
+	
+}
+#content div.currentContent div.spider-block div.top input.bg4,
+#content div.currentContent div.spider-block div.bottom input.bg4{
+
+	background-color:#e3ffac;
+	border:1px solid #cad33f;
+	
+}
+#content div.currentContent div.spider-block div.top input.bg5,
+#content div.currentContent div.spider-block div.bottom input.bg5{
+
+	background-color:#f2ffac;
+	border:1px solid #dad815;
+	
+}
+#content div.currentContent div.spider-block div.top input.bg6,
+#content div.currentContent div.spider-block div.bottom input.bg6{
+
+	background-color:#fcffac;
+	border:1px solid #d8e001;
+	
+}
+#content div.currentContent div.spider-block div.top input.bg7,
+#content div.currentContent div.spider-block div.bottom input.bg7{
+
+	background-color:#fffaac;
+	border:1px solid #e6da1b;
+	
+}
+.spider-block div.middle{
+	height:25px;
+	width:90%;
+	border-right:1px solid;
+	position:relative;
+}
+.spider-block-round2 div.middle-round2{
+	height:76px;
+}
+.spider-block-round3 div.middle-round3{
+	height:185px;
+}
+.spider-block-round4 div.middle-round4{
+	height:403px;
+}
+.spider-block-round5 div.middle-round5{
+	height:839px;
+}
+.spider-block-round6 div.middle-round6{
+	height:1712px;
+}
+.spider-block-round7 div.middle-round7{
+	height:2530px;
+}
+.spider-block div.middle hr{
+	margin:0px;
+	height:1px;
+	border:0px none;
+	color:#000000;
+	background-color:#000000;
+	position:absolute;
+	width:10%;
+	top:50%;
+	left:100%;	
+}
+.spider-block div.top div,
+.spider-block div.bottom div{
+	position:absolute;
+	width:15%;
+	height:50%;
+	top:50%;
+	left:85%;
+	border-top:1px solid;
+	border-right:1px solid;	
+}
+#content div.currentContent div.spider-block div.top div input.score,
+#content div.currentContent div.spider-block div.bottom div input.score{
+	font-size:10px;
+	padding:0px;
+	width:100%;
+	height:90%;
+	border:0px none;
+	background-color:#d0efff;
+	background-image:none;
+	margin:0px;
+	position:absolute;
+}
+#content div.currentContent div.spider-block div.top div input.score{
+	border-top:1px solid #000000;
+	top:-1px;
+}
+#content div.currentContent div.spider-block div.bottom div input.score{
+	
+	top:2px;
+}
+#content div.currentContent div.spider-block div.top-round1 div input.score,
+#content div.currentContent div.spider-block div.bottom-round1 div input.score{
+	position:absolute;
+}
+#content div.currentContent div.spider-block div.bottom-round1 div input.score{
+	top:1px;
+}
+.spider-block div.bottom div{
+	top:0%;
+	border-bottom:1px solid;
+	border-top:0px none;
+}
+
+.round2{
+	position:absolute;
+	left:128px;
+	top:19px;	
+}
+.round3{
+	position:absolute;
+	left:256px;
+	top:73px;	
+}
+.round4{
+	position:absolute;
+	left:384px;
+	top:182px;	
+}
+.round5{
+	position:absolute;
+	left:512px;
+	top:400px;	
+}
+.round6{
+	position:absolute;
+	left:640px;
+	top:836px;	
+}
+.round7{
+	position:absolute;
+	left:1008px;
+	top:1330px;	
+}
+
+.spider-block div.top span.counter,
+.spider-block div.bottom span.counter{
+	display:block;
+	left:-23px;
+	position:absolute;
+	text-align:right;
+	top:0px;
+	width:22px;
+}
+

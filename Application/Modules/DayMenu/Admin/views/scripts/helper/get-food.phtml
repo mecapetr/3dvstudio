@@ -1,0 +1,30 @@
+
+	    <?php foreach($this->days as $key => $day){ ?>
+		    <h3><?php echo $day ?></h3>
+		    <p><label>Polévka:</label><input type="text" name="supe-<?php echo $key ?>" value="<?php if(isset($this->foodList[$key][0]))echo $this->foodList[$key][0]->supe; ?>" /></p>
+		    <p class="food-<?php echo $key ?>">
+		    
+		    	<?php if(isset($this->foodList[$key])){ ?>
+		    
+			    	<?php $i = 1; foreach($this->foodList[$key] as $food){ ?>
+			    		<?php if($food->day == $key){ ?>
+			    			<input class="small" type="text" name="weight-<?php echo $key ?>-<?php echo $i; ?>" value="<?php echo $food->weight ?>" />g <input type="text" name="food-<?php echo $key ?>-<?php echo $i; ?>" value="<?php echo $food->food ?>" /> <input class="small" type="text" name="price-<?php echo $key ?>-<?php echo $i; ?>" value="<?php echo $food->price ?>" />Kč <br />	
+			        	<?php } ?>
+			    	<?php $i++; } ?>
+		        
+		        <?php }else{ ?>
+		        	<?PHP for($i = 1; $i <= 4; $i++){ ?>
+		        	<input class="small" type="text" name="weight-<?php echo $key ?>-<?php echo $i; ?>" />g <input type="text" name="food-<?php echo $key ?>-<?php echo $i; ?>" /> <input class="small" type="text" name="price-<?php echo $key ?>-<?php echo $i; ?>" />Kč <br />
+		        
+		        	<?php } ?>
+		        <?php } ?>
+		        
+		    </p>
+		    <p><a class="add-food" rel="<?php echo $key ?>" href="">Přidat jídlo</a></p>
+		    <p><input type="hidden" name="count-<?php echo $key ?>" value="<?php if(isset($this->foodList[$key]))echo count($this->foodList[$key]);else echo "4"; ?>" /></p>
+	    <?php } ?>
+	    <script>
+	    	initAddFood();
+	    </script>
+	    	
+	

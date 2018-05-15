@@ -1,0 +1,29 @@
+<div id="main-content" class="cetelem-status">
+	<div class="error" style="margin-bottom:40px;margin-top:40px;"> Žiadosť neprebehla úspešne.</div>
+	
+	<p><label>Stav:</label> <?php echo $this->stav ?></p>
+	
+	<?php if(!empty($this->cisloAuth)){ ?>
+		<p><label>Číslo autorizácie:</label> <?php echo $this->cisloAuth ?></p>
+	<?php } ?>
+	
+	<?php if(!empty($this->cisloPredajce)){ ?>
+		<p><label>Číslo predajcu:</label> <?php echo $this->cisloPredajce ?></p>
+	<?php } ?>
+	
+	<?php if(!empty($this->cisloZadosti)){ ?>
+		<p><label>ID žiadosti:</label> <?php echo $this->cisloZadosti ?></p>
+	<?php } ?>
+	
+	<?php if(!empty($this->jmeno)){ ?>
+		<p><label>Priezvisko a meno klienta:</label> <?php echo $this->jmeno ?></p>
+	<?php } ?>
+	
+	<?php if(!empty($this->splatka)){ ?>
+		<p><label>Výška splátky:</label> <?php echo $this->splatka ?></p>
+	<?php } ?>
+	
+	<?php if($this->stavZadosti){ ?>
+		<p>Váš stav žiadosti tiež môžete vidieť na stránke <a class="link" href="https://www.cetelem.sk/eshop/ziadost.php">https://www.cetelem.sk/eshop/ziadost.php</a>, kde vyplníte ID žiadosti a svoje rodné číslo.</p>
+	<?php } ?>
+</div>

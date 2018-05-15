@@ -1,0 +1,88 @@
+<script type="text/javascript">
+ 	$(document).ready(function() {
+								
+		$( "#date" ).datepicker({
+				showOn: "button",
+				buttonImage: "/Public/Images/Admin/button.png",
+				buttonImageOnly: true
+		});
+	});
+</script>
+<h1> Upravit produkt </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="">Upravit produkt</li>
+	<li class="active"><strong><?php echo $this->allItems->title['cz']?></strong></li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-4">	
+		
+			<div class="panel panel-default">
+			  <div class="panel-heading">Menu</div>			
+			  <ul class="menu list-group">
+			  	<?php foreach ($this->subLinks as $val){?>
+			    	<li class="list-group-item <?php if($this->sublinkTitle == $val['title']) echo "selected";?> <?php if($this->showOnlyMainSublink && !$val['isMain']) echo "disabled";?>" <?php if($this->showOnlyMainSublink && !$val['isMain']){?> data-toggle="tooltip" data-placement="right" title="Nejprve uložte základní údaje" <?php }?>>
+			    		<?php if(($this->showOnlyMainSublink && $val['isMain']) || !$this->showOnlyMainSublink){?><a href="<?php echo $val['url'];?>"><?php }?>
+			    			<?php echo $val['title'];?>
+			    		<?php if(($this->showOnlyMainSublink && $val['isMain']) || !$this->showOnlyMainSublink){?></a><?php }?>
+			    	</li>
+			  	<?php }?>
+			  </ul>
+			</div>
+		</div>	
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">Aukce</div>
+				
+				<div class="panel-body">			    
+			       	<div class="clearfix row">
+						<label class="col-sm-3" style="margin-top: 6px;">Konec aukce:</label>	  
+					    <div class="form-group has-feedback col-sm-3 no-padding-right">
+					    	<input id="date" class="form-control" type="text" name="dateAuction" value="<?php if($this->allItems->dateAuction)echo $this->allItems->dateAuction;?>" class="date" />
+					    </div>
+						<label class="col-sm-1" style="margin-top: 6px;">čas:</label>	 
+					    <div class="form-group has-feedback col-sm-3">
+					    	<input id="time" placeholder="HH:mm:ss" class="form-control" type="text" name="timeAuction" value="<?php if($this->allItems->timeAuction)echo $this->allItems->timeAuction;?>" />
+					    </div>
+				    </div>
+				    <div class="form-group has-feedback">	
+					    <label>Vyvolávací cena aukce:</label>
+					    <input class="form-control" type="number" step="any" name="priceAuction" value="<?php if($this->allItems->priceAuction)echo $this->allItems->priceAuction;?>" />
+				    </div>	
+				    <div class="form-group has-feedback">	
+					    <label>Minimální příhoz aukce:</label>
+					    <input class="form-control" type="number" step="any" name="minPriceAuction" value="<?php if($this->allItems->minPriceAuction)echo $this->allItems->minPriceAuction;?>" />
+				    </div>	
+				    <div class="form-group">	
+				    	<label>Text aukce:</label>
+						<?php echo $this->render("languageMutations.phtml"); ?>  
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    		<textarea id="textAuction-<?PHP echo $val->suffix ?>" class="basic form-control" name="textAuction-<?PHP echo $val->suffix ?>"><?php if($this->allItems->textAuction[$val->suffix])echo $this->allItems->textAuction[$val->suffix]; ?></textarea>
+					    		<script>execTinyMCE(0,'textAuction-<?PHP echo $val->suffix ?>');</script>
+						    </span>
+					    <?PHP $i++; } ?>	    	
+				    </div>
+				</div>	
+				
+				
+			</div>		
+		</div>	
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-block btn-primary check-auction-required-fields check-category-selected" type="submit" name="enter" value="Uložit" />
+			</div>
+		</div>
+	</div>
+</form>	
+	

@@ -1,0 +1,81 @@
+<div id="section-container">
+	
+	<section>
+		<div class="container">
+			
+			<article class="detail">
+				<h1 class="text-center"><?php echo $this->articleData->title ?></h1>
+				
+				<div class="row">
+				
+					<div class="col-xs-12 <?php if($this->articlePhotosCount > 1)echo 'col-sm-6';elseif($this->articlePhotosCount > 0 || $this->articleWebVideosCount > 0)echo 'col-sm-9' ?>">
+					
+						<div class="text-element">
+							<?php echo $this->articleData->text ?>	
+						</div>
+							
+						<?PHP if($this->articleData->showFacebook){ ?>
+							<div class="fb-like" data-href="<?PHP echo $this->actualUrl ?>"  data-width="100%" data-height="30" data-show-faces="false" data-share="true"></div>
+						<?PHP } ?>						
+						
+						<?php if(count($this->articlePhotos) > 0 || count($this->articleWebVideos) > 0 || count($this->articleFiles) > 0 ){ ?>
+							<hr />
+						<?php } ?>	
+						
+						<?php if(count($this->articleFiles) > 0 ){ ?>
+							<div class="photo-file-element row clearfix">
+								<?php foreach($this->articleFiles as $articleFile){ ?>
+									<div class="col-xs-6 col-sm-4 col-md-3">
+										<a href="/Public/Files/Article/<?php echo $articleFile->title ?>"><span><span class="filetypes filetypes-<?php echo $articleFile->ico ?>"></span><br /><?php echo $articleFile->title; ?></span></a>
+									</div>
+								<?php } ?>
+							</div>
+						<?php } ?>
+												
+					</div>
+					
+					<?php if($this->articlePhotosCount > 0 || $this->articleWebVideosCount > 0){ ?>
+						<div class="col-xs-12 <?php if($this->articlePhotosCount > 1)echo 'col-sm-6';elseif($this->articlePhotosCount > 0 || $this->articleWebVideosCount > 0)echo 'col-sm-3' ?>">
+						
+							<?php if(count($this->articlePhotos) > 0 ){ ?>
+								<div class="photos">
+									<?php foreach($this->articlePhotos as $articlePhoto){ ?>
+										<a class="fancy-gallery" rel="<?php echo $articlePhoto->articleID ?>" href="/Public/Images/Article/stredni-<?php echo $articlePhoto->title ?>"><img src="/Public/Images/Article/mala-<?php echo $articlePhoto->title ?>" /></a>
+									<?php } ?>
+								</div>
+							<?php } ?>
+											
+							<?php if(count($this->articleWebVideos) > 0){ ?>
+								<div class="videos">			
+									<?php $i = 0; foreach($this->articleWebVideos as $articleWebVideo){ ?>	
+												
+										<?PHP if($articleWebVideo->type == "youtube"){ ?>									
+										    <iframe width="100%" height="auto" src="http://www.youtube.com/embed/<?PHP echo $articleWebVideo->code ?>?wmode=transparent" frameborder="0" allowfullscreen></iframe> 											
+										<?PHP }else if($articleWebVideo->type == "vimeo"){ ?>										
+											<iframe src="http://player.vimeo.com/video/<?PHP echo $articleWebVideo->code ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" height="auto" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>											
+										<?PHP } ?>
+												
+									<?php $i++; } ?>			
+								</div>
+							<?php } ?>
+						
+						</div>
+					<?php } ?>
+					
+					<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+						<a class="back" href="<?php echo $this->refererSite; ?>">Zpět na předchozí stránku</a>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+				
+				</div>
+				
+			</article>
+			
+						
+	
+		</div>
+	</section>
+	
+</div>

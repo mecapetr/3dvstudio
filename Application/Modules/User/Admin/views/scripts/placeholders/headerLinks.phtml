@@ -1,0 +1,17 @@
+
+<?php foreach($this->headerLinks as $link){ ?>
+
+	<li class="mainLink <?php echo $link['class'] ?> <?php if($this->selected == $link['title'])echo"blueBackground"; ?>">
+		<?PHP if($link['title'] == 'Aktuality' && $this->newActualityComments > 0){ ?>
+			<a class="new-comment" href="/admin/aktuality/seznam">New<br/><span><?PHP echo $this->newActualityComments ?></span></a>
+		<?PHP } ?>
+		<?PHP if($link['title'] == 'Reference' && $this->newReferenceComments > 0){ ?>
+			<a class="new-comment" href="/admin/reference/seznam">New<br/><span><?PHP echo $this->newReferenceComments ?></span></a>
+		<?PHP } ?>
+		<?PHP if($link['title'] == 'Blog' && $this->newBlogComments > 0){ ?>
+			<a class="new-comment" href="/admin/blog/seznam">New<br/><span><?PHP echo $this->newBlogComments ?></span></a>
+		<?PHP } ?>
+		<a title="<?php echo $link['title'] ?>" href="<?php echo $link['link'] ?>"><?php echo $link['title']; ?></a>
+	</li>
+
+<?php } ?>

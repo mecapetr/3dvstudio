@@ -1,0 +1,20 @@
+<h2> <?PHP echo $this->translate("Upravit administrátora"); ?> </h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+
+	<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+	    
+	    <p><label for="login"><?PHP echo $this->translate("Jméno"); ?>: </label> <input id="login" type="text" name="login" value="<?php echo $this->allItems->login; ?>" /></p>
+        <p><label for="password"><?PHP echo $this->translate("Heslo"); ?>: </label> <input id="password" class="newPassword" type="text" name="password" value="<?php echo $this->allItems->password;?>" /> <a onclick="generatePassword(6);return false;" class="button" href=""><?PHP echo $this->translate("Vygeneruj heslo"); ?></a></p>
+        <p>
+        	<label for="rights"><?PHP echo $this->translate("Práva"); ?>: </label>
+        	<select id="rights" name="rights">
+        		<option <?php if($this->allItems->type == 1)echo "selected"; ?> value="1">Administrátor</option>
+        		<option <?php if($this->allItems->type == 2)echo "selected"; ?> value="2">Pobočka</option>
+        	</select>	
+        </p>
+                
+        <p class="button"><input class="button" type="submit" name="enter" value="<?PHP echo $this->translate("Uložit"); ?>" /></p>
+	
+	</form>

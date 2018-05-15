@@ -1,0 +1,26 @@
+    <div class="loginForm">
+    <?php if($this->message){ ?><div class="error loginError"><?php echo $this->message ?></div><?php } ?>
+	<form action="<?php echo $this->baseUrl;echo $this->action; ?>" method="post">
+
+        <p>
+            <label for="login">Jméno: </label>
+            <input id="login" type="text" name="login" size="20" />
+        </p>
+
+        <p>
+            <label for="password">Heslo: </label>
+            <input id="password" type="password" name="password" size="20" />
+        </p>
+        <p>
+        	<a href="/zapomenute-heslo">Zapoměli jste heslo ?</a>
+        </p>
+
+        <p class="button">
+            <input id="enter" type="submit" name="enter" value="<?php echo $this->buttonText; ?>" />
+        </p>
+
+    </form>
+	
+	</div>
+
+

@@ -1,0 +1,32 @@
+div#content div#main-content section.products div.item div.content div.main-info a.image-inner-shadow{
+	background: url("/Public/Images/Layout/Content/transparent.png");
+}
+div#old-explorer{
+	background-color: #ff6c6c;
+	height: 100px;
+	display: block;
+	position: relative;
+	border:3px dashed white;
+	display: none;
+}
+div#old-explorer div.content{
+	width: 960px;
+	margin: auto;
+}
+div#old-explorer div.content p{
+	color:white;
+	text-align: center;
+	margin-top: 25px;
+}
+div#old-explorer div.content p a strong{
+	color: white;
+	text-decoration: underline;
+}
+div#old-explorer div.content div.close{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+	color: white;
+	text-decoration: underline;
+}

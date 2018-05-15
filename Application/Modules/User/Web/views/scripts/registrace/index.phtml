@@ -1,0 +1,39 @@
+<div class="title">
+    <h1>Registrace</h1>
+</div>
+<div id="sub-content">
+	
+	<?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+				
+	<div class="reg">	
+		<form action="" method="post">
+			<p><label>Titul:</label><input type="text" name="degree" value="<?php echo $this->degree ?>"></p>	
+			<p><label>Jméno:</label><input type="text" name="name" value="<?php echo $this->name ?>"> <label>Příjmení:</label><input type="text" name="surname" value="<?php echo $this->surname ?>"></p>
+			
+			<p>
+				<label>Název společnosti:</label><input type="text" name="spol" value="<?php echo $this->spol ?>">
+				
+			</p>
+			
+			<p><label>Ulice:</label><input type="text" name="street" value="<?php echo $this->street ?>"> <label>PSČ:</label><input type="text" name="zip" value="<?php echo $this->zip ?>"></p>	
+			
+			<p><label>Město:</label><input type="text" name="city" value="<?php echo $this->city ?>"></p>
+			<p><label>*Email:</label><input type="text" name="email" value="<?php echo $this->email ?>"> <label>Tel.:</label><input type="text" name="tel" value="<?php echo $this->tel ?>"></p>
+			<p>
+				<label>Heslo:</label><input type="password" name="pass"> <label>Opakovat heslo:</label><input type="password" name="pass2">
+			</p>			
+
+			<p>
+				<label>Opište text:</label><span class="captcha">
+					<input type="text" name="captcha" />
+					<img src="/Public/Captcha/<?php echo $this->captcha;  ?>">				
+				</span>
+			</p>
+			
+			<p class="button"><input type="submit" name="register" value="Registrovat" /></p>
+		</form>
+	</div>
+	
+</div>
+	

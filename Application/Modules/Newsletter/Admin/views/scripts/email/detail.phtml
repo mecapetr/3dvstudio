@@ -1,0 +1,28 @@
+<h2> <?php echo $this->translate("Detail emailu"); ?> </h2>
+
+    <p class="orderDetail"><label><?php echo $this->translate("Předmět"); ?>:</label><span><?PHP echo $this->allItems->title ?></span></p>
+    <p class="orderDetail"><label><?php echo $this->translate("Text"); ?>:</label><span><?PHP echo $this->allItems->text ?></span></p>
+    <p class="orderDetail"><label><?php echo $this->translate("Odeslán dne"); ?>:</label><span><?PHP echo date("j.n.Y H:i:s",strtotime($this->allItems->date)) ?></span></p>
+    <p class="orderDetail"><label><?php echo $this->translate("Počet"); ?>:</label><span><?PHP echo $this->allItems->count ?></span></p>
+    <?PHP if(!empty($this->allItems->userType)){ ?><p class="orderDetail"><label><?php echo $this->translate("Zasláno"); ?>:</label><span><?PHP echo $this->translate($this->allItems->userType);  ?></span></p><?PHP } ?>
+    <?PHP if(!empty($this->allItems->toCategories)){ ?><p class="orderDetail"><label><?php echo $this->translate("Odesláno kategoriím"); ?>:</label><span><?PHP echo $this->allItems->toCategories  ?></span></p><?PHP } ?>
+    
+	<?PHP $i=1; ?>
+	<?PHP foreach($this->allAttachements as $val){ ?>
+    	<p class="orderDetail"><label><?php echo $this->translate("Příloha"); ?> <?PHP echo $i; ?>:</label><span><a href="/Public/Attachment/<?PHP echo $val->file  ?>" title="<?PHP echo $val->file  ?>"><?PHP echo $val->file  ?></a></span></p>
+    	<?PHP $i++; ?>
+	<?PHP } ?>
+    
+    <p class="orderDetail"><label><?php echo $this->translate("Odesláno na emaily"); ?>:</label></p>
+    <ul class="email" style="margin-left:30px;">
+    	<?PHP foreach ($this->allUsersEmails as $value){ ?>
+    		<li style="float:left;width:299px;"><?PHP echo $value->email; ?></li>
+    	<?PHP } ?>
+    </ul>
+    <div class="clear-left"></div>
+
+
+
+		
+	
+    

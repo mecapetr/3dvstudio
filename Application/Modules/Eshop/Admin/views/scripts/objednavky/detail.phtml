@@ -1,0 +1,216 @@
+<h1> Detail objednávky </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li>Detail objednávky</li>
+	<li class="active"><strong><?php echo $this->allItems->name . " " . $this->allItems->surname?></strong></li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<div class="order-detail">
+	<div class=" col-md-6">
+		<div class="panel panel-default">		
+			<div class="panel-heading clearfix">
+				<strong>Objednávka a  fakturační údaje</strong>			
+			</div>
+			<div class="panel-body table-responsive">
+				<div class="form-horizontal">
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Číslo objednávky:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->orderNumber?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Datum objednávky:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->orderDate?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Jméno a příjmení:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->name . " " . $this->allItems->surname?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Email:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->email?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Tel:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->tel?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Ulice:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->street?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">PSČ:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->zip?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Město:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->city?></p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-4 control-label">Země:</label>
+					    <div class="col-sm-8">
+					      <p class="form-control-static"><?php echo $this->allItems->countryTitle?></p>
+					    </div>
+					  </div>
+				</div>					
+			</div>	
+		</div>
+	</div>
+	<div class=" col-md-6">
+		<div class="panel panel-default ">		
+			<div class="panel-heading clearfix">
+				<strong>Doručovací údaje</strong>			
+			</div>
+			<div class="panel-body table-responsive">	
+			<?php if(!empty($this->allItems->deliveryName) || !empty($this->allItems->deliverySurname)){?>		
+					<div class="form-horizontal">
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Jméno a příjmení:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryName . " " . $this->allItems->deliverySurname?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Email:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryEmail?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Tel:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryTel?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Ulice:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryStreet?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">PSČ:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryZip?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Město:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryCity?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Země:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->deliveryCountryTitle?></p>
+						    </div>
+						  </div>
+					</div>
+				<?php }else{?>					
+					<div class="no-data text-center">Stejné jako fakturační</div>
+				<?php }?>
+			</div>	
+		</div>
+		<div class="panel panel-default ">		
+			<div class="panel-heading clearfix">
+				<strong>Firemní údaje</strong>			
+			</div>
+			<div class="panel-body table-responsive">		
+				<?php if(!empty($this->allItems->company)){?>					
+					<div class="form-horizontal">
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">Společnost:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->company?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">IČ:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->ic?></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-4 control-label">DIČ:</label>
+						    <div class="col-sm-8">
+						      <p class="form-control-static"><?php echo $this->allItems->dic?></p>
+						    </div>
+						  </div>
+					</div>					
+				<?php }else{?>					
+					<div class="no-data text-center">Neuvedeno</div>
+				<?php }?>
+			</div>	
+		</div>
+	</div>
+	<div class="col-sm-12">	
+		<div class="panel panel-default ">		
+			<div class="panel-heading clearfix">
+				<strong>Objednané položky</strong>		
+			</div>
+			<div class="panel-body table-responsive">
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Název položky</th>
+							<th class="text-center">Počet kusů</th>
+							<th class="text-center">Cena bez DPH</th>
+							<th class="text-right">Cena s DPH</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($this->allOrderedItems as $val){?>
+							<tr>
+								<td class="product-item">
+									<div class="title"><?php echo $val->title?></div>
+									<div class="additional-info">
+										<div class="param-item"><span class="param-title">Vzor1:</span> <?php if(!empty($val->cover1))echo $val->cover1Title . " - " . $val->cover1;else echo "Nevybráno"; ?></div>
+										<div class="param-item"><span class="param-title">Vzor2:</span> <?php if(!empty($val->cover2))echo $val->cover2Title . " - " . $val->cover2;else echo "Nevybráno"; ?></div>
+										<div class="param-item"><span class="param-title">Strana:</span> <?php if(!empty($val->side))echo $val->side;else echo "Nevybráno"; ?></div>
+										<div class="param-item"><span class="param-title">Sladem:</span> <?php if(!empty($val->store))echo "Ano";else echo "Ne"; ?></div>
+									</div>
+								</td>
+								<td class="text-center"><?php echo $val->count?></td>
+								<td class="text-center"><?php echo $val->priceNoVat?> <?php echo $this->allItems->currencyTitle?></td>
+								<td class="text-right"><?php echo $val->price?> <?php echo $this->allItems->currencyTitle?></td>
+							</tr>
+						<?php }?>
+							<tr>
+								<td class="additional-item" colspan="3">
+									<div class="title">Doprava - <?php echo $this->allItems->shippingTypeTitle?></div>									
+								</td>
+								<td class="text-right"><?php if($this->allItems->shippingTypePrice == 0.00)echo "ZDARMA"; else echo $this->allItems->shippingTypePrice . " " . $this->allItems->currencyTitle?></td>
+							</tr>
+							<tr>
+								<td class="additional-item" colspan="3">
+									<div class="title">Způsob platby</div>									
+								</td>
+								<td class="text-right"><?php echo $this->allItems->paymentTypeTitle?></td>
+							</tr>
+					</tbody>
+				</table>
+			</div>	
+		</div>
+	</div>
+</div>

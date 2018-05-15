@@ -1,0 +1,29 @@
+@media (max-width: 767px) {
+	body,html,*{	   
+		font-size:12px;	
+	}
+	div#container{
+	    padding-top:50px;
+	}
+	
+	.form-control,
+	.btn{
+		height:auto;
+	}
+	
+	.left-button,.right-button{
+		padding:0px;
+	}
+	
+	div#content div#login-form span.form-control-feedback{	
+	    
+	    font-size:12px;
+	    height:34px;
+	    line-height: 34px;
+	    width:34px;
+	}
+	div#content div#login-form .has-feedback .form-control {
+	  padding-left: 34px;
+	}
+}
+	

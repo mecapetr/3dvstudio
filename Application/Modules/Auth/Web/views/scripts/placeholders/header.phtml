@@ -1,0 +1,18 @@
+
+    <img alt="Administrace" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/admin_title.png" />
+	<p><?PHP echo $this->headerDomain ?></p>  
+	<?PHP if($this->user){ ?>
+		<div class="user-block">
+			<p class="user"><label>Uživatel:</label><?php echo $this->user ?></p>
+			<div class="buttons">
+				<div class="log-out">
+					<a href="/admin/logout" title="Odhlásit" class="img"></a>	
+					<a href="/admin/logout" title="Odhlásit" class="text">odhlásit</a>			
+				</div>
+				<div class="settings">
+					<a href="/admin/nastaveni/zmena-hesla" title="odhlásit" class="img"></a>	
+					<a href="/admin/nastaveni/zmena-hesla" title="nastavení" class="text">nastavení</a>			
+				</div>
+			</div>
+		<?PHP } ?>
+	</div>

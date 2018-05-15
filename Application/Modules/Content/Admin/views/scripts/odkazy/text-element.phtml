@@ -1,0 +1,48 @@
+<li>
+<div class="panel panel-default">
+	<div class="panel-heading clearfix">
+	<span class="label label-info">Text element</span>
+	<span class="glyphicons glyphicons-remove text-element" data="<?php echo $this->elementData["textElement"]["textID"] ?>"></span>
+	<span class="glyphicons glyphicons-move"></span>
+    <span class="element-width form-inline">
+    	<label>Šířka elementu:</label>
+    	<select class="form-control" name="t-e-element-width-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 12) echo "selected = 'selected'"?> value="12">12 dílů (celá šířka)</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 11) echo "selected = 'selected'"?> value="11">11 dílů</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 10) echo "selected = 'selected'"?> value="10">10 dílů</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 9) echo "selected = 'selected'"?>  value="9">9 dílů</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 8) echo "selected = 'selected'"?>  value="8">8 dílů</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 7) echo "selected = 'selected'"?>  value="7">7 dílů</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 6) echo "selected = 'selected'"?>  value="6">6 dílů (polovina šířky)</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 5) echo "selected = 'selected'"?>  value="5">5 dílů</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 4) echo "selected = 'selected'"?>  value="4">4 díly</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 3) echo "selected = 'selected'"?>  value="3">3 díly</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 2) echo "selected = 'selected'"?>  value="2">2 díly</option>
+    		<option <?php if($this->elementData["textElement"]['elementWidth'] == 1) echo "selected = 'selected'"?>  value="1">1 díl</option>
+    	</select>
+    </span>
+    <span class="element-width form-inline">
+		<label>Zarovnání:</label>
+		<select class="form-control" name="t-e-element-float-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+			<option value="left" <?php if($this->elementData["textElement"]['elementFloat'] == "left") echo "selected = 'selected'"?> >Vlevo</option>
+			<option value="right" <?php if($this->elementData["textElement"]['elementFloat'] == "right") echo "selected = 'selected'"?> >Vpravo</option>
+		</select>
+	</span>
+</div>
+		<div class="panel-body">
+	    
+    		<div>
+    			<?php echo $this->render("languageMutations.phtml"); ?>
+    			<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+				<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					<?php $rand = rand(0,100); ?>
+	    			<textarea id="t-e-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>-<?php echo $i; ?>-<?php echo $rand; ?>" name="t-e-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>" class="form-control basic" placeholder="text" ><?php echo $this->elementData["textElement"]["text"][$val->suffix] ?></textarea>
+	    			<script>execTinyMCE(0,'t-e-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>-<?php echo $i; ?>-<?php echo $rand; ?>');</script>
+	    		</span>
+			<?PHP $i++; } ?>
+    		</div>
+
+		</div>
+</div>
+<input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="t-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+</li>

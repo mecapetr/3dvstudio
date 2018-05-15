@@ -1,0 +1,226 @@
+<div id="section-container" class="homepage">
+	<div class="container">
+		<div class="left-menu hidden-xs hidden-sm">
+			<nav>
+	  			<ul class="clearfix">
+	  				<?php foreach($this->menuLeftCategories as $menu){ ?>
+	  					<?php if($menu->title){ ?>
+	  		    		<li class="<?php echo $menu->userAdd ?> clearfix">
+	  		    			<?php if(isset($this->menuLeftSubCategories[$menu->linkID])){ ?>
+	  		    				<span class="glyphicons glyphicons-minus"></span>
+	  		    			<?php } ?>
+	  		    			<a class="<?php echo $menu->userAdd ?>" href="<?php echo $menu->otherLink; ?>">
+	  		    				<?php echo $menu->title ?>
+	  		    			</a>
+	  		    			<span class="clearfix visible-xs"></span>
+	  		    			<?php if(isset($this->menuLeftSubCategories[$menu->linkID])){ ?>
+	  		    				<ul class="sublinks">
+	  		    					<?php foreach($this->menuLeftSubCategories[$menu->linkID] as $subLink){ ?>
+	  		    						<?php if(!empty($subLink->title)){ ?>
+		  		    						<li class="<?php echo $subLink->class ?>">
+		  		    							<a class="<?php echo $subLink->class ?>" href="<?php echo $subLink->niceTitle ?>"><?php echo $subLink->title ?></a>
+		  		    							<?php if(isset($this->menuLeftSubCategories[$subLink->linkID])){ ?>
+			  		    							<span class="glyphicons glyphicons-plus sub"></span>
+			  		    							<ul class="subsublinks">
+			  		    								<?php foreach($this->menuLeftSubCategories[$subLink->linkID] as $subSubLink){ ?>
+			  		    									<?php if(!empty($subSubLink->title)){ ?>
+	  		    								  			<li class="<?php echo $subSubLink->class ?>">
+	  		    								  		    	<a class="<?php echo $subSubLink->class ?>" href="<?php echo $subSubLink->niceTitle ?>"><?php echo $subSubLink->title ?></a>
+	  		    								  		    </li>	
+	  		    								  		    <?php } ?>					
+	  		    								  		<?php } ?>
+	  		    								  	</ul>
+			  		    						<?php } ?>
+		  		    						</li>
+	  		    						<?php } ?>
+	  		    					<?php } ?>
+	  		    				</ul>
+	  		    			<?php } ?>
+	  		    		</li>
+	  		    		<?php } ?>
+	  		    	<?php } ?>
+	  				</ul>
+	  		</nav>
+	  		<div class="below-left-menu-text">
+		  		<?php if(!empty($this->allLayoutTexts[17]->text)){?>
+					<?php echo $this->allLayoutTexts[17]->text;?>
+	  			<?php }?>
+  			</div>
+		</div>
+		<section class="with-left-menu section-block">
+			<h1 id="categoryTitle">
+				<span>
+					<?php echo $this->linkContent->title;?>
+				</span>
+				<span class="breadcrumb"><?php echo $this->breadCrumb;?></span>
+			</h1>
+	  
+		  <div class="filter-panel first clearfix">
+		  	<div class="row">			  	
+			  	<?php if($this->showDepthFilter){?>
+				  	<div class="<?php if(!$this->showWidthFilter)echo "col-sm-offset-2"?> col-sm-4 width-depth depth">
+					  		<div class="title"><?php echo $this->translate('Požadovaná hloubka sedačky');?></div>
+					  		<div class="max-value"><span class="value">1000</span> <span class="unit">cm</span></div>
+					  		<div class="min-value"><span class="value">0</span> <span class="unit">cm</span></div>
+					  		<div id="depth-slider"></div>
+				  	</div>
+			  	<?php }?>
+			  	<?php if($this->showWidthFilter){?>
+				  	<div class="<?php if(!$this->showDepthFilter)echo "col-sm-offset-2"?> col-sm-4 width-depth width">
+				  		<div class="title"><?php echo $this->translate('Požadovaná šířka sedačky');?></div>
+				  		<div class="max-value"><span class="value">1000</span> <span class="unit">cm</span></div>
+				  		<div class="min-value"><span class="value">0</span> <span class="unit">cm</span></div>
+				  		<div id="width-slider"></div>
+				  	</div>
+			  	<?php }?>
+			  	<div class="<?php if(!$this->showDepthFilter && !$this->showWidthFilter)echo "col-sm-offset-4"?> col-sm-4 width-depth price">
+			  		<div class="title"><?php echo $this->translate('Požadovaná cena');?></div>
+			  		<div class="max-value"><span class="value">1000</span> <span class="unit"><?php echo $this->wholeLangData->currencySign;?></span></div>
+			  		<div class="min-value"><span class="value">0</span> <span class="unit"><?php echo $this->wholeLangData->currencySign;?></span></div>
+			  		<div id="price-slider"></div>
+			  	</div>
+		  	</div>
+		  </div>
+		  <div class="filter-panel second clearfix">	  	
+		  	<div class="row">
+			  	<div class="<?php if(empty($this->allFilters))echo "col-sm-offset-4";?> col-lg-4 col-sm-4 width-depth size">
+			  		<div class="title"><?php echo $this->translate('Velikost');?></div>
+			  		<div id="size-slider"></div>
+			  		<div class="legend">
+			  			<div class="size-one"><?php echo $this->translate("všechny")?></div>
+			  			<div class="size-two"><?php echo $this->translate("malá")?></div>
+			  			<div class="size-three"><?php echo $this->translate("střední")?></div>
+			  			<div class="size-four"><?php echo $this->translate("velká")?></div>
+			  		</div>
+			  	</div>
+			  	<?php if(!empty($this->allFilters)){?>
+				  	<div class="col-lg-8 col-sm-8 check-filters">
+				  		<ul class="form-inline">
+				  			<?php foreach ($this->allFilters as $val){?>
+				  				<li class="item checkbox"><label><input type="checkbox" value="<?php echo $val->filterID;?>" name="filter" class="filter-<?php echo $val->filterID;?>" /> <?php echo $val->title;?></label></li>
+				  			<?php }?>
+				  		</ul>
+				  	</div>
+			  	<?php }?>
+		  	</div>
+		  	
+		  	<input type="hidden" name="depthFrom" 	value="<?php if(!empty($this->sortFilterParams->depthFrom))echo $this->sortFilterParams->depthFrom;else echo $this->minDepth;?>" />
+		  	<input type="hidden" name="depthTo" 	value="<?php if(!empty($this->sortFilterParams->depthTo))echo $this->sortFilterParams->depthTo;else echo $this->maxDepth;?>" />
+		  	<input type="hidden" name="widthFrom" 	value="<?php if(!empty($this->sortFilterParams->widthFrom))echo $this->sortFilterParams->widthFrom;else echo $this->minWidth;?>" />
+		  	<input type="hidden" name="widthTo" 	value="<?php if(!empty($this->sortFilterParams->widthTo))echo $this->sortFilterParams->widthTo;else echo $this->maxWidth;?>" />
+		  	<input type="hidden" name="priceFrom" 	value="<?php if(!empty($this->sortFilterParams->priceFrom))echo $this->sortFilterParams->priceFrom;else echo $this->minPrice;?>" />
+		  	<input type="hidden" name="priceTo" 	value="<?php if(!empty($this->sortFilterParams->priceTo))echo $this->sortFilterParams->priceTo;else echo $this->maxPrice;?>" />
+		  	<input type="hidden" name="size" 		value="<?php if(!empty($this->sortFilterParams->size))echo $this->sortFilterParams->size;else echo 1;?>" />
+		  	<input type="hidden" name="filterIDs" 	value="<?php if(!empty($this->sortFilterParams->filter))echo $this->sortFilterParams->filter;?>" />
+		  	
+		  	<input type="hidden" name="minDepth" 	value="<?php echo $this->minDepth;?>" />
+		  	<input type="hidden" name="maxDepth" 	value="<?php echo $this->maxDepth;?>" />
+		  	<input type="hidden" name="minWidth" 	value="<?php echo $this->minWidth;?>" />
+		  	<input type="hidden" name="maxWidth" 	value="<?php echo $this->maxWidth;?>" />
+		  	<input type="hidden" name="minPrice" 	value="<?php echo $this->minPrice;?>" />
+		  	<input type="hidden" name="maxPrice" 	value="<?php echo $this->maxPrice;?>" />
+	  	 </div>
+      <div class="order-panel">
+				<div class="row">
+					<div class="col-xs-6 col-sm-4 col-lg-2 text-center order-item">						
+						<a href="<?php echo $this->sortFilterParams->linkForSort;?>/w/<?php echo $this->sortFilterParams->whereParam?>/by/P.title/ad/<?php echo $this->sortFilterParams->ascDescOposite;?>/strana/<?php echo $this->sortFilterParams->page?>#categoryTitle" class="order-by">
+							<span class="asc <?php if($this->sortFilterParams->orderBy == "P.title" && $this->sortFilterParams->ascDesc == "asc")echo "selected";?>"></span>
+							<span class="desc <?php if($this->sortFilterParams->orderBy == "P.title" && $this->sortFilterParams->ascDesc == "desc")echo "selected";?>"></span>
+							<span class="text"><?php echo $this->translate('podle názvu');?></span>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-lg-2 text-center order-item">						
+						<a href="<?php echo $this->sortFilterParams->linkForSort;?>/w/<?php echo $this->sortFilterParams->whereParam?>/by/P.price/ad/asc/strana/<?php echo $this->sortFilterParams->page?>#categoryTitle" class="order-by">
+							<span class="asc <?php if($this->sortFilterParams->orderBy == "P.price" && $this->sortFilterParams->ascDesc == "asc")echo "selected";?>"></span>
+							<span class="text"><?php echo $this->translate('nejlevnější');?></span>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-lg-2 text-center order-item">						
+						<a href="<?php echo $this->sortFilterParams->linkForSort;?>/w/<?php echo $this->sortFilterParams->whereParam?>/by/P.price/ad/desc/strana/<?php echo $this->sortFilterParams->page?>#categoryTitle" class="order-by">
+							<span class="desc <?php if($this->sortFilterParams->orderBy == "P.price" && $this->sortFilterParams->ascDesc == "desc")echo "selected";?>"></span>
+							<span class="text"><?php echo $this->translate('nejdražší');?></span>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-lg-2 text-center order-item">						
+						<a href="<?php echo $this->sortFilterParams->linkForSort;?>/w/<?php echo $this->sortFilterParams->whereParam?>/by/P.views/ad/desc/strana/<?php echo $this->sortFilterParams->page?>#categoryTitle" class="order-by">
+							<span class="desc <?php if($this->sortFilterParams->orderBy == "P.views")echo "selected";?>"></span>
+							<span class="text"><?php echo $this->translate('nejoblíbenější');?></span>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-lg-2 text-center order-item">						
+						<a href="<?php echo $this->sortFilterParams->linkForSort;?>/w/<?php echo $this->sortFilterParams->whereParam?>/by/P.soldCount/ad/desc/strana/<?php echo $this->sortFilterParams->page?>#categoryTitle" class="order-by">
+							<span class="desc <?php if($this->sortFilterParams->orderBy == "P.soldCount")echo "selected";?>"></span>
+							<span class="text"><?php echo $this->translate('nejprodávanější');?></span>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-lg-2 text-center order-item">						
+						<a href="<?php echo $this->sortFilterParams->linkForSort;?>/w/<?php echo $this->sortFilterParams->whereParam?>/by/isNew/ad/desc/strana/<?php echo $this->sortFilterParams->page?>#categoryTitle" class="order-by">
+							<span class="desc <?php if($this->sortFilterParams->orderBy == "isNew")echo "selected";?>"></span>
+							<span class="text"><?php echo $this->translate('novinky');?></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="product-list clearfix">	
+			
+				<?php if($this->allProducts){?>	
+					<?php foreach($this->allProducts as $val){?>
+						<div class="product col-xlg-3 col-lg-4 col-sm-6 col-xs-12 au<?php echo $val->productID?>">
+							<div class="content">
+								<div class="photo-block">
+									<a href="/<?php echo $this->firstCategory->niceTitle;?>/<?php echo $val->productID;?>-<?php echo $val->niceTitle;?>">
+										<img src="/Public/Images/Product/stredni-<?php echo $val->mainPhoto?>" />
+									</a>
+									<?php if($val->statusesCount > 0){ ?>
+										<div class="red flag" <?php if(!empty($val->statuses[0]["color"])){?>style="background-color:<?php echo $val->statuses[0]["color"];?>;"<?php }?>><?php echo $val->statuses[0]["title"]; ?></div>
+									<?php } ?>  
+									<?php if($val->isInAuction){?>
+										<div class="time-to-left"><div class="title"><?php echo $this->translate('Do konce');?></div><div class="time"><?php echo $val->timeToEnd;?></div></div>
+										<?php if(strtotime($val->dateAuction) > time()){ ?>
+											<a href="" class="place-bid btn btn-default" id="<?php echo $val->productID?>"><?php echo $this->translate("Přihodit");?></a>
+										<?php }?>										
+										<script>startCountdown('<?php echo $val->dateAuction; ?>','<?php echo $val->productID; ?>')</script>
+									<?php }?>
+								</div>
+								<div class="info clearfix <?php if($val->statusesCount <= 1)echo"middle"; ?>">
+									<?php if(!$val->isInAuction){?>
+										<?php if($val->statusesCount > 1){ ?>
+											<div class="top-info clearfix">
+												<?php for($i = 1;$i < $val->statusesCount; $i++){ ?>
+													<div class="col-xs-<?php echo $val->statusesCols ?> flag <?php if($val->statusesCount == 2)echo "text-left"; ?>"><?php echo $val->statuses[$i]["title"] ?></div>
+												<?php } ?>
+											</div>
+										<?php } ?>
+									<?php }else{ ?>									
+										<div class="top-info clearfix">
+											<div class="col-xs-6 flag actual-price">Aktuální cena: <span class="price"><?php echo $val->lasBidPriceFormated;?></span> <span class="currency"><?php echo $this->wholeLangData->currencySign;?></span></div>
+											<div class="col-xs-6 flag">Původní cena: <?php echo $val->stringPrice;?></div>
+										</div>
+									<?php }?>
+									<div class="bottom-info clearfix">
+										<div class="col-xs-8 no-padding-right title"><a href="/<?php echo $this->firstCategory->niceTitle;?>/<?php echo $val->productID;?>-<?php echo $val->niceTitle;?>"><?php echo $val->title?></a></div>
+										
+										<?php if(!$val->isInAuction){?>
+                      <div class="col-xs-4 price"><?php echo $val->stringPrice ?></div>  
+										<?php }?>
+									</div>
+								</div>
+							</div>
+						</div>	
+					<?php } ?>
+					<div class="col-xs-12"><?php echo $this->paging;?> </div>
+				<?php }else{ ?>
+					<div class="alert alert-warning text-center"><?php echo $this->translate("Omlouváme se, ale momentálně se v této kategorii nenachází žádné produkty.") ?></div>
+				<?php } ?>	
+			</div>
+		</section>
+	  	<div class="below-left-menu-text visible-sm visible-xs row">
+		  	<div class="col-xs-12">
+			  	<?php if(!empty($this->allLayoutTexts[17]->text)){?>
+					<?php echo $this->allLayoutTexts[17]->text;?>
+		  		<?php }?>
+		  	</div>
+		</div>
+	</div>
+	
+</div>

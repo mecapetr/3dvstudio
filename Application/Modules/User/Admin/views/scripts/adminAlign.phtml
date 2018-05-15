@@ -1,0 +1,18 @@
+	    <div class="list-order"> 	
+	        <form autocomplete="off" action="<?php echo $this->action; ?>" method="post"> 
+		        		         	    
+				<!--  <input type="text" name="searchText" /><input class="button" type="submit" name="search" value="Vyhledej" />-->
+				Seřadit podle 
+				<select name="orderBy">
+				    <option <?php if($this->orderBy == "date"){echo "selected";} ?> value="date">data</option>
+				    <option <?php if($this->orderBy == "login"){echo "selected";} ?> value="login">loginu</option>
+					<!--  <option <?php if($this->orderBy == "view")   {echo "selected";} ?> value="view">shlédnutí</option> -->
+				</select>
+				a to 
+				<select name="descAsc">
+				    <option <?php if($this->descAsc =="DESC"){echo "selected";} ?> value="DESC">sestupně</option>
+					<option <?php if($this->descAsc =="ASC") {echo "selected";} ?> value="ASC">vzestupně</option>
+				</select>
+				<input class="button" type="submit" name="order" value="Seřaď">
+			</form>
+		</div>

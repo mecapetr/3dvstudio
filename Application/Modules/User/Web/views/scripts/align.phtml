@@ -1,0 +1,31 @@
+	    <div class="list-order"> 	
+	        <form autocomplete="off" action="<?php echo $this->action; ?>" method="post"> 
+		        Vyhledat:<input type="text" name="input-text" id="search-input" class="search-align" />
+			    <div class="search-content-list">                   
+		                <ul class="search-content">
+		                    <?PHP foreach ($this->allSearchItems as $value){ ?>
+		                        <li onclick="getCustValue(this)" ><?PHP echo $value->login?></li>                        
+		                    <?PHP }?>
+		                </ul>
+		             
+	            </div>
+	
+				<input class="button search" type="submit" name="search" value="Vyhledej" /> 
+		         	    
+				<!--  <input type="text" name="searchText" /><input class="button" type="submit" name="search" value="Vyhledej" />-->
+				Seřadit podle 
+				<select name="orderBy">
+				    <option <?php if($this->orderBy == "date"){echo "selected";} ?> value="date">data</option>
+				    <option <?php if($this->orderBy == "login"){echo "selected";} ?> value="login">loginu</option>
+				    <option <?php if($this->orderBy == "email"){echo "selected";} ?> value="email">emailu</option>
+				    <option <?php if($this->orderBy == "tel"){echo "selected";} ?> value="tel">tel.</option>
+					<!--  <option <?php if($this->orderBy == "view")   {echo "selected";} ?> value="view">shlédnutí</option> -->
+				</select>
+				a to 
+				<select name="descAsc">
+				    <option <?php if($this->descAsc =="DESC"){echo "selected";} ?> value="DESC">sestupně</option>
+					<option <?php if($this->descAsc =="ASC") {echo "selected";} ?> value="ASC">vzestupně</option>
+				</select>
+				<input class="button" type="submit" name="order" value="Seřaď">
+			</form>
+		</div>

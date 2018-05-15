@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	
+	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons.css" />
+	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-bootstrap.css" />
+	
+	<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap.min.css" />
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/lg.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/md.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/sm.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/xs.css" />
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $this->baseUrl; ?>/Public/Css/AdminBase/admin.css" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-language" content="cz" />
+	
+	<title><?php echo $this->title; ?></title>
+
+
+</head>
+
+<body>
+
+	<header>		
+		<?php echo $this->placeholder('Zend_Layout')->header; ?>	
+	</header>
+	
+		
+	<div id="main-content">	
+		<div class="container">					    
+			<?php echo $this->layout()->content; ?>
+		</div>		
+	</div>
+
+</body>
+
+</html>

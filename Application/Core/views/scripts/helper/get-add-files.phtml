@@ -1,0 +1,72 @@
+
+<div class="galleryPhotos">
+	<div class="uploaded-files">
+		<?php if($this->allFiles)foreach($this->allFiles as $item){ ?>
+			
+			<div class="photo col-xs-12 col-sm-6" id="<?PHP echo $item->fileID ?>">
+				<span class="filetypes filetypes-<?php echo $item->ico; ?>"></span>
+        <p class="file-title text-overflow"><?php echo $item->title ?></p>
+				
+				<p>
+					<input id="del<?php echo $item->photoID."-e";?>" value="<?php echo $item->photoID."-e";?>" type="checkbox" name="delete" />							
+		    		<a title="Smaž" onclick="checkCheckbox(this);return false;" href="<?php echo $item->photoID."-e";?>"><span class="glyphicons glyphicons-remove-2"></span></a>
+				</p>
+				<p>										
+					<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+							<input placeholder="popis" type="text" name="<?php echo $item->fileID."-e";?>-fileDesc-<?PHP echo $val->suffix ?>" value="<?PHP echo $item->description[$val->suffix]; ?>" style="width: 200px; margin-right: 5px;" />
+						</span>
+					<?PHP $i++; } ?>
+					<?php echo $this->render("photoLanguageMutations.phtml"); ?>  
+				</p>
+				
+			</div>
+			
+		<?php } ?>
+	</div>
+	<?php if($this->allTempFiles)foreach($this->allTempFiles as $item){ ?>
+		
+		<div class="photo photoTemp col-xs-12 col-sm-6">
+			<span class="filetypes filetypes-<?php echo $item->ico; ?>"></span>
+      <input type="hidden" name="files[]" value="<?php echo $item->title; ?>~<?php echo $item->fileTempID."-t"; ?>~<?php echo $item->ico; ?>~<?php echo $item->isFromSource; ?>" />
+			<p class="file-title text-overflow"><?php echo $item->title ?></p>
+			
+			<p>
+				<input id="del<?php echo $item->fileTempID."-t";?>" value="<?php echo $item->fileTempID."-t";?>" type="checkbox" name="delete" />							
+	    		<a title="Smaž" onclick="checkCheckbox(this);return false;" href="<?php echo $item->fileTempID."-t";?>"><span class="glyphicons glyphicons-remove-2"></span></a>
+			</p>
+			<p>										
+				<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+						<input placeholder="popis" type="text" name="<?php echo $item->fileTempID."-t";?>-fileDesc-<?PHP echo $val->suffix ?>" value="" style="width: 200px; margin-right: 5px;" />
+					</span>
+				<?PHP $i++; } ?>
+				<?php echo $this->render("photoLanguageMutations.phtml"); ?>  
+			</p>
+		</div>
+		
+	<?php } ?>
+	<div id="endFloat"></div>
+</div>
+
+<div id="file-fileQueue"></div>
+<input type="file" name="file-uploadify" id="file-uploadify" />
+
+<p class="file-links">
+	<?php if(count($this->allFiles) > 0 || count($this->allTempFiles) > 0){ ?>
+		  <a class="btn btn-danger btn-xs" href="#" onclick="deleteFiles();return false;"> Smazat označené</a>
+	<?php } ?>	
+</p> 
+				
+		     
+		<script>
+            	var fAction       = '<?php echo $this->fAction; ?>';
+            	var fFolder       = '<?php echo $this->fFolder; ?>';
+            	var fTable        = '<?php echo $this->fTable; ?>';
+            	var fTableID      = '<?php echo $this->fTableID; ?>';
+            	var fUi           = '<?php echo $this->fUser; ?>';
+            	var fTableIDvalue = '<?php echo $this->fTableIDvalue; ?>';
+        </script>
+		<script type="text/javascript" src="/Public/Jscripts/Upload/addFileDispatch.js"></script>
+
+

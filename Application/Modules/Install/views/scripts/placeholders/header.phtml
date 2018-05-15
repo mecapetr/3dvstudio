@@ -1,0 +1,17 @@
+<img alt="Administrace" src="<?php echo $this->baseUrl ?>/Public/Images/Layout/logo.png" />
+<ul class="user-block">
+	<?PHP if($this->user){ ?>		
+		<li class="main">
+			<a href=""> <span class="glyphicons glyphicons-user"></span> <?php echo $this->user ?></a>
+			
+			<ul class="dropdown-menu">
+				
+				<li><a href="/admin/nastaveni/zmena-hesla" title="nastavení"> <span class="glyphicons glyphicons-settings"></span> Nastavení</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="/admin/logout" title="Odhlásit"> <span class="glyphicons glyphicons-log-out"></span> Odhlásit</a></li>		
+										
+			</ul>
+		</li>
+	<?PHP } ?>
+</ul>
+

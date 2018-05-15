@@ -1,0 +1,217 @@
+<div style="width:100%;min-height:660px;">
+<?php $scripts = new Library_Scripts();?>
+<?php if(true/*$scripts->getRealIpAddr() == '188.175.34.169'*/){?>
+
+	<script type="text/javascript" src="/Public/Jscripts/ui.core.js"></script>
+	<script type="text/javascript" src="/Public/Jscripts/ui.widget.js"></script>
+	<script type="text/javascript" src="/Public/Jscripts/ui.mouse.js"></script>
+	<script type="text/javascript" src="/Public/Jscripts/ui.slider.js"></script>
+		
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+	<div class="leasing-content">
+	
+		
+		<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+		<?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";}else{ ?>
+		
+			<div class="item no-margin-top">
+				<label id="splatky">Typ úverového produktu:</label>
+				<span class="item">
+					<select id="splatky" name="splatky">
+						<?php foreach($this->splatky->barem as $barem){ ?>
+							<option <?php if($this->backSpl == $barem["id"])echo "selected"; ?> value="<?php echo $barem["id"] ?>"><?php echo $barem->info ?></option>
+						<?php } ?>
+					</select>
+				</span>
+				<div class="clearfix"></div>
+			</div>
+			<div class="item">
+				<label id="poistenie">Poistenie:</label>
+				<span class="item">
+					<select id="poistenie" name="poistenie">
+						<?php foreach($this->pojisteni->option as $option){ ?>
+							<option <?php if($this->backPoj == $option["id"])echo "selected"; ?> value="<?php echo $option["id"] ?>"><?php echo $option ?></option>
+						<?php } ?>
+					</select>
+				</span>
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="leasing-data">
+			
+				<div class="item smaller">
+					<label id="splatky">Cena tovaru:</label>
+					<span class="item no-input price"><?php echo $this->price ?></span>
+					<div class="clearfix"></div>
+				</div>
+				
+				<div class="item smaller">
+					<label id="splatky">Výška mesačnej splátky: </label>
+					<span class="item no-input"><?php echo $this->vyskaSplatky ?></span>
+					<div class="clearfix"></div>
+				</div>
+				<?php if(false){?>
+					<div class="item smaller">
+						<label id="splatky">Výška splátky bez poistenia:</label>
+						<span class="item no-input"><?php echo $this->vyskaSplatkyBezPojisteni ?></span>
+						<div class="clearfix"></div>
+					</div>
+				<?php }?>
+				<div class="item <?php if($this->backSpl != $this->defaultSpl)echo "bigger";else echo "smaller"; ?>">
+					<label id="splatky">Priama platba:</label>
+					<span class="item no-input prima-platba"><?php echo $this->primaPlatba ?></span>
+					<div class="clearfix"></div>
+					<?php if($this->backSpl != $this->defaultSpl){ ?>
+						<div id="prima-platba"></div>
+					<?php } ?>
+				</div>
+				<div class="item <?php if($this->backSpl != $this->defaultSpl)echo "bigger";else echo "smaller"; ?>">
+					<label id="splatky">Počet splátok:</label>
+					<span class="item no-input"><span class="pocet-splatok"><?php echo $this->pocetSplatok ?></span> splátok</span>	
+					<div class="clearfix"></div>
+					<?php if($this->backSpl != $this->defaultSpl){ ?>
+						<div id="pocet-splatek"></div>
+					<?php } ?>
+				</div>
+				<div class="item smaller">
+					<label id="splatky">Výška úveru:</label>
+					<span class="item no-input"><?php echo $this->vyskaUveru ?></span>
+					<div class="clearfix"></div>
+				</div>
+				
+				<div class="item smaller">
+					<label id="splatky">Úroková sadzba:</label>
+					<span class="item no-input"><?php echo $this->urokovaSazba ?></span>
+					<div class="clearfix"></div>
+				</div>
+				<div class="item smaller">
+					<label id="splatky">RPMN:</label>
+					<span class="item no-input"><?php echo $this->rpsn ?></span>
+					<div class="clearfix"></div>
+				</div>
+				<div class="item smaller">
+					<label id="splatky">Cena úveru:</label>
+					<span class="item no-input">
+						<?php echo $this->cenaUveruNoEur ?> EUR
+					</span>
+					<div class="clearfix"></div>
+				</div>
+				<div class="item smaller">
+					<label id="splatky">Celková čiastka k zaplateniu:</label>
+					<span class="item no-input">
+						<?php echo $this->cenaUveru ?>
+					</span>
+					<div class="clearfix"></div>
+				</div>
+				
+				<?php if($this->sendData){ ?>
+					<div class="send-c">
+						<div calss="row">
+							<div class="column text-center"><img src="/Public/Images/Layout/Content/cetelem_s.jpg" /></div>
+							<div class="send column">Odoslať žiadosť o úver</div>
+						</div>
+						<div class="clearfix"></div>
+						<input type="hidden" name="numklient-p" value="c_<?php echo $this->orderNumber ?>" />
+						<input type="hidden" name="obj-p" value="<?php echo $this->orderNumber ?>" />
+						<input type="hidden" name="oznTovaru-p" value="<?php echo $this->product ?>" />
+						<input type="hidden" name="sendData-p" value="1" />
+					</div>
+				<?php }else{ ?>
+				
+					<p class="center"><img src="/Public/Images/Layout/Content/cetelem_s.jpg" /></p>
+				
+				<?php } ?>
+			
+			</div>
+			
+			<?php if($this->send){ ?>
+				<form name="send" action="https://www.cetelem.sk/eshop/ziadost.php" method="post">
+								
+					<input type="hidden" name="kodPredajcu" value="<?php echo $this->kodProdejce; ?>" />
+					<input type="hidden" name="kodBaremu" value="<?php echo $this->backSpl; ?>" />
+					<input type="hidden" name="kodPoistenia" value="<?php echo $this->backPoj; ?>" />
+					<input type="hidden" name="kodMaterialu" value="<?php echo $this->material; ?>" />
+					<input type="hidden" name="cenaTovaru" value="<?php echo $this->priceNoEur; ?>" />
+					<input type="hidden" name="priamaPlatba" value="<?php echo $this->primaPlatbaNoEur; ?>" />
+					<input type="hidden" name="vyskaUveru" value="<?php echo $this->vyskaUveruNoEur; ?>" />
+					<input type="hidden" name="pocetSplatok" value="<?php echo $this->pocetSplatok; ?>" />
+					<input type="hidden" name="odklad" value="0" />
+					<input type="hidden" name="zdarma" value="0" />
+					<input type="hidden" name="vyskaSplatky" value="<?php echo $this->vyskaSplatkyNoEur; ?>" />
+					<input type="hidden" name="cenaUveru" value="<?php echo $this->cenaUveruNoEur; ?>" />
+					<input type="hidden" name="ursadz" value="<?php echo $this->urokovaSazbaNo; ?>" />
+					<input type="hidden" name="RPMN" value="<?php echo $this->rpsnNo; ?>" />
+					<input type="hidden" name="url_back_ok" value="http://www.sedacky-nabytok.sk/cetelem/status-ok" />
+					<input type="hidden" name="url_back_ko" value="http://www.sedacky-nabytok.sk/cetelem/status-ko" />
+					<input type="hidden" name="numklient" value="c_<?php echo $this->orderNumber ?>" />
+					<input type="hidden" name="obj" value="<?php echo $this->orderNumber ?>" />
+					<input type="hidden" name="oznTovaru" value="<?php echo $this->product ?>" />
+					
+					<script>
+						$("form[name=send]").submit();
+					</script>
+				</form>
+			<?php } ?>
+		
+		<?php } ?>
+		
+	</div>
+	
+	<script>
+	
+	var spl   = $("select#splatky").val();
+	var poj   = $("select#poistenie").val();
+	var obj        = $("input[name=obj-p]").val();
+	var oznTovaru  = $("input[name=oznTovaru-p]").val();
+	var sendData   = $("input[name=sendData-p]").val();
+	
+	if(isEmpty(obj))obj = "";
+	if(isEmpty(oznTovaru))oznTovaru = "";
+	if(isEmpty(sendData))sendData = "";
+	
+	var price = $("#repayment .modal-body span.price").text();
+	price     = price.split(",");
+	price     = price[0];
+
+		
+	$( "#pocet-splatek" ).slider({
+	    value:<?php echo $this->pocetSplatok ?>,
+	    min: <?php echo $this->pocetSplatokMin ?>,
+	    max: <?php echo $this->pocetSplatokMax ?>,
+	    step: 1,
+	    slide: function( event, ui ) {
+	      $( "div#pocet-splatek a.ui-slider-handle" ).text( ui.value );
+	      $( "span.pocet-splatok" ).text( ui.value );
+	    },
+	    change: function( event, ui ) {  	
+	        		
+			selectDataAjax(spl,poj,price,ui.value,$( "#prima-platba" ).slider( "value" ),0,obj,oznTovaru,sendData);
+	    }
+	});
+	
+	var slVal = $( "#pocet-splatek" ).slider( "value" );
+	$( "div#pocet-splatek a.ui-slider-handle" ).text(slVal);
+	
+	
+	$( "#prima-platba" ).slider({
+	    value:<?php echo str_replace(array(" ",","),array("","."),$this->primaPlatbaBezEur[0]) ?>,
+	    min: <?php echo str_replace(array(" ",","),array("","."),$this->primaPlatbaMin) ?>,
+	    max: <?php echo str_replace(array(" ",","),array("","."),$this->primaPlatbaMax) ?>,
+	    step: 1,
+	    slide: function( event, ui ) {
+	      $( "div#prima-platba a.ui-slider-handle" ).text( ui.value );
+	      $( "span.prima-platba" ).text( ui.value +",00 EUR");
+	    },
+	    change: function( event, ui ) {
+			selectDataAjax(spl,poj,price,$("#pocet-splatek").slider( "value" ),ui.value,0,obj,oznTovaru,sendData);
+	    }
+	});
+	
+	var pojVal = $( "#prima-platba" ).slider( "value" );
+	$( "div#prima-platba a.ui-slider-handle" ).text(pojVal);
+	
+	</script>
+<?php }else{?>
+	<p>Kalkulačka je dočasně mimo provoz.</p>
+<?php }?>
+</div>

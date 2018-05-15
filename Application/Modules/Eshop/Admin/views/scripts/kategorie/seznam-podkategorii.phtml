@@ -1,0 +1,4 @@
+<option value="">-- Podkategorii --</option>
+<?php foreach($this->allSublinks as $val){?>
+	<option value="<?php echo $val->title?>" class="<?php echo $val->linkID;?>"><?php echo $val->title?></option>
+<?php }?>

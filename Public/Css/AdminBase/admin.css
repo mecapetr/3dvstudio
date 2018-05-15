@@ -1,0 +1,1740 @@
+#mainContent{
+
+	width:960px;
+	margin:auto;	
+	
+}	
+#mainLinks{
+
+	margin-bottom:0px;
+	margin-top:6px;
+	height:auto;
+
+}
+
+#mainLinks ul{
+
+	height:46px;
+
+}
+
+#mainLinks li {
+	
+	border-top:1px solid #EDEDED;
+	float:left;
+	margin-right:3px;
+	height:44px;
+	position: relative;
+	
+}
+
+#mainLinks li a,
+#mainLinks li a:hover{
+	
+	font-size:15px;
+	color:#666666;
+	text-decoration:none;
+    display:block;
+    width:131px;
+    height:33px;
+    text-align:center;
+    padding-top:12px;
+	background:url("/Public/Images/Admin/main_link_bg.png");
+	background-repeat:repeat-x;
+    	
+}
+
+#mainLinks li a:hover{
+	
+	background:url("/Public/Images/Admin/main_link_selected_bg.png");
+	background-repeat:repeat-x;
+	color:#FFFFFF;	
+
+}
+
+
+#mainLinks li.extra-width a ,
+#mainLinks li.extra-width a:hover{
+
+	width:150px;
+	
+}
+
+#mainLinks li.extra-padding a ,
+#mainLinks li.extra-padding a:hover{
+
+	padding-top:3px;
+	height:42px;
+	
+}
+
+#mainLinks li.last{
+
+	float:none;
+	clear:left;
+	height:0px;
+	width:0px;
+	
+	
+}
+
+#mainLinks li.blueBackground a{
+
+	background:url("/Public/Images/Admin/main_link_selected_bg.png");
+	background-repeat:repeat-x;
+	color:#FFFFFF;	
+	
+}	
+#sub-links{
+	background-color: #2b93c9;
+	min-height:18px;
+}
+#sub-links ul{
+}
+#sub-links ul li{
+	float: left;
+}
+#sub-links ul li a{
+	background:url("/Public/Images/Admin/sub_links_border.png");
+	background-repeat: no-repeat;
+	background-position: center right;
+	color: white;
+    display: block;
+    font-size: 12px;
+    height: 26px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 12px;
+    text-decoration: none;
+}
+#sub-links ul li a:hover,#sub-links ul li a.selected{
+	color: #ceef48;
+}
+#mainContent div.sub-links-shadow{
+
+	background:url("/Public/Images/Admin/sub_links_shadow.png");
+	width: 100%;
+	height: 9px;
+	background-repeat: repeat-x;
+}
+#content{
+	
+	clear:left;
+	position: relative;
+	border-bottom:1px solid #d0d0d0;
+	background-color: #f3f3f3;
+
+}
+.content-login{
+	
+	background-color: #ededed !important;
+
+}
+
+#content div.currentContent{
+
+	float: left;
+    padding-right: 30px;
+    position: relative;
+    width: 930px;
+	
+	
+}
+
+#content div.currentContent p{
+	
+    text-align:left;	
+    margin-left:30px;
+    clear:left;
+    font-size:14px;
+	
+}
+
+#content div.currentContent p.button,
+#overlayContent p.button{
+	
+    text-align:right;	
+	
+}
+
+#content div.currentContent label{
+	
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 6px;
+    padding-bottom: 2px;
+    vertical-align: top;
+    width: 168px;
+	
+}
+#content div.currentContent p span#obligatory {
+	color: red;
+    float: left;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 5px;
+    padding-right: 7px;
+    padding-top: 7px;
+    width: 5px;
+}
+#content div.currentContent INPUT,
+#overlayContent p.button INPUT{
+	
+    width:489px;
+    background: url("../../Images/Admin/inputBg.jpg");
+    border:1px solid #D7D7D7;
+    padding:5px;
+	
+}
+
+#content div.currentContent INPUT.date{
+	
+    width:150px;
+	
+}
+#content div.currentContent INPUT.newPassword{
+	
+    width:353px;
+	
+}
+#content div.currentContent INPUT.color{
+	
+    width:400px;
+    background: none;
+    border:1px solid #D7D7D7;
+    padding:5px;
+	
+}
+
+#content div.currentContent INPUT.button,
+#content div.currentContent a.button,
+#overlayContent p.button INPUT{
+	
+    width:100px;
+    background: none;
+    background-color: #2B93C9;
+    color:#FFFFFF;
+    cursor:pointer;
+    background: url("/Public/Images/Admin/button_bg.png");
+
+}
+
+#content div.currentContent a.button{
+
+	padding:4px 15px 4px 15px;	
+	
+}
+#content div.currentContent div#animation{
+
+	background-color:White;
+	height:158px;
+	left:0;
+	padding-top:30px;
+	position:absolute;
+	top:43px;
+	width:412px;
+	display:none;
+}
+
+#content div.currentContent div#animation img,
+#content div.currentContent div#animationVideos img{
+
+	margin:0px 50px 50px;
+	
+}
+
+#content div.currentContent div#animationVideos{
+
+	background-color:White;
+	display:none;
+	height:112px;
+	left:0;
+	padding-top:30px;
+	position:absolute;
+	text-align:center;
+	top:77px;
+	width:732px;
+}
+
+#content div.currentContent div#animationVideos p.videoTitle{
+
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:0;
+	margin-top:0;
+	text-align:center;
+	height:25px;
+	margin-left:0px;
+
+}
+
+#content div.currentContent INPUT.checkbox{
+	
+    width:15px;	
+    background: none;
+    border:0px none;
+    margin-right:4px;
+
+}
+
+#content div.currentContent TEXTAREA{
+	
+    width:930px;
+    height:250px;	
+	
+}
+
+#content div.currentContent INPUT.smaller{
+
+	width:100px;
+
+}
+#content div.currentContent INPUT.smallest{
+
+	width:25px;
+
+}
+
+#content div.currentContent select{
+	
+    background: url("../../Images/Admin/inputBg.jpg");
+    border:1px solid #D7D7D7;
+    padding:5px;	
+	
+}
+
+
+#content div.currentContent p a{
+	
+    color:#FFFFFF;
+    text-decoration: none;
+    background-color:#2B93C9;
+    padding:2px 8px 2px 8px;	
+	
+}
+#content div.currentContent p a.removeUser{
+	
+    background: url("/Public/Images/Admin/delete.gif");
+    background-repeat:no-repeat;
+    display:block;
+	float:left;
+	height:25px;
+	padding:0;
+	margin:0 7px 0 0;
+	width:25px;
+	
+}
+#content div.currentContent p span.removeUser{
+	display:block;
+	float:left;
+	margin-top:3px;
+}
+#content div.currentContent p span.removeUser span{
+	padding: 0 0 0 7px;
+}
+/**** kvuli wysiwygu aby nebyly modre tlacitka ****/
+#content div.currentContent p span table a{
+
+    background-color:transparent;
+    padding:0px 0px 0px 0px;	
+	
+}
+
+#content div.currentContent p img{
+	
+    float:left;
+    margin-right:5px;	
+	
+}
+
+#content div.currentContent p a:hover{
+	
+    cursor: pointer;	
+    text-decoration:underline;
+	
+}
+
+#content div.currentContent p span{
+	
+    color:#666666;
+    font-size:13px;
+	
+}
+
+#content div.currentContent p span.mceEditor{
+	
+    color:#000000;
+    font-size:12px;
+	display: inline-block;
+}
+
+#content div.currentContent p span.mceEditor a{
+	
+    color:#000000;
+	
+}
+
+#content div.currentContent p.date INPUT{
+	
+    margin-top:2px;
+	
+}
+
+#content div.currentContent .listTitleHeader{
+
+	float:left;
+	text-align:center;
+	font-weight:bold;
+	width:595px;
+	margin-top:5px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-left:1px solid #D7D7D7;
+	/*background-color:#f7ffef;*/
+	border-bottom:1px solid #D7D7D7;
+	border-top:1px solid #D7D7D7;
+	font-size:13px;
+	background: url("../../Images/Admin/inputBg.jpg");
+	color:#007DBE;
+	
+}
+
+#content div.currentContent .listTitleItem{
+
+	position:relative;
+	float:left;
+	text-align:center;
+	width:597px;
+	height:40px;
+	font-size:13px;
+	border-bottom:1px dashed #CCCCCC;
+	padding-top:6px;	
+		
+}
+
+#content div.currentContent .listHeader{
+
+	float:left;
+	text-align:center;
+	font-weight:bold;
+	color:#007DBE;
+	width:100px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-left:1px solid #D7D7D7;
+	background: url("../../Images/Admin/inputBg.jpg");
+	border-bottom:1px solid #D7D7D7;
+	border-top:1px solid #D7D7D7;
+	font-size:13px;
+	margin-top:5px;
+	
+}
+
+#content div.currentContent .listItem{
+
+	position:relative;
+	float:left;
+	text-align:center;
+	width:100px;
+	height:40px;
+	font-size:13px;
+	border-left:1px solid #F3F3F3;
+	border-bottom:1px dashed #CCCCCC;
+	padding-top:6px;
+	
+}
+
+#content div.currentContent .listItem img{
+
+	border:0px;
+	margin:0px;
+	padding:0px;
+	margin-top:7px;
+	
+}
+
+#content div.currentContent .listBorderRight{
+    
+   border-right:1px solid #D7D7D7;
+		
+}
+
+#content div.currentContent .cross{
+
+	padding-left:45px;
+    width:333px;
+}
+
+#content div.currentContent .crossBasic{
+	background:url("/Public/Images/Admin/cross.png") no-repeat;
+}
+
+#content div.currentContent .crossNoCommercial{
+	background:url("../../Images/Admin/cross.gif") no-repeat;
+}
+
+#content div.currentContent .crossCommercial{
+	background:url("../../Images/Admin/crossCommercial.gif") no-repeat;
+}
+
+#content div.currentContent .margin-left{
+	margin-left:30px;
+}
+
+#content div.currentContent .extra-width{
+	width:276px;
+}
+
+#content div.currentContent .extra-width2{
+	width:124px;
+}
+
+#content div.currentContent .align-left{
+	text-align:left;
+}
+
+#content div.currentContent .blue{
+	background-color:#e9f5ff;
+	border-left:1px solid #e9f5ff;
+}
+
+#content div.currentContent .white{
+	background-color:#FFFFFF;
+	border-left:1px solid #FFFFFF;
+}
+
+
+#content div.currentContent div.list-order{
+    margin-top:5px;
+	text-align:right;
+	font-size:12px;
+	height:40px;
+	position:relative;
+	z-index:1000;
+}
+
+#content div.currentContent div.list-order FORM{
+	padding:0px;
+	margin:0px;
+	}
+
+#content div.currentContent div.list-order SELECT {
+
+	margin-right:0px;
+	margin-left:0px;
+	
+}
+
+#content div.currentContent div.list-order INPUT {
+
+	margin-left:10px;
+	
+}
+
+#content div.currentContent div.list-order INPUT.search-align {
+
+	margin-left:10px;
+	width:200px;
+	
+}
+#content div.currentContent div.list-order INPUT.search {
+
+	margin-right:40px;	
+}
+
+#content div.currentContent div.list-order div.search-content-list,
+#content div.currentContent div.search-content-list{
+	position: absolute;
+	left:0px;
+	top:0px;
+	z-index:1200;
+
+}
+#content div.currentContent div.list-order ul.search-content,
+#content div.currentContent ul.search-content,
+#content div.currentContent ul.search-content-ftp {
+	background-color: #000000;
+    border: 1px solid #D7D7D7;
+    color: #FFFFFF;
+    display: none;
+    height: 120px;
+    left: 0px;
+    max-width: 680px;
+    min-width: 393px;
+    opacity: 0.8;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    top: 35px;
+    z-index: 2147483647;
+}
+
+#content div.currentContent div.list-order ul.search-content li,
+#content div.currentContent ul.search-content li,
+#content div.currentContent ul.search-content-ftp li {
+	cursor: pointer;
+	padding:2px 5px;
+	font-size: 15px;
+	text-align: left;
+	width:auto;
+	height:20px;
+
+}
+#content div.currentContent div.list-order ul.search-content li:hover,
+#content div.currentContent ul.search-content li:hover,
+#content div.currentContent ul.search-content-ftp li:hover {
+	background-color: white;
+	color: black;
+}
+#content div.currentContent div.list-order ul.search-content li span,
+#content div.currentContent ul.search-content li span,
+#content div.currentContent ul.search-content-ftp li span {
+	display:none;
+	float: none;
+	width: auto;
+}
+
+#content div.currentContent div.related-articles{
+
+	position:relative;
+
+}
+#content div.currentContent div.related-articles span.selected-articles{
+	width: 501px;
+	height: 160px;
+	position: relative;
+	border: 1px solid #D7D7D7;
+	display: inline-block;
+	overflow-y:scroll; 
+}
+#content div.currentContent div.related-articles p span.selected-articles span.odd{
+	background-color: #ffffff;
+	display: block;
+	padding: 6px;
+	font-weight: bold;
+}
+#content div.currentContent div.related-articles p span.selected-articles span.even{
+	display: block;
+	padding: 6px;
+}
+#content div.currentContent div.related-articles p span.selected-articles span.title{
+	float: left;
+	font-weight: bold;
+}
+#content div.currentContent div.related-articles p span.selected-articles a{
+	float: right;
+	background: url("/Public/Images/Admin/delete.png");
+	width: 23px;
+	height: 23px;
+	padding: 0;
+}
+#content div.currentContent div.related-articles p span.selected-articles span.clear-both{
+	display: block;
+}
+#content div.currentContent p.related-title{
+	color:#2B93C9;
+	font-size: 18px;
+	margin-top: 31px;
+}
+#content div.currentContent ul.search-content-no-list{
+	top: 209px;
+	left: 202px;
+	min-width:500px;
+
+}
+#content div.currentContent .delete{
+
+	position:relative;
+	padding-bottom:60px;
+	left:340px;
+	top:27px;
+	width:250px;
+
+}
+
+#content div.currentContent .delete input{
+
+	width:15px;
+
+}
+
+#content div.currentContent .delete input.button{
+
+	width:100px;
+	margin-top:10px;
+
+}
+
+
+#content div.currentContent .delete p{
+
+	margin-left:0px;
+	text-align:center;
+
+}
+
+
+#content div.currentContent .delete p.offer{
+
+	color:#51A3FF;
+
+}
+
+#content div.currentContent .delete p.offer a{
+    
+    background-color:#FFFFFF;
+    text-decoration:underline;
+    color:#51A3FF;
+    padding:0px;	
+
+}
+
+#content div.currentContent input.change{
+
+	width:auto;
+
+}
+
+#content div.currentContent input.gallery{
+
+	width:auto;
+
+}
+
+#content div.currentContent fieldset{
+
+	margin-left:30px;
+    float:left;
+    text-align:left;
+    padding:10px;
+    margin-bottom:10px;
+
+}
+
+#content div.currentContent fieldset p{
+
+	margin-left:0px;
+	margin-right:0px;
+
+}
+#content div.currentContent fieldset p input.game{
+
+	width:250px;
+
+}
+
+#content div.currentContent fieldset.getNewVideos{
+
+	width:412px;
+	height:245px;
+	
+}
+
+#content div.currentContent fieldset.getNewVideos div.content{
+
+	width:412px;
+	height:245px;
+	position:relative;
+	
+}
+
+#content div.currentContent fieldset.getNewVideos img{
+
+	float:left;
+	margin-right:10px;
+	width:128px;
+	height:72px;
+
+}
+#content div.currentContent fieldset.getNewVideos div#animation img{
+
+	width:300px;
+	height:50px;
+
+}
+
+#content div.currentContent fieldset.getNewVideos input.button{
+
+	width:170px;
+
+}
+#content div.currentContent fieldset.getNewVideos input.second{
+
+	width:30px;
+	margin-bottom:7px;
+
+}
+
+#content div.currentContent fieldset.getNewVideos span{
+
+	color:#990000;
+
+}
+
+#content div.currentContent fieldset.getNewVideos p.videoTitle{
+
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:0;
+	margin-top:0;
+	text-align:center;
+	height:25px;
+
+}
+
+#content div.currentContent .nextPrevious{
+
+	height:34px;
+	margin-left:30px;
+	text-align:right;
+	width:880px;
+  
+}
+
+#content div.currentContent .nextPrevious a{
+    
+    position:relative;
+	text-decoration:none;
+	color:#FFFFFF;
+	top:7px;
+	padding:5px;
+	background-color:#2B93C9;
+	
+}
+
+#content div.currentContent .left{
+
+	text-align:left;	
+	
+}
+
+#content div.currentContent .nextPrevious .betweenNextPrevious{
+
+	display:inline-block;
+	width:695px;
+		
+}
+
+#content div.currentContent ul#sortListNested,
+#content div.currentContent ul#sortListBasic{
+
+	/*margin-left:50px;*/
+	clear:left;	
+}
+
+#content div.currentContent ul#sortListNested ul{
+
+	margin-left:40px;
+}
+
+#content div.currentContent ul#sortListNested ul div.cross{
+
+	width:292px;	
+}
+
+#content div.currentContent ul#sortListNested li{
+
+	cursor:move;
+}
+
+#content div.currentContent ul#sortListNested li.placeholder,
+#content div.currentContent ul#sortListBasic li.placeholder,
+#content div.currentContent ul.sortListBasic li.placeholder2{
+
+	height:40px;
+	border:1px dashed #CCCCCC;
+	background-color:#D7D7D7;
+	margin-left:30px;
+		
+}
+
+#content div.currentContent ul.sortListNested,
+#content div.currentContent ul.sortListBasic{
+
+	/*margin-left:50px;*/
+	clear:left;	
+}
+
+#content div.currentContent ul.sortListNested ul{
+
+	margin-left:40px;
+}
+
+#content div.currentContent ul.sortListNested ul div.cross{
+
+	width:292px;	
+}
+
+#content div.currentContent ul.sortListNested li{
+
+	cursor:move;
+}
+
+#content div.currentContent ul.sortListNested li.placeholder,
+#content div.currentContent ul.sortListBasic li.placeholder,
+#content div.currentContent ul.sortListBasic li.placeholder2{
+
+	height:40px;
+	border:1px dashed #CCCCCC;
+	background-color:#D7D7D7;
+	margin-left:30px;
+		
+}
+
+#content div.currentContent div.newPhoto{
+
+	float:left;
+	height:134px;
+	margin-right:5px;
+	margin-bottom:5px;
+	text-align:center;
+	font-size:12px;
+
+}
+#content div.currentContent div.newImg{
+
+	height:94px;
+	text-align:center;
+	
+}
+#content div.currentContent div.allNewPhotos{
+
+	margin-left:40px;
+}
+#content div.currentContent div.newImg img{
+
+	margin:0px;
+	padding:0px;
+	margin-top:1px;
+	border:1px solid #D7D7D7;
+	
+}
+#content div.currentContent div.newPhoto input{
+	vertical-align:middle;
+	margin:2px;
+}
+#content div.currentContent div.newPhoto p{
+	
+	border:1px solid #D7D7D7;
+	margin:0;
+	margin-left:1px;
+	padding-top:1px;
+	padding-bottom:2px;
+	text-align:center;
+	width:auto;
+	
+}
+
+#content div.currentContent div.loading{
+	
+	text-align:center;
+	display:none;
+
+}
+#content div.currentContent div.loading span{
+	
+	font-size: 20px;
+	display:block;
+	margin-top:30px;
+
+}
+#content div.currentContent div.loading img{
+	
+	margin-bottom:30px;
+
+}
+
+#content div.currentContent div.searchPlaylist{
+
+	margin-left:30px;	
+	
+}
+
+#content div.currentContent ul.userPortal{
+
+	margin-left:30px;	
+	
+}
+
+#content div.currentContent  div.othersPortals table.relatedPortals{
+
+	margin-left:30px;
+	width:630px;	
+	
+}
+
+#content div.currentContent div.files{
+
+	margin-left:32px;	
+	
+}
+
+/*
+*   galerie
+*/
+
+#content div.currentContent div.galleryPhotos div.photo{
+
+	float:left;
+	text-align:center;
+	border:1px solid silver;
+	margin-right:5px;	
+	margin-bottom:5px;
+	
+}
+
+#content div.currentContent div.galleryPhotos div a{
+
+	padding:0px;
+	margin:0px;
+	background-color:transparent;	
+	
+}
+#content div.currentContent div.galleryPhotos div p{
+
+	padding:0px;
+	margin:0px;	
+	text-align:center;
+	
+}
+#content div.currentContent div.galleryPhotos div img{
+
+	float:none;
+	margin:0px;
+	padding:0px;
+	border:0px none;
+	
+}
+#content div.currentContent div.galleryPhotos div input{
+
+	vertical-align: super;
+	margin:0px;
+	padding:0px;
+	margin-left:19px;
+	
+}
+#content div.currentContent div.galleryPhotos div input.mainPhotoInput{
+
+	vertical-align: inherit;	
+    width:15px;	
+    background: none;
+    border:0px none;
+    margin-right:4px;
+	
+}
+
+#content div.currentContent div.files div.galleryPhotos{
+	
+	margin-top:5px;
+	
+}
+
+#content div.currentContent div.files p.links{
+
+	margin-left:0px;
+	
+}
+
+#content div.loginForm{
+	
+	position:relative;
+	width:235px;
+	text-align:left;
+	margin-left:347px;
+	padding-top:60px;
+	padding-bottom:140px;
+	
+}
+#content div.loginForm p.button{
+	
+	text-align:right;
+	
+}
+
+#content div.loginForm INPUT{
+
+	margin-bottom:5px;
+	vertical-align:top;
+	width:157px;
+	background: url("../../Images/Admin/inputBg.jpg");
+	border:1px solid #D7D7D7;
+    padding:5px;
+	
+}
+
+#content div.loginForm label{
+	
+	display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 6px;
+    width:60px;
+	
+}
+
+#content div.loginForm #enter{
+	background:url("/Public/Images/Admin/button_bg.png");
+	width:100px;
+	background-repeat:repeat-x;
+    color:#FFFFFF;
+    cursor:pointer;
+	
+}
+
+#mainLinks li a.new-comment {
+	background: url("/Public/Images/Admin/new.png");
+    color: red;
+    font-size: 12px;
+    height: 38px;
+    left: -19px;
+    padding: 12px 0 0;
+    position: absolute;
+    top: -18px;
+    width: 50px;
+}
+#mainLinks li a.new-comment:hover {
+    color: #ff6000;
+}
+#content div.currentContent .listItem a{
+	position: relative;
+	text-decoration: none;
+}
+#content div.currentContent .listItem img.new-comments{
+	
+    height: 38px;
+    left: -19px;
+    position: absolute;
+    top: -18px;
+}
+#content div.currentContent ul.equipment {
+    margin-bottom: 10px;
+    margin-left: 202px;
+}
+#content div.currentContent ul.equipment li {
+    float: left;
+    width: 230px;
+}
+#content div.currentContent p label, #content div.currentContent ul li label {
+    margin-top: 2px;
+}
+
+#content div.currentContent div.search-file span.refresh-button-ftp-list{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+	background: url("/Public/Images/Admin/refresh-icon.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+	position: relative;
+}
+#content div.currentContent div.search-file span.refresh-button-ftp-list span.refresh-notify{
+	display: none;
+	position: absolute;
+	right: -83px;
+	top: 6px;
+	font-size: 10px;
+}
+
+#content div.currentContent p.main-link span.add-link,
+#content div.currentContent p span.remove-link{
+	background-image:url("/Public/Images/Admin/add.png");
+	background-repeat:no-repeat;
+	background-position:left center;
+	padding:5px 0px 5px 30px;
+	cursor:pointer;
+	color:#0093d7;
+}
+
+#content div.currentContent p span.remove-link{
+	background-image:url("/Public/Images/Admin/remove.png");
+}
+#content div.currentContent .listItem a.link{
+
+	color: #079ad4;
+	text-decoration: underline;
+	
+}
+#content div.currentContent div.order-statistic{
+	float: left;
+}
+#content div.currentContent div.order-statistic h3{
+	color: #2B93C9;
+    font-size: 14px;
+    margin: 0 34px;
+}
+
+#footer{
+	height:50px;
+	border-top:1px solid #FFFFFF;
+	text-align: right;
+	padding-top:5px;
+	position:relative;
+}
+
+
+#footer span{
+	
+	color:#999999;
+	font-size:10px;
+}
+
+#footer a{
+    text-decoration:none;
+	color:#999999;
+}
+
+#footer a:hover{
+    text-decoration:none;
+	color:#25aae2;
+}
+#footer a.tech{
+    background-image: url("/Public/Images/Admin/tech.png");
+    display: block;
+    height: 31px;
+    position: absolute;
+    width: 106px;
+    left:0px;
+    top:4px;
+}
+
+#endFloat{
+
+	clear:left;
+	
+}
+
+.error{
+    
+	color:#CC0000;
+	font-size:13px;
+    text-align:center;
+	padding-top:5px;
+    padding-bottom:5px;
+    background-color:#FFD9D9;
+    border:1px solid #CC0000;
+    margin-left:30px;
+	
+}
+
+.loginError{
+	
+	width:276px;
+    margin-left:-22px;
+	
+}
+
+.message{
+
+	font-size:13px;
+	text-align:center;
+	padding-top:5px;
+    padding-bottom:5px;
+    background-color:#D9FFCC;
+    border:1px solid #00CC33;
+    margin-left:30px;
+    color:#339933;
+	
+}
+
+.sortMessage{
+    
+	display:none;
+	float:left;
+	width:565px;
+}
+
+.messageSmazat{
+
+	position:relative;
+	font-size:14px;
+	width:250px;
+	text-align:center;
+	padding-top:20px;
+    padding-bottom:20px;
+	
+}
+
+p.upload_process{
+
+	z-index:100;
+	position:absolute;
+	visibility:hidden;
+	text-align:center;
+	width:362px;
+	left:0px;
+	margin:0px;
+	padding:0px;
+	background-color:#fff;
+	height:164px;
+	padding-left:50px;
+	left:42px;
+
+}
+p.upload_process span.loading{
+	display:block;
+	left:88px;
+	position:relative;
+	top:11px;
+	margin-top:50px;
+}
+
+
+
+/***************   vyhledavani ***********/
+
+#content div.currentContent div.cus_list {
+	height:109px;
+	left:132px;
+	overflow:auto;
+	position:absolute;
+	top:64px;
+	width:377px;
+	z-index:1000;
+
+}
+
+#content div.currentContent div.searchBox fieldset {
+	border:medium none;
+	float:left;
+	margin:0;
+	padding:0;
+	text-align:left;
+}
+
+#content div.currentContent div.searchBox fieldset input {
+	width:366px;
+	height:17px;
+}
+
+#content div.currentContent div.searchBox label {
+	width:102px;
+	float:left;
+	font-weight: normal;
+	font-size: 14px;
+	padding-top:5px;
+}
+
+#content div.currentContent div.searchBox ul li.noSelected {
+	background-color:#333333;
+	color:#FFFFFF;
+	cursor:pointer;
+	display:none;
+	font-size:13px;
+	font-weight:bold;
+	opacity:0.92;
+	padding-left:7px;
+}
+
+#content div.currentContent div.searchBox ul li.noSelected {
+	background-color:#333333;
+	color:#FFFFFF;
+	cursor:pointer;
+	display:none;
+	font-size:13px;
+	font-weight:bold;
+	opacity:0.92;
+	padding-left:7px;
+}
+#content div.currentContent div.searchBox ul li.noSelected:hover {
+	background-color:#D7D7D7;
+	color:#333333;
+	cursor:pointer;
+	display:none;
+	font-size:13px;
+	font-weight:bold;
+	opacity:0.92;
+	padding-left:7px;
+}
+
+.displayNone{
+
+	display: none;
+
+}
+
+
+img#animation{
+	height:11px;
+	width:218px;
+	display: none;
+}
+
+/*
+*   galerie
+*/
+
+#content div.currentContent div.galleryPhotos div.photo,
+#content div.currentContent div.galleryVideos div.video{
+
+	float:left;
+	text-align:center;
+	border:1px solid silver;
+	margin-right:5px;	
+	margin-bottom:5px;
+	
+}
+#content div.currentContent div.galleryPhotos div.photoTemp,
+#content div.currentContent div.galleryVideos div.videoTemp{
+
+	background-color:#D1EFFF;
+	border:1px solid #2B93C9;
+	
+}
+#content div.currentContent div.galleryVideos div.video div{
+	float: left;	
+}
+#content div.currentContent div.galleryVideos div.video div.video-description{
+
+    width: 540px;
+	
+}
+#content div.currentContent div.galleryVideos div.video div.video-description p{
+
+    margin-top:5px;
+	
+}
+#content div.currentContent div.galleryVideos div.video div.video-description label{
+
+    text-align: left;
+    vertical-align: top;
+    width: 92px;
+	
+}
+#content div.currentContent div.galleryVideos div.video div.video-description input{
+
+    padding: 5px;
+    width: 400px;
+	
+}
+#content div.currentContent div.galleryVideos div.video div.video-description textarea{
+
+    height: 50px;
+    padding: 5px;
+    width: 400px;
+	
+}
+
+#content div.currentContent div.files,
+#content div.currentContent div.video-files,
+#content div.currentContent div.other-files{
+	margin-left:30px;		
+}
+
+#content div.currentContent div.galleryPhotos div a,
+#content div.currentContent div.galleryVideos div a{
+
+	padding:0px;
+	margin:0px;
+	background-color:transparent;	
+	
+}
+#content div.currentContent div.galleryPhotos div p,
+#content div.currentContent div.galleryVideos div p{
+
+	padding:0px;
+	margin:0px;	
+	text-align:center;
+	
+}
+#content div.currentContent div.galleryPhotos div img,
+#content div.currentContent div.galleryVideos div img{
+
+	float:none;
+	margin:0px;
+	padding:0px;
+	border:0px none;
+	
+}
+#content div.currentContent div.galleryPhotos div input,
+#content div.currentContent div.galleryVideos div input{
+
+	vertical-align: super;
+	margin:0px;
+	padding:0px;
+	margin-left:5px;
+	
+}
+
+#content div.currentContent div#fileQueue,
+#content div.currentContent div#video-file-queue,
+#content div.currentContent div#file-fileQueue{
+	clear:left;	
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+#content div.currentContent div.files #photo-uploadifyUploader,
+#content div.currentContent div.video-files #video-uploadifyUploader,
+#content div.currentContent div.other-files #file-uploadifyUploader{
+
+	display:block;
+	clear:left;
+	
+}
+#content div.currentContent div.files div.galleryPhotos,
+#content div.currentContent div.files div.galleryVideos{
+	
+	margin-top:5px;
+	overflow: hidden;
+	
+}
+
+#content div.currentContent div.files p.links,
+#content div.currentContent div.other-files p.file-links,
+#content div.currentContent div.video-files p.video-links{
+
+	margin-left:0px;
+	
+}
+#content div.currentContent p.notice{
+
+	padding-top:20px;
+	padding-bottom:10px;
+	text-align:center;
+	
+}
+
+#content div.currentContent  img.ui-datepicker-trigger{
+	float:none;
+	vertical-align:bottom;
+}
+
+#content div.currentContent div.video-iframe{
+	
+	float:left;
+	width:230px;
+	
+}
+#content div.currentContent div.video-iframe:first-child{
+	
+	margin-left:30px;
+}
+
+/****** denni menu *****/
+
+#content div.currentContent input.small{
+	
+	width:100px;
+	
+}
+
+#content div.currentContent h3{
+	
+	font-size:18px;
+	margin-left:30px;
+	margin-top:30px;
+	
+}
+
+/******* konec denn imenu  ******/
+.panel-heading .text-with-btn{
+	margin-top: 7px;
+}
+.modal-header button.close{
+	color: #000;
+	margin-top: 2px;
+	opacity: .5;
+	outline:none;
+}
+.modal-header button.close:hover{
+	opacity: 1;
+}
+.modal-header button.close .glyphicons-remove{
+	color: inherit !important;
+	font-size: 24px;
+}
+
+div#overlay{
+    height:100%;
+    left:0;
+    position:fixed;
+    top:0;
+    width:100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+    text-align: center;
+}
+
+div#overlayContent{
+    background-color:white;
+    border:1px solid #737373;
+    display:block;
+    left:0;
+    overflow:auto;
+    padding:10px;
+    position:absolute;
+    top:0;
+    width:915px;
+    z-index:1002;
+    overflow: hidden;
+}
+div#overlayContent div.exit{
+    text-align:right;
+    margin-bottom:10px;
+}
+div#overlayContent div.exit p{
+	color:#00AEEF;
+	padding-right:27px;
+	padding-top:2px;
+}
+div#overlayContent div.exit img{
+    cursor:pointer;
+    float:right;
+}
+div#overlayContent img{
+	border:0px none;
+}
+div#overlayContent div#banner{
+	border:1px solid silver;
+	margin-left:9px;
+}
+
+div#overlayContent div.files{
+	text-align:center;
+}
+div#overlayContent h2{
+	border-bottom:1px solid silver;
+	color:#2B93C9;
+	margin-bottom:0;
+	margin-left:0;
+}
+div#overlayContent p{
+	margin-top:5px;
+	font-size:14px;
+}
+
+#content div.currentContent div.search-file{
+	position: relative;
+	margin-left: 31px;
+}
+#content div.currentContent div.search-file div.search-content-list{
+	left: 115px;
+	top: -6px;
+}
+#content div.currentContent div.search-file div.search-content-list ul{
+	width: 499px;
+	left:58px;
+}
+.show-auction img{
+	cursor: pointer;
+}
+#week{
+	width: 230px;
+	margin: auto;
+}
+#week .week-highlight a {
+  	border: 1px solid #acdd4a;
+  	background: #6eac2c url(/Public/Images/Admin/calendar-active-day.png) 50% 50% repeat-x;
+	font-weight: normal;
+	color: #ffffff;
+}
+#menu {
+  	
+}
+#menu div.content{
+  	
+}
+#menu div.loading{
+  	display: none;
+  	margin: auto;
+  	margin-top: 30px;
+}
+.btn{
+	line-height: 1.5 !important;
+}
+.predefined-covers-options .panel-heading .glyphicons-bed-alt{
+	margin-right: 5px;
+}
+.predefined-covers-options .has-panel-error{
+	border-color: #a94442;
+}
+#chooseConcreteCover{
+	
+    z-index: 1053;
+}
+#chooseConcreteCover .modal-body .content{
+	
+}
+#chooseConcreteCover .modal-body .content .item{	
+    background-color: #eee;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+#chooseConcreteCover img.item-img{
+	height: 30px;
+	margin-right: 5px;
+}
+.jqibox{
+	z-index: 1051 !important;
+}
+#addEshopProduct,#editEshopProduct{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.concrete-cover a img{
+	height: 30px;
+	margin-right: 5px;
+}
+/* The max width is dependant on the container (more info below) */
+#addEshopProduct .popover,#editEshopProduct .popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+.eshopProduct img.product-img{
+	height: 30px;
+	text-align: center;
+}
+.eshopProduct div.text-center{
+	font-size: 12px;
+}
+
+#addToHomepageSectionsForm .loading{
+	padding: 120px;
+    text-align: center;
+}
+.socialIcons .social{
+	font-size: 44px;
+	vertical-align: middle;
+}
+.socialIcons .glyphicons-move{
+	vertical-align: middle;
+	margin-right: 20px;
+	cursor: default;
+}
+
+.socialIcons .radio{
+	padding: 0px !important;
+	margin: 0px !important;
+}
+.socialIcons input.text{
+	height: 26px;
+    padding: 3px 6px;
+}
+.clearLeft{
+	clear: left;
+}
+.clear-left{
+	clear: left;
+}
+.clear-right{
+	clear: right;
+}
+.clear-both{
+	clear: both;
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

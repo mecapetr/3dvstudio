@@ -1,0 +1,52 @@
+<h2> Upravit slider </h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+
+	<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+        
+        <p>
+        	<label for="title"><span id="obligatory">*</span>Název: </label> 
+		    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+		    	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+        			<input id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->title[$val->suffix])echo $this->allItems->title[$val->suffix];?>" />
+			    </span>
+		    <?PHP $i++; } ?>
+			<?php echo $this->render("languageMutations.phtml"); ?> 
+        </p>
+        <p>
+			<label for="text"><span id="obligatory">*</span>Text: </label> 
+			
+			<?php echo $this->render("languageMutations.phtml"); ?>
+		    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+		    	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+					<textarea name="text-<?PHP echo $val->suffix ?>">   <?php if($this->allItems->text[$val->suffix])echo   $this->allItems->text[$val->suffix];?> </textarea>
+			    </span>
+		    <?PHP $i++; } ?> 
+		</p>
+	    <p><label for="link"><span id="obligatory"></span>Odkaz: </label> <input id="link" type="text" name="link" value="<?php if($this->allItems->link)echo $this->allItems->link;?>" /></p>
+	    
+	    <!--  pridani fotek -->
+        <p><label>Fotky: </label> <span> (Nově nahrané fotky mají modré orámování a podklad) </span> </p> 
+        <p><label></label><span> (Fotky musí mít rozměr 960x307px jinak nebudou správně zobrazeny) </span> </p> 
+        <script>
+            	var mAction       = '<?php echo $this->action; ?>';
+            	var mFolder       = '<?php echo $this->folder; ?>';
+            	var mTable        = '<?php echo $this->table; ?>';
+            	var mTableID      = '<?php echo $this->tableID; ?>';
+            	var mUi           = '<?php echo $this->adminUserID; ?>';
+            	var mPath         = '<?php echo $this->path; ?>';
+            	var mTableIDvalue = '<?php echo $this->tableIDvalue; ?>';
+            	var sWidth        = 240;
+            	var sHeight       = 76;
+            	var mWidth        = 960;
+            	var mHeight       = 307;
+            	var mResizedByLongerSide = "false";
+        </script>
+	    <?php echo $this->render("photo.phtml"); ?> 
+
+	     <!--  pridani videa -->
+	    <?php //echo $this->render("video.phtml"); ?>
+        <p class="button"><input class="button" type="submit" name="enter" value="Uložit" /></p>
+	
+	</form>

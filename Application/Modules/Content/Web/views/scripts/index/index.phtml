@@ -1,0 +1,472 @@
+<script>
+var flags = new Array();
+</script>
+<div id="section-container">
+	
+	<?php $sec = 0; foreach($this->updateSectionData as $linkSectionID => $data){ ?>		
+		<section id="<?php echo $data["option"]["niceName"][$this->concreteLang->lang]; ?>" class="clearfix <?php if(isset($data["option"]["wide"]) && $data["option"]["wide"] == 1)echo "wide-section"; ?> <?php if(!isset($data["option"]["hasSectionHeader"]))echo "no-header-section"; ?> <?php if(isset($data["option"]["hasHeader"]))echo "header-slider"; ?> <?php if(isset($data["option"]["no-container"]))echo "no-padding"; ?> <?php if(!empty($data["option"]["bgColor"]) ){echo $data["option"]["bgColor"];} ?> ">
+			
+			<?php if(!isset($data["option"]["wide"]) || $data["option"]["wide"] == 0){ ?>
+			<div class="container clearfix">
+			<?php } ?>
+			
+				<?php $isContact = false; foreach($data["elements"] as $priority => $element){ ?>
+					<?php 
+						if(isset($element["formElement"])){
+							$isContact = true;
+						}	
+					?>
+				<?php } ?>
+    				<?php $elmCount = count($data["elements"]); $elmCD = 1; foreach($data["elements"] as $priority => $element){ ?>		
+    					<?php if(isset($element["header"])){ ?>	
+    											
+    						<div id="carousel-example-generic" class="carousel slide carousel-element" data-ride="carousel" data-interval="7000">
+    							<!-- Indicators -->
+    							<ol class="carousel-indicators">
+    								<?php $i = 0; if(count($element["header"]["data"]) > 1)foreach($element["header"]["data"] as $img){ ?>
+    								<li data-target="#carousel-example-generic" data-slide-to="<?php echo $i; ?>" class="<?php if($i==0)echo"active"; ?>"><span></span></li>
+    								<?php $i++; } ?>
+    							</ol>
+    							
+    							<!-- Wrapper for slides -->
+    							<div class="carousel-inner" role="listbox">
+    								<?php $i = 0; foreach($element["header"]["data"] as $img){ ?>
+    									<div class="item <?php if($i==0)echo"active"; ?>">
+    										<div class="slider-content">
+    											<?php if($i == 0){ ?>
+    												<h1><?php echo $img["titleH1"][$this->concreteLang->lang] ?></h1>
+    											<?php }else{ ?>
+    												<p class="main"><?php echo $img["titleH1"][$this->concreteLang->lang] ?></p>
+    											<?php } ?>
+    											<p><?php echo $img["titleH2"][$this->concreteLang->lang] ?></p>
+    										</div>
+    										    										
+    										<div class="overlay"></div>    
+    										<div class="bg-img" style="background-image: url('/Public/Images/Link/Section/Header/mala-<?php echo $img["image"] ?>')"></div>										
+    										
+    									</div>
+    								<?php $i++; } ?>
+    							</div>
+    							
+    						</div>
+    						
+    					<?php } ?>	
+        					<?php if(isset($element["sectionHeader"])){ ?>
+        							<div class="section-header-element col-xs-12 col-sm-<?php echo $element["sectionHeader"]['elementWidth']?> <?php if($elmCount == $elmCD)echo "last-element" ?>">
+                						<?php if(!empty($element["sectionHeader"]["titleH1"][$this->concreteLang->lang])){ ?>
+                							<?php if($element["sectionHeader"]["hType"] == "h1"){ ?>						
+                								<h1 class="text-<?php echo $element["sectionHeader"]["align"]?> <?php if(!empty($element["sectionHeader"]["titleH2"][$this->concreteLang->lang]))echo 'subtitle-margin'?>"><?php echo $element["sectionHeader"]["titleH1"][$this->concreteLang->lang]; ?></h1>
+                							<?php }else{ ?>
+                								<h2 class="text-<?php echo $element["sectionHeader"]["align"]?> <?php if(!empty($element["sectionHeader"]["titleH2"][$this->concreteLang->lang]))echo 'subtitle-margin'?>"><?php echo $element["sectionHeader"]["titleH1"][$this->concreteLang->lang]; ?></h2>
+                							<?php } ?>
+                						<?php } ?>
+                						<?php if(!empty($element["sectionHeader"]["titleH2"][$this->concreteLang->lang])){ ?>
+                							<p class="<?php if(!empty($element["sectionHeader"]["titleH1"][$this->concreteLang->lang]))echo "section-header"; ?> text-<?php echo $element["sectionHeader"]["align"]?>"><?php echo $element["sectionHeader"]["titleH2"][$this->concreteLang->lang]; ?></p>
+                						<?php } ?>
+            						</div>
+        					<?php } ?>
+        
+        					<?php if(isset($element["map"])){ ?>
+        																	
+        						<div class="map-element col-xs-12 col-sm-<?php echo $element["map"]['elementWidth']?> <?php if($elmCount == $elmCD)echo "last-element" ?>" data="l-<?php echo $linkSectionID; ?>">
+        							<script>
+        								
+        								flags["l-<?php echo $linkSectionID; ?>"] = new Array();
+        								<?php foreach($element["map"]["data"] as $slElm){ ?>
+        
+        									flags["l-<?php echo $linkSectionID; ?>"].push(['<?php echo $slElm["lat"]; ?>','<?php echo $slElm["long"]; ?>','<?php echo $slElm["title"][$this->concreteLang->lang]; ?>']);
+        									
+        								<?php } ?>
+        							</script>
+        							<div class="map-content" id="map-l-<?php echo $linkSectionID; ?>"></div>
+        						</div>
+        					<?php } ?>
+        
+        					<?php if(isset($element["linkElement"])){ ?>
+        								
+        						<div class="link-element clearfix col-xs-12 col-sm-<?php echo $element["linkElement"]['elementWidth']?> <?php if($elmCount == $elmCD)echo "last-element" ?>">						
+        							<?php $i = 1; foreach($element["linkElement"]["data"] as $lElm){ ?>
+        							
+        							<?php
+        									$sm = 6;
+        									$xs = 12;
+        									if($element["linkElement"]["colNumber"] == 2){
+        										$sm = 2;
+        										$xs = 4;
+        									}
+        								?>
+        							
+        								<div class="col-xs-<?php echo $xs ?> col-sm-<?php echo $sm ?> col-md-<?php echo $element["linkElement"]["colNumber"] ?>">
+        									<div class="content <?php if(!empty($lElm["text"][$this->concreteLang->lang]) || !empty($lElm["h2"][$this->concreteLang->lang]))echo "fixed-height" ?>">
+        										<div class="text">
+        											<?php 
+        											
+        												$url = $lElm["url"][$this->concreteLang->lang];
+        												if($lElm["isSublink"]){ 
+        													$url = $this->linksUrl."/".$lElm["url"][$this->concreteLang->lang];	
+        												}
+        											?>
+        		
+        											<?php if(!empty($lElm["image"])){ ?>
+        												
+        												<div class="img"><?php if(!empty($url)){ ?><a href="<?php echo $url ?>"><img src="/Public/Images/Link/Section/Link/mala-<?php echo $lElm["image"] ?>" /></a><?php }else{ ?><img src="/Public/Images/Link/Section/Link/mala-<?php echo $lElm["image"] ?>" /><?php } ?></div>
+        											<?php } ?>
+        											<?php if(!empty($lElm["h2"][$this->concreteLang->lang])){ ?>
+        												<h2>
+        													<?php if(!empty($url)){ ?>			
+        														<a href="<?php echo $url ?>"><?php echo str_replace("_","<br />",$lElm["h2"][$this->concreteLang->lang]) ?></a>
+        													<?php }else{ ?>
+        														<?php echo str_replace("_","<br />",$lElm["h2"][$this->concreteLang->lang]) ?>
+        													<?php } ?>
+        												</h2>
+        											<?php } ?>
+        											
+        											<?php if(!empty($lElm["text"][$this->concreteLang->lang])){ ?>
+        												<?php echo $lElm["text"][$this->concreteLang->lang] ?>
+        											<?php } ?>
+        											
+        											<?php if(count($lElm["secNiceName"]) > 0){ ?>
+        												<ul class="sections">
+        												<?php foreach($lElm["secNiceName"] as $secName){ ?>
+        													
+        													<li><a href="<?php echo $url ?><?php echo '#'.$secName[0] ?>"><?php echo $secName[1] ?></a></li>
+        												<?php } ?>
+        												</ul>
+        											<?php } ?>
+        											
+        										</div>
+                            					<?php if(!empty($url)){ ?>
+        										<!--  <p class="more"><a class="btn btn-red" href="<?php echo $url ?>">Chci vědět víc <span class="glyphicons glyphicons-chevron-right"></span></a></p>-->
+        										<?php } ?>
+        									</div>
+        								</div>
+        								
+        								<?php //if($i % $element["linkElement"]["colCount"] == 0)echo '<div class="clearfix"></div>'; ?>		
+        
+        							<?php $i++; } ?>
+        							<?php if($i+1 % $element["linkElement"]["colCount"] != 0)echo '<div class="clearfix"></div>'; ?>
+        						</div>
+        					<?php } ?>
+        					<?php if(isset($element["sublinkElement"])){ ?>
+        												
+        						<div class="sub-link-elements <?php if($elmCount == $elmCD)echo "last-element" ?>">
+        							<?php $i = 1; foreach($element["sublinkElement"]["data"] as $slElm){ ?>
+        								<div class="col-sm-<?php echo $element["sublinkElement"]["colNumber"] ?> col-xs-12">
+        									<?php if(!empty($slElm["h2"][$this->concreteLang->lang])){ ?>
+        										<h2><?php echo $slElm["h2"][$this->concreteLang->lang] ?></h2>
+        									<?php } ?>
+        									<?php echo $slElm["text"][$this->concreteLang->lang] ?>
+        									<p class="more"><a href="<?php echo $this->linksUrl ?>/<?php echo $slElm["url"][$this->concreteLang->lang] ?>">Více informací</a></p>
+        								</div>
+        								<?php if($i % $element["sublinkElement"]["colCount"] == 0)echo '<div class="clearfix"></div>'; ?>
+        							<?php $i++; } ?>
+        							<?php if($i+1 % $element["sublinkElement"]["colCount"] != 0)echo '<div class="clearfix"></div>'; ?>
+        						</div>
+        					<?php } ?>
+        					
+        					
+        					<?php if(isset($element["textElement"])){ ?>																		
+        						<div class="text-element col-xs-12 col-sm-<?php echo $element["textElement"]['elementWidth'] ?> <?php if($elmCount == $elmCD)echo "last-element" ?>" <?php if($element["textElement"]['elementFloat'] != 'left')echo 'style="float:'.$element["textElement"]['elementFloat'].'"'; ?> >
+        							<?php echo $element["textElement"]["text"][$this->concreteLang->lang]; ?>
+        						</div>
+        					<?php } ?>
+        					
+        					<?php if(isset($element["photoFile"])){ ?>
+        																													
+        						<div class="photo-file-element clearfix col-xs-12 col-sm-<?php echo $element["photoFile"]['elementWidth'] ?> <?php if($elmCount == $elmCD)echo "last-element" ?>">
+        							
+        							<?php if($element["photoFile"]['isSlider'] == 1){ ?>
+        							
+	        							<div class="img-slider">
+	        								<div class="image-slider-<?php echo $linkSectionID."-".$priority; ?>">
+	        									<?php $i=0; foreach($element["photoFile"]["data"] as $row){ ?>
+	        										<div class="file <?php if($i == 0)echo "first" ?>">
+	        											<?php if(!empty($row["photoID"])){ ?>
+			        										<?php if($element["photoFile"]['showDetail']){ ?>
+			        											<a class="fancy-gallery" rel="g-<?php echo $priority ?>" href="/Public/Images/Link/Section/File/stredni-<?php echo $row["photoFileTitle"]; ?>"><img src="/Public/Images/Link/Section/File/mala-<?php echo $row["photoFileTitle"]; ?>" /></a>
+			        										<?php }else{ ?>
+			        											<img src="/Public/Images/Link/Section/File/mala-<?php echo $row["photoFileTitle"]; ?>" />
+			        										<?php } ?>
+			        									<?php }else{ ?>
+			        									<a class="link no-image" href="/Public/Files/Link/Section/File/<?php echo $row["photoFileTitle"]; ?>"><span>
+			        										<span class="filetypes filetypes-<?php echo $row["ico"] ?>"></span>
+			        										<br /><?php echo $row["photoFileTitle"]; ?></span></a>
+			        									<?php } ?>
+	        										</div>
+	        									<?php $i++; } ?>
+	        								</div>
+	        							</div>
+	        								        							
+	        							<script>
+        									$('.image-slider-<?php echo $linkSectionID."-".$priority; ?>').slick({				
+        								    	autoplay: true,
+        								        autoplaySpeed: 2000,
+        								        dots: true,
+        								        infinite: true,
+        								        speed: 300,
+        								        slidesToShow: 3,
+        								        slidesToScroll: 1,
+        								        centerMode: true,
+        								        variableWidth: true
+        								    }); 
+	        							</script>
+        							
+        						    <?php }else{ ?>
+        						
+	        							<?php $i=0; foreach($element["photoFile"]["data"] as $row){ ?>
+	        								<div class="file <?php if($i == 0)echo "first" ?>">
+	        									<?php if(!empty($row["photoID"])){ ?>
+	        										<?php if($element["photoFile"]['showDetail']){ ?>
+	        											<a class="fancy-gallery" rel="g-<?php echo $priority ?>" href="/Public/Images/Link/Section/File/stredni-<?php echo $row["photoFileTitle"]; ?>"><img src="/Public/Images/Link/Section/File/mala-<?php echo $row["photoFileTitle"]; ?>" /></a>
+	        										<?php }else{ ?>	
+	        											<img src="/Public/Images/Link/Section/File/mala-<?php echo $row["photoFileTitle"]; ?>" />
+	        										<?php } ?>
+	        									<?php }else{ ?>
+	        									<a class="link" href="/Public/Files/Link/Section/File/<?php echo $row["photoFileTitle"]; ?>"><span>
+	        										<span class="filetypes filetypes-<?php echo $row["ico"] ?>"></span>
+	        										<br /><?php echo $row["photoFileTitle"]; ?></span></a>
+	        									<?php } ?>
+	        								</div>
+	        							<?php $i++; } ?>
+        							
+        							<?php } ?>
+        							
+        						</div>
+        					<?php } ?>
+        					
+        					<?php if(isset($element["article"])){ ?>
+        																													
+        						<div class="article-element col-xs-12 <?php if($elmCount == $elmCD)echo "last-element" ?>">
+        							<?php //if($element["article"]["type"] == 1) ?>
+        							
+        															
+        									
+        								<?php if($element["article"]["type"] == 1){ ?>
+        									
+        									<?php if(count($this->allArticles)){ ?>
+        										<?php $i = 1; foreach($this->allArticles as $article){ ?>
+        										
+        										<?php 
+        											$link = $article->link; 
+        											$sm = 4;
+        											$articleClass = "";
+        											if($element["article"]["colNumber"] == 3){
+        												$sm = 6;
+        												$articleClass = "col-2";
+        											}
+        										?>
+        									
+        										<div class="col-xs-12 col-sm-<?php echo $sm ?> col-md-<?php echo $element["article"]["colNumber"] ?>  whole-list-item">
+        											<article class="list <?php echo $articleClass ?>">
+        												<div class="content">
+        													<?php if(!empty($article->file)){ ?>
+        														<div class="img"><a class="img" href="<?php echo "/".$this->wholeLangData->suffix.$link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><img src="/Public/Images/Article/mala-<?php echo $article->file ?>" /></a></div>
+        													<?php } ?>
+        												
+        													<h2><a href="<?php echo "/".$this->wholeLangData->suffix.$link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><?php echo $article->title ?></a></h2>
+        													<?php echo $article->anotation ?>
+        												</div>
+        											</article>
+        										</div>
+        										
+        										<?php if($i % $element["article"]["colCount"] == 0)echo '<div class="clearfix"></div>'; ?>
+        																		
+        										<?php $i++; } ?>
+        										
+        										<?php if($i+1 % $element["article"]["colCount"] != 0)echo '<div class="clearfix"></div>'; ?>										
+        		
+        										<div class="text-center"><?php echo $this->paging; ?></div>
+        										
+        									<?php } ?>
+        									
+        								<?php }else{ ?>
+        								
+        																	
+        										<?php if(isset($this->allDifferentArticles[$element["article"]["linkID"]]) && count($this->allDifferentArticles[$element["article"]["linkID"]])){ ?>
+        											<?php $i = 1; foreach($this->allDifferentArticles[$element["article"]["linkID"]] as $article){ ?>
+        											
+        												<?php if($i > $element["article"]["newCount"])break; ?>	
+        												
+        												<?php 
+        													$link = $element["article"]["url"][$this->concreteLang->lang]; 
+        													$sm = 4;
+        													if($element["article"]["colNumber"] == 3){
+        														$sm = 6;
+        														$articleClass = "col-2";
+        													}
+        												?>
+        									
+        									
+        												<div class="col-xs-12 col-sm-<?php echo $sm ?> col-md-<?php echo $element["article"]["colNumber"] ?>">
+        													<article class = "<?php echo $articleClass ?>">
+        														<div class="content">
+        															<?php if(!empty($article->file)){ ?>
+        																<div class="img"><a class="img" href="<?php echo $link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><img src="/Public/Images/Article/mala-<?php echo $article->file ?>" /></a></div>
+        															<?php } ?>
+        															<h2><a href="<?php echo $link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><?php echo $article->title ?></a></h2>
+        															<?php echo $article->anotation ?>
+        														</div>
+        													</article>
+        												</div>
+        											
+        											
+        												<?php if($i % $element["article"]["colCount"] == 0)echo '<div class="clearfix"></div>'; ?>
+        																												
+        											<?php $i++; } ?>
+        										
+        										<?php if($i+1 % $element["article"]["colCount"] != 0)echo '<div class="clearfix"></div>'; ?>
+        																		
+        																		
+        										<?php if(!empty($element["article"]["url"][$this->concreteLang->lang])){ ?>
+        											<div class="col-xs-12 col-sm-4 col-sm-offset-4 more-articles">
+        												<a href="<?php echo $element["article"]["url"][$this->concreteLang->lang] ?>"><?php echo $this->translate("Veškeré články") ?></a>
+        											</div>
+        										<?php } ?>
+        	
+        									<?php } ?>
+        									
+        								<?php } ?>
+        								
+        	
+        							<div class="clearfix"></div>
+        						</div>
+        					<?php } ?>
+        					
+        					<?php if(isset($element["ytvElement"])){ ?>
+        																													
+        						<div class="ytv-element col-xs-12 col-sm-<?php echo $element["ytvElement"]['elementWidth']?> <?php if($elmCount == $elmCD)echo "last-element" ?>">
+        							<?php $countYvt = count($element["ytvElement"]["data"]); ?>
+        							<div class="category <?php if(count($element["ytvElement"]["categories"] == 0))echo "hidden"; ?>">
+        								<div class="btn-group">
+        								  <button type="button" class="btn btn-black dropdown-info">Kategorie: <span data="0~<?php echo $linkSectionID; ?>~<?php echo $priority; ?>~<?php if($countYvt >= 6)echo "6";else echo $countYvt; ?>">vše</span></button>
+        								  <button type="button" class="btn btn-black dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        								    <span class="caret"></span>
+        								    <span class="sr-only">Toggle Dropdown</span>
+        								  </button>
+        								  <ul class="dropdown-menu">
+        								  	<li><a data="0" href="#">vše</a></li>
+        								  	<?php foreach($element["ytvElement"]["categories"] as $categories){ ?>
+        								    	<li><a data="<?php echo $categories->categoryID ?>" href="#"><?php echo $categories->title ?></a></li>
+        								    <?php } ?>
+        								  </ul>
+        								</div>
+        							</div>
+        							<div class="videos row">
+        							
+        								<?php $i=1; foreach($element["ytvElement"]["data"] as $videos){ if($i > 6){continue;} ?>
+        									<div class="col-sm-4 col-xs-12 margin-bottom-30">
+        										<?php if($videos["type"] == "youtube"){ ?>
+        											<iframe width="100%" height="auto" src="http://www.youtube.com/embed/<?php echo $videos["code"] ?>" frameborder="0" allowfullscreen></iframe>
+        										<?php }else{ ?>
+        											<iframe src="http://player.vimeo.com/video/<?php echo $videos["code"] ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" height="auto" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        										<?php } ?>
+        									</div>
+        								<?php $i++; } ?>
+        								<div class="clearfix"></div>
+        								<div class="next-videos"></div>
+        								<div class="clearfix"></div>
+        								
+        							</div>
+        							<div class="navigation clearfix">
+        								<button class="btn btn-red col-md-offset-3 col-md-6 col-xs-offset-0 col-xs-12 next-videos <?php if($countYvt < 6)echo "hidden"; ?>">Zobrazit další</button>
+        							</div>
+        						</div>
+        					<?php } ?>
+        					
+        					<?php if(isset($element["formElement"])){ ?>
+        						<div class="form-elements col-xs-12 col-sm-<?php echo $element["formElement"]['elementWidth']?> <?php if($elmCount == $elmCD)echo "last-element" ?>" id="form-<?php echo $linkSectionID; ?>">
+        						
+        							<?php if(!empty($this->successFormMessage))echo '<div class="alert alert-success" role="alert">'.$this->translate($this->successFormMessage).'</div>'; ?>
+        							<?php if(!empty($this->errorFormMessage))echo '<div class="alert alert-danger" role="alert">'.$this->translate($this->errorFormMessage).'</div>'; ?>
+        				
+        							<form action="<?php echo "#form-".$linkSectionID; ?>" method="post" class="">
+        								
+        								<?php $count = count($element["formElement"]["data"]); ?>
+        								
+        								<?php $j = $i = 0; foreach($element["formElement"]["data"] as $key => $data){ ?>	
+        									<?php if($data["type"] == "text"){ ?>
+        										<?php if($j%2 == 0) echo '<div class="row">'; ?>										
+        											<?php foreach($data["values"] as $val){ ?>	
+        												<div class="col-md-6 col-sm-6 col-xs-12">
+        													<div class="form-group">									    
+        											    	<input type="text" class="form-control" name="<?php echo $data["niceTitle"]."_".$key ?>" placeholder="<?php echo $data["title"][$this->concreteLang->lang] ?>" value="<?php echo $val["value"][$this->concreteLang->lang] ?>">				    	
+        											    	</div>
+        											    </div>	
+        											<?php }?>
+        								    	<?php if(($j+1)%2 == 0) echo '</div>'; ?>
+        								    <?php } ?>
+        	
+        	    							<?php if($data["type"] == "dropdown"){ ?>
+        	    								<?php if($j%2 == 0) echo '<div class="row">'; ?>
+        	    									<div class="col-md-6 col-sm-6 col-xs-12">
+        	    										<div class="form-group">									    
+        	    										<select class="form-control" name="<?php echo $data["niceTitle"]."_".$key ?>">
+        	    											<?php foreach($data["values"] as $val){ ?>		    
+        														  <option value="<?php echo $val["value"][$this->concreteLang->lang] ?>"> <?php echo $val["valueName"][$this->concreteLang->lang] ?> </option>
+        													<?php } ?>
+        	    										</select>	
+        	    										</div>			    	
+        	    									</div>	
+        	    							    	<?php if(($j+1)%2 == 0) echo '</div>'; ?>
+        	    							<?php } ?>
+        		
+        									<?php if($data["type"] == "checkbox" || $data["type"] == "radio"){ ?>
+        										<?php if($j%2 == 0) echo '<div class="row">'; ?>
+        											<div class="col-md-6 col-sm-6 col-xs-12">	
+        												<div class="checkbox">
+                                  							<label class="no-padding"><?php echo $data["title"][$this->concreteLang->lang] ?>: </label>	
+        													<?php foreach($data["values"] as $val){ ?>		    
+        											    		<label>
+        											    		  <?php $bracket = ""; if($data["type"] == "checkbox")$bracket = "[]";?>
+        														  <input name="<?php echo $data["niceTitle"]."_".$key.$bracket ?>" type="<?php echo $data["type"]; ?>" value="<?php echo $val["value"][$this->concreteLang->lang] ?>"> <?php echo $val["valueName"][$this->concreteLang->lang] ?>
+        														</label>
+        													<?php } ?>
+        										    	</div>
+        										    </div>
+        	
+        								    	<?php if(($j+1)%2 == 0) echo '</div>'; ?>
+        								    <?php } ?>
+        								    	
+        									<?php if($data["type"] == "textarea"){ ?>
+        										<?php if($j%2 == 0) echo '<div class="row">'; ?>
+        											<?php foreach($data["values"] as $val){ ?>	
+        												<div class="col-md-12">		
+        													<div class="form-group">		    
+        											    	<textarea name="<?php echo $data["niceTitle"]."_".$key ?>" class="form-control" rows="4" placeholder="<?php echo $data["title"][$this->concreteLang->lang] ?>"><?php echo $val["value"][$this->concreteLang->lang] ?></textarea>
+        											    	</div>
+        											    </div>
+        											<?php }?>
+        										  <?php if(($j+1)%2 == 0) echo '</div>'; ?>  
+        								    <?php } ?>
+        
+        							    <?php $j++;} if($j%2 == 1) echo '</div>'; ?>
+        								
+        
+        								<div class="row">
+        									<div class="col-xs-12">	
+        										<div class="form-group">			    
+        								    	<button type="submit" class="btn btn-blue btn-block">Odeslat</button>
+        								    	<input type="hidden" name="sec" value="<?php echo $linkSectionID; ?>"  />
+        								    	</div>
+        								    </div>
+        								</div>
+        								
+        								
+        							</form>        						
+        						</div>
+        					<?php } ?> 
+    				<?php $elmCD++; } ?>
+		    <?php if(!isset($data["option"]["wide"]) || $data["option"]["wide"] == 0){ ?>
+				</div>
+			<?php } ?>
+		</section>
+	
+	<?php $sec++; } ?>
+	
+	<?PHP if($this->linkContent->showFacebook){ ?>
+		<div class="container">
+			<div class="fb-like" data-href="<?PHP echo $this->actualUrl ?>"  data-width="100%" data-height="30" data-show-faces="false" data-share="true"></div>
+		</div>
+	<?PHP } ?>
+</div>
+

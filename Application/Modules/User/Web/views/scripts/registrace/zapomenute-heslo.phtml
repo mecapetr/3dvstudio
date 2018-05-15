@@ -1,0 +1,18 @@
+<div class="title">
+    <h1>Zapomenuté heslo</h1>
+</div>
+<div id="sub-content">
+	
+	<?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+				
+	<div class="lost-pwd">	
+		<form action="" method="post">
+			<p>Zadejte Váš registrační e-mail, na který Vám vygenerujeme nové heslo pro přihlášení.</p>
+			<p><label>E-mail:</label><input type="text" name="email" value=""></p>			
+			<p class="button"><input type="submit" name="send" value="Odeslat" /></p>
+		</form>
+	</div>
+	
+</div>
+	

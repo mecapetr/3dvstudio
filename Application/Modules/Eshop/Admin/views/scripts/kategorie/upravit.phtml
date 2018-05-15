@@ -1,0 +1,227 @@
+<h1> Upravit kategorii </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="active">Upravit kategorii</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form id="send-category-data" action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+     
+     <div class="row">	
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-show-thumbnails-with-lines"></span> Obecný formulář</div>
+				<div class="panel-body">   
+  		 
+			        <div class="form-group has-feedback">
+					    
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    		<input placeholder="Název odkazu" class="form-control" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->title[$val->suffix]; ?>" />
+						    	<span class="requiere">*</span>
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+					</div>
+					<div class="form-group has-feedback">
+					    <label for="">Zkratka kategorie</label> 
+					    <input class="form-control" id="shortcut" type="text" name="shortcut" value="<?php echo $this->allItems->shortcut; ?>" />
+					</div>
+					<div class="form-group">
+					    <label for="">Typ kategorie</label>
+					    <select name="link-type" class="form-control">
+					    	<option <?php if($this->allItems->parentID == 0)echo"selected"; ?> value="0"> Hlavní </option>
+					    	<option <?php if($this->allItems->parentID != 0)echo"selected"; ?> value="1"> Podkategorie </option>
+					    </select>
+					</div>
+				    
+					<div class="sub-links" <?php if($this->allItems->parentID)echo'style="display:block"'; ?> >
+						<div class="form-group"> 
+							<label for="parent">Nadřazená kategorie</label>
+						    <span id="selected-parent-link" class="selected-link" rel="0">
+						    	<span class="value form-control v-0"><?PHP if($this->parentTitle)echo $this->parentTitle; else echo "&nbsp;"; ?></span>
+							    <span class="parrent-links">
+									<?PHP  echo $this->linksOutput ; ?>
+							    </span>
+						    	<input type="hidden" name="parent" value="<?PHP if($this->allItems->parentID)echo $this->allItems->parentID; else echo 0; ?>" id="selected-parent-input-0" />
+						    </span>
+						</div>
+					</div>
+					
+					<div class="radio row"> 		
+						<div class="col-sm-8"><strong>Aktivní:</strong></div>
+						<label class="radio-inline">
+							<input class="checkbox" type="radio" name="active" id="active" value="1" <?PHP if($this->allItems->active == 1)echo "checked='checked'" ?>  />
+							Ano
+						</label>
+						<label class="radio-inline">
+							<input class="checkbox" type="radio" name="active" id="active" value="0" <?PHP if($this->allItems->active == 0)echo "checked='checked'" ?> />
+							Ne
+				    	</label>
+				    </div>
+					
+					<div class="radio row"> 			
+						<div class="col-sm-8"><strong>Zobrazit v hlavičce:</strong></div>
+						<label class="radio-inline">
+							<input class="checkbox" type="radio" name="inMenu" id="inMenu" value="1" <?PHP if($this->allItems->inMenu == 1)echo "checked='checked'" ?>  />
+							Ano
+						</label>
+				    	<label class="radio-inline"> 
+							<input class="checkbox" type="radio" name="inMenu" id="inMenu" value="0" <?PHP if($this->allItems->inMenu == 0)echo "checked='checked'" ?> />
+							Ne
+				    	</label>
+				    </div>				    
+				    <div class="radio row"> 			
+						<div class="col-sm-8"><strong>Zobrazit u bannerů:</strong></div>
+						<label class="radio-inline"> 
+							<input class="checkbox" type="radio" name="inBannerPlace" id="inBannerPlace" value="1" <?PHP if($this->allItems->inBannerPlace == 1)echo "checked='checked'" ?>  />
+							Ano
+						</label>
+				    	<label class="radio-inline"> 
+							<input class="checkbox" type="radio" name="inBannerPlace" id="inBannerPlace" value="0" <?PHP if($this->allItems->inBannerPlace == 0)echo "checked='checked'" ?> />
+							Ne
+				    	</label>
+				    </div>
+				    <div class="radio row"> 			
+						<div class="col-sm-8"><strong>Zobrazit v levém sloupci:</strong></div>
+						<label class="radio-inline"> 
+							<input class="checkbox" type="radio" name="inLeftColumn" id="inLeftColumn" value="1" <?PHP if($this->allItems->inLeftColumn == 1)echo "checked='checked'" ?>  />
+							Ano
+						</label>
+				    	<label class="radio-inline"> 
+							<input class="checkbox" type="radio" name="inLeftColumn" id="inLeftColumn" value="0" <?PHP if($this->allItems->inLeftColumn == 0)echo "checked='checked'" ?> />
+							Ne
+				    	</label>
+				    </div>
+					<div class="form-group">
+					 	<label>Odkaz na produkt v předchozí verzi eshopu:</label>	    
+						<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    <span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    			<input class="form-control" id="oldUrl" type="text" name="oldUrl-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->oldUrl[$val->suffix])echo $this->allItems->oldUrl[$val->suffix];?>" />
+							</span>
+						<?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+				    </div>
+					<div class="form-group">
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+								<input placeholder="Meta nadpis" class="form-control" id="metaTitle" type="text" name="metaTitle-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->metaTitle[$val->suffix];?>" />
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+					</div>
+					<div class="form-group">
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+								<input placeholder="Meta klíčová slova" class="form-control" id="keywords" type="text" name="keywords-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->keywords[$val->suffix];?>" />
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+					</div>
+					<div class="form-group">	    	
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    			<input placeholder="Meta popis" class="form-control" id="description" type="text" name="description-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->description[$val->suffix];?>" />
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+				    </div>
+		
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="col-md-8">	
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-paragraph"></span> Text kategorie</div>
+				<div class="panel-body">			    
+		    		<div>
+		    			<?php echo $this->render("languageMutations.phtml"); ?>
+		    			<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+							<?php $rand = rand(0,100); ?>
+			    			<textarea id="text-<?PHP echo $val->suffix ?>" name="text-<?PHP echo $val->suffix ?>" class="form-control basic" placeholder="text" ><?php echo $this->allItems->text[$val->suffix] ?></textarea>
+			    			<script>execTinyMCE(0,'text-<?PHP echo $val->suffix ?>');</script>
+			    		</span>
+					<?PHP $i++; } ?>
+		    		</div>
+		
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">	
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-picture"></span> Fotka kategorie</div>
+				<div class="panel-body">
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+						<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;">
+							<?php if(!empty($this->allItems->categoryPhoto)){ ?>
+				    			<img src="/Public/Images/EshopCategory/mala-<?php echo $this->allItems->categoryPhoto ?>" />
+			    			<?php } ?>
+						</div>
+						<div style="float:left;vertical-align:middle;">
+							<?php if(!empty($this->allItems->categoryPhoto)){ ?>
+			    				<label>
+			    					<input type="checkbox" name="deletePhoto[]" value="<?php echo $this->allItems->categoryPhoto; ?>" /> Smazat 
+			    					<input type="hidden" value="<?php echo $this->allItems->categoryPhoto; ?>" name="hiddenPhoto[]" />
+			    				</label>
+			    			<?php }else{ ?>
+		    					<input type="hidden" value="" name="photo[]" />
+		    				<?php } ?>
+							<div style="margin-bottom:5px;"><span class="btn btn-default btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="photo[]"></span></div>
+							<div><a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-filter"></span> Zobrazení filtrů</div>
+				<div class="panel-body">
+					<div>Vyberte filtry, které chcete v kategorii zobrazovat.</div>
+					<div class="form-group clearfix">
+					    <div class="clearfix"><label class=""><strong>Filtry:</strong></label>	</div>
+					    <?php foreach ($this->allF as $val){?>
+					    	<div class="col-sm-4">
+					    		<div class="checkbox">
+				       				<label> <input type="checkbox" value="<?php echo $val->filterID?>" name="filterID[]" class="checkbox" <?PHP if(!empty($this->allFiltersArr[$val->filterID]))echo "checked='checked'"; ?>><?php echo $val->title?> </label>
+				       			</div>
+			       			</div>
+			       		<?php }?>
+			       	</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-filter"></span> Produkty dle statusů</div>
+				<div class="panel-body">
+					<div>Vyberte statusy, dle kterých se budou zobrazovat v dané kategorii jen ty produkty, které spadají do zaškrtnutých statusů. Produkty ani nemusejí být zařazeny do této kategorie. Stačí jen, aby měl zadaný tento status.</div>
+					<div class="form-group clearfix">
+					    <div class="clearfix"><label class=""><strong>Statusy:</strong></label>	</div>
+					    <?php foreach ($this->allStatuses as $val){?>
+					    	<div class="col-sm-4">
+					    		<div class="checkbox">
+				       				<label> <input type="checkbox" value="<?php echo $val->productStatusID ?>" name="statusesID[]" class="checkbox" <?PHP if(!empty($this->allStatusArr[$val->productStatusID]))echo "checked='checked'"; ?>><?php echo $val->title?> </label>
+				       			</div>
+			       			</div>
+			       		<?php }?>
+			       	</div>
+				</div>
+			</div>
+		</div>
+		
+		
+    </div>  
+    <div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input type="hidden" name="enter" value="0" />
+				<input type="hidden" name="c" value="<?php echo $this->allItems->linkID; ?>" />
+				<input class="btn btn-primary btn-block check-category-required-fields" type="submit" name="enter2" value="Upravit" />
+			</div>
+		</div>
+	</div>
+	
+</form>

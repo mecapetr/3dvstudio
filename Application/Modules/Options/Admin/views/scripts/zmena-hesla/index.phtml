@@ -1,0 +1,17 @@
+<h2>Změna hesla</h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+
+	
+	
+	    <form action="<?php echo $this->baseUrl;echo $this->action; ?>" method="post">
+	
+	        <p><label for="oldPassword">Staré heslo: </label> <input type="password" name="oldPassword" id="oldPassword"/></p>
+	        <p><label for="newPassword">Nové heslo: </label> <input type="password" name="newPassword" id="newPassword"/></p>
+	        <p><label for="checkPassword">Potvrzení heslo: </label> <input type="password" name="checkPassword" id="checkPassword" /></p>
+	        <p class="button"><input class="button" type="submit" name="enter" value="Změnit" /></p>
+	    
+		</form>
+
+

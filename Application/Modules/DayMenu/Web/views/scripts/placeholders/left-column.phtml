@@ -1,0 +1,35 @@
+					<div class="left-column">
+        				
+        				<div class="menu-today">
+        					<p class="menu">Dnešní menu</p>
+        					<?php if(count($this->todayMenu) > 0){ ?>
+	        					<?php if(!empty($this->todayMenu[0]->supe)){ ?><p><strong>Polévka:</strong> <?php echo $this->todayMenu[0]->supe ?></p><?php } ?>
+	        					<ol>
+	        						<?php foreach($this->todayMenu as $menu){ ?>
+	        						<li <?PHP if(empty($menu->weight) && empty($menu->price))echo "class='list-type-none'"; ?> ><span><?php echo $menu->food; ?></span></li>
+	        						<?php } ?>
+	        					</ol>
+        					<?php }else{ ?>
+        						<p>Omlouváme se, ale na dnešní den není připraveno žádné meny.</p>
+        					<?php } ?>
+        					<div class="palm"></div>
+        					<div class="shadow"></div>
+        				</div>
+        				
+        				<div class="info tel">
+        					<p>Objednávky na tel. čísle <br/> <span>+420 733 437 204</span></p>
+        				</div>
+        				<div class="info kitchen">
+        					<table>
+        						<thead>
+        							<tr><th colspan="2">Kuchyně je v provozu</th></tr>
+        						</thead>
+        						<tbody>
+        							<tr><td>Po - Čt</td><td>11:00 - 22:00</td></tr>
+        							<tr><td>Pá - So</td><td>11:00 - 23:00</td></tr>
+        							<tr><td>Ne     </td><td>11:00 - 22:00</td></tr>
+        						</tbody>
+        					</table>
+        				</div>
+        				
+        			</div>

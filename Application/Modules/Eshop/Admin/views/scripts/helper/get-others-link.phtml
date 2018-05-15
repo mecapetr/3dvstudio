@@ -1,0 +1,8 @@
+<?php if(count($this->links) > 0){ ?>
+	<select class="form-control" name="subLinkID-1">	
+		<option value="0">--- všechny podkategorie ---</option>		
+		<?php foreach($this->links as $sublink){ ?>
+	    	<option <?php if($sublink->linkID == $this->linkID1) echo "selected"; ?> value="<?PHP echo $sublink->linkID; ?>"><?PHP echo $sublink->title; ?></option>
+		<?php } ?>
+	</select>
+<?php } ?>

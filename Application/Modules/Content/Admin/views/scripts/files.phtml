@@ -1,0 +1,89 @@
+            <script>
+            	var fAction       = '<?php echo $this->fAction; ?>';
+            	var fFolder       = '<?php echo $this->fFolder; ?>';
+            	var fTable        = '<?php echo $this->fTable; ?>';
+            	var fTableID      = '<?php echo $this->fTableID; ?>';
+            	var fUi           = '<?php echo $this->adminUserID; ?>';
+            	var fPath         = '<?php echo $this->fPath; ?>';
+            	var fTableIDvalue = '<?php echo $this->fTableIDvalue; ?>';
+            	var FTPfolder 	  = '<?php echo $this->FTPfolder; ?>';
+            </script>
+                      
+            <script type="text/javascript" src="/Public/Jscripts/AdminBase/addFile.js?2"></script>
+			<script type="text/javascript" src="/Public/Jscripts/Upload/addFileDispatch.js"></script>
+
+		    <div class="other-files">
+		        	<div class="galleryPhotos">
+		        		<div class="uploaded-files">
+							<?php if($this->allFiles)foreach($this->allFiles as $item){ ?>
+								
+								<div class="photo col-xs-12 <?php if($this->articleSection)echo 'col-sm-4';else echo 'col-sm-6';  ?>" id="<?PHP echo $item->fileID ?>">
+									<span class="filetypes filetypes-<?php echo $item->ico; ?>"></span>
+                  <p class="file-title text-overflow"><?php echo $item->title ?></p>
+									
+									<p>
+										<input id="del<?php echo $item->fileID."-e";?>" value="<?php echo $item->fileID."-e";?>" type="checkbox" name="delete" />							
+							    		<a title="Smaž" onclick="checkCheckbox(this);return false;" href="<?php echo $item->fileID."-e";?>"><span class="glyphicons glyphicons-remove"></span></a>
+									</p>
+									<p>										
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+										   	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+												<input placeholder="popis" class="form-control input-sm" type="text" name="<?php echo $item->fileID."-e";?>-fileDesc-<?PHP echo $val->suffix ?>" value="<?PHP echo $item->description[$val->suffix] ?>" />
+											</span>
+										<?PHP $i++; } ?>
+										<?php echo $this->render("photoLanguageMutations.phtml"); ?>  
+									</p>
+								</div>
+								
+							<?php } ?>
+						</div>
+						<?php if($this->allTempFiles)foreach($this->allTempFiles as $item){ ?>
+							
+							<div class="photo photoTemp col-xs-12 <?php if($this->articleSection)echo 'col-sm-4';else echo 'col-sm-6';  ?>">
+								<span class="filetypes filetypes-<?php echo $item->ico; ?>"></span>
+                <input type="hidden" name="files[]" value="<?php echo $item->title; ?>~<?php echo $item->fileTempID."-t"; ?>~<?php echo $item->ico; ?>~<?php echo $item->isFromSource; ?>" />
+								<p class="file-title text-overflow"><?php echo $item->title ?></p>
+								
+								<p>
+									<input id="del<?php echo $item->fileTempID."-t";?>" value="<?php echo $item->fileTempID."-t";?>" type="checkbox" name="delete" />							
+						    		<a title="Smaž" onclick="checkCheckbox(this);return false;" href="<?php echo $item->fileTempID."-t";?>"><span class="glyphicons glyphicons-remove"></span></a>
+								</p>
+								<p>										
+									<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+									   	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+											<input placeholder="popis" class="form-control input-sm" type="text" name="<?php echo $item->fileTempID."-t";?>-fileDesc-<?PHP echo $val->suffix ?>" value="" />
+										</span>
+									<?PHP $i++; } ?>
+									<?php echo $this->render("photoLanguageMutations.phtml"); ?>  
+								</p>
+							</div>
+							
+						<?php } ?>
+						<div id="endFloat"></div>
+					</div>
+					
+					<div id="file-fileQueue"></div>
+					<input type="file" name="file-uploadify" id="file-uploadify" />
+					
+					<p class="file-links">
+						<?php if(count($this->allFiles) > 0 || count($this->allTempFiles) > 0){ ?>
+							  <a class="btn btn-danger btn-xs" href="#" onclick="deleteFiles();return false;"> Smazat označené</a>
+						<?php } ?>	
+					</p> 
+				
+		     </div>
+		     <div class="search-file">
+				<label>Soubory k připojení</label>
+				<input type="text" name="input-text" id="search-input-ftp" class="search-align form-control" />
+				<span class="refresh-button-ftp-list" title="aktualizovat seznam">
+					<span class="refresh-notify" style="display: none;">aktualizováno</span>
+				</span>
+			    <div class="search-content-list">                   
+	                <ul class="search-content-ftp ftp-list">
+	                    <?PHP foreach ($this->allFTPFiles as $value){ ?>
+	                        <li onclick="setFTPFileSelect(this);" ><?PHP echo $value ?></li>                        
+	                    <?PHP }?>
+	                </ul>
+	                <input type="hidden" name="user" />		             
+	            </div>
+			 </div>

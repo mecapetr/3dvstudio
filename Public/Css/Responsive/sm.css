@@ -1,0 +1,87 @@
+@media (max-width: 991px) {
+	
+	section:not(.wide-section) {
+	    padding-top: 80px;
+	    padding-bottom: 30px;
+	}
+	
+	section h1, section h2, section h3, section h4, section h5, section h6 {
+	    margin-bottom: 30px;
+	}
+
+	section h1, section h2 {
+	    font-size: 35px;
+	}
+	section p.section-header {
+	    font-size: 18px;
+	}
+	
+	.text-element h2{
+		font-size:30px;
+	}
+	.text-element h3{
+		font-size:25px;
+	}
+	.text-element h4,
+	.text-element h5,
+	.text-element h6
+	{
+		font-size:20px;
+	}
+	
+	.grey .article-element article {
+	    padding: 10px;
+	}
+	.article-element article h2 {
+	    font-size: 18px;
+	    margin-bottom: 8px;
+    	padding-top: 10px;
+	}
+	.article-element article .content p {
+	    font-size: 12px;
+	}
+	.article-element article div.content {
+	    height: 230px;
+	}
+	.article-element article {
+	    height: 318px;
+	    margin-bottom:20px;
+	}
+	.article-element .whole-list-item article {
+	    padding: 10px;
+	}
+	.article-element article.col-2 {
+	    height: 342px;
+	}
+	.article-element article.col-2 div.content {
+	    height: 300px;
+	}
+	
+	.link-element .content{
+		padding-bottom:20px;
+	}
+	section .link-element .content.fixed-height {
+
+	}
+	.text-element .about-company ul li .glyphicons {
+	    font-size: 30px;
+	}
+	.text-element .about-company ul li span:not(.glyphicons) {
+	    font-size: 14px;
+	}
+    .carousel-inner .item .slider-content p.main {
+	    font-size: 40px;
+	    line-height: 43px;
+	}
+	.carousel-inner .item .slider-content p {
+	    font-size: 18px;
+	    line-height: 21px;
+	}
+	footer section.links .company {
+	    font-size: 28px;
+	}
+	footer section.links * {
+	    font-size: 13px;
+	}
+	
+}

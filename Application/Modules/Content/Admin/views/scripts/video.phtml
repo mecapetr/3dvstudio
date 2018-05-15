@@ -1,0 +1,101 @@
+            <script>
+            	var vAction       = '<?php echo $this->vAction; ?>';
+            	var vFolder       = '<?php echo $this->vFolder; ?>';
+            	var vTable        = '<?php echo $this->vTable; ?>';
+            	var vTableID      = '<?php echo $this->vTableID; ?>';
+            	var vUi           = '<?php echo $this->adminUserID; ?>';
+            	var vPath         = '<?php echo $this->vPath; ?>';
+            	var vTableIDvalue = '<?php echo $this->vTableIDvalue; ?>';
+            </script>
+            
+            <script type="text/javascript" src="/Public/Jscripts/AdminBase/addVideo.js"></script>
+			<script type="text/javascript" src="/Public/Jscripts/Upload/addVideoDispatch.js"></script>
+
+		    <div class="video-files">
+		        	<div class="galleryVideos">
+						<?php if($this->allVideos)foreach($this->allVideos as $item){ ?>
+							
+							<div class="video">
+								<div>
+									<img src="/Public/Images/Previews/<?php echo $this->folder; ?>/mala-<?php echo $item->file.".png"; ?>?<?php echo rand(0,999); ?>" />
+									<input type="hidden" name="old-videos[]" value="<?php echo $item->videoID; ?>" />
+									<p>
+										<a title="Přehrát video" target="_blank" href="/Public/Videos/<?php echo $this->folder; ?>/<?php echo $item->file.".mp4"; ?>"><img alt="Přehrát video" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/download.png" /></a>  
+							    		<input id="del<?php echo $item->videoID."-e";?>" value="<?php echo $item->videoID."-e";?>" class="checkbox" type="checkbox" name="delete" />							
+							    		<a title="Smaž" onclick="videoCheckCheckbox(this);return false;" href="<?php echo $item->videoID."-e";?>"><img alt="Smaž" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.gif" /></a>
+									</p>
+								</div>
+								<div class="video-description" style="float:left;">
+									<p>	
+										<label>Název:</label>									
+									    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+									    	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+										    	<input type="text" name="<?php echo $item->videoID."-e";?>-videoTitle-<?PHP echo $val->suffix ?>" value="<?PHP echo $item->title[$val->suffix] ?>" style="width: 400px; margin-right: 5px;" />
+										    </span>
+									    <?PHP $i++; } ?>
+										<?php echo $this->render("videoLanguageMutations.phtml"); ?>  
+									</p>
+									<p>		
+										<label>Popis:</label>								
+									    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+									    	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+										    	<input type="text" name="<?php echo $item->videoID."-e";?>-videoDesc-<?PHP echo $val->suffix ?>" value="<?PHP echo $item->anotation[$val->suffix] ?>" style="width: 400px; margin-right: 5px;" />
+										    </span>
+									    <?PHP $i++; } ?>
+										<?php echo $this->render("videoLanguageMutations.phtml"); ?>  
+									</p>
+								</div>
+								
+							</div>
+							
+						<?php } ?>
+						<?php if($this->allTempVideos)foreach($this->allTempVideos as $item){ ?>
+							
+							<div class="video videoTemp">
+								<div>
+									<img src="/Public/Images/Previews/Temp/mala-<?php echo $item->file.".png"; ?>?<?php echo rand(0,999); ?>" />
+									<input type="hidden" name="videos[]" value="<?php echo $item->file; ?>~<?php echo $item->footage; ?>~<?php echo $item->filesize; ?>~<?php echo $item->videoTempID."-t"; ?>" />
+									<p>
+										 
+										<a title="Přehrát video" target="_blank" href="/Public/Videos/Temp/<?php echo $item->file.".mp4"; ?>"><img alt="Přehrát video" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/download.png" /></a>  
+							    		<input id="del<?php echo $item->videoTempID."-t";?>" value="<?php echo $item->videoTempID."-t";?>" class="checkbox" type="checkbox" name="delete" />							
+							    		<a title="Smaž" onclick="videoCheckCheckbox(this);return false;" href="<?php echo $item->videoTempID."-t";?>"><img alt="Smaž" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.gif" /></a>
+									</p>
+								</div>
+								<div class="video-description" style="float:left;">
+									<p>		
+										<label>Název:</label>								
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+										   	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+												<input type="text" name="<?php echo $item->videoTempID."-t";?>-videoTitle-<?PHP echo $val->suffix ?>" value="" style="width: 400px; margin-right: 5px;" />
+											</span>
+										<?PHP $i++; } ?>
+										<?php echo $this->render("videoLanguageMutations.phtml"); ?>  
+									</p>
+									<p>	
+										<label>Popis:</label>								
+										<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+										   	<span class="language-input <?PHP if($i != 0)echo "hidden "; echo $val->suffix ?>" >
+												<input type="text" name="<?php echo $item->videoTempID."-t";?>-videoDesc-<?PHP echo $val->suffix ?>" value="" style="width: 400px; margin-right: 5px;" />
+											</span>
+										<?PHP $i++; } ?>
+										<?php echo $this->render("videoLanguageMutations.phtml"); ?>  
+									</p>
+								</div>
+								
+							</div>
+							
+						<?php } ?>
+						<div id="endFloat"></div>
+					</div>
+					
+					<div id="video-file-queue"></div>
+					<input type="file" name="video-uploadify" id="video-uploadify" />
+					
+					<p class="video-links">
+						<?php if(count($this->allVideos) > 0 || count($this->allTempVideos) > 0){ ?>
+							  <a href="#" onclick="deleteVideos();return false;"> Smazat označené</a>
+						<?php } ?>	
+					</p> 
+				
+		     </div>

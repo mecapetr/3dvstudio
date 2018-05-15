@@ -1,0 +1,39 @@
+<h1> Upravit výrobce </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="active">Upravit výrobce</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-12">		
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-show-thumbnails-with-lines"></span> Údaje o výrobci</div>
+				<div class="panel-body">
+		    
+				    <div class="form-group has-feedback">
+				    	<input placeholder="* Název výrobce" class="form-control required" id="name" type="text" name="name" value="<?php if($this->allItems->name)echo $this->allItems->name;?>" />
+				    </div>
+		    
+				    <div class="form-group has-feedback">
+				    	<input placeholder="* Zkratka výrobce" class="form-control required" id="shortcut" type="text" name="shortcut" value="<?php if($this->allItems->shortcut)echo $this->allItems->shortcut;?>" />
+				    </div>
+				</div>
+			</div>
+		</div>	
+	</div>	
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-block btn-primary check-required-fields" type="submit" name="enter" value="Uložit" />
+			</div>
+		</div>
+	</div>
+</form>	
+	

@@ -1,0 +1,61 @@
+<h1> Seznam kategorií </h1>
+
+<ol class="breadcrumb">
+	<li>Obsah</li>
+	<li class="active">Seznam kategorií</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="" method="post">
+	<div class="panel panel-default">		
+		<div class="panel-heading clearfix">
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-10">
+					<button type="button" class="btn btn-primary btn-block delButton"> Smazat označené </button>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body table-responsive">
+		
+			<div class="clearfix data-list header">
+				<div class="col-sm-4 no-left-padding th">Název kategorie</div>
+				<div class="col-sm-4 th">Datum</div>
+				<div class="col-sm-4 text-right th">upravit / smazat</div>		
+			</div>
+			
+			<ul class="sortListBasic main-ul data-list category">
+				<?php foreach($this->allItems as $item){ ?>
+	    		<li id="<?php echo $item->categoryID ?>" class="clearfix" >     
+			        <div class="col-sm-4 no-left-padding"> <span class="glyphicons glyphicons-move"></span> <?php echo $item->title ?> </div>
+					<div class="col-sm-4"><?php echo date("d.m.Y H:i:s",strtotime($item->dateAdd)) ?></div>
+					<div class="text-right col-sm-4">
+						<a title="Uprav" href="/admin/obsah/kategorie/upravit/id/<?php echo $item->categoryID ?>"><span class="glyphicons glyphicons-pencil"></span></a> 
+						<input class="delete" type="checkbox" name="delete[]" value="<?php echo $item->categoryID ?>">
+					</div>
+					<div class="clear-left"></div>	    			
+	    		</li>
+	    		<?php } ?>
+    		</ul>
+			
+				
+		</div>	
+		<div class="panel-footer clearfix">
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-10">
+					<button type="button" class="btn btn-primary btn-block delButton"> Smazat označené </button>
+					<input type="submit" class ="hidden deleteButton" name="deleteButton" />
+				</div>
+			</div>
+		</div>	
+	</div>
+</form>
+
+
+
+
+
+
+
+

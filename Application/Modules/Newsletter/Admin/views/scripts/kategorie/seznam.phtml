@@ -1,0 +1,31 @@
+
+<?php  echo $this->render('sortAlign.phtml'); ?>
+
+<div class="listTitleHeader margin-left" style="width:696px;"><?PHP echo $this->translate("Kategorie"); ?></div>
+<div class="listHeader"><?PHP echo $this->translate("Přidána"); ?></div>
+<div class="listHeader listBorderRight"><?PHP echo $this->translate("Možnosti"); ?></div>
+
+<br class="clearLeft" />
+
+
+	
+    <ul id="sortListBasic">
+		<?php foreach($this->allItems as $val){ ?>
+		<li id="<?php echo $val->categoryID ?>">
+			<div class="listTitleItem margin-left crossBasic" style="width:696px;"><?php echo $val->title; ?></div>
+			<div class="listItem"><?php echo date("j.n.Y H:i:s",strtotime($val->dateAdd)); ?></div>
+			<div class="listItem">
+			    <a title="<?PHP echo $this->translate("Upravit"); ?>" href="<?php echo $this->baseUrl; ?>/admin/newsletter/kategorie/upravit/id/<?php echo $val->categoryID;?>"><img alt="Upravit" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/edit.png" /></a>   
+			    <a title="<?PHP echo $this->translate("Smaž"); ?>" href="<?php echo $this->baseUrl; ?>/admin/newsletter/kategorie/smazat/id/<?php echo $val->categoryID;?>"><img alt="Smaž" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/delete.png" /></a>
+			</div>
+			
+			<br id="endFloat" />
+		</li>
+		<?php } ?>
+    </ul>
+
+	
+<?php echo $this->nextPrevious ?>
+	     
+	     	
+

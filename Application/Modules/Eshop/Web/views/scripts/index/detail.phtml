@@ -1,0 +1,123 @@
+<div id="section-container">
+	
+	<section>
+		<div class="container">
+			
+			<article class="detail">
+				<h1 class="text-center"><?php echo $this->articleData->title ?></h1>
+				
+				<?php if(!$this->hasProducts){ ?>
+					<div class="row">
+					<div class="col-sm-8 col-xs-12">
+				<?php } ?>
+				
+				<?php if($this->hasProducts){ ?>
+					<div class="row">
+				<?php } ?>
+					
+					<?php if(!empty($this->articleData->file)){ ?>
+						<div class="<?php if($this->hasProducts)echo "col-md-8 col-sm-6 col-xs-12" ?> img <?php if(!$this->hasProducts)echo "blog"; ?>">
+							
+							<a class="fancy-gallery" href="/Public/Images/Article/stredni-<?php echo $this->articleData->file ?>" rel="<?php echo $this->articleData->articleID ?>">
+								<img class="main" src="/Public/Images/Article/stredni-<?php echo $this->articleData->file ?>" />
+							</a>
+													
+						</div>
+					<?php } ?>
+					<div class="<?php if(!empty($this->articleData->file) && $this->hasProducts)echo 'col-md-4 col-sm-6'; ?> <?php if($this->hasProducts)echo "col-xs-12" ?>text-element">
+
+						<?php echo $this->articleData->text ?>	
+						
+						<?PHP if($this->articleData->showFacebook){ ?>
+							<div class="fb-like" data-href="<?PHP echo $this->actualUrl ?>"  data-width="100%" data-height="30" data-show-faces="false" data-share="true"></div>
+						<?PHP } ?>						
+					</div>
+					
+				<?php if($this->hasProducts){ ?>
+					</div>
+				<?php } ?>
+				
+				<div class="clear-left"></div>
+				
+				<?php if(count($this->articlePhotos) > 0 || count($this->articleWebVideos) > 0 || count($this->articleFiles) > 0 ){ ?>
+					<hr />
+				<?php } ?>	
+				
+				<?php if(count($this->articleFiles) > 0 ){ ?>
+					<div class="photo-file-element row clearfix">
+						<?php foreach($this->articleFiles as $articleFile){ ?>
+							<div class="col-xs-6 col-sm-3 col-md-2">
+								<a href="/Public/Files/Article/<?php echo $articleFile->title ?>"><span><span class="filetypes filetypes-<?php echo $articleFile->ico ?>"></span><br /><?php echo $articleFile->title; ?></span></a>
+							</div>
+						<?php } ?>
+					</div>
+				<?php } ?>
+					
+				<?php if(count($this->articlePhotos) > 0 ){ ?>
+					<div class="photos">
+						<?php foreach($this->articlePhotos as $articlePhoto){ ?>
+							<a class="fancy-gallery" rel="<?php echo $articlePhoto->articleID ?>" href="/Public/Images/Article/stredni-<?php echo $articlePhoto->title ?>"><img src="/Public/Images/Article/mala-<?php echo $articlePhoto->title ?>" /></a>
+						<?php } ?>
+					</div>
+				<?php } ?>
+								
+				<?php if(count($this->articleWebVideos) > 0){ ?>
+					<div class="videos">			
+						<?php $i = 0; foreach($this->articleWebVideos as $articleWebVideo){ if($i == 0){$i++;continue;} ?>	
+							<div class="col-xs-12 col-sm-6 col-md-4">			
+							<?PHP if($articleWebVideo->type == "youtube"){ ?>									
+							    <iframe width="100%" height="auto" src="http://www.youtube.com/embed/<?PHP echo $articleWebVideo->code ?>?wmode=transparent" frameborder="0" allowfullscreen></iframe> 											
+							<?PHP }else if($articleWebVideo->type == "vimeo"){ ?>										
+								<iframe src="http://player.vimeo.com/video/<?PHP echo $articleWebVideo->code ?>?title=0&amp;byline=0&amp;portrait=0" width="100%" height="auto" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>											
+							<?PHP } ?>
+							</div>			
+						<?php $i++; } ?>			
+					</div>
+				<?php } ?>
+				
+				<?php if(!$this->hasProducts){ ?>
+					</div>
+					<div class="col-sm-4 col-xs-12">
+						<h2 class="new-articles">Nejnovější články </h2>
+						<div class="article-element">
+						<?php $i = 1; foreach($this->allArticles as $article){ if($article->articleID == $this->articleData->articleID || $i > 3)continue; ?>
+							<div>
+								<article class="list">
+									<div class="img"><a class="img" href="<?php echo $article->link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><img src="/Public/Images/Article/mala-<?php echo $article->file ?>" /></a></div>
+									<div class="content"><h2><a href="<?php echo $article->link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><?php echo $article->title ?></a></h2></div>
+								</article>
+							</div>
+						<?php $i++; } ?>
+						<div class="clearfix"></div>
+						</div>
+					</div>
+					</div>
+				<?php } ?>
+				
+			</article>
+			
+						
+	
+		</div>
+	</section>
+	<?php if($this->hasProducts){ ?>
+		<section class="border">
+			<div class="container clearfix">
+				<h1 class="text-center">Další produkty z <?php echo $this->categoryTitle ?></h1>
+				
+				<div class="article-element">
+				<?php $i = 1; foreach($this->allArticles as $article){ if($article->articleID == $this->articleData->articleID)continue; ?>
+					<div class="col-xs-12 col-sm-4">
+						<article class="list">
+							<div class="img"><a class="img" href="<?php echo $article->link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><img src="/Public/Images/Article/mala-<?php echo $article->file ?>" /></a></div>
+							<div class="content"><h2><a href="<?php echo $article->link ?>/<?php echo $article->articleID ?>-<?php echo $article->niceTitle ?>"><?php echo $article->title ?></a></h2></div>
+						</article>
+					</div>
+				<?php $i++; } ?>
+				<div class="clearfix"></div>
+				</div>
+				
+			</div>
+		</section>
+	<?php } ?>
+</div>

@@ -1,0 +1,64 @@
+<li>
+<div class="panel panel-default">
+	<div class="panel-heading clearfix"><span class="label label-purple">List element</span> <span class="glyphicons glyphicons-remove list-element" data="<?php echo $this->elementData["listElement"]["sectionID"]; ?>-<?php echo $this->elementData["listElement"]["groupListID"]; ?>"></span> <span class="glyphicons glyphicons-move"></span> </div>
+		<div class="panel-body">
+	    	<table class="table table-striped">	
+	    		<thead>
+	    			<tr>
+						<?php $j = 0; foreach($this->elementData["listElement"]["header"] as $row){ ?>
+							<th>
+								<div>
+		    					<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+		    						<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+		    							<input value="<?php echo $row["name"][$val->suffix] ?>" class="form-control" placeholder="nadpis sloupce" type="text" name="li-e-name-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>" />
+		    						</span>
+	    						<?PHP $i++; } ?>
+	    						<?php echo $this->render("languageMutations.phtml"); ?>
+	    						</div>
+								<div class="radio">
+				    				<div class="radio-label"><strong>Aktivní:</strong></div>
+				    			 	<label class="radio-inline"> <input <?php if($row["active"] == "1")echo "checked"; ?> class="checkbox" type="radio" name="li-e-active-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>" id="showArticles" value="1"> Ano </label>
+				    			    <label class="radio-inline"> <input <?php if($row["active"] == "0")echo "checked"; ?> class="checkbox" type="radio" name="li-e-active-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>" id="showArticles" value="0"> Ne </label>
+				    		    </div>
+					    	
+				    		    <div class="radio">
+				    			    <div class="radio-label"><strong>Filtrovaný:</strong></div>
+				    			    <label class="radio-inline"> <input <?php if($row["isFiltered"] == "1")echo "checked"; ?> class="checkbox" type="radio" name="li-e-filtered-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>" id="showArticles" value="1"> Ano </label>
+				    			    <label class="radio-inline"> <input <?php if($row["isFiltered"] == "0")echo "checked"; ?> class="checkbox" type="radio" name="li-e-filtered-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>" id="showArticles" value="0"> Ne </label>
+				    		    </div>
+							</th>
+						<?php $j++; } ?>
+					</tr>
+	    		</thead>
+	    		<tbody>
+	    		<?php foreach($this->elementData["listElement"]["data"] as $row){ ?>
+					
+	    			<tr>
+	    				<?php $j = 0; foreach($row as $col){ ?>
+	    					<td>
+	    						<div>
+		    					<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+		    						<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+		    							<input value="<?php echo $col["title"][$val->suffix] ?>" class="form-control" placeholder="hodnota" type="text" name="li-e-row-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $j ?>-<?php echo $val->suffix ?>[]" />
+		    						</span>
+	    						<?PHP $i++; } ?>
+	    						<?php echo $this->render("languageMutations.phtml"); ?>
+	    						
+	    						<?php if($j == 0){ ?>
+	    							<input value="<?php echo $col["linkID"] ?>" type="hidden" name="li-e-linkID-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-0[]" />
+	    						<?php } ?>
+	    						
+	    						</div>
+    						</td>
+	    				<?php $j++; } ?>    				
+	    			</tr>
+				
+				<?php $j++; } ?>
+				</tbody>
+			</table>
+		</div>
+		<input type="hidden" value="<?php echo count($this->elementData["listElement"]["data"])-1; ?>" name="list-element-col-count-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+		<div class="panel-footer"><a class="btn btn-primary btn-xs add-list-element-row" href="#" title="Přidat řádek">Přidat řádek</a> <a class="btn btn-primary btn-xs add-list-element-col" href="#" title="Přidat sloupec">Přidat sloupec</a></div>
+</div>
+<input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="li-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+</li>

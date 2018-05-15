@@ -1,0 +1,17 @@
+	    <div class="list-order"> 	
+	        <form autocomplete="off" action="<?php echo $this->action; ?>" method="post"> 
+		       
+				<?PHP echo $this->translate('Seřadit podle'); ?> 
+				<select name="orderBy">
+				    <option <?php if($this->orderBy == "date"){echo "selected";} ?> value="date"><?PHP echo $this->translate('data odeslání'); ?></option>
+				    <option <?php if($this->orderBy == "title"){echo "selected";} ?> value="title"><?PHP echo $this->translate('názvu'); ?></option>
+					<!--  <option <?php if($this->orderBy == "view")   {echo "selected";} ?> value="view">shlédnutí</option> -->
+				</select>
+				<?PHP echo $this->translate('a to'); ?> 
+				<select name="descAsc">
+				    <option <?php if($this->descAsc =="DESC"){echo "selected";} ?> value="DESC"><?PHP echo $this->translate('sestupně'); ?></option>
+					<option <?php if($this->descAsc =="ASC") {echo "selected";} ?> value="ASC"><?PHP echo $this->translate('vzestupně'); ?></option>
+				</select>
+				<input class="button" type="submit" name="order" value="<?PHP echo $this->translate('Seřaď'); ?>">
+			</form>
+		</div>

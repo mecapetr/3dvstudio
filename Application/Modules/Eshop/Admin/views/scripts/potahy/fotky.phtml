@@ -1,0 +1,131 @@
+<h1> Upravit potah </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="">Upravit potah</li>
+	<li class="active"><strong><?php echo $this->coverData->title?></strong></li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-4">	
+		
+			<div class="panel panel-default">
+			  <div class="panel-heading">Menu</div>			
+			  <ul class="menu list-group">
+			  	<?php foreach ($this->subLinks as $val){?>
+			    	<li class="list-group-item <?php if($this->sublinkTitle == $val['title']) echo "selected";?> <?php if($this->showOnlyMainSublink && !$val['isMain']) echo "disabled";?>">
+			    		<?php if(($this->showOnlyMainSublink && $val['isMain']) || !$this->showOnlyMainSublink){?><a href="<?php echo $val['url'];?>"><?php }?>
+			    			<?php echo $val['title'];?>
+			    		<?php if(($this->showOnlyMainSublink && $val['isMain']) || !$this->showOnlyMainSublink){?></a><?php }?>
+			    	</li>
+			  	<?php }?>
+			  </ul>
+			</div>
+		</div>	
+		<div class="col-md-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">Fotky potahu</div>
+				
+				<div class="panel-body">
+					 	<div class="form-group">
+							<label class="label-concrete">Nové fotky</label>
+						    <div class="fileinput fileinput-new" data-provides="fileinput">
+						    	<div class="input-group">
+						    		<div class="form-control uneditable-input">
+						    			<i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span>
+						    		</div>
+						    		<div class="input-group-btn">
+						    			<div class="btn btn-primary btn-file">
+						    				<span class="fileinput-new" >Vyberte</span>
+						    				<span class="fileinput-exists">Změnit</span>
+						    				<input type="file" multiple="multiple" name="photos[]" />
+						    			</div>
+						    			<input type="submit" class="btn btn-success fileinput-exists" title="nahrát" value="Nahrát" name="upload">
+						    				
+						    		</div>
+						    	</div>
+						    </div>	
+						</div>
+						
+						<div class="form-group galleryPhotos">
+						
+							<?php if(!empty($this->allPhotos)){ ?>	
+								<div class="row">
+									<div class="col-xs-12 form-group">
+							    		<input type="submit" class="btn btn-danger fileinput-exists" title="smazat označené" value="Smazat označené" name="delete">
+							    	</div>
+						    	</div>     
+						    	<div class="sortListPhotos main-ul photoPriority">
+								<?php foreach($this->allPhotos as $key => $pf){ ?>								
+								
+										<div class="photo smaller col-xs-6 col-sm-3 col-lg-3 text-center" id="<?php echo $pf->photoID?>">       
+												<span class="glyphicons glyphicons-move"></span>
+											<div class="photo-cover">
+												<img class="file" src="/Public/Images/Cover/mala-<?php echo $pf->file; ?>?<?php echo rand(0,999); ?>" />
+											</div>
+											 <div class="form-group radio">
+												<label>
+													<input class="radio-inline" type="radio" name="mainPhoto" <?php if($pf->mainPhoto)echo "checked"; ?> value="<?php echo $pf->photoID;?>" /> hlavní
+											 	</label>
+											 </div>
+											 <div class="form-group">
+											    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+											    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+											    		<input placeholder="popis" class="form-control micro" type="text" name="<?php echo $pf->photoID?>-photoDesc-<?PHP echo $val->suffix ?>" value="<?php echo $pf->description[$val->suffix]?>" />
+												    </span>
+											    <?PHP $i++; } ?>
+												<?php echo $this->render("languageMutations.phtml"); ?> 
+											</div>	
+											<div class="form-group">
+											    <input placeholder="číslo" class="form-control micro" type="text" name="<?php echo $pf->photoID?>-photoNumber" value="<?php echo $pf->number?>" />
+											</div>	
+											<div class="form-group">
+												<select name="<?php echo $pf->photoID?>-coverColorID" class="form-control micro">
+											    	<option value="0">-- vyberte barvu --</option>
+											    	<?php foreach ($this->allCoverColors as $val){?>					    		
+											    		<option value="<?php echo $val->coverColorID?>" <?php if($pf->coverColorID == $val->coverColorID)echo "selected='selected'"?>><?php echo $val->title?></option>
+											    	<?php }?>
+											    </select>
+											</div>	
+																
+											<div class="absolute-remove-position">
+												<label>
+												<input id="deletePhoto" value="<?php echo $pf->photoID; ?>" type="checkbox" name="<?php echo $pf->photoID?>-deletePhoto" />		
+									    		</label>
+											</div>
+						
+										</div>
+								
+								<?php } ?>
+                
+								</div>
+								<div class="row">
+									<div class="col-xs-12 form-group">
+							    		<input type="submit" class="btn btn-danger fileinput-exists" title="smazat označené" value="Smazat označené" name="delete">
+							    	</div>
+						    	</div>
+							<?php }else{ ?>
+								<div class="alert alert-warning text-center">
+									Zatím jste nevložili žádnou fotku.
+								</div>
+							<?php }?>
+						</div>
+				</div>	
+			</div>			
+		</div>	
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-block btn-primary check-required-fields" type="submit" name="enter" value="Uložit" />
+			</div>
+		</div>
+	</div>
+</form>	
+	

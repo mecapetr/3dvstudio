@@ -1,0 +1,7 @@
+<?PHP if($this->modulesData->jazykoveMutace){?>
+	<span class="language-mutations" style="margin-left:0;">
+		<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+			<a  class="<?PHP if($i != 0) echo $val->suffix."-dis";else echo $val->suffix; ?>" title="<?PHP echo $val->title ?>"></a>
+		<?PHP $i++;  } ?>
+	</span>
+<?PHP } ?>

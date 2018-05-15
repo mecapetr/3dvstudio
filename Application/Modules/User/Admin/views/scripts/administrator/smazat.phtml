@@ -1,0 +1,25 @@
+<h2> <?PHP echo $this->translate("Smazat administrátora"); ?> </h2>
+		
+	<?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+	
+	<div class="delete">
+	
+	    <form action="<?php echo $this->baseUrl;echo $this->action; ?>" method="post">
+	    <p><?PHP echo $this->translate("Opravdu chcete smazat tohoto administrátora?"); ?></p>		
+		<p class="offer"> <?php echo $this->oneRow->login;?> </p>
+		
+		<p>
+            
+            <?PHP echo $this->translate("Ano"); ?>: <input id="1" type="radio" name="delete" value="1"/>
+			<?PHP echo $this->translate("Ne"); ?>: <input id="0" type="radio" name="delete" value="0"/><br />
+            <input class="button" type="submit" name="edit" value="<?PHP echo $this->translate("Smazat"); ?>" />
+
+		</p>
+	    </form>
+
+		
+	</div>
+	
+
+ 

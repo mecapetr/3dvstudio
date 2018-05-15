@@ -1,0 +1,43 @@
+        <div class="form-group has-feedback">	
+		 	<label>*Název kategorie:</label>	    	
+		    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+		    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+			    	<input class="form-control <?php if($val->suffix == "cz")echo "required"; ?>" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->title[$val->suffix])echo $this->allItems->title[$val->suffix];?>" />
+			    </span>
+		    <?PHP $i++; } ?>
+			<?php echo $this->render("languageMutations.phtml"); ?>  
+	    </div>
+        <div class="form-group has-feedback">	
+		 	<label>Procentuální navýšení/snížení ceny:</label>	
+		 	<div class="input-group">
+			    <input class="form-control" id="title" type="number" step="any" name="percent" value="<?php if($this->allItems->percent)echo $this->allItems->percent;?>" />
+			    <div class="input-group-addon">%</div>
+	    	</div>    	
+		</div>
+	    <div class="form-group">	
+	    	<label>Text:</label>
+			<?php echo $this->render("languageMutations.phtml"); ?>  
+		    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+		    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+		    		<textarea id="e-text-<?PHP echo $val->suffix ?>" class="basic form-control" placeholder="Text" name="text-<?PHP echo $val->suffix ?>"><?php if($this->allItems->text[$val->suffix])echo $this->allItems->text[$val->suffix]; ?></textarea>
+		    		<script>removeTinyMCEControll('e-text-<?PHP echo $val->suffix ?>');execTinyMCE(0,'e-text-<?PHP echo $val->suffix ?>');</script>
+			    </span>
+		    <?PHP $i++; } ?>	    	
+	    </div>
+	    <div class="form-group row">
+	    	<div class="col-sm-8"><strong>Přiřadit potahy:</strong></div>
+	    	<div class="row">
+		    	<div class="col-xs-12">
+			    	<?php foreach ($this->allCovers as $val){?>
+			    		<div class="col-sm-3">
+			    			<label class="checkbox-inline" style="font-size: 12px;">
+			    				<input class="checkbox" type="checkbox" name="coverID[]" value="<?php echo $val->coverID?>" <?php if(!empty($this->allSavedCoversArr[$val->coverID]))echo "checked";?>> 
+			    				<?php echo $val->title?>
+			    			</label>
+			    		</div>
+			    	<?php }?>
+		    	</div>
+	    	</div>
+	    </div>
+	    <input type="hidden" name="productCategoryID" value="<?php echo $this->allItems->productCategoryID;?>" />
+	     

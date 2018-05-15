@@ -1,0 +1,25 @@
+<h2> Smazat slider </h2>
+		
+	<?php if($this->error !=''){ echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+	
+	<div class="delete">
+	
+	    <form action="<?php echo $this->baseUrl;echo $this->action; ?>" method="post">
+	    <p>Opravdu chcete smazat tento slider?</p>		
+		<p class="offer"> <?php echo $this->oneRow->title;?> </p>
+		
+		<p>
+            
+            Ano: <input id="1" type="radio" name="delete" value="1"/>
+			Ne: <input id="0" type="radio" name="delete" value="0"/><br />
+            <input class="button" type="submit" name="edit" value="Smazat" />
+
+		</p>
+	    </form>
+
+		
+	</div>
+	
+
+ 

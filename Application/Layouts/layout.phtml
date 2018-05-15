@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs">
+	
+	<head>
+	
+	    <script type="text/javascript">
+			var a = ['section', 'article', 'nav', 'header', 'footer', 'figure'];
+
+			for (var i = 0, j = a.length; i < j; i++) {
+				
+			    document.createElement(a[i]);
+			}
+		</script>
+		
+		<title><?PHP echo $this->headTitle ?></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="<?PHP echo $this->headKeyWords ?>" />
+		<meta name="description" content="<?PHP echo $this->headDescription ?>" />
+		<meta name="robots" content="index,follow" />
+		<meta name="author" content="1vision.cz" />
+				
+		<?PHP if($this->modulesData->responsiveDesign){ ?>
+			<?php if(!$this->showDesktopMode){?>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" /> 
+			<?php }else{?>
+				<meta name="viewport" content="width=1500">
+			<?php }?>
+		<?PHP } ?>		
+		
+		<link href="/Public/Images/Layout/favicon.ico" rel="shortcut icon" />
+				
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin-ext' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400&subset=latin-ext' rel='stylesheet' type='text/css' />
+		<link href="https://fonts.googleapis.com/css?family=Oswald:300,600&amp;subset=latin-ext" rel="stylesheet">
+		 
+		<script type="text/javascript" src="/Public/Jscripts/WebBase/jquery-latest.js"></script>
+		<script type="text/javascript" src="/Public/Jscripts/WebBase/jquery-migrate-1.0.0.js"></script>         
+		<script type="text/javascript" src="/Public/Jscripts/WebBase/slider/nouislider.min.js"></script>
+		<link rel="stylesheet" href="/Public/Jscripts/WebBase/slider/nouislider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/Css/TinyMCE/main.css" />
+		
+		<!-- fancybox -->
+		<link rel="stylesheet" href="/Public/Jscripts/Fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="/Public/Jscripts/Fancybox/jquery.fancybox-1.3.4.js"></script>
+		<script type="text/javascript" src="/Public/Jscripts/Fancybox/jquery.mousewheel-3.0.4.pack.js"></script>				
+		
+		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons.css">
+		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-social.css">
+		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-filetypes.css">
+		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-bootstrap.css">
+		<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap.css" media="all" />
+		<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap-theme.min.css" media="all" />	
+		<script src="/Public/Jscripts/Bootstrap/bootstrap.min.js"></script>	
+		
+		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/main.css?71" />		
+		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/lg.css?71"/>	
+		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/md.css?71" />
+		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/sm.css?71" />
+		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/xs.css?71" />	
+		<script type="text/javascript" src = "/Public/Jscripts/Web/dictionary<?php echo $this->concreteLang->lang ?>.js?2"></script>			
+		<script type="text/javascript" src = "/Public/Jscripts/WebBase/events.js?42"></script>
+		<script type="text/javascript" src = "/Public/Jscripts/Web/events.js?42"></script>	
+
+		<script type="text/javascript" src = "/Public/Jscripts/WebBase/cycle.js"></script>		
+		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDi-52zoEGGKqZpyJA9n5sXgWfYL6wH0gw"></script>	
+       
+	</head>	
+	
+	<body class="<?php if($this->isMobileMode)echo "is-mobile";?> <?php if(!$this->homepage)echo 'site'; ?>" >
+		 	
+  		<header <?php if(!$this->homepage)echo 'class="site"'; ?>>
+  			<div class="container">
+  				<div class="whole-menu">
+  				
+  				
+  				    <div class="dropdown">
+							  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							  	<img src="/Public/Images/LanguageMutations/input-en.jpg" />
+							    <span class="lang">English</span>
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu lang" aria-labelledby="dLabel">
+							  
+							  	<?php foreach($this->languages as $lang){ ?>
+							    <li><a id="<?php echo $lang->suffix ?>" href="#"><img src="/Public/Images/LanguageMutations/input-<?php echo $lang->suffix ?>.jpg" /> <span><?php echo $lang->langTitle ?></span></a></li>
+							    <?php } ?>
+							    
+							  </ul>
+							</div>
+  				
+  				
+		  			<a id="logo" href="/"><img src="/Public/Images/Layout/menu_logo.jpg" /></a>
+		  			<nav>
+		  				<ul>
+		  					<?php foreach($this->menu as $menu){ ?>
+		  						<li class="<?php echo $menu->userAdd ?>">
+		  							<a href="<?php if(!isset($this->subLinks[$menu->linkID]))echo $menu->otherLink; ?>" onclick="<?php if(isset($this->subLinks[$menu->linkID]))echo "return false;"?>"><?php echo $menu->title ?></a>
+		  							
+		  							<?php if(isset($this->subLinks[$menu->linkID])){ ?>
+		  								<ul class="<?php if(strpos($menu->userAdd, "selected")) echo "open"; ?>">
+			  							<?php if(!empty($this->subLinks[$menu->linkID]))foreach($this->subLinks[$menu->linkID] as $submenu){ ?>
+					  						<li><a class="<?php echo $submenu->class ?>" href="<?php echo $submenu->niceTitle ?>"><?php echo $submenu->title ?></a></li>
+					  					<?php } ?>
+				  						</ul>
+				  					<?php } ?>
+		  							
+		  						</li>
+		  					<?php } ?>
+		  				</ul>
+		  				<div class="hamburget-menu-bg hidden-xs"></div>
+		  			</nav>
+		  			<?php if($this->homepage){ ?>
+		  				
+		  			<?php } ?>
+		  			<span class="glyphicons glyphicons-menu-hamburger visible-md visible-sm visible-xs"></span>
+	  				<div class="menu-bg"></div>
+	  			</div>
+  			</div>
+  		</header>	
+	  		
+        <div id="content">
+	        <?php echo $this->layout()->content; ?>
+        </div>  
+	          
+        <footer class="text-center">
+        	
+        	<p class="socials">
+        		<?php foreach($this->allSocialIcons as $icon){?>	  						
+		  			<a href="<?php echo $icon->url; ?>"><span class="social social-<?php echo $icon->icon; ?>"></span></a>
+	  			<?php }?>
+	  		</p>
+        	<p><?php echo $this->allLayoutTexts[1]->text;?></p>
+        	<p class="text-center no-margin copy">© <?php echo date("Y") ?> Autoservis zika <br /> Vytvořeno firmou <a class="link" href="http://www.1vision.cz">1vision</a></p>
+        	
+  		</footer>
+
+	</body>
+</html>
+
+

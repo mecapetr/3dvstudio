@@ -1,0 +1,64 @@
+<h1> Seznam výrobců </h1>
+
+<ol class="breadcrumb">
+	<li>Eshop</li>
+	<li class="active">Seznam výrobců</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="" method="post">
+	<div class="panel panel-default">		
+		<div class="panel-heading clearfix">
+			
+				<div class="row">
+					<div class="col-sm-6">
+						<a class="btn btn-sm btn-success delButton" href="/admin/eshop/vyrobce/pridat"> Přidat nového výrobce </a>
+					</div>
+					<div class="text-right col-sm-6">
+					<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
+					</div>
+				</div>
+			
+		</div>
+		<div class="panel-body table-responsive">
+		
+			<div class="clearfix data-list header">
+				<div class="col-sm-3 no-left-padding th">Název výrobce</div>
+				<div class="col-sm-3 th text-center">Zkratka</div>
+				<div class="col-sm-6 text-right th">upravit / smazat</div>		
+			</div>
+			
+			<?php if(count($this->allItems) > 0){ ?>	
+			    <ul class="sortListBasic data-list main-ul supplier">
+					<?php foreach($this->allItems as $val){ ?>
+					        <li class="clearfix" id="<?php echo $val->supplierID ?>">               
+								<div class="col-sm-3 first-col text-overflow" ><span class="glyphicons glyphicons-move"></span> <?php echo $val->name; ?></div>
+								<div class="col-sm-3 text-center text-overflow" ><?php echo $val->shortcut; ?></div>
+								<div class="col-sm-6 text-right">
+								    <a title="<?PHP echo $this->translate('Uprav'); ?>" href="<?php echo $this->baseUrl; ?>/admin/eshop/vyrobce/upravit/id/<?php echo $val->supplierID?>"><span class="glyphicons glyphicons-pencil"></span></a>   
+								    <input class="delete" type="checkbox" name="delete[]" value="<?php echo $val->supplierID ?>">
+								</div>
+								
+								<br id="endFloat" />
+			                
+			                </li>
+					<?php } ?>
+				</ul>
+			<?php }else{ ?>
+				<div class="no-data text-center">Zatím se zde nenachází žádní výrobci.</div>
+			<?php } ?>
+			
+				
+		</div>	
+		<div class="panel-footer clearfix">
+			
+			<div class="text-right">
+				<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
+				<input type="submit" class ="hidden deleteButton" name="deleteButton" />
+			</div>
+			
+		</div>	
+	</div>
+</form>

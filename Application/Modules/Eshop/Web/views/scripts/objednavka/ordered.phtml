@@ -1,0 +1,210 @@
+<div id="section-container" class="order">
+	<div class="container">
+		
+		<section class="section-block">
+			<?php if($this->error){ ?>
+				<h1 class="text-center">
+					<span>
+						<?php echo $this->translate('Upozornění');?>
+					</span>
+				</h1>
+				<div class="alert-block">
+					<div class="alert alert-danger text-center"><?php echo $this->error; ?></div>
+				</div>
+			<?php }else{ ?>
+			
+				<h1 class="text-center">
+					<span>
+						<?php echo $this->translate('Objednáno');?>
+					</span>
+				</h1>
+				
+				<div class="alert-block">
+					<div class="alert alert-success text-center">
+						<?php echo $this->message ?>					
+					</div>
+				</div>
+				
+				<?php if(!empty($this->repayment)){ ?>
+					<div class="alert-block">
+						<div class="alert alert-info text-center">
+							<?php echo $this->repayment ?>
+						</div>
+					</div>
+				<?php } ?>
+        
+        
+        
+        
+        
+        
+        
+   <?php if($this->concreteLang->lang == "cz"){ ?>
+	
+    <script>
+  		(function (m,u,j,s,k,r,z){m['SkrzAnalyticsObject']=k;m[k]=m[k]||function(){
+  		(m[k].q=m[k].q||[]).push(arguments)},m[k].l=1*new Date();r=u.createElement(j),
+  		z=u.getElementsByTagName(j)[0];r.async=1;r.src=s;z.parentNode.insertBefore(r, z)
+  		})(window, document, 'script', '//muj.skrz.cz/analytics.js', 'sa');
+  		
+  		sa("create",  "<sedackynabytek>");
+  
+  		<?php foreach($this->allProducts as $prod){ ?>
+  			sa("addItem", {"itemId":"<?php echo $prod->epID; ?>","unitPrice": "<?php echo $prod->price/$prod->count; ?>","quantity":"<?php echo $prod->count; ?>","totalPrice":"<?php echo $prod->price; ?>"});
+  		<?php } ?>
+  		
+  		
+  		sa("send", {"transactionId":"<?php echo $this->orderID; ?>","isPaid":"0","grandTotal":"<?php echo $this->totalPriceWhithoutShippingAndPayment ?>","currency":"CZK"});
+  	</script>
+  
+    <iframe src="https://c1829.affilbox.cz/konverze/aid/3/kid/1/cena/<?php echo round(str_replace(array(" ",","),array("","."),$this->totalPriceWhithoutShippingAndPaymentNoVat),2); ?>/transakce/<?php echo $this->orderNumber; ?>/" width="1" height="1" frameborder="0" scrolling="no"></iframe>
+  
+  
+	    <!-- Google Code for Conversion Page -->
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var google_conversion_id = 961474074;
+		var google_conversion_language = "cs";
+		var google_conversion_format = "1";
+		var google_conversion_color = "ffffff";
+		var google_conversion_label = "FimmCPv04FgQmty7ygM";
+		var google_conversion_value = <?php echo $this->totalPriceWhithoutShippingAndPayment ?>;
+    var google_conversion_currency = "CZK";
+		var google_remarketing_only = false;
+		/* ]]> */
+		</script>
+		<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+		</script>
+		<noscript>
+		<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/961474074/?value=<?php echo $this->totalPriceWhithoutShippingAndPayment ?>&amp;currency_code=CZK&amp;label=FimmCPv04FgQmty7ygM&amp;guid=ON&amp;script=0"/>
+		</div>
+		</noscript>
+		
+		<!-- Měřicí kód Sklik.cz -->
+        <iframe width="119" height="22" frameborder="0" scrolling="no" src="http://c.imedia.cz/checkConversion?c=100011451&color=ffffff&v=<?php echo $this->totalPriceWhithoutShippingAndPayment; ?>"></iframe>
+        <iframe width="119" height="22" frameborder="0" scrolling="no" src="//c.imedia.cz/checkConversion?c=100009353&color=ffffff&v="></iframe>
+	
+    <?php }else{ ?>
+	
+		<!-- Google Code for N&aacute;kupy Conversion Page -->
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var google_conversion_id = 949251727;
+		var google_conversion_language = "en";
+		var google_conversion_format = "3";
+		var google_conversion_color = "ffffff";
+		var google_conversion_label = "Pe8qCNH2mFwQj93RxAM";
+		var google_conversion_value = <?php echo $this->totalPriceWhithoutShippingAndPayment ?>;
+		var google_conversion_currency = "CZK";
+		var google_remarketing_only = false;
+		/* ]]> */
+		</script>
+		<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+		</script>
+		<noscript>
+		<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/949251727/?value=<?php echo $this->totalPriceWhithoutShippingAndPayment ?>&amp;currency_code=CZK&amp;label=Pe8qCNH2mFwQj93RxAM&amp;guid=ON&amp;script=0"/>
+    </div>
+		</noscript>
+	
+	<?php } ?>
+	
+	
+	<script>
+		ga('ecommerce:addTransaction', {
+		  'id': '<?php echo $this->orderID; ?>',                                   // Transaction ID. Required.
+		  'affiliation': 'Sedačky nábytek',                                        // Affiliation or store name.
+		  'revenue': '<?php echo $this->totalPriceWhithoutShippingAndPayment ?>',  // Grand Total.
+		  'shipping': '0',                                                         // Shipping.
+		  'tax': '0'                                                               // Tax.
+		});
+
+		var contentIDFacebookPixel = []
+		
+	</script>
+	<?php foreach($this->allProducts as $prod){ ?>
+		
+		<script>
+		
+			contentIDFacebookPixel.push('<?php echo $prod->epID ?>');
+			
+			ga('ecommerce:addItem', {
+			  'id': '<?php echo $this->orderID; ?>',    // Transaction ID. Required.
+			  'name': '<?php echo $prod->productTitle; ?>',    // Product name. Required.                            
+			  'price': '<?php echo $prod->price/$prod->count; ?>',   // Unit price.
+			  'quantity': '<?php echo $prod->count; ?>' // Quantity.
+			});
+		
+		</script>
+	<?php } ?>
+	
+	<script>ga('ecommerce:send');</script>
+  
+  <?php $curr = "CZK"; if($this->concreteLang->lang == "sk") $curr = "EUR"; ?>
+  <script>fbq('track', 'Purchase', {value: '<?php echo $this->totalPriceWhithoutShippingAndPayment ?>', currency: '<?php echo $curr ?>',content_type:'product',content_ids:contentIDFacebookPixel});</script>
+	
+
+
+  <script type="text/javascript">
+  var google_tag_params = {
+  ecomm_prodid: contentIDFacebookPixel,
+  ecomm_pagetype: 'purchase',
+  ecomm_totalvalue: '<?php echo $this->totalPriceWhithoutShippingAndPayment ?>',
+  };
+  </script>
+  
+  <?php if($this->concreteLang->lang == "cz"){ ?>  
+  
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 961474074;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+    <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/961474074/?guid=ON&amp;script=0"/>
+    </div>
+    </noscript>
+  
+  <?php }else{ ?>
+  
+    <!-- Google Code for eshop -->
+		<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var google_conversion_id = 949251727;
+		var google_custom_params = window.google_tag_params;
+		var google_remarketing_only = true;
+		/* ]]> */
+		</script>
+		<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+		</script>
+		<noscript>
+		<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949251727/?guid=ON&amp;script=0"/>
+		</div>
+		</noscript>
+  
+  <?php } ?>
+        
+        
+        
+        
+        
+        
+        
+        
+				
+			<?php } ?>
+			
+		</section>
+
+	</div>
+	
+</div>
+

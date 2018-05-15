@@ -1,0 +1,195 @@
+@media (max-width: 1199px) {
+	
+	header nav{
+		width: 220px;
+	    right: 0px;
+	    top: 85px;
+	    -webkit-box-shadow: -2px 0px 4px 0px rgba(0,0,0,0.26);
+	    -moz-box-shadow: -2px 0px 4px 0px rgba(0,0,0,0.26);
+	    box-shadow: -2px 0px 4px 0px rgba(0,0,0,0.26);
+	    position: absolute;
+	    display: none;
+	}
+	header nav.open{
+	    display: block;
+	}
+	
+	header nav ul{
+	    margin: 0px;
+    	text-align: center;
+	}
+	
+	header nav.open{
+		right:0px;
+	}
+	header nav ul li,
+	header.shring nav ul li{
+		display:block;
+	}
+	header nav ul li.selected{
+		display:block;
+	}
+	
+	header nav ul li a,
+	header.shring nav ul li a{
+		text-align:right;
+		color:#fff;
+	}
+	header nav ul li ul,
+	header.shring nav ul li ul{
+	    opacity: 1;
+	    position: relative;
+	    top: auto;
+	    left: auto;
+	    display: none;
+	    
+	    -webkit-transition: all .3s ease;
+	    transition: all .3s ease;
+	}
+	header nav ul li ul.open,
+	header.shring nav ul li ul.open{
+	    display: block;
+	}
+	header nav ul li.selected ul{
+	
+	}
+	header nav ul li ul:before{
+		display: none;
+	}
+	header nav ul li ul li,
+	header.shring nav ul li ul li {
+	    min-width: 0px; 
+		border-bottom: none;
+	}
+	header nav ul li ul li:first-child {
+	}
+	header nav ul li a span.underline{
+		display:none;
+	}
+	header.shring nav{
+		top:54px;
+	}
+	header.shring.white nav{
+		top:54px;
+	}
+	header.shring.site nav{
+		top:54px;
+	
+	}
+	header.site nav{
+		top:85px;
+	}
+	header.shring .glyphicons-menu-hamburger,
+	header.shring.site .glyphicons-menu-hamburger,
+	header.shring.site.white .glyphicons-menu-hamburger{
+		top:12px;
+	}
+	header nav ul li,
+	header.shring nav ul li {
+		padding: 0px !important;
+		height: auto !important;
+		border-bottom: 1px solid;
+	}
+		
+	header nav ul li a,
+	header.shring nav a {  
+	    padding: 5px !important;
+	    text-align: right;
+	    color:#fff;
+	    font-size: 16px;
+	}
+	header nav ul li ul li a,
+	header.shring nav ul li ul li a {  
+	    font-size: 13px !important; 
+	}
+	header nav ul li a span.glyphicons-plus{
+		color: #fff;
+	    padding: 4px;
+	}
+	header nav ul li a:hover,
+	header nav ul li.selected > a{
+	    color:#00adee;
+	}	
+	
+	header .glyphicons-menu-hamburger {
+	    position: absolute;
+	    right: 36px;
+	    top: 26px;
+	    font-size: 34px;
+	    cursor: pointer;
+	    -webkit-transition: all .3s ease;
+	    transition: all .3s ease;
+	    color: #fff;
+	    z-index: 10;
+	    cursor: pointer;
+	}
+	header nav div.hamburget-menu-bg{
+		opacity: 0.6;
+	    position: absolute;
+	    left: 0px;
+	    top: 0px;
+	    width: 100%;
+	    height: 100%;
+	    background-color: #000;
+	    z-index: -1;
+	}
+	
+	.slider-content img {
+	    height: 200px;
+	}	
+	section:not(.wide-section) {
+	    padding-top: 100px;
+	    padding-bottom: 50px;
+	}
+	
+	section .link-element h2 {
+	    font-size: 17px;
+	}
+	section h1,
+	section h2 {
+	    font-size: 45px;
+	}
+	
+	section .link-element,
+	section .sublink-element,
+	section .list-element,
+	section .ytv-element,
+	section .form-elements{
+		margin-bottom: 55px;
+	}
+	section .text-element h2,
+	section .text-element h3,
+	section .text-element h4,
+	section .text-element h5,
+	section .text-element h6{
+	    margin-top: 35px;
+	}
+	.text-element h2{
+		font-size:35px;
+	}
+	.text-element h3{
+		font-size:30px;
+	}
+	.text-element h4,
+	.text-element h5,
+	.text-element h6
+	{
+		font-size:25px;
+	}
+	section .text-element img {
+      height: auto;
+    }
+    .carousel-inner .item .slider-content p.main {
+	    font-size: 40px;
+	    line-height: 43px;
+	}
+	.carousel-inner .item .slider-content p {
+	    font-size: 18px;
+	    line-height: 21px;
+	}
+    
+	section .link-element .content.fixed-height {
+
+	}
+
+}

@@ -1,0 +1,15 @@
+<?PHP foreach($this->allComents as $value){ ?>
+	<div class="comment <?PHP if($this->confirmComments && $value->showComment == 0)echo "wait-for-confirm" ?> ">
+		<p class="name">
+			<?PHP echo $value->name ?><?PHP if(!empty($value->email)){ ?>
+			<a class="email" href="mailto:<?PHP echo $value->email ?>" title="<?PHP echo $value->email ?>"></a><?PHP } ?>
+			<?PHP if($this->confirmComments && $value->showComment == 0){ ?>
+				<a class="remove" title="Odstranit" href="javascript:void(0);" onclick="confirmOrRemoveComment('remove','/adminBase/helper/confirm-or-remove-comment','AdminBase_Actuality_ActualityComment','actualityCommentID','actualityID',<?PHP echo $value->actualityCommentID ?>,<?PHP echo $value->actualityID ?>,'/helper/get-actuality-comment.phtml')"></a>
+				<a class="confirm" title="Povolit" href="javascript:void(0);" onclick="confirmOrRemoveComment('confirm','/adminBase/helper/confirm-or-remove-comment','AdminBase_Actuality_ActualityComment','actualityCommentID','actualityID',<?PHP echo $value->actualityCommentID ?>,<?PHP echo $value->actualityID ?>,'/helper/get-actuality-comment.phtml')"></a>
+			<?PHP } ?>
+		</p>
+		<p class="date"><?PHP echo date("j.n.Y H:i",strtotime($value->date)) ?></p>
+		<p><?PHP echo $value->text ?></p>
+	</div>
+								
+<?PHP } ?>

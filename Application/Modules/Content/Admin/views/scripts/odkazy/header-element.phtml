@@ -1,0 +1,62 @@
+<li>
+<div class="panel panel-default">
+<div class="panel-heading clearfix"><span class="label label-default">Header/Slider element</span> <span class="glyphicons glyphicons-remove" data="<?php echo $this->elementData["header"]["sectionID"]; ?>-<?php echo $this->elementData["header"]["groupLinkID"] ?>"></span> <span class="glyphicons glyphicons-move"></span> </div>
+	<div class="panel-body">
+    
+    	<?php $checkbox = 1; foreach($this->elementData["header"]["data"] as $headerElm){ ?>
+    	    	
+	    	<div class="clearfix row">
+		    	<div class="col-sm-8">
+		    		<div class="form-group">
+		    	
+			    		<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+							<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    			<input name="h-e-h1-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>[]" value="<?php echo $headerElm["titleH1"][$val->suffix] ?>" class="form-control" placeholder="hlavní nadpis" type="text"  />
+				    		</span>
+						<?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?>
+		    		
+		    		</div>
+		    		<div>
+		    		
+		    			<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+							<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+			    				<input name="h-e-h2-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>[]" value="<?php echo $headerElm["titleH2"][$val->suffix] ?>" class="form-control" placeholder="podnadpis" type="text" />
+			    			</span>
+		    			<?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?>
+		    	
+		    		</div>
+		    	</div>
+		    	<div class="col-sm-4">
+		    		<div class="fileinput fileinput-new" data-provides="fileinput">
+		    			
+	    				<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;">
+		    				<?php if(!empty($headerElm["image"])){ ?>
+			    				<img src="/Public/Images/Link/Section/Header/mala-<?php echo $headerElm["image"] ?>" />
+		    				<?php } ?>		    					
+	    				</div>		    			
+		    			<div style="float:left;vertical-align:middle;">
+		    				<?php if(!empty($headerElm["image"])){ ?>
+		    					<label>
+		    						<input type="checkbox" name="h-e-f-d-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>[]" value="<?php echo $checkbox; ?>" /> Smazat 
+		    						<input type="hidden" value="<?php echo $headerElm["image"]; ?>" name="h-e-f-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>[]" />
+		    					</label>
+		    				<?php }else{ ?>
+	    					    	<input type="hidden" value="" name="h-e-f-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>[]" />
+	    					    <?php } ?>
+		    				<div style="margin-bottom:5px;"><span class="btn btn-default btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="h-e-file-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>[]"></span></div>
+		    				<div><a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>
+		    			</div>
+		    		</div>
+		    	</div>
+	    	</div>
+    	<?php $checkbox++; } ?>
+    </div>
+    <div class="panel-footer">
+    	<a class="btn btn-primary btn-xs add-header-element" href="#" title="Přidat element">Přidat element</a>
+    	<input type="hidden" name="h-e-c-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" value="<?php echo ($checkbox-1); ?>" />
+    </div>
+</div>
+<input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="h-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+</li>

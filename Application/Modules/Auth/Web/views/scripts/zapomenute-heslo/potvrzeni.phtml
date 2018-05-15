@@ -1,0 +1,20 @@
+<div id="main-content">
+
+	<h1>Potvrzení nového hesla</h1>
+			
+	<?php 
+		if($this->error !=''){
+			echo"<div class=\"error\">" .$this->error. "</div>";
+			echo'<form action="/zapomenute-heslo" method="post"><p style="text-align:center;"> <input class="button" type="submit" name="send" value="'.$this->translate("Nové heslo").'" /> </p></form>';
+		} 
+	?>
+	
+	<?php 
+		if($this->message !=''){ 
+			echo'<div class="message">'.$this->message.'</div>';
+			echo'<form action="/" method="post"><p style="text-align:center;"> <input class="button" type="submit" name="send" value="'.$this->translate("Přihlásit").'" /> </p></form>';
+		} 
+	?>
+
+</div>
+	

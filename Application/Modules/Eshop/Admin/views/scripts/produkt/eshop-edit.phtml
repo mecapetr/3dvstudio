@@ -1,0 +1,188 @@
+		<div class="row">
+      		<div class="col-sm-4">	
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicons glyphicons-picture"></span> *Fotka produktu</div>
+					<div class="panel-body">
+						<div class="fileinput fileinput-new" data-provides="fileinput">
+							<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;">
+								<?php if(!empty($this->allItems->photo)){ ?>
+					    			<img src="/Public/Images/EshopProduct/mala-<?php echo $this->allItems->photo ?>" />
+				    			<?php } ?>
+							</div>
+							<div style="float:left;vertical-align:middle;">
+								<?php if(!empty($this->allItems->photo)){ ?>
+				    				<label>
+				    					<input type="hidden" value="<?php echo $this->allItems->photo; ?>" name="hiddenPhoto[]" />
+				    				</label>
+				    			<?php }else{ ?>
+			    					<input type="hidden" value="" name="photo[]" />
+			    				<?php } ?>
+								<div style="margin-bottom:5px;"><span class="btn btn-default btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="photo[]"></span></div>
+								<div><a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group has-feedback">	
+				 	<label>*Název produktu:</label>	    	
+				    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+				    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    	<input class="form-control <?php if($val->suffix == "cz")echo "required"; ?>" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->title[$val->suffix])echo $this->allItems->title[$val->suffix];?>" />
+					    </span>
+				    <?PHP $i++; } ?>
+					<?php echo $this->render("languageMutations.phtml"); ?>  
+			    </div>
+			    <div class="form-group has-feedback">		
+				 	<label>*Přiřadit kategorii:</label>	    	    	
+				    <select name="productCategoryID" class="form-control required">
+				    	<option value="">-- vyberte kategorii --</option>
+				    	<?php foreach ($this->allProductCategories as $val){?>					    		
+				    		<option value="<?php echo $val->productCategoryID?>" <?php if($val->productCategoryID == $this->allItems->productCategoryID)echo "selected='selected'"?>><?php echo $val->title?></option>
+				    	<?php }?>
+				    </select>
+			    </div>	
+			    
+			    <div class="form-group has-feedback">		
+				 	<label>Tvar produktu:</label>	    	    	
+				    <select name="productTypeID" class="form-control required">
+				    	<option value="0">-- vyberte tvar --</option>
+				    	<option value="0">bez tvaru</option>
+				    	<?php foreach ($this->allDimensions as $val){?>					    		
+				    		<option value="<?php echo $val->productTypeID."~".$val->shortcut ?>" <?php if($val->productTypeID == $this->allItems->productTypeID)echo "selected='selected'"?> ><?php echo $val->title?></option>
+				    	<?php }?>
+				    </select>
+			    </div>				    
+			    
+				<div class="form-group has-feedback">	
+				 	<label>Cena:</label>	    	
+				    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+				    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    	<div class="input-group">
+					    		<input class="form-control" type="number" step="any" name="price-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems->price[$val->suffix])echo $this->allItems->price[$val->suffix];?>" />
+					    		<div class="input-group-addon"><?php echo $val->currencySign;?></div>
+					    	</div>
+					    </span>
+				    <?PHP $i++; } ?>
+					<?php echo $this->render("languageMutations.phtml"); ?>  
+			    </div>							
+			</div>
+      		<div class="col-sm-8">
+			    <div class="form-group">
+					<?php echo $this->render("languageMutations.phtml"); ?>  
+				    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+				    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    		<textarea id="e-text-<?PHP echo $val->suffix ?>" class="basic form-control" placeholder="Text" name="text-<?PHP echo $val->suffix ?>"><?php if($this->allItems->text[$val->suffix])echo $this->allItems->text[$val->suffix]; ?></textarea>
+				    		<script>removeTinyMCEControll('e-text-<?PHP echo $val->suffix ?>');execTinyMCE(2,'e-text-<?PHP echo $val->suffix ?>');</script>
+					    </span>
+				    <?PHP $i++; } ?>	    	
+			    </div>
+		       	<div class="radio">
+			    	<div class="col-sm-5 no-padding-left"><strong>Zobrazit produkt:</strong></div>
+		       		<label class="radio-inline"> <input type="radio" value="1" name="showProduct" class="checkbox" <?php if($this->allItems->showProduct == 1) echo "checked"?>>Ano </label>
+		       		<label class="radio-inline"> <input type="radio" value="0" name="showProduct" class="checkbox" <?php if($this->allItems->showProduct == 0) echo "checked"?>>Ne </label>
+		       	</div>
+		       	<div class="radio">
+			    	<div class="col-sm-5 no-padding-left"><strong>Skladem:</strong></div>
+		       		<label class="radio-inline"> <input type="radio" value="1" name="store" class="checkbox" <?php if($this->allItems->store == 1) echo "checked"?>>Ano </label>
+		       		<label class="radio-inline"> <input type="radio" value="0" name="store" class="checkbox" <?php if($this->allItems->store == 0) echo "checked"?>>Ne </label>
+		       	</div>
+		       	<div class="radio ">
+			    	<div class="col-sm-5 no-padding-left"><strong>Strana:</strong></div>
+		       		<label class="radio-inline"> <input type="radio" value="1" name="sideID" class="checkbox" <?php if($this->allItems->sideID == 1) echo "checked"?>>Levá </label>
+		       		<label class="radio-inline"> <input type="radio" value="2" name="sideID" class="checkbox" <?php if($this->allItems->sideID == 2) echo "checked"?>>Pravá </label>
+		       		<label class="radio-inline"> <input type="radio" value="3" name="sideID" class="checkbox" <?php if($this->allItems->chooseSideAllowed == 1) echo "checked"?>>Výběr</label>
+			       	<label class="radio-inline"> <input type="radio" value="4" name="sideID" class="checkbox" <?php if($this->allItems->chooseSideDisabled == 1) echo "checked"?>>Nezobrazovat</label>
+		       	</div>	
+		       	<div class="radio ">
+			    	<div class="col-sm-5 no-padding-left"><strong>Předem dané vzory:</strong></div>
+		       		<label class="radio-inline"> <input type="radio" value="1" name="predefinedCoversType" class="checkbox" <?php if($this->allItems->predefinedCoversType == 1) echo "checked"?>>Ano </label>
+		       		<label class="radio-inline"> <input type="radio" value="2" name="predefinedCoversType" class="checkbox" <?php if($this->allItems->predefinedCoversType == 2) echo "checked"?>>Ne </label>
+		       		<label class="radio-inline"> <input type="radio" value="3" name="predefinedCoversType" class="checkbox" <?php if($this->allItems->predefinedCoversType == 3) echo "checked"?>>Bez vzorů </label>
+		       	</div>
+		       	<div class="predefined-covers-options <?php if($this->allItems->predefinedCoversType == 3)echo "hide";?>">
+		       		<div class="row">
+		       			<div class="col-sm-6">
+				       		<div class="panel first-panel panel-default">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-6">
+											<span class="glyphicons glyphicons-bed-alt"></span>1. vzor
+										</div>
+										<div class="col-xs-6 text-right ">
+											<label class="checkbox-inline"><input class="" type="checkbox" name="showFirstCover" value="1" <?php if($this->allItems->showFirstCover == 1) echo "checked"?> /> zobrazovat</label>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body">																		    
+								    <div class="form-group has-feedback">		
+									 	<label>Nadpis vzoru:</label>	    	    	
+									    <select name="cover1TitleID" class="form-control required">
+									    	<option value="">-- vyberte nadpis --</option>
+									    	<?php foreach ($this->allCoverTitles as $val){?>					    		
+									    		<option value="<?php echo $val->coverTitleID?>" <?php if($val->coverTitleID == $this->allItems->cover1TitleID)echo "selected='selected'"?>><?php echo $val->title?></option>
+									    	<?php }?>
+									    </select>
+								    </div>									    
+								    <div class="form-group has-feedback cover-id-display <?php if($this->allItems->predefinedCoversType == 2)echo "hide";?>">		
+									 	<label>*Název vzoru:</label>	    	    	
+									    <select name="cover1ID" class="form-control required coverID">
+									    	<option value="">-- vyberte vzor --</option>
+									    	<?php foreach ($this->allCovers as $val){?>					    		
+									    		<option value="<?php echo $val->coverID?>" <?php if($val->coverID == $this->allItems->cover1ID)echo "selected='selected'"?>><?php echo $val->title?></option>
+									    	<?php }?>
+									    </select>
+								    </div> 		   
+								    <div class="concrete-cover form-group has-feedback  <?php if(empty($this->allItems->cover1ID) || $this->allItems->predefinedCoversType == 2)echo "hide";?>">		
+									 	<label>*Konkrétní vzor:</label>   
+									    <div class=" form-group has-feedback">
+											<a href="" type="button" class="choose-concrete-cover-btn btn btn-default"  style="width:100%;"><span class="img"><?php if(!empty($this->allItems->cover1PhotoTitle)){?><img class='item-img' src='/Public/Images/Cover/<?php echo $this->allItems->cover1PhotoTitle;?>'/><?php }?></span><span class="text"><?php if(!empty($this->allItems->cover1CategoryTitle)) echo $this->allItems->cover1CategoryTitle . " " . $this->allItems->cover1Number ;else{?>Vyberte konkrétní vzor<?php }?></span><input type="hidden" name="cover1photoID" value="<?php  if(!empty($this->allItems->cover1photoID))echo $this->allItems->cover1photoID?>"/></a>											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+		       			<div class="col-sm-6">
+				       		<div class="panel second-panel panel-default">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-6">
+											<span class="glyphicons glyphicons-bed-alt"></span>2. vzor
+										</div>
+										<div class="col-xs-6 text-right ">
+											<label class="checkbox-inline"><input class="" type="checkbox" name="showSecondCover" value="1" <?php if($this->allItems->showSecondCover == 1) echo "checked"?> /> zobrazovat</label>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body">																		    
+								    <div class="form-group has-feedback">		
+									 	<label>Nadpis vzoru:</label>	    	    	
+									    <select name="cover2TitleID" class="form-control required">
+									    	<option value="">-- vyberte nadpis --</option>
+									    	<?php foreach ($this->allCoverTitles as $val){?>					    		
+									    		<option value="<?php echo $val->coverTitleID?>" <?php if($val->coverTitleID == $this->allItems->cover2TitleID)echo "selected='selected'"?>><?php echo $val->title?></option>
+									    	<?php }?>
+									    </select>
+								    </div>									    
+								    <div class="form-group has-feedback cover-id-display <?php if($this->allItems->predefinedCoversType == 2)echo "hide";?>">		
+									 	<label>*Název vzoru:</label>	    	    	
+									    <select name="cover2ID" class="form-control required coverID">
+									    	<option value="">-- vyberte vzor --</option>
+									    	<?php foreach ($this->allCovers as $val){?>					    		
+									    		<option value="<?php echo $val->coverID?>" <?php if($val->coverID == $this->allItems->cover2ID)echo "selected='selected'"?>><?php echo $val->title?></option>
+									    	<?php }?>
+									    </select>
+								    </div> 		   
+								    <div class="concrete-cover form-group has-feedback <?php if(empty($this->allItems->cover2ID) || $this->allItems->predefinedCoversType == 2)echo "hide";?>">		
+									 	<label>*Konkrétní vzor:</label>   
+									    <div class=" form-group has-feedback">
+											<a href="" type="button" class="choose-concrete-cover-btn btn btn-default"  style="width:100%;"><span class="img"><?php if(!empty($this->allItems->cover2PhotoTitle)){?><img class='item-img' src='/Public/Images/Cover/<?php echo $this->allItems->cover2PhotoTitle;?>'/><?php }?></span><span class="text"><?php if(!empty($this->allItems->cover2CategoryTitle)) echo $this->allItems->cover2CategoryTitle . " " . $this->allItems->cover2Number ;else{?>Vyberte konkrétní vzor<?php }?></span><input type="hidden" name="cover2photoID" value="<?php  if(!empty($this->allItems->cover2photoID))echo $this->allItems->cover2photoID?>"/></a>											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+		       	</div>
+	       	</div>
+	     </div>
+		 <input type="hidden" name="eshopProductID" value="<?php echo $this->allItems->eshopProductID?>" />

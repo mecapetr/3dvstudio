@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<link href="/Public/Images/Admin/favicon.png" rel="shortcut icon" />
+
+<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons.css">
+<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-bootstrap.css">
+
+<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/main.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/lg.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/md.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/sm.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/xs.css" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta http-equiv="content-language" content="cz" />
+
+<title><?php echo $this->title; ?></title>
+
+</head>
+
+<body>
+
+	<div id="container">	
+		<div class="container">				
+			<div id="content" class="col-xs-12 col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">			
+				<div id="login-form">								
+					<div class="admin">	ADMIN </div>				
+					<div class="content">					
+						<div class="img">						
+							<img class="img-responsive center-block" src="/Public/Images/Layout/logo_bw.png" />					
+						</div>					
+						<div>											
+							<?php echo $this->layout()->content; ?>										
+						</div>					
+					</div>			
+				</div>			
+				<footer> 
+					&copy; <?php echo date("Y"); ?> 1vision | <a class="link" href="http://www.1vison.cz" >www.1vison.cz</a>
+				</footer>		
+			</div>		
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+

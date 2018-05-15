@@ -1,0 +1,41 @@
+
+<div class="exit"><a href="#" onclick="clwi();return false;"><img src="/Public/Images/exit.png" /></a></div>
+
+<h2><?php echo $this->file ?> </h2>
+
+
+    <p> (Kliknutím a tažením myši po obrázku zvolte oblast, kterou chcete ořezat.) </p>
+    
+	<div class="files">
+
+      <?php if($this->error !=''){   echo"<div class=\"error\">" .$this->error. "</div>";} ?>
+	  <?php if($this->message !=''){ echo"<div class=\"message\">" .$this->message. "</div>";} ?>
+      
+      <input type="hidden" id="x1" name="x1" />   
+      <input type="hidden" id="y1" name="y1" />  
+      <input type="hidden" id="newWidth" name="newWidth" />
+      <input type="hidden" id="newHeight" name="newHeight" />
+      
+      <img src="/Public/Images/<?php echo $this->folder ?>/stredni-<?php echo $this->file ?>?<?php echo rand(0,999); ?>" alt="<?php echo $this->file ?>" id="setImage" />
+
+   </div> 	
+   
+   <p class="button"><input onclick="crop('<?php echo $this->id ?>');return false;" class="button" type="submit" name="crop" value="Ořezat" /></p>
+
+<!--  kropnuti obrazku -->
+<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scripts/jquery.imgareaselect.js"></script> 
+
+<script type="text/javascript"> 
+	$(document).ready(function () {
+		$('img#setImage').imgAreaSelect({ 
+			handles: true,
+			parent:'#overlayContent',
+			onSelectEnd: function (img, selection){ 
+				$("#x1").val(selection.x1);
+				$("#y1").val(selection.y1);
+				$("#newWidth").val(selection.width);
+				$("#newHeight").val(selection.height);
+			} 
+		}); 
+	}); 
+</script>

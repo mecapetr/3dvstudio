@@ -1,0 +1,161 @@
+<h1> Přidat uživatele </h1>
+
+<ol class="breadcrumb">
+<li>Uživatelé</li>
+<li class="active">Přidat uživatele</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+	<div class="panel panel-default">		
+	
+		<div class="panel-heading">
+			Obecný formulář
+		</div>
+		
+		<div class="panel-body"> 
+			<div class="row"> 
+				<div class="col-sm-6 col-md-4"> 
+				    <div class="form-group">
+				    	<label>Titul: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="degree" value="<?php if($this->degree)echo $this->degree;?>" />
+				    	</div>
+				    </div>
+			    </div> 
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Jméno: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="name" value="<?php if($this->name)echo $this->name;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Příjmení: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="surname" value="<?php if($this->surname)echo $this->surname;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Společnost: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="spol" value="<?php if($this->spol)echo $this->spol;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Ulice: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="street" value="<?php if($this->street)echo $this->street;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>PSČ: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="zip" value="<?php if($this->zip)echo $this->zip;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Město: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="city" value="<?php if($this->city)echo $this->city;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Tel.: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="tel" value="<?php if($this->tel)echo $this->tel;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Email: </label> 
+				    	<div>
+				    		<input class="form-control" type="text" name="email" value="<?php if($this->email)echo $this->email;?>" />
+				    	</div>
+				    </div>
+			    </div>
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Heslo: </label> 
+				    	
+			    		<div class="input-group">
+			    			<input id="password" class="form-control" type="text" name="password" value="<?php if($this->password)echo $this->password;?>" />
+			    			<div class="input-group-addon"><a class="button" onclick="generatePassword(8);return false;" href="">Vygeneruj heslo</a></div>	
+			    		</div>
+				    	
+				    </div>
+			    </div>
+			     
+			    <div class="col-sm-6 col-md-4">
+			    	<div class="form-group">
+				    	<label>Zasílat emaily: </label>
+				    	<div>
+				    		<label class="radio-inline"><input type="radio" value="1" name="sendEmails" class="checkbox" <?PHP if($this->sendEmails == 1)echo"checked" ?> >Ano</label>
+				    		<label class="radio-inline"><input type="radio" value="0" name="sendEmails" class="checkbox" <?PHP if($this->sendEmails == 0)echo"checked" ?> >Ne</label>
+			    		</div>
+		    		</div>    
+		    	</div>
+			    
+		        <?php if(count($this->allCategories) > 0){ ?>
+		        
+		        	 <p>
+				         <label><?PHP echo $this->translate("Přidat do kategorie"); ?>:</label>		        	
+				         <input id="all-cat-user" type="checkbox" <?php if(!$this->categories || count($this->categories) == count($this->allCategories)){echo" checked ";} ?> class="checkbox" name="all-cat" value="1" /> <label for="select-all-cat"><?PHP echo $this->translate("Všechny kategorie"); ?></label>
+				     </p>    
+			     
+					 <ul class="equipment">
+					    <?php foreach($this->allCategories as $cat){ ?>			        	
+				        	    <?php 
+				        	    	$checked = false;
+				        	    	if($this->categories){
+					        	    	foreach($this->categories as $c){ 
+					        	    		if($c == $cat->categoryID){
+					        	    			$checked = true;
+					        	    			break;
+					        	    		}
+					        	    	}
+				        	    	}
+				        	    	
+				        	    ?>	        	      	
+					      <li>
+					       	<input <?php if(!$this->categories || $checked)echo" checked ";?> id="cat-<?PHP echo $cat->categoryID ?>" type="checkbox" class="checkbox user-cat-check" name="categories[]" value="<?php echo $cat->categoryID ?>" />
+					       	<label for="cat-<?PHP echo $cat->categoryID ?>"><?php echo $cat->title; ?></label>
+					      </li>
+					     <?php } ?>
+					 </ul>
+					 <br class="clear-left" />
+		        
+		        <?php } ?>
+
+	        </div>
+		</div>
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Přidat" />
+			</div>
+		</div>
+	</div>
+	
+</form>
+
+	
+    

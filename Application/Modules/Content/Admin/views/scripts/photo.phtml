@@ -1,0 +1,67 @@
+            <script type="text/javascript" src="/Public/Jscripts/AdminBase/addPhoto.js"></script>
+
+		    <div class="files">
+		        	<div class="galleryPhotos">
+		        		<div class="uploaded-photos main-ul sortListPhotos photoPriority">
+							<?php if($this->allPhotos)foreach($this->allPhotos as $item){ ?>
+								
+								<div class="photo col-xs-12 <?php if($this->articleSection)echo 'col-sm-4';else echo 'col-sm-6';  ?>" id="<?PHP echo $item->photoID ?>">
+									<div class="photo-cover">
+										<img class="file" src="/Public/Images/<?php echo $this->folder; ?>/mala-<?php echo $item->title; ?>?<?php echo rand(0,999); ?>" />
+									</div>
+									<input class="mainPhotoInput" type="radio" name="mainPhoto" onchange="checkMmainPhoto(this);" <?php if($this->mainPhoto == $item->photoID."-e")echo "checked"; ?> value="<?php echo $item->photoID."-e";?>" /> hlavní
+									
+									<p>
+										<!-- <a title="Uprav" onclick="cropPhoto(<?php echo $item->width; ?>,<?php echo $item->height; ?>,'<?php echo $item->photoID."-e"; ?>');return false;" href="#"><img alt="Uprav" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/edit.png" /></a> -->  
+							    		<a title="Stáhnout originál" target="_blank" href="/Public/Images/<?php echo $this->folder; ?>/<?php echo $item->title; ?>"><span class="glyphicons glyphicons-download"></span></a>  
+							    		<input id="del<?php echo $item->photoID."-e";?>" value="<?php echo $item->photoID."-e";?>" type="checkbox" name="delete" />							
+							    		<a title="Smaž" onclick="checkCheckbox(this);return false;" href="<?php echo $item->photoID."-e";?>"><span class="glyphicons glyphicons-remove"></span></a>
+									</p>
+									<p>										
+									    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+									    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+										    	<input placeholder="popis" class="form-control input-sm" type="text" name="<?php echo $item->photoID."-e";?>-photoDesc-<?PHP echo $val->suffix ?>" value="<?PHP echo $item->description[$val->suffix] ?>" />
+										    </span>
+									    <?PHP $i++; } ?>
+										<?php echo $this->render("photoLanguageMutations.phtml"); ?>  
+									</p>
+								</div>
+								
+							<?php } ?>
+						</div>
+						<?php if($this->allTempPhotos)foreach($this->allTempPhotos as $item){ ?>
+							
+							<div class="photo photoTemp col-xs-12 <?php if($this->articleSection)echo 'col-sm-4';else echo 'col-sm-6';  ?>">
+								<div class="photo-cover">
+									<img class="file" src="/Public/Images/Temp/mala-<?php echo $item->file; ?>?<?php echo rand(0,999); ?>" />
+								</div>
+								<input type="hidden" name="photos[]" value="<?php echo $item->file; ?>~<?php echo $item->width; ?>~<?php echo $item->height; ?>~<?php echo $item->photoTempID."-t"; ?>" />
+								<input class="mainPhotoInput" type="radio" name="mainPhoto" onchange="checkMmainPhoto(this);" <?php if($this->mainPhoto == $item->photoTempID."-t")echo "checked"; ?> value="<?php echo $item->photoTempID."-t";?>" /> hlavní
+								
+								<p>
+									<!-- <a title="Uprav" onclick="cropPhoto(<?php echo $item->width; ?>,<?php echo $item->height; ?>,'<?php echo $item->photoTempID."-t"; ?>');return false;" href="#"><img alt="Uprav" src="<?php echo $this->baseUrl ?>/Public/Images/Admin/edit.png" /></a>  -->
+									<a title="Stáhnout originál" target="_blank" href="/Public/Images/Temp/<?php echo $item->file; ?>"><span class="glyphicons glyphicons-download"></span></a>  
+						    		<input id="del<?php echo $item->photoTempID."-t";?>" value="<?php echo $item->photoTempID."-t";?>" type="checkbox" name="delete" />							
+						    		<a title="Smaž" onclick="checkCheckbox(this);return false;" href="<?php echo $item->photoTempID."-t";?>"><span class="glyphicons glyphicons-remove"></span></a>
+								</p>
+								<p>										
+									<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+									   	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+											<input placeholder="popis" class="form-control input-sm" type="text" name="<?php echo $item->photoTempID."-t";?>-photoDesc-<?PHP echo $val->suffix ?>" value="" />
+										</span>
+									<?PHP $i++; } ?>
+									<?php echo $this->render("photoLanguageMutations.phtml"); ?>  
+								</p>
+							</div>
+							
+						<?php } ?>
+						<div id="endFloat"></div>
+					</div>
+											
+					<?php if(count($this->allPhotos) > 0 || count($this->allTempPhotos) > 0){ ?>					
+						<p class="links">
+							<a class="btn btn-danger btn-xs" href="#" onclick="deletePhotos();return false;"> Smazat označené</a>
+						</p> 
+					<?php } ?>
+				
+		     </div>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+	<link href="/Public/Images/Admin/favicon.png" rel="shortcut icon" />
+	
+	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons.css" />
+	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-bootstrap.css" />
+	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-filetypes.css" />
+	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-social.css" />
+		
+	<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/Public/Css/Bootstrap/css/jasny-bootstrap.min.css" />
+	
+	<link href="/Public/Jscripts/kartik-bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/main.css?5" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/lg.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/md.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/sm.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/Public/Css/Admin/xs.css" />
+	
+	<link rel="stylesheet" type="text/css" href="/Public/Css/AdminBase/admin.css?5" media="screen" />
+		
+	<!--  upload souboru v galerii -->
+	<link rel="stylesheet" type="text/css" href="/Public/Jscripts/Upload/uploadify.css" />
+	
+	<!-- Datepicker jQuery -->	
+    <link rel="stylesheet" type="text/css" href="/Public/Jscripts/Datepicker/css/start/datepicker.css" media="screen" />
+	<!-- /Datepictek jQuery --> 
+	
+	<!--  styly impromtu -->
+	<link rel="stylesheet" type="text/css" href="/Public/Jscripts/Impromptu/jquery-impromptu.css" media="screen" />
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-language" content="cz" />
+	
+	<title><?php echo $this->adminTitle; ?></title>
+	
+	<script type="text/javascript" src = "/Public/Jscripts/AdminBase/jquery-latest.js"></script>	
+	<script type="text/javascript" src = "/Public/Jscripts/AdminBase/quicksearch.js"></script>
+	<script type="text/javascript" src="/Public/Jscripts/Bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/Public/Jscripts/Bootstrap/jasny-bootstrap.js?2"></script>
+	
+	<script src="/Public/Jscripts/kartik-bootstrap-fileinput/js/plugins/purify.min.js?2" type="text/javascript"></script>
+	<script src="/Public/Jscripts/kartik-bootstrap-fileinput/js/fileinput.min.js?2"></script>
+	<script src="/Public/Jscripts/kartik-bootstrap-fileinput/js/locales/cs.js?2"></script>
+		
+	<!--  potvrzování pomoci impromtu -->
+	<script type="text/javascript" src = "/Public/Jscripts/Impromptu/jquery-impromptu.js"></script>
+	
+	<!-- vyber barvy v inputu -->
+	<!--  <script type="text/javascript" src = "/Public/Jscripts/jscolor/jscolor.js"></script>-->
+	<script type="text/javascript" src = "/Public/Jscripts/BootstrapColorpicker/js/bootstrap-colorpicker.js"></script>
+	<link rel="stylesheet" href="/Public/Jscripts/BootstrapColorpicker/css/bootstrap-colorpicker.css" type="text/css" media="screen" />
+		
+	<!--  kropnuti obrazku -->
+	<script type="text/javascript" src="/Public/Jscripts/ImageCrop/scripts/jquery.imgareaselect.js"></script> 
+	 
+	<script type="text/javascript" src="/Public/Jscripts/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="/Public/Jscripts/tinymce/dispatchBasic.js?13"></script>
+	
+	<script type="text/javascript" src="/Public/Jscripts/AdminBase/events.js?9"></script>
+	<script type="text/javascript" src="/Public/Jscripts/Admin/events.js?9"></script>
+	
+	<!-- Datepicker -->	
+	<script type="text/javascript" src="/Public/Jscripts/Datepicker/datepicker-cs.js" ></script>
+	<script type="text/javascript" src="/Public/Jscripts/Datepicker/datepicker.js" ></script>
+	<!--[if IE 7]>
+      		<link rel="stylesheet" type="text/css" href="/Public/Css/Admin/IE7.css" media="screen" />
+    <![endif]-->
+    
+    			
+	<script type="text/javascript" src="/Public/Jscripts/List/list.min.js"></script>
+</head>
+
+<body>
+
+	<header>		
+		<?php echo $this->placeholder('Zend_Layout')->header; ?>	
+	</header>
+	
+	<div id="sidebar">
+		<p class="logo"><img src="/Public/Images/Layout/logo_bw.png" /></p>
+		<nav>
+			<ul id="menu-accordion">
+				<?php foreach($this->adminMenu as $menu){ ?>
+					<li class="main">
+						<?php if(!empty($menu->subLinks)){ ?>
+							<a href="<?php echo "#".$menu->icon ?>" data-toggle="collapse" class="<?php if($this->selectedMenu == $menu->title)echo "selected";else echo "collapsed" ?>"> <span class="glyphicons glyphicons-<?php echo $menu->icon ?>"></span> <?php echo $menu->title ?> <span class="glyphicons glyphicons-chevron-down right"></span> <span class="glyphicons glyphicons-chevron-left right"></span></a>
+							<div class="collapse <?php if($this->selectedMenu == $menu->title)echo "in"; ?>" id="<?php echo $menu->icon ?>">
+								<ul>
+									<?php foreach($menu->subLinks as $subMenu){ ?>
+										<li><a class="<?php if($this->subSelected == $subMenu->title)echo "selected"; ?>" href="<?php echo $subMenu->url ?>"><?php echo $subMenu->title ?></a></li>
+									<?php } ?>
+								</ul>
+							</div>
+						<?php }else{ ?>
+							<a href="<?php echo $menu->url ?>" class="<?php if($this->selectedMenu == $menu->title)echo "selected"; ?>"> <span class="glyphicons glyphicons-<?php echo $menu->icon ?>"></span> <?php echo $menu->title ?> </a>
+						<?php } ?>
+					</li>
+				<?php } ?>
+								
+			</ul>
+		</nav>
+				
+	    <div class="copyright"> <a class="link" href="http://www.1vision.cz">&copy; <?php echo date("Y"); ?> 1vision</a></div>
+		
+	</div>
+	
+	<div id="main-content">	
+		<div class="container-fluid">	
+				    
+			<?php echo $this->layout()->content; ?>
+		</div>		
+	</div>
+	
+	
+	<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="upozornění">
+	  <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"><span class="glyphicons glyphicons-warning-sign"></span> UPOZORNĚNÍ</h4>
+	      </div>
+	      <div class="modal-body text-center">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Ne</button>
+	        <button type="button" class="btn btn-success do-delete">Ano</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>	
+
+
+</body>
+
+</html>

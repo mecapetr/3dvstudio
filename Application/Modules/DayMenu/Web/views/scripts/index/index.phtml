@@ -1,0 +1,48 @@
+<?php echo $this->render("placeholders/left-column.phtml"); ?>
+   					
+<div id="tinymce" class="right-column">
+        			
+    <h1>Denní menu od <span><?php echo $this->menuFrom; ?></span> do <span><?php echo $this->menuTo; ?></span></h1>
+	<div class="next-menu">
+		<?PHP if($this->week == 2 || $this->week == 1){ ?>
+			<a class="left" href="/denni-menu<?PHP if($this->week != 1) echo "/nasledujici/".($this->week-1); ?>">«&nbsp;předchozí týden</a>
+		<?PHP } ?>
+		<?PHP if(empty($this->week) || $this->week < 2){ ?>
+			<a class="right" href="/denni-menu/nasledujici/<?PHP if(empty($this->week))echo 1;else echo $this->week+1; ?>">následující týden&nbsp;»</a>
+		<?PHP } ?>
+	</div>
+	<div class="text denni-menu">
+	   	    
+	    <?php foreach($this->days as $key => $day){ ?>
+		    
+		    <?php if(isset($this->foodList[$key])){ ?>
+		    
+		    	<h2><?php echo $day ?></h2>	
+		    	<?php if(isset($this->foodList[$key][0]) && !empty($this->foodList[$key][0]->supe)){ ?>	    
+		    		<p class="supe"><strong>Polévka:</strong> <?php echo $this->foodList[$key][0]->supe; ?></p>
+				<?php } ?>
+		    	<?php if(isset($this->foodList[$key])){ ?>
+		    		<table>
+				    	<?php $i = 1; foreach($this->foodList[$key] as $food){ ?>
+				    		<?php if($food->day == $key){ ?>
+				    			<tr><td><strong><?php if(!empty($food->weight)){ echo $food->weight."g";} ?></strong></td><td><strong><?php if(!empty($food->weight) && !empty($food->price)){  echo $i."."; } ?></strong> <?php echo $food->food ?></td><td class="last"><strong><?php if(!empty($food->weight)){echo  $food->price.",- Kč"; }?></strong></td></tr>	
+				        	<?php } ?>
+				    	<?php $i++; } ?>
+		            </table>
+		        <?php } ?>
+		        
+
+		  <?php } ?>
+		    
+	    <?php } ?>
+    </div>
+	<div class="next-menu">
+		<?PHP if($this->week == 2 || $this->week == 1){ ?>
+			<a class="left" href="/denni-menu<?PHP if($this->week != 1) echo "/nasledujici/".($this->week-1); ?>">«&nbsp;předchozí týden</a>
+		<?PHP } ?>
+		<?PHP if(empty($this->week) || $this->week < 2){ ?>
+			<a class="right" href="/denni-menu/nasledujici/<?PHP if(empty($this->week))echo 1;else echo $this->week+1; ?>">následující týden&nbsp;»</a>
+		<?PHP } ?>
+	</div>
+</div>
+<div class="clear-left"></div>

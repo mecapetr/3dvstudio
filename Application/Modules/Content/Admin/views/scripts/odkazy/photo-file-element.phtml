@@ -1,0 +1,104 @@
+<li>
+<div class="panel panel-default">
+<div class="panel-heading clearfix">
+<span class="label label-dark-yellow">Element fotky a soubory</span>
+<span class="glyphicons glyphicons-remove photo-file-element" data="<?php echo $this->elementData["photoFile"]["fileID"]; ?>-<?php echo $this->elementData["photoFile"]["priority"]; ?>"></span>
+<span class="glyphicons glyphicons-move"></span>
+<span class="element-width form-inline">
+    	<label>Šířka elementu:</label>
+    	<select class="form-control" name="ph-file-element-width-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 12) echo "selected = 'selected'"?> value="12">12 dílů (celá šířka)</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 11) echo "selected = 'selected'"?> value="11">11 dílů</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 10) echo "selected = 'selected'"?> value="10">10 dílů</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 9) echo "selected = 'selected'"?>  value="9">9 dílů</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 8) echo "selected = 'selected'"?>  value="8">8 dílů</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 7) echo "selected = 'selected'"?>  value="7">7 dílů</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 6) echo "selected = 'selected'"?>  value="6">6 dílů (polovina šířky)</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 5) echo "selected = 'selected'"?>  value="5">5 dílů</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 4) echo "selected = 'selected'"?>  value="4">4 díly</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 3) echo "selected = 'selected'"?>  value="3">3 díly</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 2) echo "selected = 'selected'"?>  value="2">2 díly</option>
+    		<option <?php if($this->elementData["photoFile"]['elementWidth'] == 1) echo "selected = 'selected'"?>  value="1">1 díl</option>
+    	</select>
+    </span>
+</div>
+	<div class="panel-body">
+	    
+	    <div class="form-group">
+	        <label>Posuvné fotky: </label>
+	    	<label class="radio-inline"><input class="checkbox" type="radio" name="ph-file-isSlider-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" <?php if($this->elementData["photoFile"]['isSlider'] == 1) echo 'checked = "checked"'; ?> value="1">Ano</label>
+	    	<label class="radio-inline"><input class="checkbox" type="radio" name="ph-file-isSlider-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" <?php if($this->elementData["photoFile"]['isSlider'] == 0) echo 'checked = "checked"'; ?> value="0">Ne</label>
+	    </div>
+	    
+	    <div class="form-group">
+	      <label>Zobrazovat náhled: </label>
+	    	<label class="radio-inline"><input class="checkbox" type="radio" name="ph-file-showDetail-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" <?php if($this->elementData["photoFile"]['showDetail'] == 1) echo 'checked = "checked"'; ?> value="1">Ano</label>
+	    	<label class="radio-inline"><input class="checkbox" type="radio" name="ph-file-showDetail-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" <?php if($this->elementData["photoFile"]['showDetail'] == 0) echo 'checked = "checked"'; ?> value="0">Ne</label>
+	    </div>
+
+		<div class="form-group">
+			<label class="label-concrete">Nové soubory</label>
+		    <div class="fileinput fileinput-new" data-provides="fileinput">
+		    	<div class="input-group">
+		    		<div class="form-control uneditable-input">
+		    			<i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span>
+		    		</div>
+		    		<div class="input-group-btn">
+		    			<div class="btn btn-primary btn-file">
+		    				<span class="fileinput-new" >Vyberte</span>
+		    				<span class="fileinput-exists">Změnit</span>
+		    				<input type="file" multiple="multiple" name="ph-file-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>[]" />
+		    			</div>
+		    			<button type="button" class="btn btn-danger fileinput-exists" data-dismiss="fileinput" title="remove">
+		    				Odstranit
+		    			</button>    
+		    		</div>
+		    	</div>
+		    </div>	
+		</div>
+		
+		<div class="form-group galleryPhotos">
+			<?php foreach($this->elementData["photoFile"]["data"] as $key => $pf){ ?>
+				
+				<?php if(!empty($pf["ico"])){ ?>
+				
+				<div class="photo smaller col-xs-6 col-sm-3 col-lg-2 text-center" >
+					<span class="filetypes filetypes-<?php echo $pf["ico"]; ?>"></span><br />
+					<p class="file-title text-overflow"><?php echo $pf["photoFileTitle"] ?></p>
+														
+					<p>
+						<label>
+						<input id="del<?php echo $key."-e";?>" value="<?php echo $key; ?>~<?php echo $pf["photoFileTitle"]; ?>~<?php echo $pf["photoID"]; ?>~<?php echo $pf["fileID"]; ?>" type="checkbox" name="deletePF[]" />							
+			    		<span class="glyphicons glyphicons-remove"></span>
+			    		</label>
+					</p>
+					
+				</div>
+				
+				<?php }else{ ?>
+			
+					<div class="photo smaller col-xs-6 col-sm-3 col-lg-2 text-center">
+						<div class="photo-cover">
+							<img class="file" src="/Public/Images/Link/Section/File/mala-<?php echo $pf["photoFileTitle"]; ?>?<?php echo rand(0,999); ?>" />
+						</div>
+														
+						<p>
+							<label>
+							<input id="del<?php echo $key."-e";?>" value="<?php echo $key; ?>~<?php echo $pf["photoFileTitle"]; ?>~<?php echo $pf["photoID"]; ?>~<?php echo $pf["fileID"]; ?>" type="checkbox" name="deletePF[]" />							
+				    		<span class="glyphicons glyphicons-remove"></span>
+				    		</label>
+						</p>
+	
+					</div>
+				<?php } ?>
+			
+			<?php } ?>
+		</div>
+		
+		<input type="hidden" value="<?php echo $this->elementData["photoFile"]["fileID"]; ?>-<?php echo $this->elementData["photoFile"]["priority"]; ?>" name="pf-IDs-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+
+    </div>
+
+</div>
+<input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="pf-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+</li>

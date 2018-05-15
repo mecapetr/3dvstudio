@@ -1,0 +1,31 @@
+<div id="main-content">
+	<h1>Zapomenuté heslo</h1>
+
+
+    	<?php if($this->message){ ?><div class="message"><?php echo $this->translate($this->message); ?></div><?php } ?>
+    	<?php if($this->error){ ?><div class="error loginError"><?php echo $this->translate($this->error); ?></div><?php } ?>
+    
+        <?php if(!$this->message){ ?>
+		<form action="<?php echo $this->baseUrl;echo $this->action; ?>" method="post">
+		    <p>
+		    	<?php echo $this->translate("Pro vygenerování nového hesla prosím zadejte vas registrační email."); ?>
+		    </p>
+	        <p>
+	            <label for="login">Email: </label>
+	            <input id="login" type="text" name="email" />
+	        </p>
+	
+	        
+	        <p class="button">
+	            
+	            <input id="enter" type="submit" name="enter" value="<?php echo $this->translate("Odeslat"); ?>" /><br />
+	            <a href="/"><?php echo $this->translate("Zpět na přihlášení"); ?></a>
+	        </p>
+	       
+	
+	    </form>
+	    
+	    <?php } ?>
+	
+
+</div>

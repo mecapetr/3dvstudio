@@ -1,0 +1,156 @@
+<div id="section-container" class="homepage">
+	<div class="container">
+		<div class="left-menu hidden-xs hidden-sm">
+			<nav>
+	  			<ul class="clearfix">
+	  				<?php foreach($this->menuLeftCategories as $menu){ ?>
+	  					<?php if($menu->title){ ?>
+		  		    		<li class="<?php echo $menu->userAdd ?> clearfix">
+		  		    			<?php if(isset($this->menuLeftSubCategories[$menu->linkID])){ ?>
+		  		    				<span class="glyphicons glyphicons-minus"></span>
+		  		    			<?php } ?>
+		  		    			<a class="<?php echo $menu->userAdd ?>" href="<?php echo $menu->otherLink; ?>">
+		  		    				<?php echo $menu->title ?>
+		  		    			</a>
+		  		    			<span class="clearfix visible-xs"></span>
+		  		    			<?php if(isset($this->menuLeftSubCategories[$menu->linkID])){ ?>
+		  		    				<ul class="sublinks">
+		  		    					<?php foreach($this->menuLeftSubCategories[$menu->linkID] as $subLink){ ?>
+		  		    						<?php if(!empty($subLink->title)){ ?>
+			  		    						<li class="<?php echo $subLink->class ?>">
+			  		    							<a class="<?php echo $subLink->class ?>" href="<?php echo $subLink->niceTitle ?>"><?php echo $subLink->title ?></a>
+			  		    							<?php if(isset($this->menuLeftSubCategories[$subLink->linkID])){ ?>
+				  		    							<span class="glyphicons glyphicons-plus sub"></span>
+				  		    							<ul class="subsublinks">
+				  		    								<?php foreach($this->menuLeftSubCategories[$subLink->linkID] as $subSubLink){ ?>
+				  		    									<?php if(!empty($subSubLink->title)){ ?>
+		  		    								  			<li class="<?php echo $subSubLink->class ?>">
+		  		    								  		    	<a class="<?php echo $subSubLink->class ?>" href="<?php echo $subSubLink->niceTitle ?>"><?php echo $subSubLink->title ?></a>
+		  		    								  		    </li>	
+		  		    								  		    <?php } ?>					
+		  		    								  		<?php } ?>
+		  		    								  	</ul>
+				  		    						<?php } ?>
+			  		    						</li>
+		  		    						<?php } ?>
+		  		    					<?php } ?>
+		  		    				</ul>
+		  		    			<?php } ?>
+		  		    		</li>
+	  		    		<?php } ?>
+	  		    	<?php } ?>
+	  				</ul>
+	  		</nav>
+	  		<div class="below-left-menu-text">
+		  		<?php if(!empty($this->allLayoutTexts[17]->text)){?>
+					<?php echo $this->allLayoutTexts[17]->text;?>
+	  			<?php }?>
+  			</div>
+		</div>
+		<?php foreach ($this->allHomepageSections as $section){?>
+			<section class="with-left-menu section-block">
+				<h2><a href="<?php echo $section->url?>" style="background-color: <?php echo $section->color; ?>"><?php echo $section->title?></a></h2>
+				<div class="product-list clearfix">		
+					<?php if($section->products){foreach($section->products as $val){?>	
+					<div class="product col-xlg-3 col-lg-4 col-sm-6 col-xs-12 au<?php echo $val->productID?>">
+						<div class="content">
+							<div class="photo-block">
+								<a href="/<?php echo $val->linkNiceTitle;?>/<?php echo $val->productID;?>-<?php echo $val->niceTitle;?>">
+									<img src="/Public/Images/Product/stredni-<?php echo $val->mainPhoto?>" />
+								</a>
+								<?php if($val->statusesCount > 0){ ?>
+									<div class="red flag" <?php if(!empty($val->statuses[0]["color"])){?>style="background-color:<?php echo $val->statuses[0]["color"];?>;"<?php }?>><?php echo $val->statuses[0]["title"]; ?></div>
+								<?php } ?> 
+								<?php if($val->isInAuction){?>
+									<div class="time-to-left"><div class="title"><?php echo $this->translate('Do konce');?></div><div class="time"><?php echo $val->timeToEnd;?></div></div>
+									<?php if(strtotime($val->dateAuction) > time()){ ?>
+										<a href="" class="place-bid btn btn-default" id="<?php echo $val->productID?>"><?php echo $this->translate("Přihodit");?></a>
+									<?php }?>										
+									<script>startCountdown('<?php echo $val->dateAuction; ?>','<?php echo $val->productID; ?>')</script>
+								<?php }?>
+							</div>
+							<div class="info clearfix <?php if($val->statusesCount <= 1)echo"middle"; ?>">
+              
+								<?php if(!$val->isInAuction){?>
+  								<?php if($val->statusesCount > 1){ ?>
+  									<div class="top-info clearfix">
+  										<?php for($i = 1;$i < $val->statusesCount; $i++){ ?>
+  											<div class="col-xs-<?php echo $val->statusesCols ?> flag <?php if($val->statusesCount == 2)echo "text-left"; ?>"><?php echo $val->statuses[$i]["title"] ?></div>
+  										<?php } ?>
+  									</div>
+  								<?php } ?>   
+								<?php }else{ ?>									
+									<div class="top-info clearfix">
+										<div class="col-xs-6 flag actual-price">Aktuální cena: <span class="price"><?php echo $val->lasBidPriceFormated;?></span> <span class="currency"><?php echo $this->wholeLangData->currencySign;?></span></div>
+										<div class="col-xs-6 flag">Původní cena: <?php echo $val->stringPrice;?></div>
+									</div>
+								<?php }?>
+								<div class="bottom-info clearfix">
+									<div class="col-xs-8 no-padding-right title"><a href="/<?php echo $this->firstCategory->niceTitle;?>/<?php echo $val->productID;?>-<?php echo $val->niceTitle;?>"><?php echo $val->title?></a></div>
+									
+									<?php if(!$val->isInAuction){?>
+                    <div class="col-xs-4 price"><?php echo $val->stringPrice ?></div>   
+									<?php }?>
+								</div>
+							</div>
+						</div>
+					</div>	
+				<?php }}else{ ?>
+					<div class="alert alert-warning text-center"><?php echo $this->translate("Omlouváme se, ale momentálně se v této kategorii nenachází žádné produkty.") ?></div>
+				<?php } ?>
+				</div>
+			</section>
+		<?php }?>
+	  	<div class="below-left-menu-text visible-sm visible-xs row">
+		  	<div class="col-xs-12">
+			  	<?php if(!empty($this->allLayoutTexts[17]->text)){?>
+					<?php echo $this->allLayoutTexts[17]->text;?>
+		  		<?php }?>
+		  	</div>
+		</div>
+	</div>
+	
+</div>
+
+<script type="text/javascript">
+    var google_tag_params = {
+    ecomm_pagetype: 'home'
+    };
+</script>
+<?php if($this->concreteLang->lang == "cz"){ ?>  
+  
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 961474074;
+  var google_custom_params = window.google_tag_params;
+  var google_remarketing_only = true;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+  <div style="display:inline;">
+  <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/961474074/?guid=ON&amp;script=0"/>
+  </div>
+  </noscript>
+
+<?php }else{ ?>
+
+  <!-- Google Code for eshop -->
+	<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	var google_conversion_id = 949251727;
+	var google_custom_params = window.google_tag_params;
+	var google_remarketing_only = true;
+	/* ]]> */
+	</script>
+	<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+	</script>
+	<noscript>
+	<div style="display:inline;">
+	<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949251727/?guid=ON&amp;script=0"/>
+	</div>
+	</noscript>
+
+<?php } ?>

@@ -1,0 +1,35 @@
+<h2> Instalace admin </h2>
+
+    <?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+	<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+	<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+	   
+	   	<div class="form-group">
+	   		<strong>Moduly</strong>
+	   	</div> 
+	   	<div class="form-group">
+			<div class="checkbox">
+				<label class="radio"><input type="checkbox" name="modules[]" value="1" /> Články</label>
+			</div>
+			<div class="checkbox">
+				<label class="radio"><input type="checkbox" name="modules[]" value="2" /> Bannery</label>
+			</div>
+			<div class="checkbox">
+				<label class="radio"><input type="checkbox" name="modules[]" value="3" /> Uživatelé</label>
+			</div>
+			<div class="checkbox">
+				<label class="radio"><input type="checkbox" name="modules[]" value="4" /> Slider</label>
+			</div>
+			<div class="checkbox">
+				<label class="radio"><input type="checkbox" name="modules[]" value="5" /> Newsletter</label>
+			</div>
+			<div class="checkbox">
+				<label class="radio"><input type="checkbox" name="modules[]" value="6" /> Denní menu</label>
+			</div>
+		</div>
+		<div class="form-group">
+        	<input class="btn btn-primary" type="submit" name="enter" value="Instalovat" />
+		</div>
+	</form>
+

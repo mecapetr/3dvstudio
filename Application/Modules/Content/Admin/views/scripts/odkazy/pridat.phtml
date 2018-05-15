@@ -1,0 +1,264 @@
+<h1> Přidat odkaz </h1>
+
+<ol class="breadcrumb">
+	<li>Obsah</li>
+	<li class="active">Přidat odkaz</li>
+</ol>
+
+<?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
+<?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
+
+<form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
+
+	<div class="row">	
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-show-thumbnails-with-lines"></span> Obecný formulář</div>
+				<div class="panel-body">
+					
+					<div class="form-group"> 		
+						<label>Aktivní</label>
+						<div>
+							<label class="radio-inline"> 
+								<input class="checkbox" type="radio" name="active" id="active" value="1" <?PHP if($this->active == 1 || !is_numeric($this->active))echo "checked='checked'" ?>  />
+								Ano
+							</label>
+							<label class="radio-inline">
+								<input class="checkbox" type="radio" name="active" id="active" value="0" <?PHP if($this->active == 0 && is_numeric($this->active))echo "checked='checked'" ?> />
+								Ne
+							</label>	
+						</div>			    	
+				    </div>
+			    
+					<div class="form-group">  			
+						<label>Zobrazit v hlavičce</label>
+						<div>
+							<label class="radio-inline">
+								<input class="checkbox" type="radio" name="inMenu" id="inMenu" value="1" <?PHP if($this->inMenu == 1 || !is_numeric($this->inMenu))echo "checked='checked'" ?>  />
+								Ano
+							</label>
+					    	<label class="radio-inline"> 
+								<input class="checkbox" type="radio" name="inMenu" id="inMenu" value="0" <?PHP if($this->inMenu == 0 && is_numeric($this->inMenu))echo "checked='checked'" ?> />
+								Ne
+					    	</label>
+				    	</div>
+				    </div>
+			    
+					<div class="form-group">  			
+						<label>Zobrazit v patičce</label>
+						<div>
+							<label class="radio-inline"> 
+								<input class="checkbox" type="radio" name="inFooter" id="inFooter" value="1" <?PHP if($this->inFooter == 1)echo "checked='checked'" ?>  />
+								Ano
+							</label>
+					    	<label class="radio-inline"> 
+								<input class="checkbox" type="radio" name="inFooter" id="inFooter" value="0" <?PHP if($this->inFooter == 0)echo "checked='checked'" ?> />
+								Ne
+					    	</label>
+				    	</div>
+			    	</div>
+		
+				    <div class="form-group">
+				    	<label>Název odkazu</label>
+				    	<div class="has-feedback">
+						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+						    		<input placeholder="Název odkazu" class="form-control" id="title" type="text" name="title-<?PHP echo $val->suffix ?>" value="<?php if($this->title[$val->suffix])echo $this->title[$val->suffix];?>" />
+							    	<span class="requiere">*</span>
+							    </span>
+						    <?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?>
+						</div> 
+					</div>
+					<div class="form-group"> 
+						<label>Vlastní url</label>
+						<div>
+					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					   			<input placeholder="Vlastní URL" class="form-control" type="text" name="otherLink-<?PHP echo $val->suffix ?>" value="<?php if($this->otherLink[$val->suffix])echo $this->otherLink[$val->suffix];?>" />
+						    </span>
+					    <?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div> 
+					<div class="form-group">    
+					    <label for="">Typ odkazu</label>
+					    <select name="link-type" class="form-control">
+					    	<option <?php if($this->linkType == 0)echo"selected"; ?> value="0"> Hlavní </option>
+					    	<option <?php if($this->linkType == 1)echo"selected"; ?> value="1"> Subodkaz </option>
+					    </select>
+					</div> 
+					<div <?php if(!$this->linkType)echo'class="sub-links"'; ?> >
+						<div class="form-group"> 
+					    	<label for="parent">Nadřazený odkaz</label>
+						    <span id="selected-parent-link" class="selected-link" rel="0">
+						    	<span class="value form-control v-0"><?PHP if($this->parentTitle)echo $this->parentTitle; else echo "&nbsp;"; ?></span>
+							    <span class="parrent-links">
+									<?PHP  echo $this->linksOutput ; ?>
+							    </span>
+						    	<input type="hidden" name="parent" value="<?PHP if($this->parent)echo $this->parent; else echo 0; ?>" id="selected-parent-input-0" />
+						    </span>
+						</div>
+					</div>			
+										
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-note"></span> SEO</div>
+				<div class="panel-body">
+				
+					<div class="form-group">
+					 	<label>Odkaz na obsah stránky v předchozí verzi stránky:</label>	    
+						<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+						    <span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+				    			<input class="form-control" id="oldUrl" type="text" name="oldUrl-<?PHP echo $val->suffix ?>" value="<?php if($this->oldUrl[$val->suffix])echo $this->oldUrl[$val->suffix];?>" />
+							</span>
+						<?PHP $i++; } ?>
+						<?php echo $this->render("languageMutations.phtml"); ?> 
+				    </div> 	
+			
+					<div class="form-group">
+						<label>Meta nadpis</label>
+						<div>
+							<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+							    <span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+									<input placeholder="Meta nadpis" class="form-control" id="metaTitle" type="text" name="metaTitle-<?PHP echo $val->suffix ?>" value="<?php if($this->metaTitle[$val->suffix])echo $this->metaTitle[$val->suffix];?>" />
+								</span>
+							<?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Meta klíčová slova</label>
+						<div>
+							<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+							    <span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+									<input placeholder="Meta klíčová slova" class="form-control" id="keywords" type="text" name="keywords-<?PHP echo $val->suffix ?>" value="<?php if($this->keywords[$val->suffix])echo $this->keywords[$val->suffix];?>" />
+								</span>
+							<?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Meta popis</label>
+						<div>
+							<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+							    <span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+					    			<input placeholder="Meta popis" class="form-control" id="description" type="text" name="description-<?PHP echo $val->suffix ?>" value="<?php if($this->description[$val->suffix])echo $this->description[$val->suffix];?>" />
+								</span>
+							<?PHP $i++; } ?>
+							<?php echo $this->render("languageMutations.phtml"); ?> 
+						</div>
+				    </div>
+				
+				</div>
+			</div>
+			
+			<?PHP if($this->modulesData->odkazyUrlVideo){ ?>						
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="social social-youtube"></span> <span class="social social-vimeo"></span> Přidat video (youtube, vimeo)</div>
+					<div class="panel-body">
+						<div class="video-URLs">
+							<?php $count = count($this->backWebVideos); if($count > 0){ ?>
+							<?php $i = 1; foreach($this->backWebVideos as $vid){ ?>
+							    <div class="form-group"> 					    	
+							    	<input placeholder="URL videa (youtube, vimeo)" class="form-control" type="text" name="videoURL-<?php echo $i; ?>" id="videoURL-<?php echo $i; ?>" value="<?php echo $vid ?>" />
+							    </div>
+							<?php $i++; } ?>
+							<?php }else{ ?>
+								<div class="form-group"> 
+									<input placeholder="URL videa (youtube, vimeo)" class="form-control" type="text" name="videoURL-1" id="videoURL-1" />
+								</div>
+							<?php } ?>
+						</div>
+						
+					</div>
+					<div class="panel-footer">
+						<a class="btn btn-primary btn-xs add-videoURL" href="" class="add-videoURL">Přidat URL</a>
+				    	<?php if($count > 0){ ?>
+				    	<input type="hidden" name="hidvideo" value="<?php echo $count; ?>">
+				    	<?php }else{ ?>
+				    	<input type="hidden" name="hidvideo" value="1">
+						<?php } ?>
+					</div>
+				</div>
+			<?PHP } ?>
+		
+			<?PHP if($this->modulesData->odkazyFoto){ ?>
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicons glyphicons-picture"></span> Přidat fotky</div>
+					<div class="panel-body">
+				        
+				        <input type="hidden" name="sWidth"  value="0" />
+				        <input type="hidden" name="sHeight" value="175" />
+				        <input type="hidden" name="mWidth"  value="0" />
+				        <input type="hidden" name="mHeight"  value="800" />
+				       
+				        <script>
+				       
+				            	var mAction       = '<?php echo $this->action; ?>';
+				            	var mFolder       = '<?php echo $this->folder; ?>';
+				            	var mTable        = '<?php echo $this->table; ?>';
+				            	var mTableID      = '<?php echo $this->tableID; ?>';
+				            	var mUi           = '<?php echo $this->adminUserID; ?>';
+				            	var mPath         = '<?php echo $this->path; ?>';
+				            	var mTableIDvalue = '';
+				            	var sWidth        = $("input[name=sWidth]").val();
+				            	var sHeight       = $("input[name=sHeight]").val();
+				            	var mWidth        = $("input[name=mWidth]").val();
+				            	var mHeight       = $("input[name=mHeight]").val();
+				            	var mResizedByLongerSide = "false";
+				        </script>
+				    	<?php echo $this->render("photo.phtml"); ?>
+					</div>
+				</div>
+			<?PHP } ?>
+			<?PHP if($this->modulesData->odkazySoubor){ ?>
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicons glyphicons-file"></span> Přidat soubory</div>
+					<div class="panel-body">				        
+				         <?php echo $this->render("files.phtml"); ?>
+					</div>
+				</div>
+			<?PHP } ?>
+			
+			<?PHP if($this->modulesData->odkazyMp4Video){ ?>
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicons glyphicons-film"></span> Přidat mp4 videa</div>
+					<div class="panel-body">				        
+				         <?php echo $this->render("video.phtml"); ?> 
+					</div>
+				</div>
+			<?PHP } ?>
+			
+		</div>
+		
+		<div class="col-md-8">	
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicons glyphicons-sort"></span> Sekce odkazu</div>
+				<div class="panel-body">
+					<div class="link-sections">
+						<ul class="other-sections sortListBasic">
+						
+						</ul>
+						<input class="section-count" type="hidden" name="section-count" value="0" />
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a class="btn btn-primary btn-xs add-section" href="#" title="Přidat sekci">přidat sekci</a>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	
+	<div class="well">
+		<div class="clearfix">
+			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Přidat" />
+			</div>
+		</div>
+	</div>
+</form>
+    

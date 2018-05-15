@@ -1,0 +1,11 @@
+<p>
+	<label>Pododkaz:</label>
+	<select name="sublink">
+	    <option value="0">--- vberte pododkaz --- </option>
+		<?php foreach($this->sublinks as $sub){ ?>
+		    <option <?php if($this->backData == $sub->linkID)echo"selected"; ?> value="<?php echo $sub->linkID ?>"><?php echo $sub->title ?></option>
+		<?php } ?>
+	</select>
+</p>
+
+

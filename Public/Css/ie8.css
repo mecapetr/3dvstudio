@@ -1,0 +1,8 @@
+nav div.web-shadow, nav div.web-shadow-hover,
+nav div.shadow{
+	display: none;
+}
+
+div#content div#main-content section.products div.item div.content div.main-info a.image-inner-shadow{
+	background: url("/Public/Images/Layout/Content/transparent.png");
+}

@@ -1,0 +1,58 @@
+/* CSS Document */
+
+#tinymce {
+	min-height: 58px;
+}
+#tinymce p,#tinymce span,#tinymce strong,#tinymce li,#tinymce label,#tinymce td,#tinymce th{
+	color: #5E5E5E;
+}
+#tinymce h2{
+	color: #AC0158;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 5px
+}
+#tinymce p{
+	margin: 0 0 15px 0;
+}
+#tinymce a{
+	text-decoration: none;
+	color: #ac0158;
+}
+#tinymce ul,
+#tinymce ol{
+	margin: 0 0 15px 20px;
+}
+#tinymce ul{
+	list-style: none;
+}
+#tinymce ol{
+	list-style: decimal inside;
+}
+#tinymce ol li{
+
+}
+#tinymce ul li{
+	background-image: url("/Public/Images/Layout/Content/list_item_bg.png");
+    background-position: left 5px;
+    background-repeat: no-repeat;
+    margin-bottom: 2px;
+    padding-left: 20px;
+	
+}
+#tinymce table{
+	border-collapse: collapse;	
+	border: 1px solid #aeaeae;
+	margin-bottom: 15px;
+}
+
+#tinymce table th{
+	border: 1px solid #aeaeae;
+	padding: 5px;
+}
+
+#tinymce table td{
+	padding: 5px;
+	border: 1px solid #aeaeae;
+}

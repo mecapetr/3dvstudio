@@ -1,0 +1,52 @@
+<li>
+<div class="panel panel-default">
+<div class="panel-heading clearfix"><span class="label label-dark-green">Element zobrazení článků</span> <span class="glyphicons glyphicons-remove article-element" data="<?php echo $this->elementData["article"]["articleID"]; ?>"></span> <span class="glyphicons glyphicons-move"></span> </div>
+	<div class="panel-body">
+	
+
+		<div class="form-inline form-group">
+			<div class="radio" style="padding-top:5px;">		
+				<input <?php if($this->elementData["article"]["type"] == 1)echo "checked" ?> value="1" type="radio" name="a-e-type-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>"/> Zobrazit seznam všech článků včetně stránkování		
+			</div> 
+			
+			<div class="form-group">		
+				<input style="width:41px;" class="form-control" value="<?php echo $this->elementData["article"]["pageCount"]; ?>" type="hidden" name="a-e-pageCount-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>"/>
+			</div> 
+		</div>
+
+        <div class="form-group">
+	    	<div class="form-inline">
+		    	<div class="radio" style="padding-top:5px;">
+		    		<input <?php if($this->elementData["article"]["type"] == 2)echo "checked" ?> value="2"  type="radio" name="a-e-type-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>"/> Zobrazit 
+		    	</div> 
+		    	<div class="form-group">
+		    		<input style="width:41px;" class="form-control" value="<?php echo $this->elementData["article"]["newCount"]; ?>" type="text" name="a-e-newCount-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>"/> nejnovější články z odkazu:
+		    	</div>
+		    	
+				<div class="form-group"> 
+				    <span id="selected-parent-link" class="selected-link" rel="<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+				    	<span class="value form-control v-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" style="width:320px;"><?PHP if($this->elementData["article"]["linkTitle"])echo $this->elementData["article"]["linkTitle"]; else echo "&nbsp;"; ?></span>
+					    <span class="parrent-links">
+							<?PHP  echo $this->linksOutput ; ?>
+					    </span>
+				    	<input type="hidden" name="a-e-lID-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" value="<?php echo $this->elementData["article"]["linkID"]; ?>" id="selected-parent-input-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+				    </span>
+				</div>
+				
+		    
+		    </div>
+	    </div>
+	    <div class="form-group">
+    		<?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
+				<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
+    				<input class="form-control" value="<?php echo $this->elementData["article"]["url"][$val->suffix] ?>" placeholder="Odkaz na seznam všech článků" type="text" name="a-e-url-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>-<?php echo $val->suffix ?>"/>
+    			</span>
+    		<?PHP $i++; } ?>
+			<?php echo $this->render("languageMutations.phtml"); ?>
+    	</div>
+
+
+    </div>
+</div>
+<input type="hidden" name="is-element-<?php echo $this->secI; ?>[]" value="a-<?php echo $this->elSecCount[$this->elementPriority] ?>" />
+</li>
