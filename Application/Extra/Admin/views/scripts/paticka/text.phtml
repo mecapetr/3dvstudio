@@ -1,9 +1,11 @@
-<h1> Upravit sekci na hlavní stránce</h1>
+<h1 class="font-weight-light mt-4"> Text v patičce</h1>
 
-<ol class="breadcrumb">
-	<li>Extra obsah</li>
-	<li class="active">Homepage - texty</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">Patička</li>
+        <li class="breadcrumb-item active">Text</li>
+    </ol>
+</nav>
 
 <?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
 <?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
@@ -12,11 +14,11 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">Text v patičce</div>				
-				<div class="panel-body">
+			<div class="card">
+				<div class="card-header d-flex align-items-center">Text v patičce</div>				
+				<div class="card-body">
 					 <div class="form-group has-feedback">	
-					 	<label>Adresa:</label>	    	
+					 	<label class="font-weight-bold d-block">Adresa:</label>	    	
 					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix  ?>" >
 						    	<input class="form-control" type="text" name="text1-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems && !empty($this->allItems[1]) && $this->allItems[1]->text[$val->suffix])echo $this->allItems[1]->text[$val->suffix];?>" />
@@ -26,7 +28,7 @@
 				    </div>
 				    
 				    <div class="form-group has-feedback">	
-					 	<label>Email:</label>	    	
+					 	<label class="font-weight-bold d-block">Email:</label>	    	
 					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix  ?>" >
 						    	<input class="form-control" type="text" name="text2-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems && !empty($this->allItems[2]) && $this->allItems[2]->text[$val->suffix])echo $this->allItems[2]->text[$val->suffix];?>" />
@@ -36,7 +38,7 @@
 				    </div>
 				    
 				    <div class="form-group has-feedback">	
-					 	<label>Tel:</label>	    	
+					 	<label class="font-weight-bold d-block">Tel:</label>	    	
 					    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 					    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix  ?>" >
 						    	<input class="form-control" type="text" name="text3-<?PHP echo $val->suffix ?>" value="<?php if($this->allItems && !empty($this->allItems[3]) && $this->allItems[3]->text[$val->suffix])echo $this->allItems[3]->text[$val->suffix];?>" />
@@ -50,9 +52,9 @@
 		</div>	
 	</div>
 	
-	<div class="well">
-		<div class="clearfix">
-			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
+	<div class="card mt-4 mb-4">		
+        <div class="card-body">
+			<div class="col-sm-6 col-xs-12 offset-sm-3 offset-xs-0">
 				<input class="btn btn-primary btn-block check-required-fields" type="submit" name="enter" value="Upravit" />
 			</div>
 		</div>

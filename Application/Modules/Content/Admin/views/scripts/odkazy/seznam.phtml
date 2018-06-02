@@ -1,46 +1,41 @@
-<h1> Seznam odkazů </h1>
+<h1 class="font-weight-light mt-4"> Seznam odkazů </h1>
 
-<ol class="breadcrumb">
-	<li>Obsah</li>
-	<li class="active">Seznam odazů</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">Obsah</li>
+        <li class="breadcrumb-item active">Seznam odazů</li>
+    </ol>
+</nav>
 
 <?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
 <?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
 
 <form action="" method="post">
-	<div class="panel panel-default">		
-		<div class="panel-heading clearfix">
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<a class="btn btn-sm btn-success delButton" href="/admin/obsah/odkazy/pridat"> Přidat nový odkaz </a>
-					</div>
-					<div class="text-right col-sm-6">
-					<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
-					</div>
-				</div>
-			
+
+	<div class="card">		
+		<div class="card-header d-flex align-items-center">
+			<a class="btn btn-sm btn-success delButton text-uppercase mr-auto" href="/admin/obsah/odkazy/pridat"> Přidat nový odkaz </a>
+			<button type="button" class="btn btn-sm btn-danger text-uppercase delButton"> Smazat označené </button>
 		</div>
-		<div class="panel-body table-responsive">
-		
-			<div class="clearfix data-list header">
-				<div class="col-sm-3 no-left-padding th">Název odkazu</div>
-				<div class="col-sm-3 th">Datum</div>
-				<div class="col-sm-3 text-center th">Shlédnuto</div>
-				<div class="col-sm-3 text-right th">upravit / smazat</div>		
+		<div class="card-body table-responsive ">
+			<div class="clearfix data-list header ">
+				<div class="d-flex">
+    				<div class="col-sm-3 no-left-padding th">Název odkazu</div>
+    				<div class="col-sm-3 th">Datum</div>
+    				<div class="col-sm-3 text-center th">Shlédnuto</div>
+    				<div class="col-sm-3 text-right th">upravit / smazat</div>	
+				</div>	
 			</div>
 			
 			<?PHP echo $this->linksOutput; ?>
-			
 				
-		</div>	
-		<div class="panel-footer clearfix">
+		</div>			
+		<div class="card-footer">
 			
-			<div class="text-right">
-				<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
-				<input type="submit" class ="hidden deleteButton" name="deleteButton" />
-			</div>
+				<div class="text-right">
+					<button type="button" class="btn btn-sm btn-danger delButton text-uppercase"> Smazat označené </button>
+					<input type="submit" class ="d-none deleteButton" name="deleteButton" />
+				</div>
 			
 		</div>	
 	</div>

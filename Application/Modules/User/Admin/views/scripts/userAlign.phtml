@@ -1,7 +1,7 @@
 <form autocomplete="off" action="<?php echo $this->action; ?>" method="post">
     <div class="form-group list-order form-inline"> 		    
 		 
-		<div class="form-group">Vyhledat: <input type="text" name="input-text" id="search-input" class="search-align form-control" /></div>
+		<div class="form-group mr-2"><span class="mr-2">Vyhledat:</span> <input type="text" name="input-text" id="search-input" class="search-align form-control form-control-sm" /></div>
 	    <div class="search-content-list">                   
             <ul class="search-content">
             	<?PHP foreach ($this->allSearchItems as $value){ ?>
@@ -11,14 +11,14 @@
             <input type="hidden" name="user" />
         </div>
 
-		<input style="margin-right:30px;" class="btn btn-primary search" type="submit" name="search" value="Vyhledej" /> 
+		<input style="margin-right:30px;" class="btn btn-primary btn-sm search text-uppercase" type="submit" name="search" value="Vyhledej" /> 
 	
 		<br class="clear-left" />
 	</div>
 	<div class="form-inline has-feedback">
 	<!--  <input type="text" name="searchText" /><input class="button" type="submit" name="search" value="Vyhledej" />-->
-		Seřadit podle 
-		<select name="orderBy" class="form-control">
+		<span class="mr-2">Seřadit podle</span> 
+		<select name="orderBy" class="form-control form-control-sm mr-2">
 		    <option <?php if($this->orderBy == "date"){echo "selected";} ?> value="date">data zal.</option>
 		    <option <?php if($this->orderBy == "degree"){echo "selected";} ?> value="degree">titulu</option>
 		    <option <?php if($this->orderBy == "name"){echo "selected";} ?> value="name">jména</option>
@@ -27,11 +27,11 @@
 		    <option <?php if($this->orderBy == "tel"){echo "selected";} ?> value="tel">telefonu</option>
 			<!--  <option <?php if($this->orderBy == "view")   {echo "selected";} ?> value="view">shlédnutí</option> -->
 		</select>
-		a to 
-		<select name="descAsc" class="form-control">
+		<span class="mr-2">a to</span> 
+		<select name="descAsc" class="form-control form-control-sm mr-2">
 		    <option <?php if($this->descAsc =="DESC"){echo "selected";} ?> value="DESC">sestupně</option>
 			<option <?php if($this->descAsc =="ASC") {echo "selected";} ?> value="ASC">vzestupně</option>
 		</select>
-		<input class="btn btn-primary" type="submit" name="order" value="Seřaď">
+		<input class="btn btn-primary btn-sm text-uppercase" type="submit" name="order" value="Seřaď">
 	</div>
 </form>

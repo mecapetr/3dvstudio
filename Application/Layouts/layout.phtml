@@ -48,9 +48,8 @@
 		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-social.css">
 		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-filetypes.css">
 		<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-bootstrap.css">
-		<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap.css" media="all" />
-		<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap-theme.min.css" media="all" />	
-		<script src="/Public/Jscripts/Bootstrap/bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="/Public/Css/Bootstrap/css/bootstrap.min.css" />
+		<script type="text/javascript" src="/Public/Jscripts/Bootstrap/bootstrap.bundle.min.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/main.css?71" />		
 		<link rel="stylesheet" type="text/css" href="/Public/Css/Responsive/lg.css?71"/>	
@@ -131,7 +130,7 @@
 	  			<?php }?>
 	  		</p>
         	<p><?php echo $this->allLayoutTexts[1]->text;?></p>
-        	<p class="text-center no-margin copy">© <?php echo date("Y") ?> Autoservis zika <br /> Vytvořeno firmou <a class="link" href="http://www.1vision.cz">1vision</a></p>
+        	<p class="text-center no-margin copy">© <?php echo date("Y") ?> <?php echo $this->regName[$this->concreteLang->lang]?> <br /> Vytvořeno firmou <a class="link" href="http://www.1vision.cz">1vision</a></p>
         	
   		</footer>
 

@@ -25,7 +25,7 @@ class AdminEx_PatickaController extends Library_Adminbase
 	    
 	    $enter    = $this->_request->getPost("enter");
 	    
-	    $this->view->sublinkTitle			= "Sociální sítě";
+	    $this->view->subSelected			= "Sociální sítě";
 	    
 	    $this->setSublinks();
 	    
@@ -105,7 +105,7 @@ class AdminEx_PatickaController extends Library_Adminbase
 		$added    = $this->_request->getParam('added');
 		$enter    = $this->_request->getPost("enter");
 
-		$this->view->sublinkTitle = "Text";
+		$this->view->subSelected = "Text";
 	
 		$this->setSublinks($id);
 		 

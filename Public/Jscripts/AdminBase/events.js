@@ -60,7 +60,7 @@ $(document).ready(function() {
     	    	    sectionCount++;
     	    	    $("input.section-count").val(sectionCount);
     	    	    
-    	    	var wholeSection  = '<li><div class="panel panel-default"><div class="panel-heading clearfix"> Sekce <span class="glyphicons glyphicons-remove section"></span> <span class="glyphicons glyphicons-move"></span> </div><div class="panel-body"><section data="'+sectionCount+'"><div class="form-group section-control">';
+    	    	var wholeSection  = '<li><div class="card mb-4"><div class="card-header d-flex align-items-center"> Sekce <span class="glyphicons glyphicons-move ml-auto mr-2"></span><span class="glyphicons glyphicons-remove section"></span></div><div class="card-body"><section data="'+sectionCount+'"><div class="form-group section-control">';
     	    	wholeSection += '<div class="row">';
     		    	wholeSection += '<div class="col-sm-4 col-xs-12">';
     			    	wholeSection += '<div class="form-group">';
@@ -88,29 +88,30 @@ $(document).ready(function() {
     				wholeSection += '</div>';
     				wholeSection += '<div class="col-sm-4 col-xs-12">';
 
-			    	    wholeSection += ' <label>Na celou šířku webu:</label>';
-			    		wholeSection += ' <label class="radio-inline"><input type="radio" value="1" name="wide-'+sectionCount+'" /> Ano </label>';
-			    	    wholeSection += ' <label class="radio-inline"><input checked type="radio" value="0" name="wide-'+sectionCount+'" /> Ne </label>';
+			    	    wholeSection += ' <label class="font-weight-bold d-block">Na celou šířku webu:</label>';
+			    	    wholeSection += ' <div class="form-check form-check-inline"><input class="form-check-input" type="radio" value="1" name="wide-'+sectionCount+'" id="wide-'+sectionCount+'1" /><label class="form-check-label" for="wide-'+sectionCount+'1">Ano</label></div>';
+			    	    wholeSection += ' <div class="form-check form-check-inline"><input class="form-check-input" type="radio" value="0" name="wide-'+sectionCount+'" id="wide-'+sectionCount+'2" checked /><label class="form-check-label" for="wide-'+sectionCount+'2">Ne</label></div>';
+			    	    
 
 				    wholeSection += '</div>';
     			wholeSection += '</div>';
     	    	wholeSection += '<div class="dropdown">';
-    	    		wholeSection += '<button class="btn btn-block btn-primary" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+    	    		wholeSection += '<button class="btn text-uppercase btn-block btn-primary" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
     	    		wholeSection += '--- vyberte element který chcete přidat do sekce ---';
     	    		wholeSection += '</button>';
-    	    		wholeSection += '<ul class="dropdown-menu" aria-labelledby="dLabel">';	  	
-    	    			wholeSection += '<li><a class="e-1" href="" data-toggle="tooltip" data-placement="left" title="Element obsahující pouze velký obrázek a text k němu. Pokud je vloženo více obrázku, stává se z toho slider.">Header/Slider element</a></li>';
-    	    			wholeSection += '<li><a class="e-2" href="" data-toggle="tooltip" data-placement="left" title="nadpis jednotlivé sekce">Section Header element</a></li>';
-    	    			wholeSection += '<li><a class="e-3" href="" data-toggle="tooltip" data-placement="left" title="tvoří sloupce sekce a obsahuje fotku nadpis a text">Link element</a></li>';
-    	    			//wholeSection += '<li><a class="e-4" href="" data-toggle="tooltip" data-placement="left" title="tak samo jako link element ale bez fotky a je propojený s jiným odkazem">Sublink element</a></li>';
-    	    			wholeSection += '<li><a class="e-5" href="" data-toggle="tooltip" data-placement="left" title="vložení textu do sekce">Text element</a></li>';
-    	    			//wholeSection += '<li><a class="e-6" href="" data-toggle="tooltip" data-placement="left" title="vložení tabulky s filtrovaným seznamem">List element</a></li>';
-    	    			wholeSection += '<li><a class="e-7" href="" data-toggle="tooltip" data-placement="left" title="vložení formuláře">Form element</a></li>';
-    	    			wholeSection += '<li><a class="e-8" href="" data-toggle="tooltip" data-placement="left" title="vložení youtube nebo vimeo videí">YouTube,Vimeo element</a></li>';
-    	    			wholeSection += '<li><a class="e-9" href="" data-toggle="tooltip" data-placement="left" title="V tomto elementu se budou zobrazovat články, které přiřadíte tomuto odkazu vsekci Přidat článek">Element zobrazení článků</a></li>';
-    	    			wholeSection += '<li><a class="e-10" href="" data-toggle="tooltip" data-placement="left" title="V tomto elementu se budou zobrazovat vložené fotky nebo soubory">Element fotky a soubory</a></li>';
-    	    			wholeSection += '<li><a class="e-11" href="" data-toggle="tooltip" data-placement="left" title="Element zobrazí googlemapu a jednolitvé body v ní">Map element</a></li>';
-    	    			wholeSection += '</ul>';
+    	    		wholeSection += '<div class="dropdown-menu" aria-labelledby="dLabel">';	  	
+    	    			wholeSection += '<a data-elmtype="e-1" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="Element obsahující pouze velký obrázek a text k němu. Pokud je vloženo více obrázku, stává se z toho slider.">Header/Slider element</a>';
+    	    			wholeSection += '<a data-elmtype="e-2" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="nadpis jednotlivé sekce">Section Header element</a>';
+    	    			wholeSection += '<a data-elmtype="e-3" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="tvoří sloupce sekce a obsahuje fotku nadpis a text">Link element</a>';
+    	    			//wholeSection += '<a data-elmtype="e-4" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="tak samo jako link element ale bez fotky a je propojený s jiným odkazem">Sublink element</a>';
+    	    			wholeSection += '<a data-elmtype="e-5" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="vložení textu do sekce">Text element</a>';
+    	    			//wholeSection += '<a data-elmtype="e-6" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="vložení tabulky s filtrovaným seznamem">List element</a>';
+    	    			wholeSection += '<a data-elmtype="e-7" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="vložení formuláře">Form element</a>';
+    	    			wholeSection += '<a data-elmtype="e-8" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="vložení youtube nebo vimeo videí">YouTube,Vimeo element</a>';
+    	    			wholeSection += '<a data-elmtype="e-9" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="V tomto elementu se budou zobrazovat články, které přiřadíte tomuto odkazu vsekci Přidat článek">Element zobrazení článků</a>';
+    	    			wholeSection += '<a data-elmtype="e-10" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="V tomto elementu se budou zobrazovat vložené fotky nebo soubory">Element fotky a soubory</a>';
+    	    			wholeSection += '<a data-elmtype="e-11" class=" dropdown-item d-flex align-items-center" href="" data-toggle="tooltip" data-placement="left" title="Element zobrazí googlemapu a jednolitvé body v ní">Map element</a>';
+    	    			wholeSection += '</div>';
     	    			wholeSection += '<script>';
     	    				wholeSection += '$(function () {';
     	    				wholeSection += '$(\'[data-toggle="tooltip"]\').tooltip()';
@@ -118,7 +119,7 @@ $(document).ready(function() {
     	    			wholeSection += '</script>';
     	    		wholeSection += '</div>';
     	    	    wholeSection += '</div>';						
-    	    	    wholeSection += '<ul class="section-elements sortListBasic">';
+    	    	    wholeSection += '<ul class="section-elements sortListBasic list-unstyled">';
     				
     	    	    wholeSection += '</ul>';   
     	    	    wholeSection += '<input type="hidden" name="header-element-count-'+sectionCount+'" value="0" />';
@@ -665,7 +666,7 @@ function openAddEditEshopProduct(operationType,eshopProductID){
 				$('.predefined-covers-options .cover-id-display').each(function(){
 					$(this).removeClass("hide");
 					if($(this).find('select.coverID').val() > 0){
-						$(this).closest(".panel-body").find('.concrete-cover').removeClass("hide");
+						$(this).closest(".card-body").find('.concrete-cover').removeClass("hide");
 					}
 				});
 				
@@ -697,22 +698,22 @@ function openAddEditEshopProduct(operationType,eshopProductID){
 			var coverID = $(this).val();
 			var that = this;
 			
-			$(that).closest('.panel-body').find('.concrete-cover .img').html("");
-			$(that).closest('.panel-body').find(".concrete-cover .text").text("Vyberte konkrétní vzor");
-			$(that).closest('.panel-body').find(".concrete-cover input[type='hidden']").val('');
-			$(this).closest('.panel-body').find('.concrete-cover').addClass("hide");
+			$(that).closest('.card-body').find('.concrete-cover .img').html("");
+			$(that).closest('.card-body').find(".concrete-cover .text").text("Vyberte konkrétní vzor");
+			$(that).closest('.card-body').find(".concrete-cover input[type='hidden']").val('');
+			$(this).closest('.card-body').find('.concrete-cover').addClass("hide");
 	
 		    if(coverID == 0){	
-				  $(this).closest('.panel-body').find('.concrete-cover').addClass("hide");			
+				  $(this).closest('.card-body').find('.concrete-cover').addClass("hide");			
 		    }else{
-				  $(this).closest('.panel-body').find('.concrete-cover').removeClass("hide");
+				  $(this).closest('.card-body').find('.concrete-cover').removeClass("hide");
 		    }
 			
 		});
 	}
 	 function chooseConcreteModalShown() {
 		 var that = this;
-		   	var coverID = $(that).closest(".panel-body").find("select.coverID").val();
+		   	var coverID = $(that).closest(".card-body").find("select.coverID").val();
 		   	if(coverID != 0){
 			   	$('#chooseConcreteCover .modal-body .content').html('<div class="concrete-cover-loading "><img class="img-responsive center-block" src="/Public/Images/animation.gif" /></div>');
 			    
@@ -723,7 +724,7 @@ function openAddEditEshopProduct(operationType,eshopProductID){
 				      success: function(response){
 				    	  	if(response.allCoverPhotos.length > 0){
 				    	  		
-					  			$(that).closest(".panel-body").find(".concrete-cover-loading").addClass("hide");
+					  			$(that).closest(".card-body").find(".concrete-cover-loading").addClass("hide");
 								$('#chooseConcreteCover .modal-body .content').html("");
 								for(var i = 0; i < response.allCoverPhotos.length; i++){
 									$('#chooseConcreteCover .modal-body .content').append("<div class='col-sm-3'><div class='item'><img class='item-img' src='/Public/Images/Cover/" + response.allCoverPhotos[i].file + "'/><span class='text'>" + response.coverTitle + " " + response.allCoverPhotos[i].number + "</span><input type='hidden' name='photoCoverID' value='"+ response.allCoverPhotos[i].photoID +"' /></div></div>");
@@ -760,6 +761,7 @@ function crSublink(){
 }
 
 function sortListBasic(){
+	
 	  $(".sortListBasic").sortable({
 	   
 	         revert:false,
@@ -767,13 +769,17 @@ function sortListBasic(){
 	         dropOnEmpty: true,
 	         scroll:true,
 	         tolerance: 'pointer',
-	         helper: 'clone',
+	         helper: function(e, ui) {  
+	        	  ui.children().each(function() {  
+	    		    $(this).width($(this).width());  
+	    		  });  
+	    		  return ui;  
+    		 },
 	         opacity:0.75,
 	         axis:"y",
 	         cancel: 'input,.mceEditor,.mce-tinymce,textarea,select,button',
 	         'placeholder':'placeholder2',
-	         update: function(event, ui) { 
-
+	         update: function(event, ui) {
 	        	 
 	        	 var url = "/core/helper/update-link-priority";
 	        	 if($(".main-ul").hasClass("category")){
@@ -802,8 +808,115 @@ function sortListBasic(){
 	        	 
 	        	 console.log("Start position: " + ui.item.startPos);
 	             console.log("New position: " + ui.item.index());
+	             
+	        	 if($(".main-ul").find("li").length > 0){
+	        		 var lis = $(".main-ul").find("li");     
+	        	 }else if($(".main-ul").find("tr").length > 0){
+	        		 var lis = $(".main-ul").find("tr"); 
+	        	 }
+	             var count  = lis.size();
+	             
+	             if(count > 0){
+	              
+	            	 
+	            	  var listID = "";
+		              var startPos = ui.item.startPos;
+		              var endPos = ui.item.index();
+		              
+		              if(startPos > endPos){
+		            	  var tmp = startPos;
+		            	  startPos = endPos;
+		            	  endPos = tmp;
+		              }
+		              var i = 0;
+		              
+		              if($(".main-ul").hasClass("product")){
+		            	  i = startPos;
+		            	  count = endPos + 1;
+		              }else{
+		            	  startPos = 0;
+		              }	              
+		              
+		              for(i;i < count ;i++){
+		               
+			               id = $(lis).eq(i).attr("id");
+			               if(i == startPos){
+			                listID += id;
+			               }else{
+			                listID += "-"+id;
+			               }
+		              }
+		           
+			           $.ajax({
+					      type: "POST",
+					      url: url,
+					      data: "listID="+listID+"&startPos=" + startPos + "&endPos=" + endPos,
+					      success: function(html){
+					            
+					      }
+					  
+					   }); 
+	          
+	             }
+	          
+	         },
+	         start: function(e, ui){
+	        	 ui.item.startPos = ui.item.index();
+	        	 $(this).find('textarea:not(.no-MCE)').each(function(){
+	                 tinyMCE.execCommand( 'mceRemoveEditor', false, $(this).attr('id') );               
+	             });
+	             
+	             var radio_checked= {};
+	 
+	             $(this).find('input[type="radio"]', this).each(function(){
+	                     if($(this).is(':checked'))
+	                     radio_checked[$(this).attr('name')] = $(this).val();
+	                     $(document).data('radio_checked', radio_checked);
+	             });
+	         },
+	         stop: function(e,ui) {
+	        	 $(this).find('textarea.basic:not(.no-MCE)').each(function(){
+	              execTinyMCE(0,$(this).attr('id'))
+	             });
+	             
+	             $(this).find('textarea.tiny:not(.no-MCE)').each(function(){
+	              execTinyMCE(1,$(this).attr('id'))
+	             });
+	             
+	             var radio_restore = $(document).data('radio_checked');
+	             if(radio_restore){
+		             $.each(radio_restore, function(index, value){
+		                  $('input[name="'+index+'"][value="'+value+'"]').prop('checked', true);
+		             });
+	             }
+	         }
+	 
+	   });
+	  $(".sortListBasicLinks").sortable({
+		   
+	         revert:false,
+	         cursor: "move",
+	         dropOnEmpty: true,
+	         scroll:true,
+	         tolerance: 'pointer',
+	         helper: 'clone',
+	         opacity:0.75,
+	         axis:"y",
+	         cancel: 'input,.mceEditor,.mce-tinymce,textarea,select,button',
+	         'placeholder':'placeholder2',
+	         update: function(event, ui) {
 	        	 
-	        	 var lis = $(".main-ul").find("li");           
+	        	 var url = "/core/helper/update-link-priority";
+	        	 
+	        	 
+	        	 console.log("Start position: " + ui.item.startPos);
+	             console.log("New position: " + ui.item.index());
+	             
+	        	 if($(".main-ul").find("li").length > 0){
+	        		 var lis = $(".main-ul").find("li");     
+	        	 }else if($(".main-ul").find("tr").length > 0){
+	        		 var lis = $(".main-ul").find("tr"); 
+	        	 }
 	             var count  = lis.size();
 	             
 	             if(count > 0){
@@ -968,14 +1081,13 @@ function sortListPhotos(){
 	}
 function setSectionControl(){
 	
-	$("div.section-control ul.dropdown-menu li a").unbind("click");
-	$("div.section-control ul.dropdown-menu li a").click(function(e){
+	$("div.section-control .dropdown-menu a").unbind("click");
+	$("div.section-control .dropdown-menu a").click(function(e){
     	e.preventDefault();
     	
     	var elm = this;
     	var sectionData = $(elm).closest("section").attr("data");
-    	var elementType = $(elm).attr("class");  
-    	
+    	var elementType = $(elm).data("elmtype"); 
     	renderElement(elementType,sectionData,function(html){
     		
     		$(elm).closest("section").find("ul.section-elements").append(html);
@@ -1053,9 +1165,9 @@ function renderHeaderElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 	
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading clearfix"><span class="label label-default">Header/Slider element</span> <span class="glyphicons glyphicons-remove"></span> <span class="glyphicons glyphicons-move"></span></div>';
-    html += '<div class="panel-body">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center"><span class="badge badge-secondary">Header/Slider element</span> <span class="glyphicons glyphicons-move ml-auto mr-2"></span> <span class="glyphicons glyphicons-remove"></span></div>';
+    html += '<div class="card-body">';
     
     html +='<div class="clearfix row">';
 	    html +='<div class="col-sm-8">';
@@ -1085,10 +1197,10 @@ function renderHeaderElement(sectionData,data,flags){
 	    html +='</div>';
 	    html +='<div class="col-sm-4">';
 	    	html +='<div class="fileinput fileinput-new" data-provides="fileinput">';
-	    		html +='<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
+	    		html +='<div class="fileinput-preview img-thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
 	    		html +='<div style="float:left;vertical-align:middle;">';
-	    			html +='<div style="margin-bottom:5px;"><span class="btn btn-default btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="h-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
-	    			html +='<div><a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
+	    			html +='<div class="my-2"><span class="btn text-uppercase btn-primary btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="h-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
+	    			html +='<div><a href="#" class="btn text-uppercase btn-primary fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
 	    		html +='</div>';
 	    	html +='</div>';
     html +='</div>';
@@ -1096,8 +1208,8 @@ function renderHeaderElement(sectionData,data,flags){
     html += '</div>';
     html += '</div>';
     
-    html += '<div class="panel-footer">';
-	    html += '<a class="btn btn-primary btn-xs add-header-element" href="#" title="Přidat element">Přidat element</a><input type="hidden" name="h-e-c-'+sectionData+'-'+secHeaderElement+'" value="1" />';
+    html += '<div class="card-footer">';
+	    html += '<a class="btn text-uppercase btn-primary btn-xs add-header-element" href="#" title="Přidat element">Přidat element</a><input type="hidden" name="h-e-c-'+sectionData+'-'+secHeaderElement+'" value="1" />';
 	html += '</div>';
 
     html += '<input type="hidden" name="is-element-'+sectionData+'[]" value="h-'+secHeaderElement+'" /></li>';
@@ -1112,15 +1224,13 @@ function renderMapElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 	
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading clearfix">';
-    	html += '<span class="label label-dark-fosfor">Map element</span>';
-    	html += '<span class="glyphicons glyphicons-remove"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-dark-fosfor">Map element</span>';
     	
-	    html += '<span class="element-width form-inline">';
-		    html += '<label>Šířka elementu:</label>';
-		    html += '<select class="form-control" name="m-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
+	    html += '<span class="element-width form-inline ml-auto mr-2">';
+		    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+		    html += '<select class="form-control form-control-sm" name="m-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
 			    html += '<option value="12">12 dílů (celá šířka)</option>';
 			    html += '<option value="11">11 dílů</option>';
 			    html += '<option value="10">10 dílů</option>';
@@ -1135,8 +1245,10 @@ function renderMapElement(sectionData,data,flags){
 			    html += '<option value="1">1 díl</option>';
 		    html += '</select>';
 	    html += '</span>';
+    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+    	html += '<span class="glyphicons glyphicons-remove"></span>';
 	html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
     
     html +='<div class="clearfix row">';
     
@@ -1165,8 +1277,8 @@ function renderMapElement(sectionData,data,flags){
     html += '</div>';
     html += '</div>';
     
-    html += '<div class="panel-footer">';
-	    html += '<a class="btn btn-primary btn-xs add-map-element" href="#" title="Přidat element">Přidat element</a><input type="hidden" name="m-e-c-'+sectionData+'-'+secHeaderElement+'" value="1" />';
+    html += '<div class="card-footer">';
+	    html += '<a class="btn text-uppercase btn-primary btn-xs add-map-element" href="#" title="Přidat element">Přidat element</a><input type="hidden" name="m-e-c-'+sectionData+'-'+secHeaderElement+'" value="1" />';
 	html += '</div>';
 
     html += '<input type="hidden" name="is-element-'+sectionData+'[]" value="m-'+secHeaderElement+'" /></li>';
@@ -1187,9 +1299,9 @@ function renderArticleElement(sectionData,data,flags,callback){
 		url: "/core/helper/get-all-links",
 		success: function(response){
 			
-			var html = '<li><div class="panel panel-default">';
-		    html += '<div class="panel-heading clearfix"><span class="label label-dark-green">Element zobrazení článků</span> <span class="glyphicons glyphicons-remove"></span> <span class="glyphicons glyphicons-move"></span></div>';
-		    html += '<div class="panel-body">';
+			var html = '<li><div class="card mb-4">';
+		    html += '<div class="card-header d-flex align-items-center"><span class="badge badge-dark-green">Element zobrazení článků</span> <span class="glyphicons glyphicons-move ml-auto mr-2"></span> <span class="glyphicons glyphicons-remove"></span></div>';
+		    html += '<div class="card-body">';
 		    
 			    html +='<div class="form-inline form-group">';
 					html +='<div class="radio" style="padding-top:5px;">';
@@ -1207,14 +1319,14 @@ function renderArticleElement(sectionData,data,flags,callback){
 
 				html +='<div class="form-group">';
 			    	html +='<div class="form-inline">';
-				    	html +='<div class="radio" style="padding-top:5px;">';
+				    	html +='<div class="radio mr-2">';
 			
 				    		html += '<input value="2"  type="radio" name="a-e-type-'+sectionData+'-'+secHeaderElement+'"/> Zobrazit ';
 			
 				    	html +='</div> ';
-				    	html +='<div class="form-group">';
+				    	html +='<div class="form-group mr-2">';
 			
-				    		html += '<input style="width:41px;" class="form-control" value="4" type="text" name="a-e-newCount-'+sectionData+'-'+secHeaderElement+'"/> nejnovější články z odkazu';
+				    		html += '<input style="width:41px;" class="form-control mr-2" value="4" type="text" name="a-e-newCount-'+sectionData+'-'+secHeaderElement+'"/> nejnovější články z odkazu';
 			
 				    	html +='</div> ';
 				    	
@@ -1263,28 +1375,28 @@ function renderPhotoFileElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 	
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading clearfix">';
-    	html += '<span class="label label-dark-yellow">Element fotky a soubory</span>';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-dark-yellow">Element fotky a soubory</span>';
+    	html += '<span class="glyphicons glyphicons-move ml-auto mr-2"></span>';
     	html += '<span class="glyphicons glyphicons-remove"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
     html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
     
 	    html +='<div class="form-group">';
 	    
 		    html +='<div class="fileinput fileinput-new" data-provides="fileinput">';
 		    	html +='<div class="input-group">';
-		    		html +='<div class="form-control uneditable-input">';
-		    			html +='<i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span>';
+		    		html +='<div class="form-control uneditable-input d-flex align-items-center">';
+		    			html +='<i class="glyphicons glyphicons-file fileinput-exists mr-2"></i> <span class="fileinput-filename" style="overflow:visible;"></span>';
 		    		html +='</div>';
-		    		html +='<div class="input-group-btn">';
-		    			html +='<div class="btn btn-primary btn-file">';
+		    		html +='<div class="input-group-append">';
+		    			html +='<div class="btn text-uppercase btn-primary btn-file">';
 		    				html +='<span class="fileinput-new" >Vyberte</span>';
 		    				html +='<span class="fileinput-exists">Změnit</span>';
 		    				html +='<input type="file" multiple="multiple" name="ph-file-'+sectionData+'-'+secHeaderElement+'[]" />';
 		    			html +='</div>';
-		    			html +='<button type="button" class="btn btn-danger fileinput-exists" data-dismiss="fileinput" title="remove">';
+		    			html +='<button type="button" class="btn text-uppercase btn-danger fileinput-exists" data-dismiss="fileinput" title="remove">';
 		    				html +='Odstranit';
 		    			html +='</button> ';   
 		    		html +='</div>';
@@ -1306,14 +1418,12 @@ function renderSectionHeaderElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 	
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading">';
-    	html += '<span class="label label-warning">Section header element</span>';
-    	html += '<span class="glyphicons glyphicons-remove section-header"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
-	    html += '<span class="element-width form-inline">';
-		    html += '<label>Šířka elementu:</label>';
-		    html += '<select class="form-control" name="s-h-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-warning">Section header element</span>';
+	    html += '<span class="element-width form-inline ml-auto mr-2">';
+		    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+		    html += '<select class="form-control form-control-sm" name="s-h-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
 			    html += '<option value="12">12 dílů (celá šířka)</option>';
 			    html += '<option value="11">11 dílů</option>';
 			    html += '<option value="10">10 dílů</option>';
@@ -1328,8 +1438,10 @@ function renderSectionHeaderElement(sectionData,data,flags){
 			    html += '<option value="1">1 díl</option>';
 		    html += '</select>';
 		html += '</span>';
+    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+    	html += '<span class="glyphicons glyphicons-remove section-header"></span>';
 	html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
     
     html +='<div class="form-group">';
     html +='<div class="row">';
@@ -1367,11 +1479,20 @@ function renderSectionHeaderElement(sectionData,data,flags){
     html +='</div>';
     
     html +='<div class="radio">';
-    
-    	html += '<label class="radio-inline"><input value="center" type="radio" name="s-h-e-align-'+sectionData+'-'+secHeaderElement+'" checked="checked"/>vycentrovat</label>';
-    	html += '<label class="radio-inline"><input value="left" type="radio" name="s-h-e-align-'+sectionData+'-'+secHeaderElement+'"/>zarovnat doleva</label>';
-    	html += '<label class="radio-inline"><input value="right" type="radio" name="s-h-e-align-'+sectionData+'-'+secHeaderElement+'"/>zarovnat doprava</label>';    	
 
+	    html += '<div class="form-check form-check-inline">';
+	    	html += '<input checked="checked" class="form-check-input" type="radio" name="s-h-e-align-'+sectionData+'-'+secHeaderElement+'" id="s-h-e-align-'+sectionData+'-'+secHeaderElement+'1" value="center">';
+	    	html += '<label class="form-check-label" for="s-h-e-align-'+sectionData+'-'+secHeaderElement+'1">vycentrovat</label>';
+	    html += '</div>';
+	    html += '<div class="form-check form-check-inline">';
+			html += '<input class="form-check-input" type="radio" name="s-h-e-align-'+sectionData+'-'+secHeaderElement+'" id="s-h-e-align-'+sectionData+'-'+secHeaderElement+'2" value="left">';
+			html += '<label class="form-check-label" for="s-h-e-align-'+sectionData+'-'+secHeaderElement+'2">zarovnat doleva</label>';
+		html += '</div>';
+	    html += '<div class="form-check form-check-inline">';
+			html += '<input class="form-check-input" type="radio" name="s-h-e-align-'+sectionData+'-'+secHeaderElement+'" id="s-h-e-align-'+sectionData+'-'+secHeaderElement+'3" value="right">';
+			html += '<label class="form-check-label" for="s-h-e-align-'+sectionData+'-'+secHeaderElement+'3">zarovnat doprava</label>';
+		html += '</div>';
+  
     html +='</div>';
     
     html += '</div>';
@@ -1386,14 +1507,12 @@ function renderLinkElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 	
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading">';
-    	html += '<span class="label label-success">Link element</span>';
-    	html += '<span class="glyphicons glyphicons-remove link-element"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
-	    html += '<span class="element-width form-inline">';
-		    html += '<label>Šířka elementu:</label>';
-		    html += '<select class="form-control" name="l-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-success">Link element</span>';
+	    html += '<span class="element-width form-inline ml-auto mr-2">';
+		    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+		    html += '<select class="form-control form-control-sm" name="l-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
 			    html += '<option value="12">12 dílů (celá šířka)</option>';
 			    html += '<option value="11">11 dílů</option>';
 			    html += '<option value="10">10 dílů</option>';
@@ -1408,8 +1527,10 @@ function renderLinkElement(sectionData,data,flags){
 			    html += '<option value="1">1 díl</option>';
 		    html += '</select>';
 		html += '</span>';
+    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+    	html += '<span class="glyphicons glyphicons-remove link-element"></span>';
 		html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
    		
 	html +='<div class="form-group">';
 
@@ -1425,61 +1546,64 @@ function renderLinkElement(sectionData,data,flags){
 	html +='</div> ';
 	
 	html +='<hr /> ';
-    html +='<div class="col-sm-4 link-element-item">';
-		html +='<div class="fileinput fileinput-new" data-provides="fileinput">';
-			html +='<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
-			html +='<div style="float:left;vertical-align:middle;">';
-				html +='<div style="margin-bottom:5px;"><span class="btn btn-primary btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="l-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
-				html +='<div><a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
-			html +='</div>';
-		html +='</div>';
-		
-		html +='<div class="form-group" >';
-			html +='<div class="checkbox" >';
-				html += '<label><input class="create-sublink" value="1" type="checkbox" name="l-e-isSublink-'+sectionData+'-'+secHeaderElement+'-1" value="1"/> Automaticky vytvořit pododkaz</label>';
-			html +='</div>';
-		html +='</div>';
 
-		html +='<div class="form-group url">';
-	    	for(var i = 0; i < data.length; i++){
-	    		
-	    		var hid = "";
-	    		if(i != 0)hid = "hidden-lang";
-	    		
-	    		html += '<span class="language-input '+hid+' '+data[i].suffix+'" >';
-	    		html += '<input class="form-control" placeholder="url" type="text" name="l-e-url-'+sectionData+'-'+secHeaderElement+'-'+data[i].suffix+'[]"/>';
-	    		html += '</span>';
-	    	}
-	    	html += flags;
-    	html +='</div>';
-	    html +='<div class="form-group">';
-	    	for(var i = 0; i < data.length; i++){
-	    		
-	    		var hid = "";
-	    		if(i != 0)hid = "hidden-lang";
-	    		
-	    		html += '<span class="language-input '+hid+' '+data[i].suffix+'" >';
-	    		html += '<input class="form-control" placeholder="h2 nadpis" type="text" name="l-e-h2-'+sectionData+'-'+secHeaderElement+'-'+data[i].suffix+'[]"/>';
-	    		html += '</span>';
-	    	}
-	    	html += flags;
+	html +='<div class="link-elm-cont row"> ';
+	    html +='<div class="col-sm-4 link-element-item">';
+			html +='<div class="fileinput fileinput-new" data-provides="fileinput">';
+				html +='<div class="fileinput-preview img-thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
+				html +='<div style="float:left;vertical-align:middle;">';
+					html +='<div class="my-2"><span class="btn text-uppercase btn-primary btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="l-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
+					html +='<div><a href="#" class="btn text-uppercase btn-danger fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
+				html +='</div>';
+			html +='</div>';
+			
+			html +='<div class="form-group" >';
+				html +='<div class="checkbox" >';
+					html += '<label><input class="create-sublink" value="1" type="checkbox" name="l-e-isSublink-'+sectionData+'-'+secHeaderElement+'-1" value="1"/> Automaticky vytvořit pododkaz</label>';
+				html +='</div>';
+			html +='</div>';
+	
+			html +='<div class="form-group url">';
+		    	for(var i = 0; i < data.length; i++){
+		    		
+		    		var hid = "";
+		    		if(i != 0)hid = "hidden-lang";
+		    		
+		    		html += '<span class="language-input '+hid+' '+data[i].suffix+'" >';
+		    		html += '<input class="form-control" placeholder="url" type="text" name="l-e-url-'+sectionData+'-'+secHeaderElement+'-'+data[i].suffix+'[]"/>';
+		    		html += '</span>';
+		    	}
+		    	html += flags;
+	    	html +='</div>';
+		    html +='<div class="form-group">';
+		    	for(var i = 0; i < data.length; i++){
+		    		
+		    		var hid = "";
+		    		if(i != 0)hid = "hidden-lang";
+		    		
+		    		html += '<span class="language-input '+hid+' '+data[i].suffix+'" >';
+		    		html += '<input class="form-control" placeholder="h2 nadpis" type="text" name="l-e-h2-'+sectionData+'-'+secHeaderElement+'-'+data[i].suffix+'[]"/>';
+		    		html += '</span>';
+		    	}
+		    	html += flags;
+		    html +='</div>';
+		    html +='<div class="form-group">';
+		    	for(var i = 0; i < data.length; i++){
+		    		var hid = "";
+		    		if(i != 0)hid = "hidden-lang";
+		    		
+		    		html += '<span class="language-input '+hid+' '+data[i].suffix+'" >';
+		    		html +='<textarea id="l-e-'+sectionData+'-'+i+'-'+secHeaderElement+'" class="form-control tiny" placeholder="text" type="text" name="l-e-text-'+sectionData+'-'+secHeaderElement+'-'+data[i].suffix+'[]"></textarea>';
+		    		html += '</span>';
+		    		html += '<script>execTinyMCE(1,\'l-e-'+sectionData+'-'+i+'-'+secHeaderElement+'\');</script>';
+		    	}
+		    	html += flags;
+		    html +='</div>';
+		    html +='<input value="" type="hidden" name="l-e-linkID-'+sectionData+'-'+secHeaderElement+'[]" />';
 	    html +='</div>';
-	    html +='<div class="form-group">';
-	    	for(var i = 0; i < data.length; i++){
-	    		var hid = "";
-	    		if(i != 0)hid = "hidden-lang";
-	    		
-	    		html += '<span class="language-input '+hid+' '+data[i].suffix+'" >';
-	    		html +='<textarea id="l-e-'+sectionData+'-'+i+'-'+secHeaderElement+'" class="form-control tiny" placeholder="text" type="text" name="l-e-text-'+sectionData+'-'+secHeaderElement+'-'+data[i].suffix+'[]"></textarea>';
-	    		html += '</span>';
-	    		html += '<script>execTinyMCE(1,\'l-e-'+sectionData+'-'+i+'-'+secHeaderElement+'\');</script>';
-	    	}
-	    	html += flags;
-	    html +='</div>';
-	    html +='<input value="" type="hidden" name="l-e-linkID-'+sectionData+'-'+secHeaderElement+'[]" />';
     html +='</div>';
-    	    
-    html += '</div><div class="panel-footer"><a class="btn btn-primary btn-xs add-link-element" href="#" title="Přidat element">Přidat element</a><input type="hidden" name="l-e-c-'+sectionData+'-'+secHeaderElement+'" value="1" /></div>';
+    
+    html += '</div><div class="card-footer"><a class="btn text-uppercase btn-primary btn-xs add-link-element" href="#" title="Přidat element">Přidat element</a><input type="hidden" name="l-e-c-'+sectionData+'-'+secHeaderElement+'" value="1" /></div>';
     html += '</div><input type="hidden" name="is-element-'+sectionData+'[]" value="l-'+secHeaderElement+'" /></li>';
         
 	return html;
@@ -1492,9 +1616,9 @@ function renderSublinkElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 	
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading"><span class="label label-danger">Sublink element</span> <span class="glyphicons glyphicons-remove sublink-element"></span> <span class="glyphicons glyphicons-move"></span></div>';
-    html += '<div class="panel-body">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center"><span class="badge badge-danger">Sublink element</span> <span class="glyphicons glyphicons-move ml-auto mr-2"></span> <span class="glyphicons glyphicons-remove sublink-element"></span></div>';
+    html += '<div class="card-body">';
     
     html +='<div class="form-group">';
 
@@ -1539,7 +1663,7 @@ function renderSublinkElement(sectionData,data,flags){
 	    html +='<input value="" type="hidden" name="sl-e-linkID-'+sectionData+'-'+secHeaderElement+'[]" />';
     html +='</div>';
     	    
-    html += '</div><div class="panel-footer"><a class="btn btn-primary btn-xs add-sublink-element" href="#" title="Přidat element">Přidat element</a></div>';
+    html += '</div><div class="card-footer"><a class="btn text-uppercase btn-primary btn-xs add-sublink-element" href="#" title="Přidat element">Přidat element</a></div>';
     html += '</div><input type="hidden" name="is-element-'+sectionData+'[]" value="sl-'+secHeaderElement+'" /></li>';
         
 	return html;
@@ -1552,14 +1676,12 @@ function renderTextElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 		    
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading">';
-    	html += '<span class="label label-info">Text element</span>';
-    	html += '<span class="glyphicons glyphicons-remove text-element"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
-	    html += '<span class="element-width form-inline">';
-		    html += '<label>Šířka elementu:</label>';
-		    html += '<select class="form-control" name="t-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-info">Text element</span>';
+	    html += '<span class="element-width form-inline ml-auto mr-2">';
+		    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+		    html += '<select class="form-control form-control-sm" name="t-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
 			    html += '<option value="12">12 dílů (celá šířka)</option>';
 			    html += '<option value="11">11 dílů</option>';
 			    html += '<option value="10">10 dílů</option>';
@@ -1574,8 +1696,10 @@ function renderTextElement(sectionData,data,flags){
 			    html += '<option value="1">1 díl</option>';
 		    html += '</select>';
 		html += '</span>';
+    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+    	html += '<span class="glyphicons glyphicons-remove text-element"></span>';
 	html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
     
     html += '<div>';
     html += flags;
@@ -1601,14 +1725,12 @@ function renderFormElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 		    
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading">';
-    	html += '<span class="label label-primary">Form element</span>';
-    	html += '<span class="glyphicons glyphicons-remove form-element"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
-	    html += '<span class="element-width form-inline">';
-		    html += '<label>Šířka elementu:</label>';
-		    html += '<select class="form-control" name="f-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-primary">Form element</span>';
+	    html += '<span class="element-width form-inline ml-auto mr-2">';
+		    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+		    html += '<select class="form-control form-control-sm" name="f-e-element-width-' + sectionData + '-' + secHeaderElement +'">';
 			    html += '<option value="12">12 dílů (celá šířka)</option>';
 			    html += '<option value="11">11 dílů</option>';
 			    html += '<option value="10">10 dílů</option>';
@@ -1623,16 +1745,18 @@ function renderFormElement(sectionData,data,flags){
 			    html += '<option value="1">1 díl</option>';
 		    html += '</select>';
 		html += '</span>';
+    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+    	html += '<span class="glyphicons glyphicons-remove form-element"></span>';
 	html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
     
 	    html += '<div>';
 	    	html += '<input class="form-control" placeholder="email" type="text" name="f-e-email-'+sectionData+'-'+secHeaderElement+'"/>';
 	    html += '</div>';
 	    html += '<hr/>';
 	    html += '<div class="inputs">'
-		    html += '<div class="form-inline">';	    		
-			    html += '<div class="form-group">';
+		    html += '<div class="form-inline align-items-start">';	    		
+			    html += '<div class="form-group d-block mr-2">';
 				    for(var i = 0; i < data.length; i++){
 				    	var hid = "";
 						if(i != 0)hid = "hidden-lang";
@@ -1661,7 +1785,7 @@ function renderFormElement(sectionData,data,flags){
 			
 			html += '</div> ';			
 	    html += '</div>';
-    html += '</div><input type="hidden" value="0" name="form-element-values-count-'+sectionData+'-'+secHeaderElement+'" /><div class="panel-footer"><a class="btn btn-primary btn-xs add-form-element" href="#" title="Přidat položku">Přidat položku</a></div>';
+    html += '</div><input type="hidden" value="0" name="form-element-values-count-'+sectionData+'-'+secHeaderElement+'" /><div class="card-footer"><a class="btn text-uppercase btn-primary btn-xs add-form-element" href="#" title="Přidat položku">Přidat položku</a></div>';
     html += '</div><input type="hidden" name="is-element-'+sectionData+'[]" value="f-'+secHeaderElement+'" /></li>';
         
 	return html;
@@ -1674,14 +1798,12 @@ function renderListElement(sectionData,data,flags){
 		secHeaderElement++;
 		elmCount.val(secHeaderElement);
 		    
-	var html = '<li><div class="panel panel-default">';
-    html += '<div class="panel-heading">';
-    	html += '<span class="label label-purple">List element</span>';
-    	html += '<span class="glyphicons glyphicons-remove form-element"></span>';
-    	html += '<span class="glyphicons glyphicons-move"></span>';
-	    html += '<span class="element-width form-inline">';
-		    html += '<label>Šířka elementu:</label>';
-		    html += '<select class="form-control" name="element-width-' + sectionData + '-' + secHeaderElement +'">';
+	var html = '<li><div class="card mb-4">';
+    html += '<div class="card-header d-flex align-items-center">';
+    	html += '<span class="badge badge-purple">List element</span>';
+	    html += '<span class="element-width form-inline ml-auto mr-2">';
+		    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+		    html += '<select class="form-control form-control-sm" name="element-width-' + sectionData + '-' + secHeaderElement +'">';
 			    html += '<option value="12">12 dílů (celá šířka)</option>';
 			    html += '<option value="11">11 dílů</option>';
 			    html += '<option value="10">10 dílů</option>';
@@ -1696,8 +1818,10 @@ function renderListElement(sectionData,data,flags){
 			    html += '<option value="1">1 díl</option>';
 		    html += '</select>';
 		html += '</span>';
+    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+    	html += '<span class="glyphicons glyphicons-remove form-element"></span>';
 	html += '</div>';
-    html += '<div class="panel-body">';
+    html += '<div class="card-body">';
     
 	    html += '<table class="table table-striped">';
 	    	html += '<thead>';
@@ -1745,7 +1869,7 @@ function renderListElement(sectionData,data,flags){
 	        html += '</tbody>';
 	    html += '</table>';
     	
-    html += '</div><input type="hidden" value="0" name="list-element-col-count-'+sectionData+'-'+secHeaderElement+'" /><div class="panel-footer"><a class="btn btn-primary btn-xs add-list-element-row" href="#" title="Přidat řádek">Přidat řádek</a> <a class="btn btn-primary btn-xs add-list-element-col" href="#" title="Přidat sloupec">Přidat sloupec</a></div>';
+    html += '</div><input type="hidden" value="0" name="list-element-col-count-'+sectionData+'-'+secHeaderElement+'" /><div class="card-footer"><a class="btn text-uppercase btn-primary btn-xs add-list-element-row" href="#" title="Přidat řádek">Přidat řádek</a> <a class="btn text-uppercase btn-primary btn-xs add-list-element-col" href="#" title="Přidat sloupec">Přidat sloupec</a></div>';
     html += '</div><input type="hidden" name="is-element-'+sectionData+'[]" value="li-'+secHeaderElement+'" /></li>';
         
 	return html;
@@ -1766,14 +1890,12 @@ function renderYouTubeVimeoElement(sectionData,callback){
 			data = JSON.parse(data);
 			var html = "";
 						
-			html += '<li><div class="panel panel-default">';
-		    html += '<div class="panel-heading">';
-		    html += '<span class="label label-brown">YoutTube,Vimeo element</span>';
-		    	html += '<span class="glyphicons glyphicons-remove ytv-element"></span>';
-		    	html += '<span class="glyphicons glyphicons-move"></span>';
-			    html += '<span class="element-width form-inline">';
-				    html += '<label>Šířka elementu:</label>';
-				    html += '<select class="form-control" name="ytv-element-width-' + sectionData + '-' + secHeaderElement +'">';
+			html += '<li><div class="card mb-4">';
+		    html += '<div class="card-header d-flex align-items-center">';
+		    html += '<span class="badge badge-brown">YoutTube,Vimeo element</span>';
+			    html += '<span class="element-width form-inline ml-auto mr-2">';
+				    html += '<label class="font-weight-bold mr-2">Šířka elementu:</label>';
+				    html += '<select class="form-control form-control-sm" name="ytv-element-width-' + sectionData + '-' + secHeaderElement +'">';
 					    html += '<option value="12">12 dílů (celá šířka)</option>';
 					    html += '<option value="11">11 dílů</option>';
 					    html += '<option value="10">10 dílů</option>';
@@ -1788,8 +1910,10 @@ function renderYouTubeVimeoElement(sectionData,callback){
 					    html += '<option value="1">1 díl</option>';
 				    html += '</select>';
 				html += '</span>';
+		    	html += '<span class="glyphicons glyphicons-move mr-2"></span>';
+		    	html += '<span class="glyphicons glyphicons-remove ytv-element"></span>';
 			html += '</div>';
-		    html += '<div class="panel-body">';
+		    html += '<div class="card-body">';
 		    	html += '<div class="col-xs-6">';	
 					html +='<div class="form-group">';	    	
 				    	html += '<input placeholder="URL videa (youtube, vimeo)" class="form-control" type="text" name="ytv-element-'+sectionData+'-'+secHeaderElement+'[]" />';	    		
@@ -1811,7 +1935,7 @@ function renderYouTubeVimeoElement(sectionData,callback){
 					html += '</div>';
 				}
 		    	    
-		    html += '</div><div class="panel-footer"><a class="btn btn-primary btn-xs add-ytv-element" href="#" title="Přidat video">Přidat video</a></div>';
+		    html += '</div><div class="card-footer"><a class="btn text-uppercase btn-primary btn-xs add-ytv-element" href="#" title="Přidat video">Přidat video</a></div>';
 		    html += '</div><input type="hidden" name="is-element-'+sectionData+'[]" value="ytv-'+secHeaderElement+'" /></li>';
 
 		    if(callback)callback(html);
@@ -1858,8 +1982,8 @@ function addFormElement(){
 					formElmValueElm.val(formElmValue);
 				
 				html  = '<hr/><div class="inputs">'
-				    html += '<div class="form-inline">';	    		
-					    html += '<div class="form-group">';
+				    html += '<div class="form-inline align-items-start">';	    		
+					    html += '<div class="form-group d-block mr-2">';
 						    for(var i = 0; i < data.length; i++){
 						    	var hid = "";
 								if(i != 0)hid = "hidden-lang";
@@ -1886,7 +2010,7 @@ function addFormElement(){
 					html += '</div> ';			
 			    html += '</div>';
 				
-			    thisElm.closest("div.panel-default").find("div.panel-body").append(html);
+			    thisElm.closest("div.card").find("div.card-body").append(html);
 				
 				setLangs();
 				selectInputType();
@@ -1965,15 +2089,15 @@ function addHeaderElement(){
 			    html +='</div>';
 			    html +='<div class="col-sm-4">';
 			    	html +='<div class="fileinput fileinput-new" data-provides="fileinput">';
-			    		html +='<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
+			    		html +='<div class="fileinput-preview img-thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
 			    		html +='<div style="float:left;vertical-align:middle;">';
-			    			html +='<div style="margin-bottom:5px;"><span class="btn btn-default btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="h-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
-			    			html +='<div><a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
+			    			html +='<div class="my-2"><span class="btn text-uppercase btn-primary btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="h-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
+			    			html +='<div><a href="#" class="btn text-uppercase btn-primary fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
 			    		html +='</div>';
 			    	html +='</div>';
 		        html +='</div>';
-				
-			    thisElm.closest("div.panel-default").find("div.panel-body").append(html);
+		        
+			    thisElm.closest("div.card").find("div.card-body").append(html);
 				
 				setLangs();				
 
@@ -2043,7 +2167,7 @@ function addMapElement(){
 			        html +='</div>';
 				   
 				html +='</div>';				
-			    thisElm.closest("div.panel-default").find("div.panel-body").append(html);				
+			    thisElm.closest("div.card").find("div.card-body").append(html);				
 				setLangs();				
 
 			}
@@ -2092,10 +2216,10 @@ function addLinkElement(){
 				
 				var html ='<div class="col-sm-4 link-element-item">';
 					html +='<div class="fileinput fileinput-new" data-provides="fileinput">';
-						html +='<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
+						html +='<div class="fileinput-preview img-thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;"></div>';
 						html +='<div style="float:left;vertical-align:middle;">';
-							html +='<div style="margin-bottom:5px;"><span class="btn btn-primary btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="l-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
-							html +='<div><a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
+							html +='<div class="my-2"><span class="btn text-uppercase btn-primary btn-file"><span class="fileinput-new">Vyberte obrázek</span><span class="fileinput-exists">Vyměnit</span><input type="file" name="l-e-file-'+sectionData+'-'+secHeaderElement+'[]"></span></div>';
+							html +='<div><a href="#" class="btn text-uppercase btn-danger fileinput-exists" data-dismiss="fileinput">Odstranit</a></div>';
 						html +='</div>';
 					html +='</div>';
 
@@ -2144,7 +2268,7 @@ function addLinkElement(){
 				    html +='</div>';
 			    html +='</div>';
 				
-			    thisElm.closest("div.panel-default").find("div.panel-body").append(html);
+			    thisElm.closest("div.card").find("div.link-elm-cont").append(html);
 				
 				setLangs();
 				crSublink();
@@ -2220,7 +2344,7 @@ function addSublinkElement(){
 				    html +='<input value="" type="hidden" name="sl-e-linkID-'+sectionData+'-'+secHeaderElement+'[]" />';
 			    html +='</div>';
 				
-			    thisElm.closest("div.panel-default").find("div.panel-body").append(html);
+			    thisElm.closest("div.card").find("div.card-body").append(html);
 				
 				setLangs();
 
@@ -2272,7 +2396,7 @@ function addYtvElement(){
 						html += '</div>';
 					}   
 			    
-			    thisElm.closest("div.panel-default").find("div.panel-body").append(html);
+			    thisElm.closest("div.card").find("div.card-body").append(html);
 			}
 
 		});
@@ -2334,7 +2458,7 @@ function addListElementRow(){
 					}
 			    html +='</tr>';
 				
-			    thisElm.closest("div.panel-default").find("table tbody").append(html);
+			    thisElm.closest("div.card").find("table tbody").append(html);
 				
 				setLangs();
 
@@ -2401,7 +2525,7 @@ function addListElementCol(){
 					
 			    html +='</td>';
 			    
-			    thisElm.closest("div.panel-default").find("table tbody tr").append(html);
+			    thisElm.closest("div.card").find("table tbody tr").append(html);
 			    
 			    var head = '<th>'
 			    	head +='<div>';
@@ -2433,7 +2557,7 @@ function addListElementCol(){
 				    head +='</th>';
 			    	
 				
-			    thisElm.closest("div.panel-default").find("table thead tr").append(head);
+			    thisElm.closest("div.card").find("table thead tr").append(head);
 				
 				setLangs();
 
@@ -2497,7 +2621,8 @@ function selectInputType(){
 }
 
 function addFormElementValues(){
-	
+
+	$("button.add-form-element-values").unbind("click");
 	$("button.add-form-element-values").click(function(){
 		var param = $(this).attr("data");
 		var thisElm = $(this);
@@ -2522,8 +2647,8 @@ function addFormElementValues(){
 				    flags += '</span> ';
 				}
 							
-				var html = '<div class="form-inline">';
-					html += '<div class="form-group">';
+				var html = '<div class="form-inline align-items-start">';
+					html += '<div class="form-group d-block mr-2">';
 						for(var i = 0; i < data.length; i++){    		
 				    		var hid = "";
 				    		if(i != 0)hid = "hidden-lang";
@@ -2535,7 +2660,7 @@ function addFormElementValues(){
 						html += flags;
 					html += '</div> ';
 					
-					html += '<div class="form-group">';
+					html += '<div class="form-group d-block mr-2">';
 						for(var i = 0; i < data.length; i++){    		
 				    		var hid = "";
 				    		if(i != 0)hid = "hidden-lang";
@@ -2548,7 +2673,7 @@ function addFormElementValues(){
 					html += '</div> ';
 				html += '</div> ';
 				
-				thisElm.closest(".inputs").find(".inputs-elements").append(html);
+				thisElm.closest(".inputs").find(".inputs-elements .add-form-element-values").before(html);
 				
 				setLangs();
 
@@ -2563,8 +2688,8 @@ function addFormElementValues(){
 function getSelectInputTypeText(parameters,flags,data){
 	var html = "";
 	
-	html =  '<div class="form-inline">';
-		html += '<div class="form-group">';
+	html =  '<div class="form-inline align-items-start">';
+		html += '<div class="form-group d-block">';
 		for(var i = 0; i < data.length; i++){    		
     		var hid = "";
     		if(i != 0)hid = "hidden-lang";
@@ -2583,8 +2708,8 @@ function getSelectInputTypeText(parameters,flags,data){
 function getSelectInputTypeCheckbox(parameters,flags,data){
 	var html = "";
 	
-	html =  '<div class="form-inline">';
-		html +=  '<div class="form-group">';
+	html =  '<div class="form-inline align-items-start">';
+		html +=  '<div class="form-group d-block mr-2">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2596,7 +2721,7 @@ function getSelectInputTypeCheckbox(parameters,flags,data){
 			html += flags; 
 		html += '</div> ';
 		
-		html += '<div class="form-group">';
+		html += '<div class="form-group d-block mr-2">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2608,9 +2733,9 @@ function getSelectInputTypeCheckbox(parameters,flags,data){
 			html += flags;
 		html += '</div> ';
 	
-	    html +=  '<div class="form-group">';
-			html += '<button class="btn btn-primary btn-xs add-form-element-values" data="'+parameters+'" type="button">Přidat hodnoty</button>';
-		html += '</div>';
+	html += '</div>';
+    html +=  '<div class="form-group d-block">';
+		html += '<button class="btn text-uppercase btn-primary btn-xs add-form-element-values" data="'+parameters+'" type="button">Přidat hodnoty</button>';
 	html += '</div>';
 	
 	return html;	
@@ -2618,8 +2743,8 @@ function getSelectInputTypeCheckbox(parameters,flags,data){
 function getSelectInputTypeRadio(parameters,flags,data){
 	var html = "";
 	
-	html =  '<div class="form-inline">';
-		html += '<div class="form-group">';
+	html =  '<div class="form-inline align-items-start">';
+		html += '<div class="form-group d-block mr-2">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2631,7 +2756,7 @@ function getSelectInputTypeRadio(parameters,flags,data){
 			html += flags; 
 		html += '</div> ';
 		
-		html += '<div class="form-group">';
+		html += '<div class="form-group d-block mr-2">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2643,9 +2768,9 @@ function getSelectInputTypeRadio(parameters,flags,data){
 			html += flags;
 		html += '</div> ';
 	
-	    html +=  '<div class="form-group">';
-			html += '<button class="btn btn-primary btn-xs add-form-element-values" data="'+parameters+'" type="button">Přidat hodnoty</button>';
-		html += '</div>';
+	html += '</div>';
+    html +=  '<div class="form-group d-block">';
+		html += '<button class="btn text-uppercase btn-primary btn-xs add-form-element-values" data="'+parameters+'" type="button">Přidat hodnoty</button>';
 	html += '</div>';
 	
 	return html;	
@@ -2653,8 +2778,8 @@ function getSelectInputTypeRadio(parameters,flags,data){
 function getSelectInputTypeDropdown(parameters,flags,data){
 	var html = "";
 	
-	html =  '<div class="form-inline">';
-		html +=  '<div class="form-group">';
+	html =  '<div class="form-inline align-items-start">';
+		html +=  '<div class="form-group d-block mr-2">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2666,7 +2791,7 @@ function getSelectInputTypeDropdown(parameters,flags,data){
 			html += flags; 
 		html += '</div> ';
 		
-		html += '<div class="form-group">';
+		html += '<div class="form-group d-block mr-2">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2678,9 +2803,9 @@ function getSelectInputTypeDropdown(parameters,flags,data){
 			html += flags;
 		html += '</div> ';
 	
-	    html +=  '<div class="form-group">';
-			html += '<button class="btn btn-primary btn-xs add-form-element-values" data="'+parameters+'" type="button">Přidat hodnoty</button>';
-		html += '</div>';
+	html += '</div>';
+    html +=  '<div class="form-group d-block">';
+		html += '<button class="btn text-uppercase btn-primary btn-xs add-form-element-values" data="'+parameters+'" type="button">Přidat hodnoty</button>';
 	html += '</div>';
 	
 	return html;	
@@ -2688,8 +2813,8 @@ function getSelectInputTypeDropdown(parameters,flags,data){
 function getSelectInputTypeTextarea(parameters,flags,data){
 	var html = "";
 	
-	html =  '<div class="form-inline">';
-		html +=  '<div class="form-group">';
+	html =  '<div class="form-inline align-items-start">';
+		html +=  '<div class="form-group d-block">';
 			for(var i = 0; i < data.length; i++){    		
 	    		var hid = "";
 	    		if(i != 0)hid = "hidden-lang";
@@ -2708,7 +2833,7 @@ function getSelectInputTypeTextarea(parameters,flags,data){
 
 function removeElement(){
 	
-	$(".panel-heading span.glyphicons-remove").click(function(){
+	$(".card-header span.glyphicons-remove").click(function(){
 		
 		var thisEml = $(this);
 		var data    = thisEml.attr("data");

@@ -5,7 +5,6 @@
 	<link href="/Public/Images/Admin/favicon.png" rel="shortcut icon" />
 	
 	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons.css" />
-	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-bootstrap.css" />
 	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-filetypes.css" />
 	<link rel="stylesheet" href="/Public/Css/Glyphicons/glyphicons-social.css" />
 		
@@ -39,12 +38,12 @@
 	
 	<script type="text/javascript" src = "/Public/Jscripts/AdminBase/jquery-latest.js"></script>	
 	<script type="text/javascript" src = "/Public/Jscripts/AdminBase/quicksearch.js"></script>
-	<script type="text/javascript" src="/Public/Jscripts/Bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/Public/Jscripts/Bootstrap/jasny-bootstrap.js?2"></script>
+	<script type="text/javascript" src="/Public/Jscripts/Bootstrap/bootstrap.bundle.min.js"></script>
 	
 	<script src="/Public/Jscripts/kartik-bootstrap-fileinput/js/plugins/purify.min.js?2" type="text/javascript"></script>
 	<script src="/Public/Jscripts/kartik-bootstrap-fileinput/js/fileinput.min.js?2"></script>
 	<script src="/Public/Jscripts/kartik-bootstrap-fileinput/js/locales/cs.js?2"></script>
+	
 		
 	<!--  potvrzování pomoci impromtu -->
 	<script type="text/javascript" src = "/Public/Jscripts/Impromptu/jquery-impromptu.js"></script>
@@ -63,6 +62,8 @@
 	<script type="text/javascript" src="/Public/Jscripts/AdminBase/events.js?9"></script>
 	<script type="text/javascript" src="/Public/Jscripts/Admin/events.js?9"></script>
 	
+	<script type="text/javascript" src="/Public/Jscripts/iscroll/iscroll.js"></script>
+	
 	<!-- Datepicker -->	
 	<script type="text/javascript" src="/Public/Jscripts/Datepicker/datepicker-cs.js" ></script>
 	<script type="text/javascript" src="/Public/Jscripts/Datepicker/datepicker.js" ></script>
@@ -76,35 +77,35 @@
 
 <body>
 
-	<header>		
+	<header class="d-flex flex-row-reverse">		
 		<?php echo $this->placeholder('Zend_Layout')->header; ?>	
 	</header>
 	
-	<div id="sidebar">
-		<p class="logo"><img src="/Public/Images/Layout/logo_bw.png" /></p>
-		<nav>
-			<ul id="menu-accordion">
-				<?php foreach($this->adminMenu as $menu){ ?>
-					<li class="main">
+	<div id="sidebar" class="d-flex  flex-column">
+		<div class="logo p-3"><img class="img-fluid" src="/Public/Images/Layout/logo_bw.png" /></div>
+		<nav id="sideMenuAccordionScroll">
+			<div class="accordion" id="sideMenuAccordion">
+				<?php $i = 0; foreach($this->adminMenu as $menu){ ?>
+					<div class="card rounded-0 bg-transparent">
 						<?php if(!empty($menu->subLinks)){ ?>
-							<a href="<?php echo "#".$menu->icon ?>" data-toggle="collapse" class="<?php if($this->selectedMenu == $menu->title)echo "selected";else echo "collapsed" ?>"> <span class="glyphicons glyphicons-<?php echo $menu->icon ?>"></span> <?php echo $menu->title ?> <span class="glyphicons glyphicons-chevron-down right"></span> <span class="glyphicons glyphicons-chevron-left right"></span></a>
-							<div class="collapse <?php if($this->selectedMenu == $menu->title)echo "in"; ?>" id="<?php echo $menu->icon ?>">
-								<ul>
+							<a href="<?php echo "#".$menu->icon ?>" data-toggle="collapse" data-target="#collapse<?php echo $i;?>" class="<?php if($this->selectedMenu == $menu->title)echo "selected";else echo "collapsed" ?> p-2 d-flex align-items-center"> <span class="glyphicons p-0 pr-2 glyphicons-<?php echo $menu->icon ?>"></span> <?php echo $menu->title ?> <span class="glyphicons glyphicons-chevron-down right"></span> <span class="glyphicons glyphicons-chevron-left right"></span></a>
+							<div data-parent="#sideMenuAccordion" id="collapse<?php echo $i;?>" class="collapse  <?php if($this->selectedMenu == $menu->title)echo "show"; ?>">
+								<ul class="list-unstyled mx-2 mb-0">
 									<?php foreach($menu->subLinks as $subMenu){ ?>
-										<li><a class="<?php if($this->subSelected == $subMenu->title)echo "selected"; ?>" href="<?php echo $subMenu->url ?>"><?php echo $subMenu->title ?></a></li>
+										<li><a class="p-2 d-block <?php if($this->subSelected == $subMenu->title)echo "selected"; ?>" href="<?php echo $subMenu->url ?>"><?php echo $subMenu->title ?></a></li>
 									<?php } ?>
 								</ul>
 							</div>
 						<?php }else{ ?>
-							<a href="<?php echo $menu->url ?>" class="<?php if($this->selectedMenu == $menu->title)echo "selected"; ?>"> <span class="glyphicons glyphicons-<?php echo $menu->icon ?>"></span> <?php echo $menu->title ?> </a>
+							<a href="<?php echo $menu->url ?>" class="<?php if($this->selectedMenu == $menu->title)echo "selected"; ?> p-2 d-flex align-items-center"> <span class="glyphicons p-0 pr-2 glyphicons-<?php echo $menu->icon ?>"></span> <?php echo $menu->title ?> </a>
 						<?php } ?>
-					</li>
-				<?php } ?>
+					</div>
+				<?php $i++; } ?>
 								
-			</ul>
+			</div>
 		</nav>
 				
-	    <div class="copyright"> <a class="link" href="http://www.1vision.cz">&copy; <?php echo date("Y"); ?> 1vision</a></div>
+	    <div class="copyright mt-auto p-2"> <a class="link" href="http://www.1vision.cz">&copy; <?php echo date("Y"); ?> 1vision</a></div>
 		
 	</div>
 	
@@ -120,8 +121,10 @@
 	  <div class="modal-dialog modal-sm" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel"><span class="glyphicons glyphicons-warning-sign"></span> UPOZORNĚNÍ</h4>
+	      	<h5 class="modal-title d-flex align-items-center"><span class="glyphicons glyphicons-warning-sign mr-2"></span> UPOZORNĚNÍ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
 	      </div>
 	      <div class="modal-body text-center">
 	      </div>

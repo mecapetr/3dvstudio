@@ -7,4 +7,10 @@ $(document).ready(function() {
     $('.colorpicker-component').colorpicker({
     	format:"hex"
     });
+    
+    var siedbarScroll = new IScroll('#sideMenuAccordionScroll',{
+        mouseWheel: true,
+        scrollbars: true,
+        fadeScrollbars:true
+    });
 });

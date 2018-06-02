@@ -494,29 +494,29 @@ class Content_OdkazyController extends Content_Library_WholeContent
     private function recurseLinksForList($children,$recurseLevel){
     	//prochazime postupne od korene a zanorujeme se do childu
     	
-    	$ulMargin = $recurseLevel*15;
-    		
-    	$this->linksOutput .= '<ul class="sortListBasic main-ul data-list">';
-    	
-	    	foreach($children as $child){
-	    		$this->linksOutput .= '<li id="'.$child->linkID.'" class="clearfix" >';        
-		        $this->linksOutput .= '     <div class="col-sm-3" style="padding-left:'.$ulMargin.'px;"> <span class="glyphicons glyphicons-move"></span> '.$child->title.'</div>';
-				$this->linksOutput .= '		<div class="col-sm-3">'.date("d.m.Y H:i:s",strtotime($child->date)).'</div>';
-				$this->linksOutput .= '		<div class="text-center col-sm-3">'.$child->view.'</div>';
-				$this->linksOutput .= '		<div class="text-right col-sm-3">';
-				$this->linksOutput .= '		    <a title="Uprav" href="'.$this->baseUrl.'/admin/obsah/odkazy/upravit/id/'.$child->linkID.'"><span class="glyphicons glyphicons-pencil"></span></a> '; 
-				if($child->allowDelete){
-					$this->linksOutput .= '		<input class="delete" type="checkbox" name="delete[]" value="'.$child->linkID.'">';
-				}
-				$this->linksOutput .= '		</div><div class="clear-left"></div>';
-	    		
-	    			if(!empty($this->subLinksArr[$child->linkID]))
-	    				$this->recurseLinksForList($this->subLinksArr[$child->linkID],$recurseLevel+1);
-	    			
-	    		$this->linksOutput .= "</li>";
-	    	}
-	    	
-    	$this->linksOutput .= '</ul>';
+        $ulMargin = $recurseLevel*15;
+        
+        $this->linksOutput .= '<ul class="sortListBasicLinks main-ul data-list list-unstyled col-12">';
+        
+        foreach($children as $child){
+            $this->linksOutput .= '<li id="'.$child->linkID.'" class="clearfix row" >';
+            $this->linksOutput .= '     <div class="col-sm-3" style="padding-left:'.$ulMargin.'px;"> <span class="glyphicons glyphicons-move"></span> '.$child->title.'</div>';
+            $this->linksOutput .= '		<div class="col-sm-3">'.date("d.m.Y H:i:s",strtotime($child->date)).'</div>';
+            $this->linksOutput .= '		<div class="text-center col-sm-3">'.$child->view.'</div>';
+            $this->linksOutput .= '		<div class="text-right col-sm-3">';
+            $this->linksOutput .= '		    <a title="Uprav" href="'.$this->baseUrl.'/admin/obsah/odkazy/upravit/id/'.$child->linkID.'"><span class="glyphicons glyphicons-pencil"></span></a> ';
+            if($child->allowDelete){
+                $this->linksOutput .= '		<input class="delete" type="checkbox" name="delete[]" value="'.$child->linkID.'">';
+            }
+            $this->linksOutput .= '		</div><div class="w-100"></div>';
+            
+            if(!empty($this->subLinksArr[$child->linkID]))
+                $this->recurseLinksForList($this->subLinksArr[$child->linkID],$recurseLevel+1);
+                
+                $this->linksOutput .= "</li>";
+        }
+        
+        $this->linksOutput .= '</ul>';
     }
 	       
 	private function getComments(){

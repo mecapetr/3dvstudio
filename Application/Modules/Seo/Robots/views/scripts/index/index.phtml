@@ -1,12 +1,12 @@
 <script type="text/javascript" src="/Application/Modules/Seo/Sitemap/Jscripts/events.js"></script>
 
-<h1> Robots </h1>
-
-<ol class="breadcrumb">
-<li>SEO</li>
-<li class="active">Robots</li>
-</ol>
-
+<h1 class="font-weight-light mt-4"> Robots </h1>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">SEO</li>
+        <li class="breadcrumb-item active">Robots</li>
+    </ol>
+</nav>
 <?php if($this->error !=''){
 	echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";
 } ?>
@@ -14,26 +14,24 @@
 
 <form action="" method="post">
 
-	<div class="panel panel-default">		
-		<div class="panel-heading clearfix">
-
+	<div class="card">		
+		<div class="card-header d-flex align-items-center">
+		robots.txt
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 
 			<label>Text souboru robots.txt</label>
 			<div class="form-group">
-				<textarea class="form-control" name="robots"><?php echo $this->allData->robots; ?></textarea>
+				<textarea rows="5" class="form-control" name="robots"><?php echo $this->allData->robots; ?></textarea>
 			</div>
 			
 		</div>	
 	</div>
-	
-	<div class="well">
-		<div class="clearfix">
-			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
-				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Uložit" />
+	<div class="card mt-4 mb-4">		
+        <div class="card-body">
+			<div class="col-sm-6 col-xs-12 offset-sm-3 offset-xs-0">
+				<input class="btn btn-primary btn-block check-required-fields" type="submit" name="enter" value="Uložit" />
 			</div>
 		</div>
 	</div>
-
 </form>

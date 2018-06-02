@@ -1,53 +1,56 @@
-<h1> Seznam uživatelů </h1>
+<h1 class="font-weight-light mt-4"> Seznam uživatelů </h1>
 
-<ol class="breadcrumb">
-<li>Uživatelé</li>
-<li class="active">Seznam uživatelů</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">Uživatelé</li>
+        <li class="breadcrumb-item active">Seznam uživatelů</li>
+    </ol>
+</nav>
 
-<div class="panel panel-default">		
-	<div class="panel-heading clearfix">
-		<div class="row">
+<div class="card">		
+	<div class="card-header">
+		<div class="d-flex align-items-center flex-wrap">
 			<div class="col-xs-9">
 	    		<?php if(!$this->sortableList)echo $this->render('userAlign.phtml');else echo $this->render('sortAlign.phtml'); ?>
 			</div>
-			<div class="col-xs-3 text-right">
+			<div class="col-xs-3 text-right ml-auto">
 				<div class="form-group">
-					<a class="btn btn-sm btn-success" href="/admin/uzivatele/uzivatel/pridat"> Přidat </a>
+					<a class="btn btn-sm btn-success text-uppercase" href="/admin/uzivatele/uzivatel/pridat"> Přidat </a>
 				</div>
 				<div class="form-group">
-					<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
+					<button type="button" class="btn btn-sm btn-danger delButton text-uppercase"> Smazat označené </button>
 				</div>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
-	<div class="panel-body table-responsive">
-	
-		<div class="clearfix data-list header">
-				<div class="col-sm-2 no-left-padding th">Jméno a příjmení</div>
-				<div class="col-sm-2 text-center th">Datum zal.</div>
-				<div class="col-sm-4 text-center th">Email</div>
-				<div class="col-sm-2 text-center th">Tel</div>
-				<div class="col-sm-2 no-padding-right text-right th">upravit / smazat</div>		
-		</div>
+	<div class="card-body">
 				
-		<ul class="data-list main-ul">        
-	    <?php foreach($this->allItems as $item){ ?>
-			<li>
-	            <div class="col-sm-2 no-left-padding"> <?php echo $item->degree." ".$item->name." ".$item->surname; ?></div>
-	            <div class="col-sm-2 text-center"> <?php echo $item->date; ?></div>
-				<div class="col-sm-4 text-center"> <?php echo $item->email; ?></div>
-				<div class="col-sm-2 text-center"> <?php echo $item->tel; ?></div>
-				<div class="col-sm-2 no-padding-right text-right">
-				    <a title="Uprav" href="<?php echo $this->baseUrl; ?>/admin/uzivatele/uzivatel/upravit/id/<?php echo $item->userID;?>"><span class="glyphicons glyphicons-pencil"></span></a>   
-				    <input class="delete" type="checkbox" name="delete[]" value="<?php echo $item->userID ?>">
-				</div>
-				
-				<br id="endFloat" />
-           </li>
-	    <?php } ?>
-    	</ul>
+		<table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" class="text-left">Jméno a příjmení</th>
+              <th scope="col" class="text-center">Datum zal.</th>
+              <th scope="col" class="text-center">Email</th>
+              <th scope="col" class="text-center">Tel</th>
+              <th scope="col" class="text-right">upravit / smazat</th>
+            </tr>
+          </thead>
+          <tbody class="sortListBasic data-list main-ul article ui-sortable">       
+    	    <?php foreach($this->allItems as $item){ ?>
+               <tr id="<?php echo $actuality->articleID ?>">
+                  <td class="text-left align-middle"><?php echo $item->degree." ".$item->name." ".$item->surname; ?></td>
+                  <td class="text-center align-middle"><?php echo $item->date; ?></td>
+                  <td class="text-center align-middle"><?php echo $item->email; ?></td>
+                  <td class="text-center align-middle"><?php echo $item->tel; ?></td>
+                  <td class="text-right align-middle">
+              		<a title="Uprav" href="<?php echo $this->baseUrl; ?>/admin/uzivatele/uzivatel/upravit/id/<?php echo $item->userID;?>"><span class="glyphicons glyphicons-pencil"></span></a>   
+    				<input class="delete" type="checkbox" name="delete[]" value="<?php echo $item->userID ?>">
+    			  </td>
+                </tr>
+    	    <?php } ?>
+          </tbody>
+        </table>
     </div>
 		
 <?php echo $this->nextPrevious ?>

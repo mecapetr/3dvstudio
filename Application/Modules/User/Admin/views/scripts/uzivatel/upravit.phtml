@@ -1,26 +1,28 @@
-<h1> Upravit uživatele </h1>
+<h1 class="font-weight-light mt-4"> Upravit uživatele </h1>
 
-<ol class="breadcrumb">
-<li>Uživatelé</li>
-<li class="active">Upravit uživatele</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">Uživatelé</li>
+        <li class="breadcrumb-item active">Upravit uživatele</li>
+    </ol>
+</nav>
 
 <?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
 <?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
 
 <form action="" method="post" enctype="multipart/form-data">
 
-	<div class="panel panel-default">		
+	<div class="card">		
 		
-		<div class="panel-heading">
+		<div class="card-header d-flex align-items-center">
 			Obecný formulář
 		</div>
 		
-		<div class="panel-body">
+		<div class="card-body">
 	    	<div class="row">
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label>Titul: </label> 
+				    	<label class="font-weight-bold d-block">Titul: </label> 
 				    	<div>
 				    		<input class="form-control" type="text" name="degree" value="<?php echo $this->allItems->degree; ?>" />
 				    	</div>
@@ -28,7 +30,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-					    <label for="name">Jméno: </label>
+					    <label class="font-weight-bold d-block">Jméno: </label>
 						<div>
 							<input class="form-control" type="text" name="name" value="<?php echo $this->allItems->name; ?>" />
 						</div>
@@ -36,7 +38,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="name">Příjmení: </label>
+				    	<label class="font-weight-bold d-block">Příjmení: </label>
 						<div>
 							<input class="form-control" type="text" name="surname" value="<?php echo $this->allItems->surname; ?>" />
 						</div>
@@ -44,7 +46,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="name">Společnost: </label> 
+				    	<label class="font-weight-bold d-block">Společnost: </label> 
 				    	<div>
 							<input class="form-control" type="text" name="spol" value="<?php echo $this->allItems->spol; ?>" />
 						</div>
@@ -52,7 +54,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-					    <label for="name">Ulice: </label> 
+					    <label class="font-weight-bold d-block">Ulice: </label> 
 					    <div>
 					    	<input class="form-control" type="text" name="street" value="<?php echo $this->allItems->street; ?>" />
 					    </div>
@@ -60,7 +62,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="name">PSČ: </label> 
+				    	<label class="font-weight-bold d-block">PSČ: </label> 
 				    	<div>
 				    		<input class="form-control" type="text" name="zip" value="<?php echo $this->allItems->zip; ?>" />
 				    	</div>
@@ -68,7 +70,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-					    <label for="name">Město: </label>
+					    <label class="font-weight-bold d-block">Město: </label>
 					    <div>
 					    	<input class="form-control" type="text" name="city" value="<?php echo $this->allItems->city; ?>" />
 					    </div>
@@ -76,7 +78,7 @@
 				</div>
 			    <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="name">Tel.: </label> 
+				    	<label class="font-weight-bold d-block">Tel.: </label> 
 				    	<div>
 				    		<input class="form-control" type="text" name="tel" value="<?php echo $this->allItems->tel; ?>" />
 				    	</div>
@@ -85,46 +87,51 @@
 			    
 		        <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="email">Přihlašovací E-mail: </label> 
+				    	<label class="font-weight-bold d-block">Přihlašovací E-mail: </label> 
 				    	<div>
 				    		<input class="form-control" type="text" name="email" value="<?php echo $this->allItems->email; ?>" />
 				    	</div>
 					</div>
 				</div>
-		        <div class="col-sm-6 col-md-4"> 
-				    <div class="form-group">
-			    		<label for="title">Zablokován přístup: </label>	
-			    		<div>    
-						   <label class="radio-inline"><input type="radio" value="1" name="blocked" class="checkbox" <?PHP if($this->allItems->blocked == 1)echo"checked" ?> >Ano </label>
-						   <label class="radio-inline"><input type="radio" value="0" name="blocked" class="checkbox" <?PHP if($this->allItems->blocked == 0)echo"checked" ?> >Ne </label>
-					    </div>	
-				    </div>
-				</div>
-				
-				<div class="col-sm-6 col-md-4"> 
-				    <div class="form-group">
-			    		<label for="title">Zasílat emaily: </label>
-			    		<div>
-					    	<label class="radio-inline"><input type="radio" value="1" name="sendEmails" class="checkbox" <?PHP if($this->allItems->sendEmails == 1)echo"checked" ?> >Ano</label>
-				    		<label class="radio-inline"><input type="radio" value="0" name="sendEmails" class="checkbox" <?PHP if($this->allItems->sendEmails == 0)echo"checked" ?> >Ne</label>
-		    			</div>   
-		    		</div> 
+			    <div class="col-sm-6 col-md-4">
+		    		<div class="form-group">
+				    	<label class="font-weight-bold d-block">Zablokován přístup:</label>
+				    	<div class="form-check form-check-inline">
+				    		<input class="form-check-input" type="radio" name="blocked" id="blocked1" value="1" <?PHP if($this->allItems->blocked == 1)echo "checked='checked'"; ?> /><label class="form-check-label" for="blocked1">Ano</label>
+				    	</div>				    	
+				    	<div class="form-check form-check-inline">
+				    		<input class="form-check-input" type="radio" name="blocked" id="blocked2" value="0" <?PHP if($this->allItems->blocked == 0)echo "checked='checked'"; ?> /><label class="form-check-label" for="blocked2">Ne</label>
+				    	</div>
+				    </div>  
+		    	</div>
+			    <div class="col-sm-6 col-md-4">
+		    		<div class="form-group">
+				    	<label class="font-weight-bold d-block">Zasílat emaily:</label>
+				    	<div class="form-check form-check-inline">
+				    		<input class="form-check-input" type="radio" name="sendEmails" id="sendEmails1" value="1" <?PHP if($this->allItems->sendEmails == 1)echo "checked='checked'"; ?> /><label class="form-check-label" for="sendEmails1">Ano</label>
+				    	</div>				    	
+				    	<div class="form-check form-check-inline">
+				    		<input class="form-check-input" type="radio" name="sendEmails" id="sendEmails2" value="0" <?PHP if($this->allItems->sendEmails == 0)echo "checked='checked'"; ?> /><label class="form-check-label" for="sendEmails2">Ne</label>
+				    	</div>
+				    </div>  
 		    	</div>
 		    </div>
 		    <div class="row">
 		         
 		        <div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="password">Vytvořit nové heslo: </label> 
-				    	<div class="input-group">
-				    		<input class="form-control" id="password" type="text" name="password" value="" /> 
-				    		<div class="input-group-addon"><a onclick="generatePassword(8);return false;" class="button" href="">Vygeneruj heslo</a></div>
-						</div>
+				    	<label class="font-weight-bold d-block">Vytvořit nové heslo: </label> 
+						<div class="input-group mb-3">
+			    			<input id="password" class="form-control" type="text" name="password" value="" />
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" onclick="generatePassword(8);return false;" type="button">Vygeneruj heslo</button>
+                          </div>
+                        </div>
 					</div>
 				</div>
 		     	<div class="col-sm-6 col-md-4"> 
 				    <div class="form-group">
-				    	<label for="passwordConfirm">Nové heslo znovu: </label> 
+				    	<label class="font-weight-bold d-block">Nové heslo znovu: </label> 
 				    	<div>
 				    		<input class="form-control" id="passwordConfirm" type="text" name="passwordConfirm" value="" />
 				    	</div>
@@ -134,7 +141,7 @@
 		     	<?php if(count($this->allCategories) > 0){ ?>
 		     	
 				     <p>
-					     <label><?PHP echo $this->translate("Přidat do kategorie"); ?>:</label>		        	
+					     <label class="font-weight-bold d-block"><?PHP echo $this->translate("Přidat do kategorie"); ?>:</label>		        	
 				     </p> 
 					 <ul class="equipment">
 					    <?php foreach($this->allCategories as $cat){ ?>			        	
@@ -162,12 +169,12 @@
 		     	
 	        </div>
 		</div>
-	</div>
+	</div>	
 	
-	<div class="well">
-		<div class="clearfix">
-			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
-				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Uložit" />
+	<div class="card mt-4 mb-4">		
+        <div class="card-body">
+			<div class="col-sm-6 col-xs-12 offset-sm-3 offset-xs-0">
+				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Upravit" />
 			</div>
 		</div>
 	</div>

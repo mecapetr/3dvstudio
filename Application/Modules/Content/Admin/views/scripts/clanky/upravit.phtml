@@ -8,12 +8,14 @@
 		});
 	});
 </script>
-<h1> Upravit článek </h1>
+<h1 class="font-weight-light mt-4"> Upravit článek </h1>
 
-<ol class="breadcrumb">
-	<li>Obsah</li>
-	<li class="active">Upravit článek</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">Obsah</li>
+        <li class="breadcrumb-item active">Upravit článek</li>
+    </ol>
+</nav>
 
 <?php if($this->error !=''){ echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";} ?>
 <?php if($this->message !=''){ echo"<div class=\"alert alert-success\">" .$this->message. "</div>";} ?>
@@ -21,22 +23,25 @@
 <form action="<?php echo $this->action ;?>" method="post" enctype="multipart/form-data">
 
 	<div class="row">	
-		<div class="col-md-6">
-        
-       	    <div class="panel panel-default">
-				<div class="panel-heading"><span class="glyphicons glyphicons-show-thumbnails-with-lines"></span> Obecný formulář</div>
-				<div class="panel-body">
-							
+		<div class="col-md">
+			
+            <div class="card mb-4">		
+        		<div class="card-header d-flex align-items-center">
+        			<span class="glyphicons glyphicons-show-thumbnails-with-lines pr-3 color-black"></span><span class="text">Obecný formulář</span>
+        		</div>
+        		<div class="card-body">
 					<div class="form-group">
-					    <label>Zobrazit článek</label>
-				    	<div>
-				       		<label class="radio-inline"> <input type="radio" value="1" name="showArticle" class="checkbox" <?PHP if($this->allItems->active || empty($this->allItems->active))echo "checked='checked'"; ?>>Ano </label>
-				       		<label class="radio-inline"> <input type="radio" value="0" <?PHP if(empty($this->allItems->active) && is_numeric($this->allItems->active))echo "checked='checked'"; ?> name="showArticle" class="checkbox" >Ne </label>
-				       	</div>
+				       	<label class="font-weight-bold d-block">Zobrazit článek:</label>
+				    	<div class="form-check form-check-inline">
+				    		<input class="form-check-input" type="radio" name="showArticle" id="showArticles1" value="1" <?PHP if($this->allItems->active || empty($this->allItems->active))echo "checked='checked'"; ?> /><label class="form-check-label" for="showArticles1">Ano</label>
+				    	</div>				    	
+				    	<div class="form-check form-check-inline">
+				    		<input class="form-check-input" type="radio" name="showArticle" id="showArticles2" value="0" <?PHP if(empty($this->allItems->active) && is_numeric($this->allItems->active))echo "checked='checked'"; ?> /><label class="form-check-label" for="showArticles2">Ne</label>
+				    	</div>
 			       	</div>
 				
-			        <div class="form-group has-feedback">
-				        <label>Název článku</label>
+				    <div class="form-group has-feedback">
+				    	<label class="font-weight-bold d-block">Název článku</label>
 				        <div>
 						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
@@ -45,11 +50,10 @@
 						    <?PHP $i++; } ?>
 							<?php echo $this->render("languageMutations.phtml"); ?> 
 						</div>
-			        </div>
-						 
+			        </div>						 
 				    <div>
 						<div class="form-group main-link">
-					    <label for="parent">Přiřadit k odkazu:</label>
+					    	<label for="parent">Přiřadit k odkazu:</label>
 						    <span id="selected-parent-link" class="selected-link" rel="0">
 						    	<span class="value form-control v-0"><?PHP if(!empty($this->linkID[0]) && $this->linkTitleList[$this->linkID[0]->linkID])echo $this->linkTitleList[$this->linkID[0]->linkID]; else echo "&nbsp;"; ?></span>
 							    <span class="parrent-links">
@@ -58,11 +62,11 @@
 						    	<input type="hidden" name="linkID[]" value="<?PHP if(!empty($this->linkID[0]) && $this->linkID[0]->linkID)echo $this->linkID[0]->linkID; else echo 0; ?>" id="selected-parent-input-0" />
 						    </span>
 						
-							<div class="link-List">
+							<div class="link-List mb-1">
 							
 								<?php if($this->linkCount > 1){ for($i = 1; $i <= $this->linkCount-1; $i++){ ?>
 				
-									<div class="link-<?php echo $i; ?> has-feedback">
+									<div class="link-<?php echo $i; ?>">
 										<label></label>
 										<span id="selected-parent-link" class="selected-link" rel="<?php echo $i; ?>">
 											<span class="value v-<?php echo $i; ?> form-control"><?PHP if($this->linkTitleList[$this->linkID[$i]->linkID])echo $this->linkTitleList[$this->linkID[$i]->linkID]; else echo "&nbsp;"; ?></span>
@@ -76,39 +80,45 @@
 								
 								<?php }} ?>							
 							</div>
-							<span class="btn-xs btn-primary add-link">Přidat odkaz</span>
+							<span class="btn btn-xs btn-primary add-link">Přidat odkaz</span>
 						</div>
 						<input class="link-count" type="hidden" name="link-count" value="<?php if($this->linkCount > 0)echo $this->linkCount;else echo "0"; ?>" />
 					</div>
 				    
 				    <div class="form-group">
-				    	<label>Datum vložení</label>
-				        <div class="has-feedback">
-				    		<input id="date" placeholder="Datum" class="form-control" type="text" name="date" value="<?php if($this->allItems->date)echo $this->allItems->date;?>" class="date" />
+				    	<label class="font-weight-bold d-block">Datum vložení</label>
+				    	<div class="position-relative">
+				    		<input id="date" class="form-control pr-5" type="text" name="date" value="<?php if($this->allItems->date)echo $this->allItems->date;?>" class="date" />
 				    	</div>
 				    </div>
 				    
 					<?PHP if($this->modulesData->clankyDoporucene){ ?>
 					    <div class="form-group">
-					    	<label>Doporučený</label>
+				    		<label class="font-weight-bold d-block">Doporučený</label>
 				    		<div>
-					    		<label class="radio-inline"> <input type="radio" value="1" name="recommended" class="checkbox" <?PHP if($this->allItems->recommended == 1)echo "checked='checked'"; ?>> Ano </label>
-					    		<label class="radio-inline"> <input type="radio" value="0" <?PHP if(empty($this->allItems->recommended) || $this->allItems->recommended == 0 )echo "checked='checked'"; ?> name="recommended" class="checkbox" >Ne </label>
-					    	</div>
-					    </div>
+    				    		<div class="form-check form-check-inline">
+        				    		<input id="recommended1" type="radio" value="1" name="recommended" class="form-check-input" <?PHP if($this->allItems->recommended == 1)echo "checked='checked'"; ?>><label class="form-check-label" for="recommended1">Ano</label>
+        				    	</div>
+    				    		<div class="form-check form-check-inline">
+        				    		<input id="recommended2" type="radio" value="0" name="recommended" class="form-check-input" <?PHP if(empty($this->allItems->recommended) || $this->allItems->recommended == 0 )echo "checked='checked'"; ?>><label class="form-check-label" for="recommended2">Ne</label>
+        				    	</div>
+				    		</div>
+				    	</div>
 					<?PHP } ?>
 					<?PHP if($this->modulesData->clankyFacebook){ ?>
-					    <div class="form-group">
-					    	<label>Zobrazit facebook</label>
-					    	<div>
-					    		<label class="radio-inline"> <input type="radio" value="1" name="showFacebook" class="checkbox" <?PHP if($this->allItems->showFacebook == 1)echo "checked='checked'"; ?>><?PHP echo $this->translate('Ano'); ?> </label>
-					    		<label class="radio-inline"> <input type="radio" value="0" <?PHP if(empty($this->allItems->showFacebook) || $this->allItems->showFacebook == 0 )echo "checked='checked'"; ?> name="showFacebook" class="checkbox" ><?PHP echo $this->translate('Ne'); ?> </label>
-					   		</div>
-					    </div>
+				    	<div class="form-group">
+				    		<label class="font-weight-bold d-block">Zobrazit facebook</label>				    		
+				    		<div class="form-check form-check-inline">
+    				    		<input id="showFacebook1" type="radio" value="1" name="showFacebook" class="form-check-input" <?PHP if($this->allItems->showFacebook == 1)echo "checked='checked'"; ?>><label class="form-check-label" for="recommended1"><?PHP echo $this->translate("Ano"); ?></label>
+    				    	</div>
+				    		<div class="form-check form-check-inline">
+    				    		<input id="showFacebook2" type="radio" value="0" name="showFacebook" class="form-check-input" <?PHP if(empty($this->allItems->showFacebook) || $this->allItems->showFacebook == 0 )echo "checked='checked'"; ?>><label class="form-check-label" for="recommended2"><?PHP echo $this->translate("Ne"); ?></label>
+    				    	</div>
+				    	</div>
 					<?PHP } ?>
 					
-					<div class="form-group anotation">
-						<label>Anotace</label>
+					<div class="form-group">
+				    	<label class="font-weight-bold d-block">Anotace</label>
 						<div>
 							<?php echo $this->render("languageMutations.phtml"); ?>
 						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
@@ -120,8 +130,8 @@
 					    </div>
 					</div>
 					    					    
-					<div class="form-group whole-text">
-						<label>Text</label>
+					<div class="form-group">
+					    <label class="font-weight-bold d-block">Text</label>
 						<div>
 							<?php echo $this->render("languageMutations.phtml"); ?>
 						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
@@ -136,23 +146,25 @@
 	        	</div>
 	        </div>
 	        
-	        <div class="panel panel-default">
-				<div class="panel-heading"><span class="glyphicons glyphicons-note"></span> SEO</div>
-				<div class="panel-body">
+			<div class="card">		
+        		<div class="card-header d-flex align-items-center">
+        			<span class="glyphicons glyphicons-show-thumbnails-with-lines pr-3 color-black"></span><span class="text">SEO</span>
+        		</div>
+        		<div class="card-body">
 				
 					<div class="form-group">
-						<label>Meta nadpis</label>
+						<label class="font-weight-bold d-block">Meta nadpis</label>
 						<div>
 						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
-									<input  class="form-control" placeholder="Meta nadpis"  id="metaTitle" type="text" name="metaTitle-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->metaTitle[$val->suffix];?>" />
+									<input class="form-control" placeholder="Meta nadpis"  id="metaTitle" type="text" name="metaTitle-<?PHP echo $val->suffix ?>" value="<?php echo $this->allItems->metaTitle[$val->suffix];?>" />
 							    </span>
 						    <?PHP $i++; } ?>
 							<?php echo $this->render("languageMutations.phtml"); ?> 
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Meta klíčová slova</label>
+						<label class="font-weight-bold d-block">Meta klíčová slova</label>
 						<div>
 						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
@@ -163,7 +175,7 @@
 						</div>
 					</div>
 				    <div class="form-group">
-					    <label>Meta popis</label>
+					    <label class="font-weight-bold d-block">Meta popis</label>
 					    <div>
 						    <?PHP $i=0; foreach($this->allLanguageMutations as $val){ ?>
 						    	<span class="language-input <?PHP if($i != 0)echo "hidden-lang "; echo $val->suffix ?>" >
@@ -178,14 +190,14 @@
 			</div>     
 	        
 		</div>
-		<div class="col-md-6">
+		<div class="col-md">
 			<?PHP if($this->modulesData->clankySouvisejici){ ?>
-				<div class="panel panel-default">
-					
-					<div class="panel-heading"><span class="glyphicons glyphicons-bring-to-front"></span> Související články </div>
-					<div class="panel-body">
-					
-			    		<div class="related-articles">
+				<div class="card mb-4">		
+            		<div class="card-header d-flex align-items-center">
+            			<span class="glyphicons glyphicons-bring-to-front pr-3 color-black"></span><span class="text">Související články</span>
+            		</div>
+            		<div class="card-body">	
+			    		<div class="related-articles position-relative">
 			    			<label for="description">Seznam souvisejících: </label>	
 				            <div>				            					            
 					            <span class="selected-articles">
@@ -231,43 +243,53 @@
 			<?php } ?>
 			
 			<?PHP if($this->modulesData->clankyUrlVideo){ ?>
-				
-				<div class="panel panel-default">
-					
-					<div class="panel-heading"><span class="social social-vimeo"></span> Přidat video (youtube, vimeo)</div>
-					<div class="panel-body">
+				<div class="card mb-4">		
+                	<div class="card-header d-flex align-items-center">
+                		<span class="social social-vimeo pr-3"></span><span class="text">Přidat video (youtube, vimeo)</span>
+                	</div>
+            		<div class="card-body">	
 						<div class="video-URLs">
-							<?php $i = 1; foreach($this->allWebVideos as $vid){ ?>
-						 		<?PHP if($vid->type == "youtube"){ ?>				    	
-									<div class="col-sm-4 col-xs-12 video-panel">
-										<div class="form-group">
-											<iframe width="230" height="165" src="http://www.youtube.com/embed/<?PHP echo $vid->code ?>" frameborder="0" allowfullscreen></iframe> 
-										</div>
-										<div class="form-group">
-											<div class="checkbox"> 	
-												<label> <input id="del-vid-<?PHP echo $i ?>" type="checkbox" class="checkbox" name="delVideo[]" value="<?PHP echo $vid->webVideoID ?>"> smazat video </label>
-											</div>
-										</div>
-									</div>
-								<?PHP }else if($vid->type == "vimeo"){ ?>
-									<div class="col-sm-4 col-xs-12 video-panel">
-										<div class="form-group">
-											<iframe src="http://player.vimeo.com/video/<?PHP echo $vid->code ?>?title=0&amp;byline=0&amp;portrait=0" width="230" height="165" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-										</div>
-										<div class="form-group">
-											<div class="checkbox"> 	
-												<label><input id="del-vid-<?PHP echo $i ?>" type="checkbox" class="checkbox" name="delVideo[]" value="<?PHP echo $vid->webVideoID ?>"> <label for="del-vid-<?PHP echo $i ?>"> - smazat video </label>
-											</div>
-										</div>
-									</div>
-								<?PHP } ?>
-							 <?php $i++; } ?>
+							<div class="row">
+    							<?php $i = 1; foreach($this->allWebVideos as $vid){ ?>	
+        								<div class="col-sm-6 col-xs-12">	
+            						 		<?PHP if($vid->type == "youtube"){ ?>		    		    	
+            									<div class="video-panel">
+            										<div class="form-group">
+            											<iframe width="230" height="165" src="http://www.youtube.com/embed/<?PHP echo $vid->code ?>" frameborder="0" allowfullscreen></iframe> 
+            										</div>
+            										<div class="form-group px-2">
+            											<div class="form-check form-check-inline">
+                                                          <input id="del-vid-<?PHP echo $i ?>" type="checkbox" class="form-check-input" name="delVideo[]" value="<?PHP echo $vid->webVideoID ?>">
+                                                          <label class="form-check-label" for="del-vid-<?PHP echo $i ?>">
+                                                            smazat video
+                                                          </label>
+                                                        </div>
+            										</div>
+            									</div>
+            								<?PHP }else if($vid->type == "vimeo"){ ?>
+            									<div class="video-panel">
+            										<div class="form-group">
+            											<iframe src="http://player.vimeo.com/video/<?PHP echo $vid->code ?>?title=0&amp;byline=0&amp;portrait=0" width="230" height="165" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            										</div>
+            										<div class="form-group px-2">
+            											<div class="form-check form-check-inline">
+                                                          <input id="del-vid-<?PHP echo $i ?>" type="checkbox" class="form-check-input" name="delVideo[]" value="<?PHP echo $vid->webVideoID ?>">
+                                                          <label class="form-check-label" for="del-vid-<?PHP echo $i ?>">
+                                                            smazat video
+                                                          </label>
+                                                        </div>
+            										</div>
+            									</div>
+            								<?PHP } ?>
+            							</div>
+    							 <?php $i++; } ?>
+							</div>
 						</div>
 				    	
 				    	
 					</div>
-					<div class="panel-footer">
-						<a href="" class="btn btn-primary btn-xs add-videoURL">Přidat URL</a>
+					<div class="card-footer">
+						<a href="" class="btn btn-primary btn-xs add-videoURL text-uppercase">Přidat URL</a>
 				    	<input type="hidden" name="hidvideo" value="1">
 					</div>
 				</div>
@@ -275,10 +297,11 @@
 			<?php } ?>
 			
 			<?PHP if($this->modulesData->clankyFoto){ ?>
-				<div class="panel panel-default">
-				
-					<div class="panel-heading"><span class="glyphicons glyphicons-picture"></span> Upravit fotky </div>
-					<div class="panel-body">
+				<div class="card mb-4">		
+                	<div class="card-header d-flex align-items-center">
+                		<span class="glyphicons glyphicons-picture pr-3"></span><span class="text">Upravit fotky</span>
+                	</div>
+            		<div class="card-body">
 					    <input type="hidden" name="sWidth"  value="256" />
 				        <input type="hidden" name="sHeight" value="0" />
 				        <input type="hidden" name="mWidth"  value="0" />
@@ -334,31 +357,32 @@
 			<?php } ?>
 			
 			<?PHP if($this->modulesData->clankySoubor){ ?>	 	   
-				<div class="panel panel-default">
-				
-					<div class="panel-heading"><span class="glyphicons glyphicons-file"></span> Upravit soubory</div>
-					<div class="panel-body">
+				<div class="card mb-4">		
+                	<div class="card-header d-flex align-items-center">
+                		<span class="glyphicons glyphicons-file pr-3"></span><span class="text">Upravit soubory</span>
+                	</div>
+            		<div class="card-body">	
 		        		<?php echo $this->render("files.phtml"); ?> 
 		        	</div>
 		        </div>
 			<?PHP } ?>
 			
 			<?PHP if($this->modulesData->clankyMp4Video){ ?>
-		        <div class="panel panel-default">
-				
-					<div class="panel-heading"><span class="glyphicons glyphicons-film"></span> Přidat mp4 videa</div>
-					<div class="panel-body">
+		        <div class="card mb-4">		
+                	<div class="card-header d-flex align-items-center">
+                		<span class="glyphicons glyphicons-film pr-3"></span><span class="text">Přidat mp4 videa</span>
+                	</div>
+            		<div class="card-body">
 		        		<?php echo $this->render("video.phtml"); ?> 
 		        	</div>
 		        </div>		          
 			<?PHP } ?>
 		</div>
 	</div>
-	
-	<div class="well">
-		<div class="clearfix">
-			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
-				<input class="btn btn-block btn-primary" type="submit" name="enter" value="Uložit" />
+	<div class="card mt-4 mb-4">		
+        <div class="card-body">
+			<div class="col-sm-6 col-xs-12 offset-sm-3 offset-xs-0">
+				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Uložit" />
 			</div>
 		</div>
 	</div>

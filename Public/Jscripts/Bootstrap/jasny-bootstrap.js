@@ -908,7 +908,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
       var element = this.$element
 
       reader.onload = function(re) {
-        var $img = $('<img>')
+        var $img = $('<img class="img-fluid">')
         $img[0].src = re.target.result
         files[0].result = re.target.result
         
@@ -927,7 +927,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
     } else {
     	
       var $input = this.$element.find('input[type=file]');	
-      this.$element.find('.fileinput-filename').addClass('dropdown').html('<a href="#" data-toggle="dropdown" class="dropdown-toggle">bylo vybráno více souborů <i class="caret"></i></a><ul class="dropdown-menu" role="menu"><li>' + $.map($input[0].files, function(val) { return val.name; }).join('</li><li>') + '</li></ul>');
+      this.$element.find('.fileinput-filename').addClass('dropdown').html('<a href="#" data-toggle="dropdown" class="dropdown-toggle">bylo vybráno více souborů <i class="caret"></i></a><div class="dropdown-menu" role="menu"><span class="dropdown-item-text">' + $.map($input[0].files, function(val) { return val.name; }).join('</span><span class="dropdown-item-text">') + '</span></div>');
       this.$preview.text(file.name)
       
       this.$element.addClass('fileinput-exists').removeClass('fileinput-new')

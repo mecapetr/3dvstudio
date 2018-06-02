@@ -1,12 +1,17 @@
 <li>
-<div class="panel panel-default">
-	<div class="panel-heading clearfix">
-	<span class="label label-info">Text element</span>
-	<span class="glyphicons glyphicons-remove text-element" data="<?php echo $this->elementData["textElement"]["textID"] ?>"></span>
-	<span class="glyphicons glyphicons-move"></span>
-    <span class="element-width form-inline">
-    	<label>Šířka elementu:</label>
-    	<select class="form-control" name="t-e-element-width-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+<div class="card mb-4">
+	<div class="card-header d-flex align-items-center">
+	<span class="badge badge-info">Text element</span> 
+    <span class="element-width form-inline ml-auto mr-2">
+		<label class="font-weight-bold mr-2">Zarovnání:</label>
+		<select class="form-control form-control-sm" name="t-e-element-float-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
+			<option value="left" <?php if($this->elementData["textElement"]['elementFloat'] == "left") echo "selected = 'selected'"?> >Vlevo</option>
+			<option value="right" <?php if($this->elementData["textElement"]['elementFloat'] == "right") echo "selected = 'selected'"?> >Vpravo</option>
+		</select>
+	</span>
+	<span class="element-width form-inline mr-2">
+    	<label class="font-weight-bold mr-2">Šířka elementu:</label>
+    	<select class="form-control form-control-sm" name="t-e-element-width-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
     		<option <?php if($this->elementData["textElement"]['elementWidth'] == 12) echo "selected = 'selected'"?> value="12">12 dílů (celá šířka)</option>
     		<option <?php if($this->elementData["textElement"]['elementWidth'] == 11) echo "selected = 'selected'"?> value="11">11 dílů</option>
     		<option <?php if($this->elementData["textElement"]['elementWidth'] == 10) echo "selected = 'selected'"?> value="10">10 dílů</option>
@@ -21,15 +26,10 @@
     		<option <?php if($this->elementData["textElement"]['elementWidth'] == 1) echo "selected = 'selected'"?>  value="1">1 díl</option>
     	</select>
     </span>
-    <span class="element-width form-inline">
-		<label>Zarovnání:</label>
-		<select class="form-control" name="t-e-element-float-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>">
-			<option value="left" <?php if($this->elementData["textElement"]['elementFloat'] == "left") echo "selected = 'selected'"?> >Vlevo</option>
-			<option value="right" <?php if($this->elementData["textElement"]['elementFloat'] == "right") echo "selected = 'selected'"?> >Vpravo</option>
-		</select>
-	</span>
+	<span class="glyphicons glyphicons-move mr-2"></span>
+	<span class="glyphicons glyphicons-remove text-element" data="<?php echo $this->elementData["textElement"]["textID"] ?>"></span>   
 </div>
-		<div class="panel-body">
+		<div class="card-body">
 	    
     		<div>
     			<?php echo $this->render("languageMutations.phtml"); ?>

@@ -1,11 +1,14 @@
 <?php echo $this->render("css-js.phtml"); ?>
 
-<h1> Seznam článků </h1>
+<h1 class="font-weight-light mt-4"> Seznam článků </h1>
 
-<ol class="breadcrumb">
-<li>Obsah</li>
-<li class="active">Seznam článků</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">Obsah</li>
+        <li class="breadcrumb-item active">Seznam článků</li>
+    </ol>
+</nav>
+
 
 <?php if($this->error !=''){
 	echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";
@@ -14,56 +17,54 @@
 
 <form action="" method="post">
 
-<div class="panel panel-default">		
-		<div class="panel-heading clearfix">
-			<div class="float-left">
-				<?php echo $this->render('sortAlignClanky.phtml'); ?>
-			</div>
-			<div class="float-right text-right">
-				<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
-			</div>
-			
+<div class="card">		
+		<div class="card-header d-flex align-items-center">
+			<?php echo $this->render('sortAlignClanky.phtml'); ?>
+			<button type="button" class="btn btn-sm btn-danger delButton text-uppercase ml-auto"> Smazat označené </button>			
 		</div>
-		<div class="panel-body table-responsive">
-
-			<div class="clearfix data-list header">
-				<div class="col-sm-2 no-left-padding th">Hlavní odkaz</div>
-				<div class="col-sm-2 th">Přiřazano k odkazu</div>
-				<div class="col-sm-4 th">Název článku</div>
-				<div class="col-sm-2 text-center th">Shlédnuto</div>
-				<div class="col-sm-2 text-right th">upravit / smazat</div>		
-			</div>
-
-			<?php if(count($this->allItems) > 0){ ?>	
-		    <ul class="sortListBasic data-list main-ul article">
-				<?php foreach($this->allItems as $actuality){ ?>
-				        <li class="clearfix" id="<?php echo $actuality->articleID ?>">               
-			                <div class="col-sm-2 first-col text-overflow" title="<?php echo $actuality->topLinkTitle; ?>" ><span class="glyphicons glyphicons-move"></span> <?php echo $actuality->topLinkTitle; ?></div>
-							<div class="col-sm-2 text-overflow" title="<?php echo $actuality->lastLinkTitle; ?>" ><?php echo $actuality->lastLinkTitle; ?></div>
-							<div class="col-sm-4 text-overflow" ><?php echo $actuality->title; ?></div>
-							<div class="col-sm-2 text-center" ><?php echo $actuality->view; ?></div>
-							<div class="col-sm-2 text-right">
-							    <a title="<?PHP echo $this->translate('Uprav'); ?>" href="<?php echo $this->baseUrl; ?>/admin/obsah/clanky/upravit/id/<?php echo $actuality->articleID?>"><span class="glyphicons glyphicons-pencil"></span></a>   
+		<div class="card-body">
+			<?php if(count($this->allItems) > 0){ ?>
+    			<table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-left">Hlavní odkaz</th>
+                      <th scope="col" class="text-center">Přiřazano k odkazu</th>
+                      <th scope="col" class="text-center">Název článku</th>
+                      <th scope="col" class="text-center">Shlédnuto</th>
+                      <th scope="col" class="text-right">upravit / smazat</th>
+                    </tr>
+                  </thead>
+                  <tbody class="sortListBasic data-list main-ul article ui-sortable">
+                  
+    				<?php foreach($this->allItems as $actuality){ ?>    		                
+    		                <tr id="<?php echo $actuality->articleID ?>">
+                              <td class="text-left align-middle"><span class="glyphicons glyphicons-move"></span> <?php echo $actuality->topLinkTitle; ?></td>
+                              <td class="text-center align-middle"><?php echo $actuality->lastLinkTitle; ?></td>
+                              <td class="text-center align-middle"><?php echo $actuality->title; ?></td>
+                              <td class="text-center align-middle"><?php echo $actuality->view; ?></td>
+                              <td class="text-right align-middle">
+                          		<a class="d-inline-block align-middle" title="<?PHP echo $this->translate('Uprav'); ?>" href="<?php echo $this->baseUrl; ?>/admin/obsah/clanky/upravit/id/<?php echo $actuality->articleID?>"><span class="glyphicons glyphicons-pencil"></span></a>   
 							    <?PHP if($actuality->allowDelete){ ?>
-							    	<input class="delete" type="checkbox" name="delete[]" value="<?php echo $actuality->articleID ?>">
+							    	<input class="d-inline-block delete align-middle ml-2" type="checkbox" name="delete[]" value="<?php echo $actuality->articleID ?>">
 								<?PHP } ?>
-							</div>
-							
-							<br id="endFloat" />
-		                
-		                </li>
-				<?php } ?>
-			</ul>
+    						  </td>
+                            </tr>
+    				<?php } ?>
+                    
+                  </tbody>
+                </table>
+			
+
 			<?php }else{ ?>
 				<div class="no-data alert alert-warning text-center">Zatím se zde nenachází žádné články.</div>
 			<?php } ?>
 
 		</div>	
-		<div class="panel-footer clearfix">
+		<div class="card-footer">
 			
 				<div class="text-right">
-					<button type="button" class="btn btn-sm btn-danger delButton"> Smazat označené </button>
-					<input type="submit" class ="hidden deleteButton" name="deleteButton" />
+					<button type="button" class="btn btn-sm btn-danger delButton text-uppercase"> Smazat označené </button>
+					<input type="submit" class ="d-none deleteButton" name="deleteButton" />
 				</div>
 			
 		</div>	

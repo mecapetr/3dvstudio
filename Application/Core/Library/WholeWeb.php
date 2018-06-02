@@ -33,7 +33,7 @@ class Library_WholeWeb extends Zend_Controller_Action
 		$this->view->modulesData = $this->modulesData;
 		
 		$this->regEmail = array(
-			"cz" => "zikaservis@gmail.com"
+			"cz" => "mecalukas@gmail.com"
 		);
     /*
 		$this->regEmail = array(
@@ -41,14 +41,14 @@ class Library_WholeWeb extends Zend_Controller_Action
 			"sk" => "meca.petr@gmail.com"
 		); */
 		
-		$this->regDomain = array(
-			"cz" => "autoserviszika.cz"
+		$this->regDomain = $this->view->regDomain = array(
+			"cz" => "1vision.cz"
 		);
-		$this->regName = array(
-			"cz" => "Autoservis Zika"
+		$this->regName = $this->view->regName = array(
+			"cz" => "1vision"
 		);
-		$this->regTel = array(
-			"cz" => "773 593 920"
+		$this->regTel = $this->view->regTel = array(
+			"cz" => "603103166"
 		);
 	}
 	

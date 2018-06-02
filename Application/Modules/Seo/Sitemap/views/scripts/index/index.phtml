@@ -1,11 +1,13 @@
 <script type="text/javascript" src="/Application/Modules/Seo/Sitemap/Jscripts/events.js"></script>
 
-<h1> Sitemap </h1>
+<h1 class="font-weight-light mt-4"> Sitemap </h1>
 
-<ol class="breadcrumb">
-<li>SEO</li>
-<li class="active">Sitemap</li>
-</ol>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb py-2 px-3">
+        <li class="breadcrumb-item">SEO</li>
+        <li class="breadcrumb-item active">Sitemap</li>
+    </ol>
+</nav>
 
 <?php if($this->error !=''){
 	echo"<div class=\"alert alert-danger\">" .$this->error. "</div>";
@@ -16,23 +18,27 @@
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
-			<div class="panel panel-default">		
-				<div class="panel-heading clearfix">
+			<div class="card">		
+				<div class="card-header d-flex align-items-center">
 					<strong>Základní info</strong>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 		
-					<label>Typ generování</label>
+					<label class="font-weight-bold d-block">Typ generování</label>
 					<div class="form-group generate-type">
-						<label class="radio-inline"><input type="radio" name="generateTypeID" value="1" <?php if($this->allData->generateTypeID == 1)echo "checked"; ?> />Automaticky vždy po přihlášení se do adminu a zároveň pokud byly provedeny změny</label><br />
-						<label class="radio-inline"><input type="radio" name="generateTypeID" value="2" <?php if($this->allData->generateTypeID == 2)echo "checked"; ?> />Manuálně klikem na tlačítko</label>
+						<div class="form-check">
+				    		<input class="form-check-input" type="radio" name="generateTypeID" id="generateTypeID1" value="1" <?php if($this->allData->generateTypeID == 1)echo "checked"; ?> /><label class="form-check-label" for="generateTypeID1">Automaticky vždy po přihlášení se do adminu a zároveň pokud byly provedeny změny</label>
+				    	</div>
+				    	<div class="form-check">
+				    		<input class="form-check-input" type="radio" name="generateTypeID" id="generateTypeID2" value="2" <?php if($this->allData->generateTypeID == 2)echo "checked"; ?> /><label class="form-check-label" for="generateTypeID2">Manuálně klikem na tlačítko</label>
+				    	</div>		
 					</div>
 					
 					<div class="form-group generate-button" <?php if($this->allData->generateTypeID == 1)echo 'style="display:none"'; ?>>
 						<input class="btn btn-primary" type="submit" name="generate" value="Vygenerovat sitemap" />
 					</div>
 					
-					<label>Jak často budete aktualizovat data na webu ?</label>
+					<label class="font-weight-bold d-block">Jak často budete aktualizovat data na webu ?</label>
 					<div class="form-group generate-type">
 						<select class="form-control" name="changefreq">
 							<option value="always"  <?php if($this->allData->changefreq == "always")echo "selected"; ?>>neustále</option>
@@ -45,10 +51,10 @@
 						</select>
 					</div>
 								
-					<label>URL adresy sitemap</label>
+					<label class="font-weight-bold d-block">URL adresy sitemap</label>
 					<div class="form-group">
 						<?php if(!empty($this->files)){ ?>
-							<ul>
+							<ul class="list-unstyled">
 								<?php foreach($this->files as $f){ ?>
 							        <li><a class="link" href="/<?php echo $this->path ?>/<?php echo $f ?>">http://<?php echo $this->domain ?>/<?php echo $this->path ?>/<?php echo $f ?></a></li>
 							    <?php } ?>
@@ -60,20 +66,20 @@
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6">
-			<div class="panel panel-default">		
-				<div class="panel-heading clearfix">
+			<div class="card mb-4">		
+				<div class="card-header d-flex align-items-center">
 					<strong>Z kterých odkazů chcete odstranit generování článků do sitemap</strong>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 					<?php echo $this->articles; ?>			
 				</div>	
 			</div>
 			
-			<div class="panel panel-default">		
-				<div class="panel-heading clearfix">
+			<div class="card">		
+				<div class="card-header d-flex align-items-center">
 					<strong>Které odkazy chcete odstranit ze sitemap</strong>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 					<?php echo $this->links; ?>			
 				</div>	
 			</div>
@@ -82,10 +88,10 @@
 	
 	</div>
 	
-	<div class="well">
-		<div class="clearfix">
-			<div class="col-sm-6 col-xs-12 col-sm-offset-3 col-xs-offset-0">
-				<input class="btn btn-primary btn-block" type="submit" name="enter" value="Uložit" />
+	<div class="card mt-4 mb-4">		
+        <div class="card-body">
+			<div class="col-sm-6 col-xs-12 offset-sm-3 offset-xs-0">
+				<input class="btn btn-primary btn-block check-required-fields" type="submit" name="enter" value="Uložit" />
 			</div>
 		</div>
 	</div>

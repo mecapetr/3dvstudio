@@ -1,7 +1,7 @@
 <li>
-<div class="panel panel-default">
-<div class="panel-heading clearfix"><span class="label label-default">Header/Slider element</span> <span class="glyphicons glyphicons-remove" data="<?php echo $this->elementData["header"]["sectionID"]; ?>-<?php echo $this->elementData["header"]["groupLinkID"] ?>"></span> <span class="glyphicons glyphicons-move"></span> </div>
-	<div class="panel-body">
+<div class="card mb-4">
+<div class="card-header d-flex align-items-center"><span class="badge badge-secondary">Header/Slider element</span> <span class="glyphicons glyphicons-move ml-auto mr-2"></span> <span class="glyphicons glyphicons-remove" data="<?php echo $this->elementData["header"]["sectionID"]; ?>-<?php echo $this->elementData["header"]["groupLinkID"] ?>"></span>  </div>
+	<div class="card-body">
     
     	<?php $checkbox = 1; foreach($this->elementData["header"]["data"] as $headerElm){ ?>
     	    	
@@ -31,9 +31,9 @@
 		    	<div class="col-sm-4">
 		    		<div class="fileinput fileinput-new" data-provides="fileinput">
 		    			
-	    				<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;">
+	    				<div class="fileinput-preview img-thumbnail" data-trigger="fileinput" style="width: 122px; height: 82px;float:left;margin-right:5px;">
 		    				<?php if(!empty($headerElm["image"])){ ?>
-			    				<img src="/Public/Images/Link/Section/Header/mala-<?php echo $headerElm["image"] ?>" />
+			    				<img class="img-fluid" src="/Public/Images/Link/Section/Header/mala-<?php echo $headerElm["image"] ?>" />
 		    				<?php } ?>		    					
 	    				</div>		    			
 		    			<div style="float:left;vertical-align:middle;">
@@ -53,8 +53,8 @@
 	    	</div>
     	<?php $checkbox++; } ?>
     </div>
-    <div class="panel-footer">
-    	<a class="btn btn-primary btn-xs add-header-element" href="#" title="Přidat element">Přidat element</a>
+    <div class="card-footer">
+    	<a class="btn text-uppercase btn-primary btn-xs add-header-element" href="#" title="Přidat element">Přidat element</a>
     	<input type="hidden" name="h-e-c-<?php echo $this->secI ?>-<?php echo $this->elSecCount[$this->elementPriority] ?>" value="<?php echo ($checkbox-1); ?>" />
     </div>
 </div>

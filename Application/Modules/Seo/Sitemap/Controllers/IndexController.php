@@ -131,7 +131,7 @@ class Seositemap_IndexController extends Library_Adminbase
     	 
     	$ulMargin = $recurseLevel*15;
     
-    	$this->linksOutput .= '<ul class="data-list">';
+    	$this->linksOutput .= '<ul class="data-list list-unstyled">';
     	 
     	foreach($children as $child){
     		$this->linksOutput .= '<li id="'.$child->linkID.'" class="clearfix" >';
@@ -143,8 +143,8 @@ class Seositemap_IndexController extends Library_Adminbase
     		foreach($this->allLinks as $art){
     			if($art->linkID == $child->linkID && $type == "links")$checked = "checked";
     		}
-    		
-    		$this->linksOutput .= '     <div style="padding-left:'.$ulMargin.'px;"> <label class="checkbox-inline"><input '.$checked.' class="delete" type="checkbox" name="'.$type.'[]" value="'.$child->linkID.'"> '.$child->title.'</label></div>';
+    			
+    		$this->linksOutput .= '     <div style="padding-left:'.$ulMargin.'px;"><div class="form-check py-2"><label class="form-check-label"><input '.$checked.' class="delete form-check-input" type="checkbox" name="'.$type.'[]" value="'.$child->linkID.'"> '.$child->title.'</label></div></div>';
     		$this->linksOutput .= '		<div class="clear-left"></div>';
     		 
     		if(!empty($this->subLinksArr[$child->linkID]))

@@ -1,15 +1,13 @@
-<ul class="user-block">
+<ul class="user-block list-unstyled list-inline d-flex m-0 align-items-stretch">
 	<?PHP if($this->user){ ?>		
-		<li class="main">
-			<a href=""> <span class="glyphicons glyphicons-user"></span> <?php echo $this->user ?></a>
-			
-			<ul class="dropdown-menu">
-				
-				<li><a href="/admin/nastaveni/zmena-hesla" title="nastavení"> <span class="glyphicons glyphicons-settings"></span> Nastavení</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="/admin/logout" title="Odhlásit"> <span class="glyphicons glyphicons-log-out"></span> Odhlásit</a></li>		
-										
-			</ul>
+		<li class="main list-inline-item d-flex align-items-stretch m-0">
+			<a href="" class="d-flex align-items-center pl-2 pr-3 text-white"> <span class="glyphicons glyphicons-user pr-2"></span> <?php echo $this->user ?></a>
+					
+			<div class="dropdown-menu">
+              <a class="dropdown-item d-flex align-items-center" href="/admin/nastaveni/zmena-hesla" title="nastavení"> <span class="glyphicons glyphicons-settings pr-3"></span> Nastavení</a>
+              
+              <a class="dropdown-item d-flex align-items-center" href="/admin/logout" title="Odhlásit"> <span class="glyphicons glyphicons-log-out pr-3"></span> Odhlásit</a>
+            </div>
 		</li>
 	<?PHP } ?>
 </ul>

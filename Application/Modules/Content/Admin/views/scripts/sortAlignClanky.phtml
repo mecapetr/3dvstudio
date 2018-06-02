@@ -1,8 +1,6 @@
         <div class="list-order form-inline"> 	
-            <form action="" method="post">	 
-            	<div class="message sortMessage"> </div>
-				<a class="btn btn-sm btn-success delButton" href="/admin/obsah/clanky/pridat"> Přidat nový článek </a>
-				<select class="form-control" name="subLinkID">
+				<a class="btn btn-sm btn-success delButton text-uppercase mr-2" href="/admin/obsah/clanky/pridat"> Přidat nový článek </a>
+				<select class="form-control form-control-sm mr-2" name="subLinkID">
 				
 					<?php foreach($this->allSublinks as $sublink){ ?>
 				    <option <?php if($sublink->linkID == $this->subLinkID) echo "selected"; ?> value="<?PHP echo $sublink->linkID; ?>"><?PHP echo $sublink->title; ?></option>
@@ -10,15 +8,14 @@
 					<option <?php if($this->subLinkID == 0) echo "selected"; ?> value="0"> -- nezařazené -- </option>
 				</select>
 				
-				<span class="others-link">
+				<span class="others-link mr-2">
 				
 				
 				
 				</span>
 				
-				<input class="button btn btn-sm btn-primary" type="submit" name="vybrat" value="<?PHP echo $this->translate('Vybrat kategiorii'); ?>" />
+				<input class="button btn btn-sm btn-primary text-uppercase" type="submit" name="vybrat" value="<?PHP echo $this->translate('Vybrat kategiorii'); ?>" />
 
-			</form>
 		</div>
 		
 		<script>getOtherLinks(<?php echo $this->subLinkID; ?>,<?php echo $this->subLinkID1; ?>)</script>
